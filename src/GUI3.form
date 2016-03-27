@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="extendedState" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="JFrame.MAXIMIZED_BOTH" type="code"/>
+    </Property>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel2" max="32767" attributes="0"/>
+              <Component id="jSplitPane1" alignment="0" pref="1203" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jSplitPane1" pref="1099" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jbSave" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane19" min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jbSolveEquation" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jbOpen" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="144" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jbSolveEquation" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jbOpen" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jbSave" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jScrollPane19" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="jtfPathSrc">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/folder.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbOpen">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="33" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Open a C function"/>
+                <Property name="toolTipText" type="java.lang.String" value="The C function only contains integer/float/array variables"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbOpenActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbSolveEquation">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Generate test cases"/>
+                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;p width=&quot;300&quot;&gt;A mimimum number of test case satisfying coverage criterion is generated. In the case the source code contains simple loops or two-nested loops, a set of test cases for checking the reliable of each loop is generated.&lt;/p&gt;&lt;/html&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSolveEquationActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jbSave">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/save.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Export the result to .html and png"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbSaveMouseClicked"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane19">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="jtpDepth">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="1"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="The maximum number of iterations for each loop"/>
+                <Property name="toolTipText" type="java.lang.String" value="This value shoule be small."/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JSplitPane" name="jSplitPane1">
+          <Properties>
+            <Property name="dividerLocation" type="int" value="684"/>
+          </Properties>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JTabbedPane" name="jspCanvas">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="66" red="33" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                  <JSplitPaneConstraints position="left"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jspCanvas1va2">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="66" red="0" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="CFG for statement/branch coverage">
+                        <Property name="tabTitle" type="java.lang.String" value="CFG for statement/branch coverage"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                </Container>
+                <Container class="javax.swing.JScrollPane" name="jspCanvas3">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="CGF for multiple condition coverage">
+                        <Property name="tabTitle" type="java.lang.String" value="CGF for multiple condition coverage"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JSplitPane" name="jSplitPane2">
+              <Properties>
+                <Property name="dividerLocation" type="int" value="300"/>
+                <Property name="orientation" type="int" value="0"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                  <JSplitPaneConstraints position="right"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JTabbedPane" name="jtpResult">
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jtpResultStateChanged"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                      <JSplitPaneConstraints position="top"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="jPanel5">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Statement coverage">
+                            <Property name="tabTitle" type="java.lang.String" value="Statement coverage"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane4" alignment="0" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane4" alignment="0" pref="255" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jtStatementTable">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="0">
+                                    <Column editable="true" title="No.k" type="java.lang.String"/>
+                                    <Column editable="true" title="Test path" type="java.lang.String"/>
+                                    <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                    <Column editable="true" title="Test case" type="java.lang.String"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="40" minWidth="0" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="gdfgd">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Branch coverage">
+                            <Property name="tabTitle" type="java.lang.String" value="Branch coverage"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane6" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane6" alignment="0" pref="255" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jtBranchCoverage">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="0">
+                                    <Column editable="true" title="No.k" type="java.lang.String"/>
+                                    <Column editable="true" title="Test path" type="java.lang.String"/>
+                                    <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                    <Column editable="true" title="Test case" type="java.lang.String"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="40" minWidth="0" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel7">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Multiple condition coverage">
+                            <Property name="tabTitle" type="java.lang.String" value="Multiple condition coverage"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane7" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane7" alignment="0" pref="255" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jtSubConditionCoverage">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="0">
+                                    <Column editable="true" title="No.k" type="java.lang.String"/>
+                                    <Column editable="true" title="Test path" type="java.lang.String"/>
+                                    <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                    <Column editable="true" title="Test case" type="java.lang.String"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="40" minWidth="0" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel4">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Simple loop/Two-nested loop">
+                            <Property name="tabTitle" type="java.lang.String" value="Simple loop/Two-nested loop"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane5" pref="506" max="32767" attributes="0"/>
+                              <Component id="jtpTestLoop" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jScrollPane5" min="-2" pref="174" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtpTestLoop" pref="87" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jtLoopPaths">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="2" rowCount="0">
+                                    <Column editable="true" title="No.k" type="java.lang.String"/>
+                                    <Column editable="true" title="Testpath" type="java.lang.String"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="40" minWidth="0" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Container class="javax.swing.JTabbedPane" name="jtpTestLoop">
+                          <Events>
+                            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jtpTestLoopStateChanged"/>
+                          </Events>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                          <SubComponents>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="Test inner loop">
+                                    <Property name="tabTitle" type="java.lang.String" value="Test inner loop"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="jtTestInnerLoop">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="4" rowCount="7">
+                                        <Column editable="true" title="Number iterations" type="java.lang.String"/>
+                                        <Column editable="true" title="Test path" type="java.lang.String"/>
+                                        <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                        <Column editable="true" title="Test case" type="java.lang.String"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane17">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="Test outer loop">
+                                    <Property name="tabTitle" type="java.lang.String" value="Test outer loop"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="jtTestOuterLoop">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="4" rowCount="7">
+                                        <Column editable="true" title="Number iterations" type="java.lang.String"/>
+                                        <Column editable="true" title="Test path" type="java.lang.String"/>
+                                        <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                        <Column editable="true" title="Test case" type="java.lang.String"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane12">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                  <JTabbedPaneConstraints tabName="Test simple loop">
+                                    <Property name="tabTitle" type="java.lang.String" value="Test simple loop"/>
+                                  </JTabbedPaneConstraints>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="jtTestSimpleLoop">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="4" rowCount="7">
+                                        <Column editable="true" title="Number iterations" type="java.lang.String"/>
+                                        <Column editable="true" title="Test path" type="java.lang.String"/>
+                                        <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                        <Column editable="true" title="Test case" type="java.lang.String"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel3">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="The possible test paths for statement/branch coverage">
+                            <Property name="tabTitle" type="java.lang.String" value="The possible test paths for statement/branch coverage"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane3" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane3" alignment="0" pref="255" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jtBasisPaths">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="0">
+                                    <Column editable="true" title="No.k" type="java.lang.Integer"/>
+                                    <Column editable="true" title="Test path" type="java.lang.String"/>
+                                    <Column editable="true" title="Path constraints" type="java.lang.String"/>
+                                    <Column editable="true" title="Test case" type="java.lang.String"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="40" minWidth="0" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JTabbedPane" name="jtTabBelow">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                      <JSplitPaneConstraints position="right"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="jPanel9">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Source code">
+                            <Property name="tabTitle" type="java.lang.String" value="Source code"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" pref="763" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTextPane" name="jtpSource">
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel6">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="SMT-Lib file">
+                            <Property name="tabTitle" type="java.lang.String" value="SMT-Lib file"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane18" max="32767" attributes="0"/>
+                              <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jScrollPane18" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jPanel8" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane18">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTextPane" name="jtpSmt_LibFile">
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Container class="javax.swing.JPanel" name="jPanel8">
+
+                          <Layout>
+                            <DimensionLayout dim="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jtfSmt_Lib_path_file" min="-2" pref="253" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jtfSmt_Lib_path_lib" min="-2" pref="250" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace pref="134" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                            <DimensionLayout dim="1">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jtfSmt_Lib_path_file" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jtfSmt_Lib_path_lib" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JLabel" name="jLabel11">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Path SMT-Lib file"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="jtfSmt_Lib_path_file">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="C:/CFT4CUnit/"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfSmt_Lib_path_fileActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel12">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Path SMT-Solver Z3"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="jtfSmt_Lib_path_lib">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="c:/Z3/bin/z3.exe"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfSmt_Lib_path_libActionPerformed"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Test case in details">
+                            <Property name="tabTitle" type="java.lang.String" value="Test case in details"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextPane" name="jtpTestcase">
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel10">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                          <JTabbedPaneConstraints tabName="Details of analysis process">
+                            <Property name="tabTitle" type="java.lang.String" value="Details of analysis process"/>
+                          </JTabbedPaneConstraints>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSplitPane3" alignment="0" pref="506" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSplitPane3" alignment="0" pref="763" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JSplitPane" name="jSplitPane3">
+                          <Properties>
+                            <Property name="dividerLocation" type="int" value="160"/>
+                            <Property name="orientation" type="int" value="0"/>
+                          </Properties>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
+                          <SubComponents>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane22">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                                  <JSplitPaneConstraints position="top"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTextPane" name="jtpInfor1vs2">
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane23">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                                  <JSplitPaneConstraints position="right"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTextPane" name="jtpInfor3">
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
