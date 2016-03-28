@@ -95,6 +95,7 @@ public class getAllPaths
             int I = 0;
             int J = 0;
             int MIN = 0;
+
             for (Vertex vertex : path)
             {
                 j++;
