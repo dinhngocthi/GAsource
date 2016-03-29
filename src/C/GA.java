@@ -87,7 +87,6 @@ public class GA
 
     public static void inputAppParameters()
     {
-
     };
 
     public static void inputParameters(String propFile) throws Exception
