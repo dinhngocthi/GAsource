@@ -89,6 +89,7 @@ public class GA
     {
     };
 
+
     public static void inputParameters(String propFile) throws Exception
     {
         ctc = new ChuongTrinhChinh(null);
