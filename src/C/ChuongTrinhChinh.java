@@ -300,9 +300,13 @@ public class ChuongTrinhChinh
         //String danhSachKe   = "-1 0\n0 1\n1 2\n2 3 10\n3 4 7\n4 5\n5 6\n6 -1\n7 8 9\n8 5\n9 5\n10 5\n";
         //String NodeElements = "0#Bat dau ham\n1#int trityp=0\n2#(a+b>c)&&(b+c>a)&&(c+a>b)\n3#(a!=b)&&(b!=c)&&(c!=a)\n4#trityp=1\n5#return trityp\n6#Ket thuc ham\n7#((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))\n8#trityp=2\n9#trityp=3\n10#trityp=-1";
         
-        // Selection sort 
-        String danhSachKe = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1";
-        String NodeElements="0#Bat dau ham\n1#int i,j\n2#i=0\n3#i<size-1\n4#int min=i\n5#j=i+1\n6#j<size\n7#a[j]<a[min]\n8#min=j\n9#j++\n10#int tem=a[i]\n11#a[i]=a[min]\n12#a[min]=tem\n13#i++\n14#Ket thuc ham";
+        // Selection sort
+        // loop = 1
+        //String danhSachKe = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1";
+        //String NodeElements="0#Bat dau ham\n1#int i,j\n2#i=0\n3#i<size-1\n4#int min=i\n5#j=i+1\n6#j<size\n7#a[j]<a[min]\n8#min=j\n9#j++\n10#int tem=a[i]\n11#a[i]=a[min]\n12#a[min]=tem\n13#i++\n14#Ket thuc ham";
+        // loop = 2
+        String danhSachKe   = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1\n";
+        String NodeElements = "0#Bat dau ham\n1#int i,j\n2#i=0\n3#i<size-1\n4#int min=i\n5#j=i+1\n6#j<size\n7#a[j]<a[min]\n8#min=j\n9#j++\n10#int tem=a[i]\n11#a[i]=a[min]\n12#a[min]=tem\n13#i++\n14#Ket thuc ham";
         
         geterTest = new getAllPaths(danhSachKe, NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
@@ -356,10 +360,13 @@ public class ChuongTrinhChinh
         return ret;
     }
 
+    // Calculate distance for all programs
     public void calculateDist() throws Exception
     {
         //String danhSachKe   = "-1 0\n0 1\n1 2\n2 3 10\n3 4 7\n4 5\n5 6\n6 -1\n7 8 9\n8 5\n9 5\n10 5\n";
         //String NodeElements = "0#Bat dau ham\n1#int trityp=0\n2#(a+b>c)&&(b+c>a)&&(c+a>b)\n3#(a!=b)&&(b!=c)&&(c!=a)\n4#trityp=1\n5#return trityp\n6#Ket thuc ham\n7#((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))\n8#trityp=2\n9#trityp=3\n10#trityp=-1";
+        String dsKe = staticVariable.Statement.danhSachKe;
+        String nodeElement = staticVariable.AllPath.NodeElements;
         getAllPaths geter = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         //getAllPaths geter = new getAllPaths(danhSachKe, NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geter.getOutput();
