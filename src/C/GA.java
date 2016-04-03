@@ -92,9 +92,6 @@ public class GA
 
     public static void inputParameters(String propFile) throws Exception
     {
-        ctc = new ChuongTrinhChinh(null);
-        ctc.initPathListID();
-
         Properties prop = new Properties();
         InputStream input = null;
 
@@ -194,6 +191,9 @@ public class GA
 
         criticalSize = popSize / 4;
         inputAppParameters();
+        
+        ctc = new ChuongTrinhChinh(null);
+        ctc.initPathListID(nvarReal-1);
     }
 
     public static void selectMemory()
@@ -485,6 +485,7 @@ public class GA
         // #ifdef prob1
         if (false)
         {
+            
             MINM = 1; // for maximization use -1
             term1 = (x[0] * x[0] + x[1] - 11.0) * (x[0] * x[0] + x[1] - 11.0);
             term2 = (x[0] + x[1] * x[1] - 7.0) * (x[0] + x[1] * x[1] - 7.0);
@@ -561,7 +562,7 @@ public class GA
             try
             {
                 //your_func = fTriangle(x[0], x[1], x[2]);                
-                your_func = fSelectionSort(x, 3);             
+                your_func = fSelectionSort(x, nvarReal);             
             }
             catch (Exception ex) 
             {

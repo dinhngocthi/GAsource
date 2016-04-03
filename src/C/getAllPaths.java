@@ -91,6 +91,7 @@ public class getAllPaths
         //System.out.println("getExecutionPath start");
         for (ArrayList<Vertex> path : output)
         {
+            System.out.println(path);
             int j = 0; // vertex ID             
             int I = 0;
             int J = 0;
