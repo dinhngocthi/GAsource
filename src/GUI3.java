@@ -489,8 +489,8 @@ public final class GUI3 extends javax.swing.JFrame
         jLabel12.setText("Path SMT-Solver Z3");
 
         // jtfSmt_Lib_path_lib.setText("c:/Z3/bin/z3.exe"); D.N.Thi
-        //jtfSmt_Lib_path_lib.setText("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/z3.exe"); // home
-        jtfSmt_Lib_path_lib.setText("D:/Thi.DN/PhD/Tools/CFT4CUnit/z3/bin/z3.exe");//Cty
+        jtfSmt_Lib_path_lib.setText("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/z3.exe"); // home
+        //jtfSmt_Lib_path_lib.setText("D:/Thi.DN/PhD/Tools/CFT4CUnit/z3/bin/z3.exe");//Cty
 
         jtfSmt_Lib_path_lib.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt)

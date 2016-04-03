@@ -370,36 +370,24 @@ public class ChuongTrinhChinh
         String nodeElement = staticVariable.AllPath.NodeElements;
         getAllPaths geter = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         //getAllPaths geter = new getAllPaths(danhSachKe, NodeElements);
+        
         ArrayList<ArrayList<Vertex>> getOutput = geter.getOutput();
         int totalPath = getOutput.size();
 
         // get distances from a path to each other
+        System.out.println("------------All paths start-------------");
         int[][] disMatrix = new int[totalPath][totalPath];
         for (int i = 0; i < totalPath; i++ )
         {
+            ArrayList<Vertex> path = getOutput.get(i);
+            System.out.println(path);
+
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
             }
         }
-        
-        int a, b, c, pathID = 0;        
-        Random rand = new Random();
-
-        //for (int i = 0; i < 10; i++)
-        {
-            a = rand.nextInt(10) + 1;
-            b = rand.nextInt(10) + 1;
-            c = rand.nextInt(10) + 1;        
-            //pathID = geter.getExecutionPathTriangle(a, b, c);
-        }
-        for (int i = 0; i < totalPath; i++ )
-        {
-            if (i != pathID)
-            {
-                System.out.println("Path " + pathID + " -> path " + i + ": " + disMatrix[pathID][i]);
-            }
-        }
+        System.out.println("------------All paths end-------------");
     }
     
     public int calculatePathDist(ArrayList<Vertex> path1, ArrayList<Vertex> path2)
