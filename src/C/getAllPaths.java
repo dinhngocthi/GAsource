@@ -462,3 +462,24 @@ class Vertex
     }
 
 }
+
+
+class VertexTF
+{
+    public int id;
+    public String statement;
+    public String decision;
+    
+    @Override
+    public String toString()
+    {
+        if (decision == null)
+        {
+            return "[" + id + ", " + statement + "]";
+        }
+        else
+        {
+            return "[" + id + ", " + statement + ", " + decision + "]";
+        }
+    }
+}

@@ -380,12 +380,44 @@ public class ChuongTrinhChinh
         for (int i = 0; i < totalPath; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
-            System.out.println(path);
+            int pathSize = path.size(); 
 
+            ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
+
+            for (int k = 0; k < pathSize; k++)
+            {
+                Vertex vertex = path.get(k);
+                
+                VertexTF vertextf = new VertexTF();                
+                vertextf.id = vertex.getId();
+                vertextf.statement = vertex.getStatement();
+                
+                if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
+                {
+                    vertextf.decision = null;
+                }
+                else
+                {
+                    Vertex vertexTmp = path.get(k + 1);
+                    if (vertex.getFalseVertexId() == vertexTmp.getId())
+                    {
+                        vertextf.decision = "F";
+                    }
+                    else
+                    {
+                        vertextf.decision = "T";
+                    }
+                }
+                pathTF.add(vertextf);
+            }
+            
+            System.out.println(pathTF);
+/*
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
             }
+*/            
         }
         System.out.println("------------All paths end-------------");
     }
