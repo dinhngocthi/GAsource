@@ -193,7 +193,7 @@ public class GA
         inputAppParameters();
         
         ctc = new ChuongTrinhChinh(null);
-        ctc.initPathListID(nvarReal-1);
+        ctc.initPathListID(nvarReal);
     }
 
     public static void selectMemory()
