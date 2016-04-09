@@ -312,25 +312,31 @@ public class ChuongTrinhChinh
         
         ArrayList<Vertex> myPath = new ArrayList<Vertex>();
         ArrayList<ArrayList<Vertex>> output = new ArrayList<ArrayList<Vertex>>();
-        Vertex[] vertex = new Vertex[14];
+        Vertex[] vertex = new Vertex[15];
         vertex[0] = new Vertex(0, 1, 1, "Bat dau ham");
         vertex[1] = new Vertex(1, 2, 2, "int i,j");
-        vertex[2] = new Vertex(2, 3, 4, "i=0");
+        vertex[2] = new Vertex(2, 3, 3, "i=0");
         vertex[3] = new Vertex(3, 4, 14, "i<size-1");
         vertex[4] = new Vertex(4, 5, 5, "int min=i");
         vertex[5] = new Vertex(5, 6, 6, "j=i+1");
         vertex[6] = new Vertex(6, 7, 10, "j<size");
         vertex[7] = new Vertex(7, 8, 9, "a[j]<a[min]");
-        vertex[8] = new Vertex(8, , , "");
-        vertex[9] = new Vertex(, , , "");
-        vertex[10] = new Vertex(, , , "");
-        vertex[11] = new Vertex(, , , "");
-        vertex[12] = new Vertex(, , , "");
-        vertex[13] = new Vertex(, , , "");
-        vertex[14] = new Vertex(, , , "");
+        vertex[8] = new Vertex(8, 9, 9, "min=j");
+        vertex[9] = new Vertex(9, 6, 6, "j++");
+        vertex[10] = new Vertex(10, 11, 11, "int tem=a[i]");
+        vertex[11] = new Vertex(11, 12, 12, "a[i]=a[min]");
+        vertex[12] = new Vertex(12, 13, 13, "a[min]=tem]");
+        vertex[13] = new Vertex(13, 3, 3, "i++");
+        vertex[14] = new Vertex(14, -1, -1, "Ket thuc ham");
 
+        myPath.add(vertex[0]);
+        myPath.add(vertex[1]);
+        output.add(myPath);
+        myPath.clear();
         
-        myPath.add(vertex1);
+        myPath.add(vertex[2]);
+        myPath.add(vertex[3]);
+        output.add(myPath);
         
         int totalPath = getOutput.size();
         pathListID = new int[totalPath];
