@@ -308,11 +308,11 @@ public class ChuongTrinhChinh
         geterTest = new getAllPaths(danhSachKe, NodeElements);
         
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
-        
 
-        ArrayList<ArrayList<Vertex>> output = new ArrayList<ArrayList<Vertex>>();
+        //ArrayList<ArrayList<Vertex>> output = new ArrayList<ArrayList<Vertex>>();
         
         //ArrayList<Vertex> myPath = new ArrayList<Vertex>();
+        /*
         for (int i = 0; i < 8; i++)
         {
             ArrayList<Vertex> path = new ArrayList<Vertex>();
@@ -546,8 +546,8 @@ public class ChuongTrinhChinh
         output.get(7).add(vertex[13]);
         output.get(7).add(vertex[3]);
         output.get(7).add(vertex[14]);
-        
-        int totalPath = getOutput.size();
+        */
+        int totalPath = getOutput.size();        
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
             pathListID[i] = 1;
@@ -578,8 +578,32 @@ public class ChuongTrinhChinh
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
         int ret = 1;
+        a[0] = 0;
+        a[1] = 1;
+        a[2] = 2;
+        int pathID1 = geterTest.getExecutionPathSelectionSort(a, size);
+        a[0] = 0;
+        a[1] = 2;
+        a[2] = 1;
+        int pathID2 = geterTest.getExecutionPathSelectionSort(a, size);
+        a[0] = 1;
+        a[1] = 0;
+        a[2] = 2;
+        int pathID3 = geterTest.getExecutionPathSelectionSort(a, size);
+        a[0] = 1;
+        a[1] = 2;
+        a[2] = 0;
+        int pathID4 = geterTest.getExecutionPathSelectionSort(a, size);
+        a[0] = 2;
+        a[1] = 1;
+        a[2] = 0;
+        int pathID5 = geterTest.getExecutionPathSelectionSort(a, size);
+        a[0] = 2;
+        a[1] = 0;
+        a[2] = 1;
+        int pathID6 = geterTest.getExecutionPathSelectionSort(a, size);
 
-        int pathID = geterTest.getExecutionPathSelectionSort(a, size);
+        /*
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
@@ -597,6 +621,7 @@ public class ChuongTrinhChinh
         {
             System.out.println("path ID failed = " + pathID);
         }
+        */
         //System.out.println(" a = " + a + " b = " + b + " c = " + c + " ===> pathID = " + pathID);
         return ret;
     }
