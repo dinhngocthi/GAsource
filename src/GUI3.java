@@ -659,8 +659,8 @@ public final class GUI3 extends javax.swing.JFrame
         {
             staticVariable.reset();
             //D.N.Thi String pathFile = fc.getSelectedFile().getAbsolutePath();
-            //String pathFile = "D:/PhD/SymbolicExecution/tool/SPF/CFT4CUnit/Vi Du/SelectionSort.c"; //home
-            String pathFile = "D:/Thi.DN/PhD/Tools/CFT4CUnit/CFT4CUnit/Vi Du"; //Cty
+            String pathFile = "D:/PhD/SymbolicExecution/tool/SPF/CFT4CUnit/Vi Du/SelectionSort.c"; //home
+            //String pathFile = "D:/Thi.DN/PhD/Tools/CFT4CUnit/CFT4CUnit/Vi Du"; //Cty
             // "C:\\Users\\anhanh\\Documents\\Vi du CFT4CUnit\\Foo.c";
             staticVariable.Paramater.depth = Utils.toInt(jtpDepth.getText() + "");
             staticVariable.Paramater.Smt_Lib_path_lib = jtfSmt_Lib_path_lib.getText();
