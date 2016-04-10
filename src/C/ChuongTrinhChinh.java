@@ -309,244 +309,6 @@ public class ChuongTrinhChinh
         
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
 
-        //ArrayList<ArrayList<Vertex>> output = new ArrayList<ArrayList<Vertex>>();
-        
-        //ArrayList<Vertex> myPath = new ArrayList<Vertex>();
-        /*
-        for (int i = 0; i < 8; i++)
-        {
-            ArrayList<Vertex> path = new ArrayList<Vertex>();
-            output.add(path);
-        }
-
-        Vertex[] vertex = new Vertex[15];
-        vertex[0] = new Vertex(0, 1, 1, "Bat dau ham");
-        vertex[1] = new Vertex(1, 2, 2, "int i,j");
-        vertex[2] = new Vertex(2, 3, 3, "i=0");
-        vertex[3] = new Vertex(3, 4, 14, "i<size-1");
-        vertex[4] = new Vertex(4, 5, 5, "int min=i");
-        vertex[5] = new Vertex(5, 6, 6, "j=i+1");
-        vertex[6] = new Vertex(6, 7, 10, "j<size");
-        vertex[7] = new Vertex(7, 8, 9, "a[j]<a[min]");
-        vertex[8] = new Vertex(8, 9, 9, "min=j");
-        vertex[9] = new Vertex(9, 6, 6, "j++");
-        vertex[10] = new Vertex(10, 11, 11, "int tem=a[i]");
-        vertex[11] = new Vertex(11, 12, 12, "a[i]=a[min]");
-        vertex[12] = new Vertex(12, 13, 13, "a[min]=tem]");
-        vertex[13] = new Vertex(13, 3, 3, "i++");
-        vertex[14] = new Vertex(14, -1, -1, "Ket thuc ham");
-        
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
-                output.get(i).add(vertex[j]);
-            }
-        }
-        // path 1
-        output.get(0).add(vertex[9]);
-        output.get(0).add(vertex[6]);
-        output.get(0).add(vertex[7]);
-        output.get(0).add(vertex[9]);
-        output.get(0).add(vertex[6]);
-        output.get(0).add(vertex[10]);
-        output.get(0).add(vertex[11]);
-        output.get(0).add(vertex[12]);
-        output.get(0).add(vertex[13]);
-        output.get(0).add(vertex[3]);
-        output.get(0).add(vertex[4]);
-        output.get(0).add(vertex[5]);
-        output.get(0).add(vertex[6]);
-        output.get(0).add(vertex[7]);
-        output.get(0).add(vertex[9]);
-        output.get(0).add(vertex[6]);
-        output.get(0).add(vertex[10]);
-        output.get(0).add(vertex[11]);
-        output.get(0).add(vertex[12]);
-        output.get(0).add(vertex[13]);
-        output.get(0).add(vertex[3]);
-        output.get(0).add(vertex[14]);
-        
-        //path 2
-        output.get(1).add(vertex[9]);
-        output.get(1).add(vertex[6]);
-        output.get(1).add(vertex[7]);
-        output.get(1).add(vertex[9]);
-        output.get(1).add(vertex[6]);
-        output.get(1).add(vertex[10]);
-        output.get(1).add(vertex[11]);
-        output.get(1).add(vertex[12]);
-        output.get(1).add(vertex[13]);
-        output.get(1).add(vertex[3]);
-        output.get(1).add(vertex[4]);
-        output.get(1).add(vertex[5]);
-        output.get(1).add(vertex[6]);
-        output.get(1).add(vertex[7]);
-        output.get(1).add(vertex[8]); //★
-        output.get(1).add(vertex[9]);
-        output.get(1).add(vertex[6]);
-        output.get(1).add(vertex[10]);
-        output.get(1).add(vertex[11]);
-        output.get(1).add(vertex[12]);
-        output.get(1).add(vertex[13]);
-        output.get(1).add(vertex[3]);
-        output.get(1).add(vertex[14]);
-        
-        //path 3
-        output.get(2).add(vertex[9]);
-        output.get(2).add(vertex[6]);
-        output.get(2).add(vertex[7]);
-        output.get(2).add(vertex[8]); //★
-        output.get(2).add(vertex[9]);
-        output.get(2).add(vertex[6]);
-        output.get(2).add(vertex[10]);
-        output.get(2).add(vertex[11]);
-        output.get(2).add(vertex[12]);
-        output.get(2).add(vertex[13]);
-        output.get(2).add(vertex[3]);
-        output.get(2).add(vertex[4]);
-        output.get(2).add(vertex[5]);
-        output.get(2).add(vertex[6]);
-        output.get(2).add(vertex[7]);
-        output.get(2).add(vertex[9]);
-        output.get(2).add(vertex[6]);
-        output.get(2).add(vertex[10]);
-        output.get(2).add(vertex[11]);
-        output.get(2).add(vertex[12]);
-        output.get(2).add(vertex[13]);
-        output.get(2).add(vertex[3]);
-        output.get(2).add(vertex[14]);
-        
-        // path 4
-        output.get(3).add(vertex[9]);
-        output.get(3).add(vertex[6]);
-        output.get(3).add(vertex[7]);
-        output.get(3).add(vertex[8]); //★
-        output.get(3).add(vertex[9]);
-        output.get(3).add(vertex[6]);
-        output.get(3).add(vertex[10]);
-        output.get(3).add(vertex[11]);
-        output.get(3).add(vertex[12]);
-        output.get(3).add(vertex[13]);
-        output.get(3).add(vertex[3]);
-        output.get(3).add(vertex[4]);
-        output.get(3).add(vertex[5]);
-        output.get(3).add(vertex[6]);
-        output.get(3).add(vertex[7]);
-        output.get(3).add(vertex[8]); //★
-        output.get(3).add(vertex[9]);
-        output.get(3).add(vertex[6]);
-        output.get(3).add(vertex[10]);
-        output.get(3).add(vertex[11]);
-        output.get(3).add(vertex[12]);
-        output.get(3).add(vertex[13]);
-        output.get(3).add(vertex[3]);
-        output.get(3).add(vertex[14]);
-        
-        // path 5
-        output.get(4).add(vertex[8]); //★
-        output.get(4).add(vertex[9]);
-        output.get(4).add(vertex[6]);
-        output.get(4).add(vertex[7]);
-        output.get(4).add(vertex[9]);
-        output.get(4).add(vertex[6]);
-        output.get(4).add(vertex[10]);
-        output.get(4).add(vertex[11]);
-        output.get(4).add(vertex[12]);
-        output.get(4).add(vertex[13]);
-        output.get(4).add(vertex[3]);
-        output.get(4).add(vertex[4]);
-        output.get(4).add(vertex[5]);
-        output.get(4).add(vertex[6]);
-        output.get(4).add(vertex[7]);
-        output.get(4).add(vertex[9]);
-        output.get(4).add(vertex[6]);
-        output.get(4).add(vertex[10]);
-        output.get(4).add(vertex[11]);
-        output.get(4).add(vertex[12]);
-        output.get(4).add(vertex[13]);
-        output.get(4).add(vertex[3]);
-        output.get(4).add(vertex[14]);
-        
-        //path 6
-        output.get(5).add(vertex[8]); //★
-        output.get(5).add(vertex[9]);
-        output.get(5).add(vertex[6]);
-        output.get(5).add(vertex[7]);
-        output.get(5).add(vertex[9]);
-        output.get(5).add(vertex[6]);
-        output.get(5).add(vertex[10]);
-        output.get(5).add(vertex[11]);
-        output.get(5).add(vertex[12]);
-        output.get(5).add(vertex[13]);
-        output.get(5).add(vertex[3]);
-        output.get(5).add(vertex[4]);
-        output.get(5).add(vertex[5]);
-        output.get(5).add(vertex[6]);
-        output.get(5).add(vertex[7]);
-        output.get(5).add(vertex[8]); //★
-        output.get(5).add(vertex[9]);
-        output.get(5).add(vertex[6]);
-        output.get(5).add(vertex[10]);
-        output.get(5).add(vertex[11]);
-        output.get(5).add(vertex[12]);
-        output.get(5).add(vertex[13]);
-        output.get(5).add(vertex[3]);
-        output.get(5).add(vertex[14]);
-        
-        //path 7
-        output.get(6).add(vertex[8]); //★
-        output.get(6).add(vertex[9]);
-        output.get(6).add(vertex[6]);
-        output.get(6).add(vertex[7]);
-        output.get(6).add(vertex[8]); //★
-        output.get(6).add(vertex[9]);
-        output.get(6).add(vertex[6]);
-        output.get(6).add(vertex[10]);
-        output.get(6).add(vertex[11]);
-        output.get(6).add(vertex[12]);
-        output.get(6).add(vertex[13]);
-        output.get(6).add(vertex[3]);
-        output.get(6).add(vertex[4]);
-        output.get(6).add(vertex[5]);
-        output.get(6).add(vertex[6]);
-        output.get(6).add(vertex[7]);
-        output.get(6).add(vertex[9]);
-        output.get(6).add(vertex[6]);
-        output.get(6).add(vertex[10]);
-        output.get(6).add(vertex[11]);
-        output.get(6).add(vertex[12]);
-        output.get(6).add(vertex[13]);
-        output.get(6).add(vertex[3]);
-        output.get(6).add(vertex[14]);
-        
-        // path 8
-        output.get(7).add(vertex[8]); //★
-        output.get(7).add(vertex[9]);
-        output.get(7).add(vertex[6]);
-        output.get(7).add(vertex[7]);
-        output.get(7).add(vertex[8]); //★
-        output.get(7).add(vertex[9]);
-        output.get(7).add(vertex[6]);
-        output.get(7).add(vertex[10]);
-        output.get(7).add(vertex[11]);
-        output.get(7).add(vertex[12]);
-        output.get(7).add(vertex[13]);
-        output.get(7).add(vertex[3]);
-        output.get(7).add(vertex[4]);
-        output.get(7).add(vertex[5]);
-        output.get(7).add(vertex[6]);
-        output.get(7).add(vertex[7]);
-        output.get(7).add(vertex[8]); //★
-        output.get(7).add(vertex[9]);
-        output.get(7).add(vertex[6]);
-        output.get(7).add(vertex[10]);
-        output.get(7).add(vertex[11]);
-        output.get(7).add(vertex[12]);
-        output.get(7).add(vertex[13]);
-        output.get(7).add(vertex[3]);
-        output.get(7).add(vertex[14]);
-        */
         int totalPath = getOutput.size();        
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
@@ -577,51 +339,31 @@ public class ChuongTrinhChinh
     
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
-        int ret = 1;
-        a[0] = 0;
-        a[1] = 1;
-        a[2] = 2;
-        int pathID1 = geterTest.getExecutionPathSelectionSort(a, size);
-        a[0] = 0;
-        a[1] = 2;
-        a[2] = 1;
-        int pathID2 = geterTest.getExecutionPathSelectionSort(a, size);
-        a[0] = 1;
-        a[1] = 0;
-        a[2] = 2;
-        int pathID3 = geterTest.getExecutionPathSelectionSort(a, size);
-        a[0] = 1;
-        a[1] = 2;
-        a[2] = 0;
-        int pathID4 = geterTest.getExecutionPathSelectionSort(a, size);
-        a[0] = 2;
-        a[1] = 1;
-        a[2] = 0;
-        int pathID5 = geterTest.getExecutionPathSelectionSort(a, size);
-        a[0] = 2;
-        a[1] = 0;
-        a[2] = 1;
-        int pathID6 = geterTest.getExecutionPathSelectionSort(a, size);
-
-        /*
+        int ret = 1;        
+        int pathID = geterTest.getExecutionPathSelectionSort(a, size);
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
             {
                 ret = 0;
                 pathListID[pathID] = 0;
+                System.out.print("{");
                 for (int i = 0; i < size; i++)
                 {
-                    System.out.print(a[i]);
+                    System.out.format(" %1.3f, ", a[i]);   // -->  "     3.142"                    
                 }
+                System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
             }
         }
         else
         {
+            for (int i = 0; i < size; i++)
+            {
+                System.out.print("a[" + i + "] = %1.2f" + a[i] + " ");
+            }
             System.out.println("path ID failed = " + pathID);
         }
-        */
         //System.out.println(" a = " + a + " b = " + b + " c = " + c + " ===> pathID = " + pathID);
         return ret;
     }
