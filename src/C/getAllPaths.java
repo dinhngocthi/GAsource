@@ -323,7 +323,9 @@ public class getAllPaths
     {
         int ret = -1;
         int i = 0; // path ID
-
+        double[] aTmp = new double[size];
+        System.arraycopy(a, 0, aTmp, 0, 3);
+        
         //System.out.println("getExecutionPath start");
         for (ArrayList<Vertex> path : output)
         {
@@ -332,6 +334,7 @@ public class getAllPaths
             int I = 0;
             int J = 0;
             int MIN = 0;
+            System.arraycopy(aTmp, 0, a, 0, 3);
 
             for (Vertex vertex : path)
             {
