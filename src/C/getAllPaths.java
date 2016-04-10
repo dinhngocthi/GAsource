@@ -59,7 +59,7 @@ public class getAllPaths
         
         for (int i = 0; i < 8; i++)
         {
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < 8; j++)
             {
                 output.get(i).add(vertex[j]);
             }
@@ -358,6 +358,12 @@ public class getAllPaths
                     if (stm.equals("min=j"))
                     {
                         MIN = J;
+                    }
+                    if (stm.equals("int tem=a[i]"))
+                    {
+                    	double tmp = a[I];
+                        a[I] = a[MIN];
+                        a[MIN] = tmp;
                     }
                     continue;                    
                 }
