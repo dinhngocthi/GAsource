@@ -32,8 +32,8 @@ public class getAllPaths
         vertexList = getVertexList(maTranKe, nodeElement);
         myPath = new ArrayList<Vertex>();
         output = new ArrayList<ArrayList<Vertex>>();
-
-        // D.N.Thi 
+/*
+        // D.N.Thi create CFG by manual
         for (int i = 0; i < 8; i++)
         {
             ArrayList<Vertex> path = new ArrayList<Vertex>();
@@ -267,8 +267,8 @@ public class getAllPaths
         output.get(7).add(vertex[13]);
         output.get(7).add(vertex[3]);
         output.get(7).add(vertex[14]);
-        
-        //traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
+*/        
+        traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
         // D.N.Thi
     }
 
@@ -326,10 +326,8 @@ public class getAllPaths
         double[] aTmp = new double[size];
         System.arraycopy(a, 0, aTmp, 0, 3);
         
-        //System.out.println("getExecutionPath start");
         for (ArrayList<Vertex> path : output)
         {
-//            System.out.println(path);
             int j = 0; // vertex ID             
             int I = 0;
             int J = 0;
@@ -371,8 +369,7 @@ public class getAllPaths
                     continue;                    
                 }
                 else
-                {
-                    // Todo: lam sao cho nay check duoc input thoa man nua la ngon                    
+                {                    
                     ParseTestpath parseTestpath = new ParseTestpath();
                     boolean b = false;
                     try
@@ -409,8 +406,7 @@ public class getAllPaths
                 i++;
             }
         }
-        //System.out.println("A = " + A + " B = " + B + " C = " + C + " ⇒　path " + ret);
-        //System.out.println("getExecutionPath end");
+
         return ret;
     }
 

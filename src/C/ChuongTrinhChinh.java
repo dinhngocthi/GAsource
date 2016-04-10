@@ -303,7 +303,7 @@ public class ChuongTrinhChinh
         // Selection sort        
         String danhSachKe   = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1\n";
         String NodeElements = "0#Bat dau ham\n1#int i,j\n2#i=0\n3#i<size-1\n4#int min=i\n5#j=i+1\n6#j<size\n7#a[j]<a[min]\n8#min=j\n9#j++\n10#int tem=a[i]\n11#a[i]=a[min]\n12#a[min]=tem\n13#i++\n14#Ket thuc ham";
-        staticVariable.Paramater.depth = loop; // loop  
+        staticVariable.Paramater.depth = loop; // interation loop  
         
         geterTest = new getAllPaths(danhSachKe, NodeElements);
         
@@ -313,6 +313,54 @@ public class ChuongTrinhChinh
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
             pathListID[i] = 1;
+        
+        System.out.println("------------All paths start-------------");
+        int[][] disMatrix = new int[totalPath][totalPath];
+        
+        for (int i = 0; i < totalPath; i++ )
+        {
+            ArrayList<Vertex> path = getOutput.get(i);
+            int pathSize = path.size(); 
+
+            ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
+
+            for (int k = 0; k < pathSize; k++)
+            {
+                Vertex vertex = path.get(k);
+                
+                VertexTF vertextf = new VertexTF();                
+                vertextf.id = vertex.getId();
+                vertextf.statement = vertex.getStatement();
+                
+                if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
+                {
+                    vertextf.decision = null;
+                }
+                else
+                {
+                    Vertex vertexTmp = path.get(k + 1);
+                    if (vertex.getFalseVertexId() == vertexTmp.getId())
+                    {
+                        vertextf.decision = "F";
+                    }
+                    else
+                    {
+                        vertextf.decision = "T";
+                    }
+                }
+                pathTF.add(vertextf);
+            }
+            
+            System.out.println("Path " + i + "-> :" + pathTF);
+
+            for (int j = 0; j < totalPath; j++ )
+            {
+                disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
+            }
+            
+        }
+        System.out.println("------------All paths end-------------");
+        
     }
 
     public int calculateDistTriangle(double a, double b, double c) throws Exception
@@ -350,7 +398,10 @@ public class ChuongTrinhChinh
                 System.out.print("{");
                 for (int i = 0; i < size; i++)
                 {
-                    System.out.format(" %1.3f, ", a[i]);   // -->  "     3.142"                    
+                    if (i < size-1)
+                        System.out.format(" %1.3f, ", a[i]);
+                    else
+                        System.out.format(" %1.3f ", a[i]);
                 }
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
@@ -358,11 +409,16 @@ public class ChuongTrinhChinh
         }
         else
         {
+            System.out.print("{");
             for (int i = 0; i < size; i++)
             {
-                System.out.print("a[" + i + "] = %1.2f" + a[i] + " ");
+                if (i < size-1)
+                    System.out.format(" %1.3f, ", a[i]);
+                else
+                    System.out.format(" %1.3f ", a[i]);
             }
-            System.out.println("path ID failed = " + pathID);
+            System.out.print("}");
+            System.out.println(" ===> pathID = " + pathID);
         }
         //System.out.println(" a = " + a + " b = " + b + " c = " + c + " ===> pathID = " + pathID);
         return ret;
@@ -418,7 +474,7 @@ public class ChuongTrinhChinh
                 pathTF.add(vertextf);
             }
             
-            System.out.println(pathTF);
+            System.out.println("Path " + i + "-> :" + pathTF);
 /*
             for (int j = 0; j < totalPath; j++ )
             {
