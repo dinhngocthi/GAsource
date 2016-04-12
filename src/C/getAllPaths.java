@@ -597,19 +597,19 @@ public class getAllPaths
 
         for (Vertex v : myPath)
             if (v.getId() == id)
-            //if (v.getId() == 13)
+            if (v.getId() == 3)
             {
                 loop++;
             }
-        /*
+        
         if (loop <= DEFAULT_DEPTH)
             return true;
         return false;
-        
+        /*
         if (id == 13)
             loop++;
             */
-        return (loop <= DEFAULT_DEPTH);
+        //return (loop <= DEFAULT_DEPTH);
         //System.out.println(myPath);
         //return (loop < 1);
     }
