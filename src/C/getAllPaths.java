@@ -32,6 +32,10 @@ public class getAllPaths
         vertexList = getVertexList(maTranKe, nodeElement);
         myPath = new ArrayList<Vertex>();
         output = new ArrayList<ArrayList<Vertex>>();
+
+        //traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
+        
+        TraverseCFG(vertexList.get(0));
 /*
         // D.N.Thi create CFG by manual
         for (int i = 0; i < 8; i++)
@@ -268,7 +272,6 @@ public class getAllPaths
         output.get(7).add(vertex[3]);
         output.get(7).add(vertex[14]);
 */        
-        traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
         // D.N.Thi
     }
 
@@ -511,6 +514,31 @@ public class getAllPaths
             }
     }
 
+    @SuppressWarnings("unchecked")
+    private void TraverseCFG(Vertex v) throws Exception
+    {
+        if (v == null || v.id == -1)
+        {
+            output.add((ArrayList<Vertex>) myPath.clone());
+        }
+        else
+            if (check(myPath, v.getId()))
+            {
+                myPath.add(v);
+                if (v.getFalseVertexId() == v.getTrueVertexId())
+                {
+                    Vertex u = getVertex(v.getFalseVertexId());
+                    TraverseCFG(u);
+                }
+                else
+                {
+                    TraverseCFG(getVertex(v.getFalseVertexId()));
+                    TraverseCFG(getVertex(v.getTrueVertexId()));
+                }
+                myPath.remove(myPath.size() - 1);
+            }
+    }
+    
     public static final int TRUE_BRANCH = 1;
     public static final int FALSE_BRANCH = 2;
 
@@ -596,8 +624,8 @@ public class getAllPaths
         int loop = 0;
 
         for (Vertex v : myPath)
-            if (v.getId() == id)
-            if (v.getId() == 3)
+            //if (v.getId() == id)
+            if (id == 3)
             {
                 loop++;
             }
