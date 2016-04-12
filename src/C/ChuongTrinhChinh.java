@@ -356,12 +356,12 @@ public class ChuongTrinhChinh
             
             //System.out.println("Path " + i + "-> :" + pathTF);
             fpOut.printf("Path " + i + "-> :" + pathTF + "\n");
-
+/*            
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
             }
-            
+*/            
         }
         fpOut.close();
         System.out.println("------------All paths end-------------");

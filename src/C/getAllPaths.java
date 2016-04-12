@@ -593,15 +593,25 @@ public class getAllPaths
 
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
-        int dem = 0;
+        int loop = 0;
+
         for (Vertex v : myPath)
             if (v.getId() == id)
+            //if (v.getId() == 13)
             {
-                dem++;
+                loop++;
             }
-        if (dem <= DEFAULT_DEPTH)
+        /*
+        if (loop <= DEFAULT_DEPTH)
             return true;
         return false;
+        
+        if (id == 13)
+            loop++;
+            */
+        return (loop <= DEFAULT_DEPTH);
+        //System.out.println(myPath);
+        //return (loop < 1);
     }
 
     /**
