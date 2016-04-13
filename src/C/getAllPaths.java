@@ -624,15 +624,26 @@ public class getAllPaths
         int loop = 0;
 
         for (Vertex v : myPath)
-            //if (v.getId() == id)
-            if (v.getId() == 3)
+            if (v.getId() == id)
+            //if (v.getId() == 3)
             {
                 loop++;
             }
         
         if (loop <= DEFAULT_DEPTH)
             return true;
-        return false;
+        else
+        {
+            loop = 0;
+            for (Vertex v : myPath)
+            {                
+                if (v.getId() == 3)
+                {
+                   loop++;
+                }
+            }
+            return false;
+        }
         /*
         if (id == 13)
             loop++;
