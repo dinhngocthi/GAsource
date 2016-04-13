@@ -625,7 +625,7 @@ public class getAllPaths
 
         for (Vertex v : myPath)
             //if (v.getId() == id)
-            if (id == 3)
+            if (v.getId() == 3)
             {
                 loop++;
             }
@@ -682,7 +682,6 @@ public class getAllPaths
         }
         return nodeElementsMap;
     }
-
 }
 
 class Vertex
