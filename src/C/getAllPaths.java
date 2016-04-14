@@ -36,6 +36,7 @@ public class getAllPaths
         //traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
         
         TraverseCFG(vertexList.get(0));
+        //TraverseCFG();
 /*
         // D.N.Thi create CFG by manual
         for (int i = 0; i < 8; i++)
@@ -523,20 +524,61 @@ public class getAllPaths
         }
         else
             if (check(myPath, v.getId()))
+            //if (loop <= DEFAULT_DEPTH)
             {
                 myPath.add(v);
+                Vertex u;
                 if (v.getFalseVertexId() == v.getTrueVertexId())
                 {
-                    Vertex u = getVertex(v.getFalseVertexId());
+                    u = getVertex(v.getFalseVertexId());
                     TraverseCFG(u);
                 }
                 else
                 {
-                    TraverseCFG(getVertex(v.getFalseVertexId()));
-                    TraverseCFG(getVertex(v.getTrueVertexId()));
+                    u = getVertex(v.getFalseVertexId());
+                    TraverseCFG(u);
+                    u = getVertex(v.getTrueVertexId());
+                    TraverseCFG(u);
                 }
                 myPath.remove(myPath.size() - 1);
             }
+    }
+    
+    private void TraverseCFG() throws Exception
+    {
+        ArrayList<Vertex> stack = new ArrayList<Vertex>();
+        int t = 0;
+        
+        Vertex v = getVertex(0);
+        stack.add(v);
+        ArrayList<Vertex> path = new ArrayList<Vertex>();
+        while (stack.size() > 0 && t <= DEFAULT_DEPTH)
+        {            
+            v = stack.get(stack.size()-1);
+            stack.remove(stack.size()-1);
+            
+            if (v.getId() == 3) 
+            {
+                t++;
+            }
+            //if (!v.discovered)  
+            //if (v != null)            
+            {
+                //v.discovered = true;
+                
+                path.add(v);
+                if (v.getFalseVertexId() == v.getTrueVertexId())
+                {
+                    stack.add(getVertex(v.getFalseVertexId()));
+                }
+                else
+                {
+                    stack.add(getVertex(v.getFalseVertexId()));
+                    stack.add(getVertex(v.getTrueVertexId()));
+                }
+            }
+        }
+        System.out.println(path);
     }
     
     public static final int TRUE_BRANCH = 1;
@@ -618,30 +660,33 @@ public class getAllPaths
                 return v;
         return null;
     }
-
+    
+    private int loopcheck = 0;
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
         int loop = 0;
-
-        for (Vertex v : myPath)
+        loopcheck = 0;
+        for (Vertex v : myPath)                        
+        {
             if (v.getId() == id)
             //if (v.getId() == 3)
             {
                 loop++;
             }
+            if (v.getId() == 6)
+            {
+                loopcheck++;
+            }
+
+        }
         
-        if (loop <= DEFAULT_DEPTH)
+        System.out.println("loopcheck = " + loopcheck);
+
+        if (loop <= DEFAULT_DEPTH)        
+        //if (loop <= 10)
             return true;
         else
         {
-            loop = 0;
-            for (Vertex v : myPath)
-            {                
-                if (v.getId() == 3)
-                {
-                   loop++;
-                }
-            }
             return false;
         }
         /*
@@ -702,6 +747,9 @@ class Vertex
     int trueVertexId;
     int falseVertexId;
 
+public
+    boolean discovered;   
+
     public String getStatement()
     {
         return statement;
@@ -718,6 +766,7 @@ class Vertex
         this.trueVertexId = trueVertexId;
         this.falseVertexId = falseVertexId;
         this.statement = statement;
+        this.discovered = false; 
     }
 
     @Override
