@@ -661,34 +661,31 @@ public class getAllPaths
         return null;
     }
     
-    private int loopcheck = 0;
+    
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
-        int loop = 0;
-        loopcheck = 0;
+        int loop1 = 0;
+        int loop2 = 0;
         for (Vertex v : myPath)                        
         {
-            if (v.getId() == id)
-            //if (v.getId() == 3)
+            //if (v.getId() == id)
+            if (v.getId() == 3)
             {
-                loop++;
+                loop1++;
             }
             if (v.getId() == 6)
             {
-                loopcheck++;
+                loop2++;
             }
-
         }
         
-        System.out.println("loopcheck = " + loopcheck);
+//        System.out.println("loopcheck = " + loopcheck);
 
-        if (loop <= DEFAULT_DEPTH)        
+        if ((loop1 <= DEFAULT_DEPTH) && (loop2 <= ((DEFAULT_DEPTH + 1) * DEFAULT_DEPTH)/2))        
         //if (loop <= 10)
             return true;
-        else
-        {
+        else        
             return false;
-        }
         /*
         if (id == 13)
             loop++;
@@ -747,9 +744,6 @@ class Vertex
     int trueVertexId;
     int falseVertexId;
 
-public
-    boolean discovered;   
-
     public String getStatement()
     {
         return statement;
@@ -765,8 +759,7 @@ public
         this.id = data;
         this.trueVertexId = trueVertexId;
         this.falseVertexId = falseVertexId;
-        this.statement = statement;
-        this.discovered = false; 
+        this.statement = statement; 
     }
 
     @Override

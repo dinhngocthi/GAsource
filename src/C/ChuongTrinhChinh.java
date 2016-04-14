@@ -318,7 +318,7 @@ public class ChuongTrinhChinh
             pathListID[i] = 1;
         
         System.out.println("------------All paths start-------------");
-        int[][] disMatrix = new int[totalPath][totalPath];
+        //int[][] disMatrix = new int[totalPath][totalPath];
         
         for (int i = 0; i < totalPath; i++ )
         {
