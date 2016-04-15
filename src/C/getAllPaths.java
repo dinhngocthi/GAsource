@@ -661,7 +661,7 @@ public class getAllPaths
         return null;
     }
     
-    
+    private int sumloop2 = 0;
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
         int loop1 = 0;
@@ -679,10 +679,10 @@ public class getAllPaths
             }
         }
         
-//        System.out.println("loopcheck = " + loopcheck);
-
-        if ((loop1 <= DEFAULT_DEPTH) && (loop2 <= ((DEFAULT_DEPTH + 1) * DEFAULT_DEPTH)/2))        
-        //if (loop <= 10)
+        if ((loop1 <= DEFAULT_DEPTH) && 
+            (loop2 <= (DEFAULT_DEPTH * loop1))
+           )
+        //if (loop1 <= DEFAULT_DEPTH)
             return true;
         else        
             return false;
