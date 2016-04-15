@@ -544,43 +544,6 @@ public class getAllPaths
             }
     }
     
-    private void TraverseCFG() throws Exception
-    {
-        ArrayList<Vertex> stack = new ArrayList<Vertex>();
-        int t = 0;
-        
-        Vertex v = getVertex(0);
-        stack.add(v);
-        ArrayList<Vertex> path = new ArrayList<Vertex>();
-        while (stack.size() > 0 && t <= DEFAULT_DEPTH)
-        {            
-            v = stack.get(stack.size()-1);
-            stack.remove(stack.size()-1);
-            
-            if (v.getId() == 3) 
-            {
-                t++;
-            }
-            //if (!v.discovered)  
-            //if (v != null)            
-            {
-                //v.discovered = true;
-                
-                path.add(v);
-                if (v.getFalseVertexId() == v.getTrueVertexId())
-                {
-                    stack.add(getVertex(v.getFalseVertexId()));
-                }
-                else
-                {
-                    stack.add(getVertex(v.getFalseVertexId()));
-                    stack.add(getVertex(v.getTrueVertexId()));
-                }
-            }
-        }
-        System.out.println(path);
-    }
-    
     public static final int TRUE_BRANCH = 1;
     public static final int FALSE_BRANCH = 2;
 
@@ -666,22 +629,33 @@ public class getAllPaths
     {
         int loop1 = 0;
         int loop2 = 0;
+        int ix = 0;
         for (Vertex v : myPath)                        
         {
             //if (v.getId() == id)
             if (v.getId() == 3)
             {
                 loop1++;
+                ix = myPath.indexOf(v);
             }
+
             if (v.getId() == 6)
             {
                 loop2++;
             }
         }
         
-        if ((loop1 <= DEFAULT_DEPTH) && 
-            (loop2 <= (DEFAULT_DEPTH * loop1))
-           )
+        int loop2Limit = 0;
+        if (loop1 == DEFAULT_DEPTH)
+        {
+            sumloop2++;
+        }
+        for (int i = 0; i < loop1; i++)
+        {
+            loop2Limit += DEFAULT_DEPTH - i;
+        }
+        
+        if ((loop1 <= DEFAULT_DEPTH) && (loop2 <= loop2Limit))
         //if (loop1 <= DEFAULT_DEPTH)
             return true;
         else        
