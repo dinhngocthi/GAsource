@@ -623,40 +623,62 @@ public class getAllPaths
                 return v;
         return null;
     }
-    
-    private int sumloop2 = 0;
+        
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
         int loop1 = 0;
         int loop2 = 0;
-        int[] ixloop1 = new int[DEFAULT_DEPTH];
-        int[] ixloop2 = new int[DEFAULT_DEPTH * DEFAULT_DEPTH];
+        int sumloop2 = 0;
+        //int[] ixloop1 = new int[myPath.size()];
+        //int[] ixloop2 = new int[myPath.size()];
+        //int idx = 0;
+        //boolean getloop1 = false;
+        boolean ret = true;
         for (Vertex v : myPath)                        
         {
             //if (v.getId() == id)
             if (v.getId() == 3)
             {
-                ixloop1[loop1] = myPath.indexOf(v);
-                loop1++;                
+                //ixloop1[loop1] = idx;
+                if (loop1 > 0)
+                {
+                    if (loop2 != (DEFAULT_DEPTH - loop1 + 1))
+                    {
+                        ret = false;
+                        break;
+                    }
+                }
+                loop1++;
+                loop2 = 0;                
+//                getloop1 = true;
             }
 
             if (v.getId() == 6)
             {
-                ixloop2[loop2] = myPath.indexOf(v);
-                loop2++;
+                loop2++;    
+                sumloop2++;
+                if (loop2 > (DEFAULT_DEPTH - loop1 + 1))
+                {
+                    ret = false;
+                    break;
+                }
+//                else
+//                {
+//                    getloop1 = false;
+//                }
+                
+                //ixloop2[loop2] = idx;
+                
             }
+            //idx++;
         }
+          
+        if (ret && loop1 <= DEFAULT_DEPTH)
+            return true;
+        else
+            return false;
         
-        int loop2Limit = 0;
-        if (loop1 == DEFAULT_DEPTH)
-        {
-            sumloop2++;
-        }
-        for (int i = 0; i < loop1; i++)
-        {
-            loop2Limit += DEFAULT_DEPTH - i;
-        }
-        
+        /*
         if ((loop1 <= DEFAULT_DEPTH) && (loop2 <= loop2Limit))
         //if (loop1 <= DEFAULT_DEPTH)
             return true;

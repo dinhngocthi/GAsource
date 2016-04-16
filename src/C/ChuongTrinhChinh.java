@@ -327,8 +327,9 @@ public class ChuongTrinhChinh
 
             ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
 
-            for (int k = 0; k < pathSize; k++)
-            {
+                                              
+             for (int k = 0; k < pathSize; k++)
+             {
                 Vertex vertex = path.get(k);
                 
                 VertexTF vertextf = new VertexTF();                
@@ -355,7 +356,16 @@ public class ChuongTrinhChinh
             }
             
             //System.out.println("Path " + i + "-> :" + pathTF);
-            fpOut.printf("Path " + i + "-> :" + pathTF + "\n");
+            //fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+            fpOut.printf("Path " + i + " -> : ");
+            for (VertexTF vertextf : pathTF)
+            {
+                if (vertextf.id == 3 || vertextf.id == 6)
+                {                    
+                    fpOut.printf("" + vertextf);
+                }
+            }
+            fpOut.printf("\n");
 /*            
             for (int j = 0; j < totalPath; j++ )
             {
