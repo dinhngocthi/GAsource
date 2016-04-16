@@ -397,6 +397,7 @@ public class ChuongTrinhChinh
         return ret;
     }
     
+    int pathnum = 0;
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
         int ret = 1;        
@@ -405,8 +406,10 @@ public class ChuongTrinhChinh
         {
             if (pathListID[pathID] == 1)
             {
+                pathnum++;
                 ret = 0;
                 pathListID[pathID] = 0;
+                System.out.print("[" + pathnum + "]");
                 System.out.print("{");
                 for (int i = 0; i < size; i++)
                 {
