@@ -33,8 +33,8 @@ public class getAllPaths
         myPath = new ArrayList<Vertex>();
         output = new ArrayList<ArrayList<Vertex>>();
 
-        //traverse(vertexList.get(0), new ArrayList<Vertex>());// D.N.Thi
-        TraverseCFG(vertexList.get(0));
+        //traverse(vertexList.get(0), new ArrayList<Vertex>());
+        TraverseCFG(vertexList.get(0)); // D.N.Thi
     }
 
     public String getOutputInString()
@@ -88,8 +88,8 @@ public class getAllPaths
     {
         int ret = -1;
         int i = 0; // path ID
-        double[] aTmp = new double[size];
-        System.arraycopy(a, 0, aTmp, 0, size);
+        double[] aOrg = new double[size];
+        System.arraycopy(a, 0, aOrg, 0, size);
         
         for (ArrayList<Vertex> path : output)
         {
@@ -97,7 +97,7 @@ public class getAllPaths
             int I = 0;
             int J = 0;
             int MIN = 0;
-            System.arraycopy(aTmp, 0, a, 0, size);
+            System.arraycopy(aOrg, 0, a, 0, size); // reset
 
             for (Vertex vertex : path)
             {
