@@ -629,18 +629,20 @@ public class getAllPaths
     {
         int loop1 = 0;
         int loop2 = 0;
-        int ix = 0;
+        int[] ixloop1 = new int[DEFAULT_DEPTH];
+        int[] ixloop2 = new int[DEFAULT_DEPTH * DEFAULT_DEPTH];
         for (Vertex v : myPath)                        
         {
             //if (v.getId() == id)
             if (v.getId() == 3)
             {
-                loop1++;
-                ix = myPath.indexOf(v);
+                ixloop1[loop1] = myPath.indexOf(v);
+                loop1++;                
             }
 
             if (v.getId() == 6)
             {
+                ixloop2[loop2] = myPath.indexOf(v);
                 loop2++;
             }
         }
