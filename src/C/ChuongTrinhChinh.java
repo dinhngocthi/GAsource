@@ -315,7 +315,7 @@ public class ChuongTrinhChinh
         for (int i = 0; i < totalPath; i++)
             pathListID[i] = 1;
         
-        System.out.println("------------All paths start-------------");
+        System.out.println("------------Create all paths start-------------");
         //int[][] disMatrix = new int[totalPath][totalPath];
         
         for (int i = 0; i < totalPath; i++ )
@@ -372,7 +372,7 @@ public class ChuongTrinhChinh
 */            
         }
         fpOut.close();
-        System.out.println("------------All paths end-------------");
+        System.out.println("------------Create all paths end-------------");
     }
 
     public int calculateDistTriangle(double a, double b, double c) throws Exception
