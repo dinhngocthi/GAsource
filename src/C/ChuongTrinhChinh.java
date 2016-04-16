@@ -307,9 +307,7 @@ public class ChuongTrinhChinh
         String danhSachKe   = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1\n";
         String NodeElements = "0#Bat dau ham\n1#int i,j\n2#i=0\n3#i<size-1\n4#int min=i\n5#j=i+1\n6#j<size\n7#a[j]<a[min]\n8#min=j\n9#j++\n10#int tem=a[i]\n11#a[i]=a[min]\n12#a[min]=tem\n13#i++\n14#Ket thuc ham";
         staticVariable.Paramater.depth = loop; // interation loop  
-        
         geterTest = new getAllPaths(danhSachKe, NodeElements);
-        
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
 
         int totalPath = getOutput.size();        
@@ -326,10 +324,9 @@ public class ChuongTrinhChinh
             int pathSize = path.size(); 
 
             ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
-
                                               
-             for (int k = 0; k < pathSize; k++)
-             {
+            for (int k = 0; k < pathSize; k++)
+            {
                 Vertex vertex = path.get(k);
                 
                 VertexTF vertextf = new VertexTF();                
@@ -355,8 +352,8 @@ public class ChuongTrinhChinh
                 pathTF.add(vertextf);
             }
             
-            //System.out.println("Path " + i + "-> :" + pathTF);
-            //fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+            fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+            /*
             fpOut.printf("Path " + i + " -> : ");
             for (VertexTF vertextf : pathTF)
             {
@@ -366,6 +363,7 @@ public class ChuongTrinhChinh
                 }
             }
             fpOut.printf("\n");
+            */
 /*            
             for (int j = 0; j < totalPath; j++ )
             {
@@ -375,7 +373,6 @@ public class ChuongTrinhChinh
         }
         fpOut.close();
         System.out.println("------------All paths end-------------");
-        
     }
 
     public int calculateDistTriangle(double a, double b, double c) throws Exception
