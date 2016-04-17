@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Random;
 
 /**
  * @author nguyenducanh
@@ -295,6 +294,9 @@ public class ChuongTrinhChinh
     // D.N.Thi for testing
     static int[] pathListID;
     static getAllPaths geterTest;
+    private int[][] disMatrix; 
+    private int totalPath;
+
     public void initPathListID(int loop) throws Exception
     {
         // Triangle        
@@ -310,13 +312,13 @@ public class ChuongTrinhChinh
         geterTest = new getAllPaths(danhSachKe, NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
 
-        int totalPath = getOutput.size();        
+        totalPath = getOutput.size();        
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
             pathListID[i] = 1;
         
         System.out.println("------------Create all paths start-------------");
-        int[][] disMatrix = new int[totalPath][totalPath];
+        disMatrix = new int[totalPath][totalPath];
         
         for (int i = 0; i < totalPath; i++ )
         {
@@ -400,7 +402,7 @@ public class ChuongTrinhChinh
     int pathnum = 0;
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
-        int ret = 1;        
+        int ret = java.lang.Integer.MAX_VALUE;
         int pathID = geterTest.getExecutionPathSelectionSort(a, size);
         if (pathID > -1)
         {
@@ -425,6 +427,11 @@ public class ChuongTrinhChinh
             else
             {
                 // todo 04/17
+                System.out.println(disMatrix[pathID][pathID]);
+                for (int i = 0; i < totalPath; i++)
+                {
+                    
+                }
             }
         }
         else
