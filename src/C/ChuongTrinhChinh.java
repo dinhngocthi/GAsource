@@ -426,12 +426,19 @@ public class ChuongTrinhChinh
             }
             else
             {
-                // todo 04/17
-                System.out.println(disMatrix[pathID][pathID]);
+                int temp = 0;
+                int sum  = 0; 
                 for (int i = 0; i < totalPath; i++)
                 {
-                    
+                    if (pathListID[i] == 1)
+                    {
+                        temp++;
+                        sum += disMatrix[pathID][i];
+                    }
                 }
+                ret = sum/temp;
+                System.out.println("Temp     = " + temp);
+                System.out.println("Distance = " + ret);
             }
         }
         else
