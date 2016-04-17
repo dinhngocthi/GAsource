@@ -454,7 +454,6 @@ public class ChuongTrinhChinh
             System.out.print("}");
             System.out.println(" ===> pathID = " + pathID);
         }
-        //System.out.println(" a = " + a + " b = " + b + " c = " + c + " ===> pathID = " + pathID);
         return ret;
     }
 
