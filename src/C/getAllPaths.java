@@ -284,7 +284,8 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (checkSelectionSort(myPath))
+            //if (checkSelectionSort(myPath))  // for SelectionSort
+            if (check(myPath, v.id)) // Triangle
             {
                 myPath.add(v);
                 Vertex u;

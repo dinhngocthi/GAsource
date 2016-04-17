@@ -561,8 +561,8 @@ public class GA
             */
             try
             {
-                //your_func = fTriangle(x[0], x[1], x[2]);                
-                your_func = fSelectionSort(x, nvarReal);             
+                your_func = fTriangle(x[0], x[1], x[2]);                
+                //your_func = fSelectionSort(x, nvarReal);             
             }
             catch (Exception ex) 
             {

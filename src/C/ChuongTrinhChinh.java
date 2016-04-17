@@ -302,8 +302,6 @@ public class ChuongTrinhChinh
         // Triangle        
         //String danhSachKe   = "-1 0\n0 1\n1 2\n2 3 10\n3 4 7\n4 5\n5 6\n6 -1\n7 8 9\n8 5\n9 5\n10 5\n";
         //String NodeElements = "0#Bat dau ham\n1#int trityp=0\n2#(a+b>c)&&(b+c>a)&&(c+a>b)\n3#(a!=b)&&(b!=c)&&(c!=a)\n4#trityp=1\n5#return trityp\n6#Ket thuc ham\n7#((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))\n8#trityp=2\n9#trityp=3\n10#trityp=-1";
-        PrintWriter fpOut; // fp_rep fr
-        fpOut = new PrintWriter("CFGpath", "UTF-8");
         
         // Selection sort        
         String danhSachKe   = "-1 0\n0 1\n1 2\n2 3\n3 4 14\n4 5\n5 6\n6 7 10\n7 8 9\n8 9\n9 6\n10 11\n11 12\n12 13\n13 3\n14 -1\n";
@@ -315,10 +313,13 @@ public class ChuongTrinhChinh
         totalPath = getOutput.size();        
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
-            pathListID[i] = 1;
-        
-        System.out.println("------------Create all paths start-------------");
+            pathListID[i] = 1;        
         disMatrix = new int[totalPath][totalPath];
+        
+        PrintWriter fpOut; // fp_rep fr
+        fpOut = new PrintWriter("CFGpath", "UTF-8");
+
+        System.out.println("------------Create all paths start-------------");
         
         for (int i = 0; i < totalPath; i++ )
         {
