@@ -355,6 +355,7 @@ public class ChuongTrinhChinh
             }
             
             fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+
             /*
             fpOut.printf("Path " + i + " -> : ");
             for (VertexTF vertextf : pathTF)
@@ -370,10 +371,9 @@ public class ChuongTrinhChinh
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
-            }
-            
+            }            
         }
-        fpOut.close();
+        fpOut.close();                
         System.out.println("------------Create all paths end-------------");
     }
 
@@ -437,8 +437,8 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
-                System.out.println("Temp     = " + temp);
-                System.out.println("Distance = " + ret);
+                System.out.println("Target paths = " + temp);
+                System.out.println("Distance     = " + ret);
             }
         }
         else
