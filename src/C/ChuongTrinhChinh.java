@@ -316,7 +316,7 @@ public class ChuongTrinhChinh
             pathListID[i] = 1;
         
         System.out.println("------------Create all paths start-------------");
-        //int[][] disMatrix = new int[totalPath][totalPath];
+        int[][] disMatrix = new int[totalPath][totalPath];
         
         for (int i = 0; i < totalPath; i++ )
         {
@@ -364,12 +364,12 @@ public class ChuongTrinhChinh
             }
             fpOut.printf("\n");
             */
-/*            
+            
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
             }
-*/            
+            
         }
         fpOut.close();
         System.out.println("------------Create all paths end-------------");
@@ -407,7 +407,6 @@ public class ChuongTrinhChinh
             if (pathListID[pathID] == 1)
             {
                 pathnum++;
-                ret = 0;
                 pathListID[pathID] = 0;
                 System.out.print("[" + pathnum + "]");
                 System.out.print("{");
@@ -420,6 +419,12 @@ public class ChuongTrinhChinh
                 }
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
+                
+                ret = 0;
+            }
+            else
+            {
+                // todo 04/17
             }
         }
         else
@@ -490,12 +495,12 @@ public class ChuongTrinhChinh
             }
             
             System.out.println("Path " + i + "-> :" + pathTF);
-/*
+
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
             }
-*/            
+            
         }
         System.out.println("------------All paths end-------------");
     }
@@ -505,7 +510,7 @@ public class ChuongTrinhChinh
         int ret = 0;
         int len1 = path1.size();
         int len2 = path2.size();
-        int len = (len1 < len2)? len1:len2;
+        int len = Math.max(len1, len2);
         for (int i = 0; i < len; i++)
         {
             if (path1.get(i).getId() == path2.get(i).getId())
