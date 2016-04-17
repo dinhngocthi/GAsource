@@ -284,7 +284,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (check(myPath))
+            if (checkSelectionSort(myPath))
             {
                 myPath.add(v);
                 Vertex u;
@@ -384,7 +384,7 @@ public class getAllPaths
         return null;
     }
         
-    private boolean check(ArrayList<Vertex> myPath)
+    private boolean checkSelectionSort(ArrayList<Vertex> myPath)
     {
         int loop1 = 0;
         int loop2 = 0;
