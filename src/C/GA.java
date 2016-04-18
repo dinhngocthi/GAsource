@@ -193,8 +193,9 @@ public class GA
         inputAppParameters();
         
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
-        String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
+        String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
