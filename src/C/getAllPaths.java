@@ -185,10 +185,10 @@ public class getAllPaths
         for (ArrayList<Vertex> path : output)
         {
             int j = 0; // vertex ID             
-            int I = 0;
-            double MIN = a[0];
-            double MAX = a[0];
+            int I = 1;
             System.arraycopy(aOrg, 0, a, 0, size); // reset
+            double MIN = a[0];
+            double MAX = a[0];            
 
             for (Vertex vertex : path)
             {

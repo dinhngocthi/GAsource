@@ -454,7 +454,12 @@ public class ChuongTrinhChinh
     public int calculateDistGetMinMax(double[] a, int size) throws Exception
     {
         int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathSelectionSort(a, size);
+        for (int i = 0; i < size; i++)
+        {            
+            System.out.format(" %1.3f, ", a[i]);
+        }
+        System.out.println();        
+        int pathID = geterTest.getExecutionPathGetMinMax(a, size);
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
