@@ -462,6 +462,7 @@ public class getAllPaths
         return null;
     }
         
+    // For selection sort (nested loop)
     private boolean checkSelectionSort(ArrayList<Vertex> myPath)
     {
         int loop1 = 0;
@@ -500,6 +501,7 @@ public class getAllPaths
             return false;
     }
 
+    // For find min/max 
     private boolean check(ArrayList<Vertex> myPath, int id)
     {
         int dem = 0;
