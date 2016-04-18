@@ -289,6 +289,36 @@ public class ParseTestpath
         return (mEvaluator.evaluate(strExpression).equals("1.0"));
     }
     
+    public boolean evaluateExpressionGetMinMax (String strExpression, double[] a, int size, int I, double MIN, double MAX) throws EvaluationException
+    {   
+        ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
+
+        Bien bienai   = new Bien("a[i]", 0, Double.toString(a[I]));
+        Bien bienmin  = new Bien("min", 0, Double.toString(MIN));
+        Bien bienmax  = new Bien("min", 0, Double.toString(MAX));
+        Bien bieni    = new Bien("i", 0, Double.toString(I));
+        Bien biensize = new Bien("size", 0, Double.toString(size));
+
+        danhSachBienTmp.add(bieni);
+        danhSachBienTmp.add(biensize);
+        if (strExpression.contains("a[i]"))
+        {
+            danhSachBienTmp.add(bienai);
+            danhSachBienTmp.add(bienmin);
+            danhSachBienTmp.add(bienmax);
+        }
+        else
+        {
+            danhSachBienTmp.add(bieni);
+            danhSachBienTmp.add(biensize);
+        }
+
+        strExpression = thayTheBienVoiGiaTri(strExpression, danhSachBienTmp);
+
+        Evaluator mEvaluator = new Evaluator();
+        return (mEvaluator.evaluate(strExpression).equals("1.0"));
+    }
+
     /**
      * Thay thế các biến trong biểu thức với giá trị cụ thể. Tất cả những biến
      * không mang giá trị cụ thể, và không phải tham số truyền vào thì nhận giá
