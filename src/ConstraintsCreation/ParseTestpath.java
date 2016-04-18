@@ -295,12 +295,10 @@ public class ParseTestpath
 
         Bien bienai   = new Bien("a[i]", 0, Double.toString(a[I]));
         Bien bienmin  = new Bien("min", 0, Double.toString(MIN));
-        Bien bienmax  = new Bien("min", 0, Double.toString(MAX));
+        Bien bienmax  = new Bien("max", 0, Double.toString(MAX));
         Bien bieni    = new Bien("i", 0, Double.toString(I));
         Bien biensize = new Bien("size", 0, Double.toString(size));
 
-        danhSachBienTmp.add(bieni);
-        danhSachBienTmp.add(biensize);
         if (strExpression.contains("a[i]"))
         {
             danhSachBienTmp.add(bienai);
