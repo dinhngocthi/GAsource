@@ -192,7 +192,13 @@ public class GA
         criticalSize = popSize / 4;
         inputAppParameters();
         
-        ctc = new ChuongTrinhChinh(null);
+        String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+        String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
+                
+        ctc = new ChuongTrinhChinh(pathFile);
+        ctc.run();
+
         ctc.initPathListID(nvarReal);
     }
 
@@ -561,8 +567,8 @@ public class GA
             */
             try
             {
-                your_func = fTriangle(x[0], x[1], x[2]);                
-                //your_func = fSelectionSort(x, nvarReal);             
+                //your_func = fTriangle(x[0], x[1], x[2]);                
+                your_func = fSelectionSort(x, nvarReal);             
             }
             catch (Exception ex) 
             {
