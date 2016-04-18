@@ -199,7 +199,6 @@ public class GA
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
-
         ctc.initPathListID(nvarReal);
     }
 
@@ -471,6 +470,23 @@ public class GA
         
         return your_func;
     }
+
+    private static double fGetMinMax(double[] a, int size)
+    {
+        double your_func = 0;
+
+        try
+        {
+            your_func = ctc.calculateDistGetMinMax(a, size);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Exception");
+        }
+        
+        return your_func;
+    }
+
     /*
      * ====================================================================
      * OBJECTIVE FUNCTION ( Supposed to be minimized) : Change it for different
@@ -570,6 +586,7 @@ public class GA
             {
                 //your_func = fTriangle(x[0], x[1], x[2]);                
                 your_func = fSelectionSort(x, nvarReal);             
+                //your_func = fGetMinMax(x, nvarReal);
             }
             catch (Exception ex) 
             {
