@@ -663,9 +663,9 @@ public final class GUI3 extends javax.swing.JFrame
             //String pathFile = "D:/Thi.DN/PhD/Tools/CFT4CUnit/CFT4CUnit/Vi Du/SelectionSort.c"; //Cty
             //String pathFile = "D:/Thi.DN/PhD/Tools/CFT4CUnit/CFT4CUnitSrc/src/sample/SelectionSort.c"; //Cty
             String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+            String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
             //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-            String pathFile = classPath.replace("bin/", "src/sample/binA2008_BinarySearch.c");
+            //String pathFile = classPath.replace("bin/", "src/sample/binA2008_BinarySearch.c");
 
             staticVariable.Paramater.depth = Utils.toInt(jtpDepth.getText() + "");
             staticVariable.Paramater.Smt_Lib_path_lib = jtfSmt_Lib_path_lib.getText();
