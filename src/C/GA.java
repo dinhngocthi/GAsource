@@ -193,8 +193,8 @@ public class GA
         inputAppParameters();
         
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+        String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
                 
         ctc = new ChuongTrinhChinh(pathFile);
@@ -585,8 +585,8 @@ public class GA
             try
             {
                 //your_func = fTriangle(x[0], x[1], x[2]);                
-                //your_func = fSelectionSort(x, nvarReal);             
-                your_func = fGetMinMax(x, nvarReal);
+                your_func = fSelectionSort(x, nvarReal);             
+                //your_func = fGetMinMax(x, nvarReal);
             }
             catch (Exception ex) 
             {
