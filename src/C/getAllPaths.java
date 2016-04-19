@@ -361,8 +361,8 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (checkSelectionSort(myPath))  // for SelectionSort
-            //if (check(myPath, v.id))           // for single loop
+            //if (checkSelectionSort(myPath))  // for SelectionSort
+            if (check(myPath, v.id))           // for single loop
             {
                 myPath.add(v);
                 Vertex u;

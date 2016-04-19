@@ -365,7 +365,9 @@ public class ChuongTrinhChinh
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
-            }            
+                //System.out.print(disMatrix[i][j] + " ");
+            }
+            //System.out.println();
         }
         fpOut.close();                
         System.out.println("------------Create all paths end-------------");
