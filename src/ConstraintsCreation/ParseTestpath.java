@@ -317,7 +317,7 @@ public class ParseTestpath
         return (mEvaluator.evaluate(strExpression).equals("1.0"));
     }
    
-    public boolean GreatestCommonDivisor (String strExpression, double a, double b, double c) throws EvaluationException
+    public boolean evaluateGreatestCommonDivisor (String strExpression, double a, double b, double c) throws EvaluationException
     {   
         ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
 

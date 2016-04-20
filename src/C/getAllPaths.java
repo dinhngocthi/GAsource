@@ -290,7 +290,7 @@ public class getAllPaths
                     boolean bb = false;
                     try
                     {
-                        bb = parseTestpath.GreatestCommonDivisor(stm, A, B, C);
+                        bb = parseTestpath.evaluateGreatestCommonDivisor(stm, A, B, C);
                     }
                     catch (EvaluationException EE)
                     {
