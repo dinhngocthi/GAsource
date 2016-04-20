@@ -657,7 +657,6 @@ public final class GUI3 extends javax.swing.JFrame
     {
         try
         {
-            System.out.print("Â");
             staticVariable.reset();
             String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
             //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
