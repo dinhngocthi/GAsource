@@ -252,6 +252,83 @@ public class getAllPaths
         return ret;
     }
     
+    public int getExecutionPathGetMinMax(double a, double b)
+    {
+        int ret = -1;
+        int i = 0; // path ID
+        double[] aOrg = new double[size];
+        System.arraycopy(a, 0, aOrg, 0, size);
+        
+        for (ArrayList<Vertex> path : output)
+        {
+            int j = 0; // vertex ID             
+            int I = 1;
+            System.arraycopy(aOrg, 0, a, 0, size); // reset
+            double MIN = a[0];
+            double MAX = a[0];            
+
+            for (Vertex vertex : path)
+            {
+                j++;
+                String stm = vertex.getStatement();
+                if (vertex.falseVertexId == vertex.trueVertexId)
+                {                    
+                    if (stm.equals("i++"))
+                    {
+                        I++;
+                    }
+                    if (stm.equals("min=a[i]"))
+                    {
+                        MIN = a[I];
+                    }
+                    if (stm.equals("max=a[i]"))
+                    {
+                        MAX = a[I];
+                    }
+                    continue;                    
+                }
+                else
+                {                    
+                    ParseTestpath parseTestpath = new ParseTestpath();
+                    boolean b = false;
+                    try
+                    {
+                        b = parseTestpath.evaluateExpressionGetMinMax(stm, a, size, I, MIN, MAX);
+                    }
+                    catch (EvaluationException EE)
+                    {
+                    }
+                    Vertex vertexTmp = path.get(j); // get the next vertex in this path
+                    if (b)
+                    {                        
+                        if (vertex.getTrueVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                    else
+                    {
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                }
+            }
+            if (path.size() == j)
+            {
+                ret = i;
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        return ret;
+    }
+
     public int getExecutionPathTriangle(double A, double B, double C)
     {
         int ret = -1;
@@ -361,7 +438,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            //if (checkSelectionSort(myPath))  // for SelectionSort
+            //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
             if (check(myPath, v.id))           // for single loop
             {
                 myPath.add(v);

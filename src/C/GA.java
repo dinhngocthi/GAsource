@@ -193,9 +193,10 @@ public class GA
         inputAppParameters();
         
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
+        String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
@@ -478,6 +479,22 @@ public class GA
         try
         {
             your_func = ctc.calculateDistGetMinMax(a, size);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Exception");
+        }
+        
+        return your_func;
+    }
+    
+    private static double fGreatestCommonDivisor(double a, double b)
+    {
+        double your_func = 0;
+
+        try
+        {
+            your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
         }
         catch (Exception ex)
         {

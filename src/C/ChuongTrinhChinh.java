@@ -313,7 +313,6 @@ public class ChuongTrinhChinh
         fpOut = new PrintWriter("CFGpath", "UTF-8");
 
         System.out.println("------------Create all paths start-------------");
-        
         for (int i = 0; i < totalPath; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
@@ -327,7 +326,8 @@ public class ChuongTrinhChinh
                 
                 VertexTF vertextf = new VertexTF();                
                 vertextf.id = vertex.getId();
-                vertextf.statement = vertex.getStatement();
+                String stm = vertex.getStatement().replace("%", "%%");
+                vertextf.statement = stm;
                 
                 if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
                 {
@@ -418,7 +418,7 @@ public class ChuongTrinhChinh
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
                 
-                ret = 0;
+                ret = 0; // hit a feasible test path
             }
             else
             {
@@ -475,7 +475,7 @@ public class ChuongTrinhChinh
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
                 
-                ret = 0;
+                ret = 0; // hit a feasible test path
             }
             else
             {
@@ -509,6 +509,49 @@ public class ChuongTrinhChinh
         }
         return ret;
     }
+
+    public int calculateDistGreatestCommonDivisor(double a, double b) throws Exception
+    {
+        int ret = java.lang.Integer.MAX_VALUE;
+        int pathID = geterTest.getExecutionPathGreatestCommonDivisor(a, b);
+        if (pathID > -1)
+        {
+            if (pathListID[pathID] == 1)
+            {
+                pathnum++;
+                pathListID[pathID] = 0;
+                System.out.print("[" + pathnum + "]");
+                System.out.format("{ %1.3f, %1.3f }", a, b);
+                System.out.println(" ===> pathID = " + pathID);
+                
+                ret = 0; // hit a feasible test path
+            }
+            else
+            {
+                int temp = 0;
+                int sum  = 0; 
+                for (int i = 0; i < totalPath; i++)
+                {
+                    if (pathListID[i] == 1)
+                    {
+                        temp++;
+                        sum += disMatrix[pathID][i];
+                    }
+                }
+                ret = sum/temp;
+                System.out.println("Target paths = " + temp);
+                System.out.println("Distance     = " + ret);
+            }
+        }
+        else
+        {
+            System.out.format("{ %1.3f, %1.3f }", a, b);
+            System.out.println(" ===> pathID = " + pathID);
+        }
+        return ret;
+    }
+    
+    
 
     // Calculate distance for all programs
     public void calculateDist() throws Exception
