@@ -252,20 +252,17 @@ public class getAllPaths
         return ret;
     }
     
-    public int getExecutionPathGetMinMax(double a, double b)
+    public int getExecutionPathGreatestCommonDivisor(double a, double b)
     {
         int ret = -1;
         int i = 0; // path ID
-        double[] aOrg = new double[size];
-        System.arraycopy(a, 0, aOrg, 0, size);
         
         for (ArrayList<Vertex> path : output)
         {
             int j = 0; // vertex ID             
-            int I = 1;
-            System.arraycopy(aOrg, 0, a, 0, size); // reset
-            double MIN = a[0];
-            double MAX = a[0];            
+            double A = a;
+            double B = b;
+            double C = 0;
 
             for (Vertex vertex : path)
             {
@@ -273,33 +270,33 @@ public class getAllPaths
                 String stm = vertex.getStatement();
                 if (vertex.falseVertexId == vertex.trueVertexId)
                 {                    
-                    if (stm.equals("i++"))
+                    if (stm.equals("int c=b"))
                     {
-                        I++;
+                        C = B;
                     }
-                    if (stm.equals("min=a[i]"))
+                    if (stm.equals("b=a%b"))
                     {
-                        MIN = a[I];
+                        B = A % B;
                     }
-                    if (stm.equals("max=a[i]"))
+                    if (stm.equals("a=c"))
                     {
-                        MAX = a[I];
+                        A = C;
                     }
                     continue;                    
                 }
                 else
                 {                    
                     ParseTestpath parseTestpath = new ParseTestpath();
-                    boolean b = false;
+                    boolean bb = false;
                     try
                     {
-                        b = parseTestpath.evaluateExpressionGetMinMax(stm, a, size, I, MIN, MAX);
+                        bb = parseTestpath.GreatestCommonDivisor(stm, A, B, C);
                     }
                     catch (EvaluationException EE)
                     {
                     }
                     Vertex vertexTmp = path.get(j); // get the next vertex in this path
-                    if (b)
+                    if (bb)
                     {                        
                         if (vertex.getTrueVertexId() == vertexTmp.getId())
                             continue;

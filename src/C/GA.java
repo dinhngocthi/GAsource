@@ -603,7 +603,8 @@ public class GA
             {
                 //your_func = fTriangle(x[0], x[1], x[2]);                
                 //your_func = fSelectionSort(x, nvarReal);             
-                your_func = fGetMinMax(x, nvarReal);
+                //your_func = fGetMinMax(x, nvarReal);
+                your_func = fGreatestCommonDivisor(x[0], x[1]);
             }
             catch (Exception ex) 
             {

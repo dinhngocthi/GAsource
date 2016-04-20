@@ -316,7 +316,26 @@ public class ParseTestpath
         Evaluator mEvaluator = new Evaluator();
         return (mEvaluator.evaluate(strExpression).equals("1.0"));
     }
+   
+    public boolean GreatestCommonDivisor (String strExpression, double a, double b, double c) throws EvaluationException
+    {   
+        ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
 
+        Bien biena   = new Bien("a", 0, Double.toString(a));
+        Bien bienb   = new Bien("b", 0, Double.toString(b));
+        Bien bienc   = new Bien("c", 0, Double.toString(c));
+        
+        danhSachBienTmp.add(biena);
+        danhSachBienTmp.add(bienb);
+        danhSachBienTmp.add(bienc);
+
+        strExpression = thayTheBienVoiGiaTri(strExpression, danhSachBienTmp);
+
+        Evaluator mEvaluator = new Evaluator();
+        return (mEvaluator.evaluate(strExpression).equals("1.0"));
+    }
+
+    
     /**
      * Thay thế các biến trong biểu thức với giá trị cụ thể. Tất cả những biến
      * không mang giá trị cụ thể, và không phải tham số truyền vào thì nhận giá
