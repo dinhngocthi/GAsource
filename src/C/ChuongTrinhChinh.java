@@ -521,9 +521,8 @@ public class ChuongTrinhChinh
             if (pathListID[pathID] == 1)
             {
                 pathnum++;
-                pathListID[pathID] = 0;
-                System.out.print("[" + pathnum + "]");
-                System.out.print("{");
+                pathListID[pathID] = 0; // hit a feasible test path
+                System.out.print("[" + pathnum + "] {");
                 for (int i = 0; i < size; i++)
                 {
                     if (i < size-1)
@@ -531,12 +530,11 @@ public class ChuongTrinhChinh
                     else
                         System.out.format(" %1.3f ", a[i]);
                 }
-                System.out.print("}");
-                System.out.println(" ===> pathID = " + pathID);
+                System.out.println("} ===> pathID = " + pathID);
                 
-                ret = 0; // hit a feasible test path
+                //ret = 0; 
             }
-            else
+            //else
             {
                 int temp = 0;
                 int sum  = 0; 
@@ -681,10 +679,29 @@ public class ChuongTrinhChinh
         int len = Math.max(len1, len2);
         for (int i = 0; i < len; i++)
         {
-            if (path1.get(i).getId() == path2.get(i).getId())
+            if (path1.get(i).getId() == path2.get(i).getId()) 
                 continue;
             else
-                return (Math.max((len1-i), (len2-i)) - 1);
+            {
+                int count = 1;
+                if (len1 > len2)
+                {
+                    for (int j = i; j < len1; j++)
+                    {
+                        if (path1.get(j).getFalseVertexId() != path1.get(j).getTrueVertexId())
+                            count++;
+                    }
+                }
+                else
+                {
+                    for (int j = i; j < len2; j++)
+                    {
+                        if (path2.get(j).getFalseVertexId() != path2.get(j).getTrueVertexId())
+                            count++;
+                    }    
+                }
+                return count;
+            }
         }
         return ret;
     }
