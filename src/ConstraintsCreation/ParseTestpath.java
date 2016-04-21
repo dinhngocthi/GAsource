@@ -291,24 +291,29 @@ public class ParseTestpath
     
     public boolean evaluateExpressionInsertionSort (String strExpression, double[] a, int size, int I, int J) throws EvaluationException
     {   
+
         ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
 
-        Bien bieni    = new Bien("i", 0, Double.toString(I));
-        Bien bienj    = new Bien("j", 0, Double.toString(J));
-        Bien biensize = new Bien("size", 0, Double.toString(size));
-        Bien bienaj1  = new Bien("a[j-1]", 0, Double.toString(a[J-1]));
-        Bien bienaj   = new Bien("a[j]", 0, Double.toString(a[J]));
+        //Bien bieni    = new Bien("i", 0, Double.toString(I));
+        //Bien bienj    = new Bien("j", 0, Double.toString(J));
+        //Bien biensize = new Bien("size", 0, Double.toString(size));
+        //Bien bienaj1  = new Bien("a[j-1]", 0, Double.toString(a[J-1]));
+        //Bien bienaj   = new Bien("a[j]", 0, Double.toString(a[J]));
 
-        danhSachBienTmp.add(bieni);
-        danhSachBienTmp.add(biensize);
         if (strExpression.contains("a[j]"))
         {
+            if (J < 1) return false;
+            Bien bienj    = new Bien("j", 0, Double.toString(J));
+            Bien bienaj1  = new Bien("a[j-1]", 0, Double.toString(a[J-1]));
+            Bien bienaj   = new Bien("a[j]", 0, Double.toString(a[J]));
             danhSachBienTmp.add(bienaj1);
             danhSachBienTmp.add(bienaj);
             danhSachBienTmp.add(bienj);
         }
         else
         {
+            Bien bieni    = new Bien("i", 0, Double.toString(I));
+            Bien biensize = new Bien("size", 0, Double.toString(size));
             danhSachBienTmp.add(bieni);
             danhSachBienTmp.add(biensize);
         }

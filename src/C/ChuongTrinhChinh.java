@@ -456,7 +456,42 @@ public class ChuongTrinhChinh
     public int calculateDistInsertionSort(double[] a, int size) throws Exception
     {
         int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathInsertionSort(a, size);
+        a[0]=0;
+        a[1]=1;
+        a[2]=2;
+        int pathID1 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID1 = " + pathID1);
+        a[0]=0;
+        a[1]=2;
+        a[2]=1;
+        int pathID2 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID2 = " + pathID2);
+
+        a[0]=1;
+        a[1]=0;
+        a[2]=2;
+        int pathID3 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID3 = " + pathID3);
+
+        a[0]=1;
+        a[1]=2;
+        a[2]=0;
+        int pathID4 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID4 = " + pathID4);
+        
+        a[0]=2;
+        a[1]=1;
+        a[2]=0;
+        int pathID5 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID5 = " + pathID5);
+
+        a[0]=2;
+        a[1]=0;
+        a[2]=1;
+        int pathID6 = geterTest.getExecutionPathInsertionSort(a, size);
+        System.out.println("pathID6 = " + pathID6);
+        //System.out.println(pathID6);
+        /*
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
@@ -507,6 +542,7 @@ public class ChuongTrinhChinh
             System.out.print("}");
             System.out.println(" ===> pathID = " + pathID);
         }
+        */
         return ret;
     }
     
