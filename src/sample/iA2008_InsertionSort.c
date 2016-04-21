@@ -12,4 +12,3 @@ void InsertionSort (int a[], int size)
 		} 
 	} 
 }
-

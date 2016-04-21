@@ -505,6 +505,22 @@ public class GA
         return your_func;
     }
 
+    private static double fInsertionSort(double[] a, int size)
+    {
+        double your_func = 0;
+
+        try
+        {
+            your_func = ctc.calculateDistInsertionSort(a, size);            
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Exception");
+        }
+        
+        return your_func;
+    }
+
     /*
      * ====================================================================
      * OBJECTIVE FUNCTION ( Supposed to be minimized) : Change it for different
@@ -604,8 +620,9 @@ public class GA
             {
                 //your_func = fTriangle(x[0], x[1], x[2]);                
                 //your_func = fSelectionSort(x, nvarReal);             
-                your_func = fGetMinMax(x, nvarReal);
+                //your_func = fGetMinMax(x, nvarReal);
                 //your_func = fGreatestCommonDivisor(x[0], x[1]);
+                your_func = fInsertionSort(x, nvarReal);
             }
             catch (Exception ex) 
             {

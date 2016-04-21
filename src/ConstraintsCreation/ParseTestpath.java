@@ -289,6 +289,36 @@ public class ParseTestpath
         return (mEvaluator.evaluate(strExpression).equals("1.0"));
     }
     
+    public boolean evaluateExpressionInsertionSort (String strExpression, double[] a, int size, int I, int J) throws EvaluationException
+    {   
+        ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
+
+        Bien bieni    = new Bien("i", 0, Double.toString(I));
+        Bien bienj    = new Bien("j", 0, Double.toString(J));
+        Bien biensize = new Bien("size", 0, Double.toString(size));
+        Bien bienaj1  = new Bien("a[j-1]", 0, Double.toString(a[J-1]));
+        Bien bienaj   = new Bien("a[j]", 0, Double.toString(a[J]));
+
+        danhSachBienTmp.add(bieni);
+        danhSachBienTmp.add(biensize);
+        if (strExpression.contains("a[j]"))
+        {
+            danhSachBienTmp.add(bienaj1);
+            danhSachBienTmp.add(bienaj);
+            danhSachBienTmp.add(bienj);
+        }
+        else
+        {
+            danhSachBienTmp.add(bieni);
+            danhSachBienTmp.add(biensize);
+        }
+
+        strExpression = thayTheBienVoiGiaTri(strExpression, danhSachBienTmp);
+
+        Evaluator mEvaluator = new Evaluator();
+        return (mEvaluator.evaluate(strExpression).equals("1.0"));
+    }
+
     public boolean evaluateExpressionGetMinMax (String strExpression, double[] a, int size, int I, double MIN, double MAX) throws EvaluationException
     {   
         ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();

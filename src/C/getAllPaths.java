@@ -175,6 +175,88 @@ public class getAllPaths
         return ret;
     }
 
+    public int getExecutionPathInsertionSort(double[] a, int size)
+    {
+        int ret = -1;
+        int i = 0; // path ID
+        double[] aOrg = new double[size];
+        System.arraycopy(a, 0, aOrg, 0, size);
+        
+        for (ArrayList<Vertex> path : output)
+        {
+            int j = 0; // next vertex ID             
+            int I = 1;
+            int J = I;
+            System.arraycopy(aOrg, 0, a, 0, size); // reset
+
+            for (Vertex vertex : path)
+            {
+                j++;
+                String stm = vertex.getStatement();
+                if (vertex.falseVertexId == vertex.trueVertexId)
+                {
+                    if (stm.equals("int j=i"))
+                    {
+                        J = I;
+                    }
+                    if (stm.equals("i++"))
+                    {
+                        I++;
+                    }
+                    if (stm.equals("j--"))
+                    {
+                        J--;
+                    }
+                    if (stm.equals("int temp=a[j-1]"))
+                    {
+                        double temp = a[J-1];
+                        a[J-1] = a[J];
+                        a[J] = temp;
+                    }
+                    continue;                    
+                }
+                else
+                {                    
+                    ParseTestpath parseTestpath = new ParseTestpath();
+                    boolean b = false;
+                    try
+                    {
+                        b = parseTestpath.evaluateExpressionInsertionSort(stm, a, size, I, J);
+                    }
+                    catch (EvaluationException EE)
+                    {
+                    }
+                    Vertex vertexTmp = path.get(j); // get the next vertex in this path
+                    if (b)
+                    {                        
+                        if (vertex.getTrueVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                    else
+                    {
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                }
+            }
+            if (path.size() == j)
+            {
+                ret = i;
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        return ret;
+    }
+
     public int getExecutionPathGetMinMax(double[] a, int size)
     {
         int ret = -1;
@@ -436,7 +518,8 @@ public class getAllPaths
         }
         else
             //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
-            if (check(myPath, v.id))           // for single loop
+            //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
+            if (check(myPath, v.id))         // for single loop
             {
                 myPath.add(v);
                 Vertex u;
@@ -575,6 +658,45 @@ public class getAllPaths
             return false;
     }
 
+    // For insertion sort (nested loop)
+    private boolean checkInsertionSort(ArrayList<Vertex> myPath)
+    {
+        int loop1 = 0;
+        int loop2 = 0;
+        boolean ret = true;
+        for (Vertex v : myPath)                        
+        {
+            if (v.getId() == 2)  // node [2, i<size, T]
+            {         
+                if (loop1 > 0)
+                {
+                    if (loop2 != loop1)
+                    {
+                        ret = false;
+                        break;
+                    }
+                }
+                loop1++;
+                loop2 = 0;                
+            }
+
+            if (v.getId() == 4)  // node [4, j>0&&a[j]<a[j-1], T]
+            {
+                loop2++;    
+                if (loop2 > (loop1+1))
+                {
+                    ret = false;
+                    break;
+                }
+            }
+        }
+          
+        if (ret && loop1 <= DEFAULT_DEPTH)
+            return true;
+        else
+            return false;
+    }
+    
     // For find min/max 
     private boolean check(ArrayList<Vertex> myPath, int id)
     {

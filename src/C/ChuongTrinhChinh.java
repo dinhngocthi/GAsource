@@ -452,7 +452,64 @@ public class ChuongTrinhChinh
         }
         return ret;
     }
-
+   
+    public int calculateDistInsertionSort(double[] a, int size) throws Exception
+    {
+        int ret = java.lang.Integer.MAX_VALUE;
+        int pathID = geterTest.getExecutionPathInsertionSort(a, size);
+        if (pathID > -1)
+        {
+            if (pathListID[pathID] == 1)
+            {
+                pathnum++;
+                pathListID[pathID] = 0;
+                System.out.print("[" + pathnum + "]");
+                System.out.print("{");
+                for (int i = 0; i < size; i++)
+                {
+                    if (i < size-1)
+                        System.out.format(" %1.3f, ", a[i]);
+                    else
+                        System.out.format(" %1.3f ", a[i]);
+                }
+                System.out.print("}");
+                System.out.println(" ===> pathID = " + pathID);
+                
+                ret = 0; // hit a feasible test path
+            }
+            else
+            {
+                int temp = 0;
+                int sum  = 0; 
+                for (int i = 0; i < totalPath; i++)
+                {
+                    if (pathListID[i] == 1)
+                    {
+                        temp++;
+                        sum += disMatrix[pathID][i];
+                    }
+                }
+                ret = sum/temp;
+                System.out.println("Target paths = " + temp);
+                System.out.println("Distance     = " + ret);
+            }
+        }
+        else
+        {
+            System.out.print("{");
+            for (int i = 0; i < size; i++)
+            {
+                if (i < size-1)
+                    System.out.format(" %1.3f, ", a[i]);
+                else
+                    System.out.format(" %1.3f ", a[i]);
+            }
+            System.out.print("}");
+            System.out.println(" ===> pathID = " + pathID);
+        }
+        return ret;
+    }
+    
     public int calculateDistGetMinMax(double[] a, int size) throws Exception
     {
         int ret = java.lang.Integer.MAX_VALUE;
