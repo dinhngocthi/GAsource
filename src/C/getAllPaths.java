@@ -483,7 +483,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (check(myPath, v.getId()))
+            if (check(myPath, v.getId(), ""))
             {
                 myPath.add(v);
                 if (v.getFalseVertexId() == v.getTrueVertexId())
@@ -519,7 +519,8 @@ public class getAllPaths
         else
             //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
             //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
-            if (check(myPath, v.id))         // for single loop
+            if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
+            //if (check(myPath, v.id, ""))       // for single loop
             {
                 myPath.add(v);
                 Vertex u;
@@ -698,15 +699,16 @@ public class getAllPaths
     }
     
     // For find min/max 
-    private boolean check(ArrayList<Vertex> myPath, int id)
+    private boolean check(ArrayList<Vertex> myPath, int id, String checktype)
     {
-        int dem = 0;
+        int count = 0;
+        int limit = checktype.equals("InsertionSort")? (DEFAULT_DEPTH + 1) : DEFAULT_DEPTH;
         for (Vertex v : myPath)
             if (v.getId() == id)
             {
-                dem++;
+                count++;
             }
-        if (dem <= DEFAULT_DEPTH)
+        if (count <= limit)
             return true;
         return false;
     }
