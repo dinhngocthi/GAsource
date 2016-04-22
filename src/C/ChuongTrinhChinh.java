@@ -530,8 +530,7 @@ public class ChuongTrinhChinh
                     else
                         System.out.format(" %1.3f ", a[i]);
                 }
-                System.out.println("} ===> pathID = " + pathID);
-                
+                System.out.println("} ===> pathID = " + pathID);                
                 //ret = 0; 
             }
             //else
@@ -547,8 +546,8 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
-                System.out.println("Target paths = " + temp);
-                System.out.println("Distance     = " + ret);
+                //System.out.println("Target paths = " + temp);
+                //System.out.println("Distance     = " + ret);
             }
         }
         else
