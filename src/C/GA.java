@@ -201,7 +201,7 @@ public class GA
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
-        ctc.initPathListID(nvarReal);
+        ctc.initPathListID(nvarReal);        
     }
 
     public static void selectMemory()
@@ -542,16 +542,18 @@ public class GA
         // #ifdef prob1
         if (false)
         {
-            
             MINM = 1; // for maximization use -1
             term1 = (x[0] * x[0] + x[1] - 11.0) * (x[0] * x[0] + x[1] - 11.0);
             term2 = (x[0] + x[1] * x[1] - 7.0) * (x[0] + x[1] * x[1] - 7.0);
             term3 = term1 + term2;
             your_func = term3;
 
+            nc = 0;
+/*
             nc = 1;
             // add normalized constraints here
             g[0] = (square(x[0] - 5.0) + square(x[1])) / 26.0 - 1.0;
+*/
         }
         // #endif
 
@@ -563,8 +565,11 @@ public class GA
             term3 = pi * x[0] * x[0] / 2.0 + pi * x[0] * x[1];
             your_func = term3;
 
+            nc = 0;
+/*            
             nc = 1;
             g[0] = (pi * x[0] * x[0] * x[1] / 4.0 - 400.0) / 400.0;
+*/
         }
         // #endif
 
@@ -609,8 +614,8 @@ public class GA
         {
             MINM = 1; // use -1 for maximization
             // Put your function here
-            /*
             your_func = 0;
+            /*
             for (i = 0; i < 10; i++)
             {
                 your_func += square(x[i]);
