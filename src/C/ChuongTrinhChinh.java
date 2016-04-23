@@ -476,9 +476,9 @@ public class ChuongTrinhChinh
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
                 
-                ret = 0; // hit a feasible test path
+                //ret = 0; // hit a feasible test path
             }
-            else
+            //else
             {
                 int temp = 0;
                 int sum  = 0; 
@@ -491,8 +491,8 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
-                //System.out.println("Target paths = " + temp);
-                //System.out.println("Distance     = " + ret);
+                System.out.println("Target paths = " + temp);
+                System.out.println("Distance     = " + ret);
             }
         }
         else
