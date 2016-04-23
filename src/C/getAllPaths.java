@@ -519,8 +519,8 @@ public class getAllPaths
         else
             //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
             //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
-            //if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
-            if (check(myPath, v.id, ""))       // for single loop
+            if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
+            //if (check(myPath, v.id, ""))       // for single loop
             {
                 myPath.add(v);
                 Vertex u;
