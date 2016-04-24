@@ -361,12 +361,14 @@ public class ChuongTrinhChinh
             }
             fpOut.printf("\n");
             */
-            
+            int sum = 0;
             for (int j = 0; j < totalPath; j++ )
             {
                 disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
                 //System.out.print(disMatrix[i][j] + " ");
+                //sum += disMatrix[i][j];
             }
+            //System.out.print("   " + sum/(totalPath-1));
             //System.out.println();
         }
         fpOut.close();                
@@ -455,15 +457,18 @@ public class ChuongTrinhChinh
    
     public int calculateDistInsertionSort(double[] a, int size) throws Exception
     {
+        int ret = geterTest.getExecutionPathInsertionSort(a, size, pathListID);        
+        System.out.println("Distance     = " + ret);
+        /*
         int ret = java.lang.Integer.MAX_VALUE;
-
-        int pathID = geterTest.getExecutionPathInsertionSort(a, size);
+        int pathID = geterTest.getExecutionPathInsertionSort(a, size, pathListID);
+        
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
             {
                 pathnum++;
-                pathListID[pathID] = 0;
+                pathListID[pathID] = 0;   // hit a feasible test path
                 System.out.print("[" + pathnum + "]");
                 System.out.print("{");
                 for (int i = 0; i < size; i++)
@@ -476,10 +481,11 @@ public class ChuongTrinhChinh
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
                 
-                //ret = 0; // hit a feasible test path
+                //ret = 0;
             }
             //else
             {
+                //approximation level (AL)                
                 int temp = 0;
                 int sum  = 0; 
                 for (int i = 0; i < totalPath; i++)
@@ -491,8 +497,7 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
-                System.out.println("Target paths = " + temp);
-                System.out.println("Distance     = " + ret);
+                // branch distance (BD)
             }
         }
         else
@@ -508,7 +513,7 @@ public class ChuongTrinhChinh
             System.out.print("}");
             System.out.println(" ===> pathID = " + pathID);
         }
-        
+         */
         return ret;
     }
     
@@ -624,7 +629,7 @@ public class ChuongTrinhChinh
 
         // get distances from a path to each other
         System.out.println("------------All paths start-------------");
-        int[][] disMatrix = new int[totalPath][totalPath];
+        double[][] disMatrix = new double[totalPath][totalPath];
         for (int i = 0; i < totalPath; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
@@ -682,13 +687,13 @@ public class ChuongTrinhChinh
                 continue;
             else
             {
-                int count = 1;
+                int unmatchedcount = 1;
                 if (len1 > len2)
                 {
                     for (int j = i; j < len1; j++)
                     {
                         if (path1.get(j).getFalseVertexId() != path1.get(j).getTrueVertexId())
-                            count++;
+                            unmatchedcount++;
                     }
                 }
                 else
@@ -696,10 +701,10 @@ public class ChuongTrinhChinh
                     for (int j = i; j < len2; j++)
                     {
                         if (path2.get(j).getFalseVertexId() != path2.get(j).getTrueVertexId())
-                            count++;
+                            unmatchedcount++;
                     }    
                 }
-                return count;
+                return unmatchedcount;
             }
         }
         return ret;

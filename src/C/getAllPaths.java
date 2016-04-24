@@ -175,24 +175,31 @@ public class getAllPaths
         return ret;
     }
 
-    public int getExecutionPathInsertionSort(double[] a, int size)
+    public int getExecutionPathInsertionSort(double[] a, int size, int[] pathList)
     {
         int ret = -1;
         int i = 0; // path ID
         double[] aOrg = new double[size];
         System.arraycopy(a, 0, aOrg, 0, size);
-        
+                
+        int targetnum = 0;
+        for (int t = 0; t < pathList.length; t++)
+            targetnum += pathList[t];
+            
+        int dist = 0;
+
         for (ArrayList<Vertex> path : output)
         {
             int j = 0; // next vertex ID             
             int I = 1;
             int J = I;
             System.arraycopy(aOrg, 0, a, 0, size); // reset
+            String stm = null;
 
             for (Vertex vertex : path)
             {
                 j++;
-                String stm = vertex.getStatement();
+                stm = vertex.getStatement();
                 if (vertex.falseVertexId == vertex.trueVertexId)
                 {
                     if (stm.equals("int j=i"))
@@ -245,16 +252,47 @@ public class getAllPaths
             }
             if (path.size() == j)
             {
-                ret = i;
-                break;
+                //ret = i;
+                //break;
+                if (pathList[i] == 1) 
+                {
+                    // hit a feasible test path
+                    pathList[i] = 0;
+                    targetnum--;
+                    
+                    System.out.print("[" + i + "]");
+                    System.out.print("{");
+                    for (int ii = 0; ii < size; ii++)
+                    {
+                        if (ii < size-1)
+                            System.out.format(" %1.3f, ", aOrg[ii]);
+                        else
+                            System.out.format(" %1.3f ", aOrg[ii]);
+                    }
+                    System.out.print("}");
+                    System.out.println(" ===> pathID = " + i);
+                    System.out.println("Target paths = " + targetnum);
+                }
             }
             else
             {
                 i++;
+                if (stm.contains("a[j]"))  //j>0&&a[j]<a[j-1]
+                {
+                    if (J > 0)
+                        dist += ((0-J+1) + (a[J]-a[J-1]+1));
+                    else
+                        dist += 1;
+                }
+                else //i<size
+                {
+                    dist += (I-size+1);
+                }
             }
         }
 
-        return ret;
+        //return ret;
+        return (dist/targetnum);
     }
 
     public int getExecutionPathGetMinMax(double[] a, int size)

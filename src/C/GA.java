@@ -456,7 +456,7 @@ public class GA
 
         return your_func;
     }
-
+    
     private static double fSelectionSort(double[] a, int size)
     {
         double your_func = 0;

@@ -294,12 +294,6 @@ public class ParseTestpath
 
         ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
 
-        //Bien bieni    = new Bien("i", 0, Double.toString(I));
-        //Bien bienj    = new Bien("j", 0, Double.toString(J));
-        //Bien biensize = new Bien("size", 0, Double.toString(size));
-        //Bien bienaj1  = new Bien("a[j-1]", 0, Double.toString(a[J-1]));
-        //Bien bienaj   = new Bien("a[j]", 0, Double.toString(a[J]));
-
         if (strExpression.contains("a[j]"))
         {
             if (J < 1) return false;
