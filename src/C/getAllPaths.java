@@ -181,7 +181,7 @@ public class getAllPaths
         int i = 0; // path ID
         double[] aOrg = new double[size];
         System.arraycopy(a, 0, aOrg, 0, size);
-                
+
         int targetnum = 0;
         for (int t = 0; t < pathList.length; t++)
             targetnum += pathList[t];
@@ -252,8 +252,12 @@ public class getAllPaths
             }
             if (path.size() == j)
             {
-                //ret = i;
-                //break;
+/*                
+                ret = i;
+                System.arraycopy(aOrg, 0, a, 0, size); // reset
+                break;
+*/                
+                
                 if (pathList[i] == 1) 
                 {
                     // hit a feasible test path
@@ -272,35 +276,43 @@ public class getAllPaths
                     System.out.print("}");
                     System.out.println(" ===> pathID = " + i);
                     System.out.println("Target paths = " + targetnum);
-                }
+                }                
             }
             else
             {
                 i++;
+                
                 if (stm.contains("a[j]"))  //j>0&&a[j]<a[j-1]
                 {
                     if (J > 0)
                         dist += ((0-J+1) + (a[J]-a[J-1]+1));
                     else
-                        dist += 1;
+                        dist += (0-J+1);
                 }
                 else //i<size
                 {
                     dist += (I-size+1);
                 }
+                
             }
         }
 
-        //return ret;
+//        return ret;
         return (dist/targetnum);
     }
 
-    public int getExecutionPathGetMinMax(double[] a, int size)
+    public int getExecutionPathGetMinMax(double[] a, int size, int[] pathList)
     {
         int ret = -1;
         int i = 0; // path ID
         double[] aOrg = new double[size];
         System.arraycopy(a, 0, aOrg, 0, size);
+        
+        int targetnum = 0;
+        for (int t = 0; t < pathList.length; t++)
+            targetnum += pathList[t];
+            
+        int dist = 0;
         
         for (ArrayList<Vertex> path : output)
         {
@@ -308,12 +320,13 @@ public class getAllPaths
             int I = 1;
             System.arraycopy(aOrg, 0, a, 0, size); // reset
             double MIN = a[0];
-            double MAX = a[0];            
+            double MAX = a[0];
+            String stm = null;
 
             for (Vertex vertex : path)
             {
                 j++;
-                String stm = vertex.getStatement();
+                stm = vertex.getStatement();
                 if (vertex.falseVertexId == vertex.trueVertexId)
                 {                    
                     if (stm.equals("i++"))
@@ -360,16 +373,51 @@ public class getAllPaths
             }
             if (path.size() == j)
             {
+/*                
                 ret = i;
+                System.arraycopy(aOrg, 0, a, 0, size); // reset
                 break;
+*/
+                if (pathList[i] == 1) 
+                {
+                    // hit a feasible test path
+                    pathList[i] = 0;
+                    targetnum--;
+                    
+                    System.out.print("[" + i + "]");
+                    System.out.print("{");
+                    for (int ii = 0; ii < size; ii++)
+                    {
+                        if (ii < size-1)
+                            System.out.format(" %1.3f, ", aOrg[ii]);
+                        else
+                            System.out.format(" %1.3f ", aOrg[ii]);
+                    }
+                    System.out.print("}");
+                    System.out.println(" ===> pathID = " + i);
+                    System.out.println("Target paths = " + targetnum);
+                }   
             }
             else
             {
                 i++;
+                if (stm.contains("i<size"))   //A < B -> dist = (A – B) + k
+                {
+                    dist += (I - size + 1);
+                }
+                if (stm.contains("min>a[i]")) //A > B -> dist - (B – A) + k
+                {
+                    dist += (a[I] - MIN + 1);
+                }
+                if (stm.contains("max<a[i]")) //A < B -> dist = (A – B) + k
+                {
+                    dist += (MAX - a[I] + 1);
+                }
             }
         }
 
-        return ret;
+//        return ret;
+        return (dist/targetnum);
     }
     
     public int getExecutionPathGreatestCommonDivisor(double a, double b)
@@ -557,8 +605,8 @@ public class getAllPaths
         else
             //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
             //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
-            if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
-            //if (check(myPath, v.id, ""))       // for single loop
+            //if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
+            if (check(myPath, v.id, ""))       // for single loop
             {
                 myPath.add(v);
                 Vertex u;

@@ -459,7 +459,7 @@ public class ChuongTrinhChinh
     {
         int ret = geterTest.getExecutionPathInsertionSort(a, size, pathListID);        
         System.out.println("Distance     = " + ret);
-        /*
+/*        
         int ret = java.lang.Integer.MAX_VALUE;
         int pathID = geterTest.getExecutionPathInsertionSort(a, size, pathListID);
         
@@ -480,7 +480,7 @@ public class ChuongTrinhChinh
                 }
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
-                
+                System.out.println("Target paths = " + (totalPath - pathnum));
                 //ret = 0;
             }
             //else
@@ -497,6 +497,7 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
+                System.out.println("Distance = " + ret);
                 // branch distance (BD)
             }
         }
@@ -513,14 +514,16 @@ public class ChuongTrinhChinh
             System.out.print("}");
             System.out.println(" ===> pathID = " + pathID);
         }
-         */
+*/
         return ret;
     }
     
     public int calculateDistGetMinMax(double[] a, int size) throws Exception
     {
+        int ret = geterTest.getExecutionPathGetMinMax(a, size, pathListID);
+        /*
         int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathGetMinMax(a, size);
+        int pathID = geterTest.getExecutionPathGetMinMax(a, size, pathListID);
         if (pathID > -1)
         {
             if (pathListID[pathID] == 1)
@@ -568,6 +571,7 @@ public class ChuongTrinhChinh
             System.out.print("}");
             System.out.println(" ===> pathID = " + pathID);
         }
+        */
         return ret;
     }
 

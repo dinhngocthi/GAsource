@@ -193,11 +193,11 @@ public class GA
         inputAppParameters();
         
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
+        String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-        String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
@@ -527,6 +527,7 @@ public class GA
      * applications
      * ====================================================================
      */
+    private static int callObject = 0;
     public static void objective(Population indv)
     {
         int i;
@@ -615,6 +616,7 @@ public class GA
             MINM = 1; // use -1 for maximization
             // Put your function here
             your_func = 0;
+            callObject++;
             /*
             for (i = 0; i < 10; i++)
             {
@@ -623,11 +625,12 @@ public class GA
             */
             try
             {
+                //System.out.println("Call objective: " + callObject);
                 //your_func = fTriangle(x[0], x[1], x[2]);                
                 //your_func = fSelectionSort(x, nvarReal);             
-                //your_func = fGetMinMax(x, nvarReal);
+                your_func = fGetMinMax(x, nvarReal);
                 //your_func = fGreatestCommonDivisor(x[0], x[1]);
-                your_func = fInsertionSort(x, nvarReal);
+                //your_func = fInsertionSort(x, nvarReal);                
             }
             catch (Exception ex) 
             {
