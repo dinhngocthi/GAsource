@@ -575,6 +575,66 @@ public class ChuongTrinhChinh
         return ret;
     }
 
+    public int calculateDistGetMinMaxTriangle(double[] a, int size) throws Exception
+    {
+        int ret = java.lang.Integer.MAX_VALUE;
+
+        a[2] = 2;
+        a[0] = 1;
+        a[1] = 0.000001;
+        int pathID = geterTest.getExecutionPathGetMinMaxTriangle(a, size);
+        
+        if (pathID > -1)
+        {
+            if (pathListID[pathID] == 1)
+            {
+                pathnum++;
+                pathListID[pathID] = 0; // hit a feasible test path
+                System.out.print("[" + pathnum + "] {");
+                for (int i = 0; i < size; i++)
+                {
+                    if (i < size-1)
+                        System.out.format(" %1.3f, ", a[i]);
+                    else
+                        System.out.format(" %1.3f ", a[i]);
+                }
+                System.out.println("} ===> pathID = " + pathID);                
+                //ret = 0; 
+            }
+            //else
+            {
+                int temp = 0;
+                int sum  = 0; 
+                for (int i = 0; i < totalPath; i++)
+                {
+                    if (pathListID[i] == 1)
+                    {
+                        temp++;
+                        sum += disMatrix[pathID][i];
+                    }
+                }
+                ret = sum/temp;
+                //System.out.println("Target paths = " + temp);
+                //System.out.println("Distance     = " + ret);
+            }
+        }
+        else
+        {
+            System.out.print("{");
+            for (int i = 0; i < size; i++)
+            {
+                if (i < size-1)
+                    System.out.format(" %1.3f, ", a[i]);
+                else
+                    System.out.format(" %1.3f ", a[i]);
+            }
+            System.out.print("}");
+            System.out.println(" ===> pathID = " + pathID);
+        }
+
+        return ret;
+    }
+
     public int calculateDistGreatestCommonDivisor(double a, double b) throws Exception
     {
         int ret = java.lang.Integer.MAX_VALUE;

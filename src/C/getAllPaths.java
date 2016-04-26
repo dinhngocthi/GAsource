@@ -421,7 +421,85 @@ public class getAllPaths
         return ret;
 //        return (dist/targetnum);
     }
-    
+
+    public int getExecutionPathGetMinMaxTriangle(double[] a, int size)
+    {
+        int ret = -1;
+        int i = 0; // path ID
+        double[] aOrg = new double[size];
+        System.arraycopy(a, 0, aOrg, 0, size);
+
+        for (ArrayList<Vertex> path : output)
+        {
+            int j = 0; // vertex ID             
+            int I = 1;
+            System.arraycopy(aOrg, 0, a, 0, size); // reset
+            double MIN = a[0];
+            double MAX = a[0];
+            String stm = null;
+
+            for (Vertex vertex : path)
+            {
+                j++;
+                stm = vertex.getStatement();
+                if (vertex.falseVertexId == vertex.trueVertexId)
+                {                    
+                    if (stm.equals("i++"))
+                    {
+                        I++;
+                    }
+                    if (stm.equals("min=arr[i]"))
+                    {
+                        MIN = a[I];
+                    }
+                    if (stm.equals("max=arr[i]"))
+                    {
+                        MAX = a[I];
+                    }
+                }
+                else
+                {                    
+                    ParseTestpath parseTestpath = new ParseTestpath();
+                    boolean b = false;
+                    try
+                    {
+                        b = parseTestpath.evaluateExpressionGetMinMaxTriangle(stm, a, size, I, MIN, MAX);
+                    }
+                    catch (EvaluationException EE)
+                    {
+                    }
+                    Vertex vertexTmp = path.get(j); // get the next vertex in this path
+                    if (b)
+                    {                        
+                        if (vertex.getTrueVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                    else
+                    {
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                            continue;
+                        else
+                            break;
+                    }
+                }
+            }
+            if (path.size() == j)
+            {
+                ret = i;
+                System.arraycopy(aOrg, 0, a, 0, size); // reset
+                break;
+            }
+            else
+            {
+                i++; // check the next path in target paths
+            }
+        }
+
+        return ret;
+    }
+
     public int getExecutionPathGreatestCommonDivisor(double a, double b)
     {
         int ret = -1;

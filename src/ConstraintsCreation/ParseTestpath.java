@@ -345,6 +345,43 @@ public class ParseTestpath
         Evaluator mEvaluator = new Evaluator();
         return (mEvaluator.evaluate(strExpression).equals("1.0"));
     }
+    
+    public boolean evaluateExpressionGetMinMaxTriangle (String strExpression, double[] arr, int size, int I, double MIN, double MAX)  throws EvaluationException
+    {   
+        ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
+
+        Bien bienai   = new Bien("arr[i]", 0, Double.toString(arr[I]));
+        Bien bienmin  = new Bien("min", 0, Double.toString(MIN));
+        Bien bienmax  = new Bien("max", 0, Double.toString(MAX));
+        Bien bieni    = new Bien("i", 0, Double.toString(I));
+        Bien biensize = new Bien("size", 0, Double.toString(size));
+        Bien bienA = new Bien("a", 0, Double.toString(arr[0]));
+        Bien bienB = new Bien("b", 0, Double.toString(arr[1]));
+        Bien bienC = new Bien("c", 0, Double.toString(arr[2]));
+
+        if (strExpression.contains("arr[i]"))
+        {
+            danhSachBienTmp.add(bienai);
+            danhSachBienTmp.add(bienmin);
+            danhSachBienTmp.add(bienmax);
+        }
+        else if (strExpression.contains("i<size"))
+        {
+            danhSachBienTmp.add(bieni);
+            danhSachBienTmp.add(biensize);
+        }
+        else
+        {
+            danhSachBienTmp.add(bienA);
+            danhSachBienTmp.add(bienB);
+            danhSachBienTmp.add(bienC);
+        }
+
+        strExpression = thayTheBienVoiGiaTri(strExpression, danhSachBienTmp);
+
+        Evaluator mEvaluator = new Evaluator();
+        return (mEvaluator.evaluate(strExpression).equals("1.0"));
+    }
    
     public boolean evaluateGreatestCommonDivisor (String strExpression, double a, double b, double c) throws EvaluationException
     {   
