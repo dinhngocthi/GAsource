@@ -579,9 +579,6 @@ public class ChuongTrinhChinh
     {
         int ret = java.lang.Integer.MAX_VALUE;
 
-        a[2] = 2;
-        a[0] = 1;
-        a[1] = 0.000001;
         int pathID = geterTest.getExecutionPathGetMinMaxTriangle(a, size);
         
         if (pathID > -1)

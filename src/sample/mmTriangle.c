@@ -12,7 +12,7 @@ void mmTriangle(double  arr[], int size)
 	
 	double a = arr[0];
 	double b = arr[1];
-	double b = arr[2];
+	double c = arr[2];
 
 	int trityp = 0;
 	if ((a + b > c) && (b + c > a) && (c + a > b))
