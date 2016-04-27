@@ -497,7 +497,7 @@ public class ChuongTrinhChinh
                     }
                 }
                 ret = sum/temp;
-                System.out.println("Distance = " + ret);
+                //System.out.println("Distance = " + ret);
                 // branch distance (BD)
             }
         }

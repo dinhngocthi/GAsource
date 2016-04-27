@@ -197,8 +197,8 @@ public class GA
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-        String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
+        String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
                 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
@@ -647,8 +647,8 @@ public class GA
                 //your_func = fSelectionSort(x, nvarReal);             
                 //your_func = fGetMinMax(x, nvarReal);
                 //your_func = fGreatestCommonDivisor(x[0], x[1]);
-                //your_func = fInsertionSort(x, nvarReal);   
-                your_func = fGetMinMaxTriangle(x, nvarReal);
+                your_func = fInsertionSort(x, nvarReal);   
+                //your_func = fGetMinMaxTriangle(x, nvarReal);
             }
             catch (Exception ex) 
             {

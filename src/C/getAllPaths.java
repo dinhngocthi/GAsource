@@ -182,6 +182,7 @@ public class getAllPaths
         double[] aOrg = new double[size];
         System.arraycopy(a, 0, aOrg, 0, size);
 /*
+//for branch distance (BD) 
         int targetnum = 0;
         for (int t = 0; t < pathList.length; t++)
             targetnum += pathList[t];
@@ -256,6 +257,7 @@ public class getAllPaths
                 System.arraycopy(aOrg, 0, a, 0, size); // reset
                 break;                
 /*                
+//for branch distance (BD)
                 if (pathList[i] == 1) 
                 {
                     // hit a feasible test path
@@ -280,7 +282,8 @@ public class getAllPaths
             else
             {
                 i++;
-/*                
+/*      
+//for branch distance (BD)
                 if (stm.contains("a[j]"))  //j>0&&a[j]<a[j-1]
                 {
                     if (J > 0)
@@ -297,7 +300,7 @@ public class getAllPaths
         }
 
         return ret;
-//        return (dist/targetnum);
+//        return (dist/targetnum);  //for branch distance (BD)
     }
 
     public int getExecutionPathGetMinMax(double[] a, int size, int[] pathList)
@@ -306,11 +309,12 @@ public class getAllPaths
         int i = 0; // path ID
         double[] aOrg = new double[size];
         System.arraycopy(a, 0, aOrg, 0, size);
-/*        
+/*
+//for branch distance (BD)         
         int targetnum = 0;
         for (int t = 0; t < pathList.length; t++)
             targetnum += pathList[t];
-            
+
         int dist = 0;
 */        
         for (ArrayList<Vertex> path : output)
@@ -377,6 +381,7 @@ public class getAllPaths
                 System.arraycopy(aOrg, 0, a, 0, size); // reset
                 break;
 /*
+//for branch distance (BD)
                 if (pathList[i] == 1) 
                 {
                     // hit a feasible test path
@@ -401,7 +406,8 @@ public class getAllPaths
             else
             {
                 i++;
-/*                
+/*
+//for branch distance (BD)                
                 if (stm.contains("i<size"))   //A < B -> dist = (A – B) + k
                 {
                     dist += (I - size + 1);
@@ -419,7 +425,7 @@ public class getAllPaths
         }
 
         return ret;
-//        return (dist/targetnum);
+//        return (dist/targetnum);  //for branch distance (BD)
     }
 
     public int getExecutionPathGetMinMaxTriangle(double[] a, int size)
@@ -685,8 +691,8 @@ public class getAllPaths
         else
             //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
             //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
-            //if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
-            if (check(myPath, v.id, ""))       // for single loop
+            if (check(myPath, v.id, "InsertionSort"))       // for InsertionSort (nested loop), only for loop = 3
+            //if (check(myPath, v.id, ""))       // for single loop
             {
                 myPath.add(v);
                 Vertex u;
