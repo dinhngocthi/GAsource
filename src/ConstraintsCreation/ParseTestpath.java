@@ -249,22 +249,7 @@ public class ParseTestpath
     }
 
     // D.N.Thi
-    public boolean evaluateExpressionTriangle (String strExpression, double A, double B, double C) throws EvaluationException
-    {   
-        ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();
-        Bien bienA = new Bien("a", 0, Double.toString(A));
-        Bien bienB = new Bien("b", 0, Double.toString(B));
-        Bien bienC = new Bien("c", 0, Double.toString(C));
-        
-        danhSachBienTmp.add(bienA);
-        danhSachBienTmp.add(bienB);
-        danhSachBienTmp.add(bienC);
-        strExpression = thayTheBienVoiGiaTri(strExpression, danhSachBienTmp);
 
-        Evaluator mEvaluator = new Evaluator();
-        return (mEvaluator.evaluate(strExpression).equals("1.0"));
-    }
-    
     public boolean evaluateExpressionSelectionSort (String strExpression, double[] a, int size, int I, int J, int MIN) throws EvaluationException
     {   
         ArrayList<Bien> danhSachBienTmp = new ArrayList<Bien>();

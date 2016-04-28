@@ -126,7 +126,7 @@ public class ChuongTrinhChinh
         staticVariable.AllPathSubCondition.NodeElements = staticVariable.SubCondition.NodeElements;
         //
         // System.out.println(staticVariable.AllPathSubCondition.NodeRelations);
-        System.out.println(staticVariable.AllPathSubCondition.NodeElements);
+        // System.out.println(staticVariable.AllPathSubCondition.NodeElements);
     }
 
     /**
@@ -209,7 +209,7 @@ public class ChuongTrinhChinh
         staticVariable.SubCondition.danhSachKe = "-1 0 0\n" + danhSachKe3;
 
         staticVariable.AllPathSubCondition.danhSachKe = staticVariable.SubCondition.danhSachKe;
-        System.out.println(staticVariable.AllPathSubCondition.danhSachKe);
+        //System.out.println(staticVariable.AllPathSubCondition.danhSachKe);
     }
 
     /**
@@ -294,7 +294,7 @@ public class ChuongTrinhChinh
     // D.N.Thi for testing
     static int[] pathListID;
     static getAllPaths geterTest;
-    private int[][] disMatrix; 
+    private double[][] disMatrix; 
     private int totalTargetPaths; // current numbers of target paths
     static ArrayList<ArrayList<VertexTF>> targetPaths;
 
@@ -314,6 +314,9 @@ public class ChuongTrinhChinh
 
         System.out.println("------------Create all paths start-------------");
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
+        int branchID = 1;
+        ArrayList<String> branchlist = new ArrayList<String>();
+        
         for (int i = 0; i < totalTargetPaths; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
@@ -324,24 +327,25 @@ public class ChuongTrinhChinh
             for (int k = 0; k < pathSize; k++)
             {
                 Vertex vertex = path.get(k);
-                
-                //VertexTF vertextf = new VertexTF();
-                //vertextf.id = vertex.getId();
-                //String stm = vertex.getStatement().replace("%", "%%");
-                //vertextf.statement = stm;
-                
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
-                    /*
-                {
-                    vertextf.decision = null;
-                }
-                else
-                */
                 {
                     VertexTF vertextf = new VertexTF();
-                    //vertextf.id = vertex.getId();
-                    String stm = vertex.getStatement().replace("%", "%%");
-                    vertextf.statement = stm;
+                    int j = 0;
+                    for (j = 0; j < branchlist.size(); j++)
+                    {
+                        if (branchlist.get(j).equals(vertex.getStatement()))
+                            break;
+                    }
+                    if (j < branchlist.size())
+                    {
+                        vertextf.id = (j + 1);
+                    }
+                    else
+                    {
+                        vertextf.id = branchID;
+                        branchID++;
+                        branchlist.add(vertex.getStatement());
+                    }
 
                     Vertex vertexTmp = path.get(k + 1);
                     if (vertex.getFalseVertexId() == vertexTmp.getId())
@@ -354,31 +358,13 @@ public class ChuongTrinhChinh
                     }
                     pathTF.add(vertextf);
                 }
-                //pathTF.add(vertextf);
             }
             targetPaths.add(pathTF);
-            //fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
-            
-            /*
-            int sum = 0;
-            for (int j = 0; j < totalPath; j++ )
-            {
-                //disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
-                System.out.print(disMatrix[i][j] + " ");
-                //sum += disMatrix[i][j];
-            }
-            */
-            //System.out.print("   " + sum/(totalPath-1));
-            //System.out.println();
-        }
-        
-        for (int i = 0; i < totalTargetPaths; i++)
-        {
-            fpOut.printf("Path " + i + " -> :" + targetPaths.get(i) + "\n");
-        }
+            fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+        }       
         fpOut.printf("\n");
         
-        disMatrix = new int[totalTargetPaths][totalTargetPaths];
+        disMatrix = new double[totalTargetPaths][totalTargetPaths];
         for (int i = 0; i < totalTargetPaths; i++ )
         {
             for (int j = 0; j < totalTargetPaths; j++ )
@@ -406,7 +392,7 @@ public class ChuongTrinhChinh
             {
                 VertexTF vertex1 = path1.get(i);
                 VertexTF vertex2 = path2.get(i);
-                if (vertex1.statement.equals(vertex2.statement) && vertex1.decision.equals(vertex2.decision))
+                if ((vertex1.id == vertex2.id) && vertex1.decision.equals(vertex2.decision))
                     continue;
                 else                
                     break;
@@ -465,29 +451,7 @@ public class ChuongTrinhChinh
         }
         return fitness[1];
     }
-    /*
-    public int calculateDistTriangle(double a, double b, double c) throws Exception
-    {
-        int ret = 1;
 
-        int pathID = geterTest.getExecutionPathTriangle(a, b, c);
-       
-        if (pathID > -1)
-        {
-            if (pathListID[pathID] == 1)
-            {
-                ret = 0;
-                pathListID[pathID] = 0;
-                System.out.println(" a = " + a + " b = " + b + " c = " + c + " ===> pathID = " + pathID);
-            }
-        }
-        else
-        {
-            System.out.println("path ID failed = " + pathID);
-        }
-        return ret;
-    }
-    */
     int pathnum = 0;
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
@@ -763,9 +727,8 @@ public class ChuongTrinhChinh
         }
         return ret;
     }
-    
- 
-    private int calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
+
+    private double calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
     {
         int i = 0;
         int len1 = path1.size();
@@ -775,51 +738,15 @@ public class ChuongTrinhChinh
         {
             VertexTF vertex1 = path1.get(i);
             VertexTF vertex2 = path2.get(i);
-            if (vertex1.statement.equals(vertex2.statement) && vertex1.decision.equals(vertex2.decision))
+            if ((vertex1.id == vertex2.id) && vertex1.decision.equals(vertex2.decision))
                 continue;
             else                
                 break;
         }
-        return (Math.max(len1, len2) - i);
+        return ((Math.max(len1, len2) - i)/Math.max(len1, len2));
     }
 
-    public int calculatePathDist(ArrayList<Vertex> path1, ArrayList<Vertex> path2)
-    {
-        int ret = 0;
-        int len1 = path1.size();
-        int len2 = path2.size();
-        int len = Math.max(len1, len2);
-        for (int i = 0; i < len; i++)
-        {
-            if (path1.get(i).getId() == path2.get(i).getId()) 
-                continue;
-            else
-            {
-                int unmatchedcount = 1;
-                if (len1 > len2)
-                {
-                    for (int j = i; j < len1; j++)
-                    {
-                        if (path1.get(j).getFalseVertexId() != path1.get(j).getTrueVertexId())
-                            unmatchedcount++;
-                    }
-                }
-                else
-                {
-                    for (int j = i; j < len2; j++)
-                    {
-                        if (path2.get(j).getFalseVertexId() != path2.get(j).getTrueVertexId())
-                            unmatchedcount++;
-                    }    
-                }
-                return unmatchedcount;
-            }
-        }
-        return ret;
-    }
-    
     public boolean isGetAllFeasiblePathOK = false;
-
     /**
      * 
      * @param pathList
@@ -1395,6 +1322,5 @@ public class ChuongTrinhChinh
         {
             return "Node [data=" + data + ", idNode=" + idNode + ", true_id=" + true_id + ", false_id=" + false_id + "]";
         }
-
     }
 }

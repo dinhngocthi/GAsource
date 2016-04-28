@@ -580,66 +580,6 @@ public class getAllPaths
         return ret;
     }
 
-    public int getExecutionPathTriangle(double A, double B, double C)
-    {
-        int ret = -1;
-        int i = 0;
-        //System.out.println("getExecutionPath start");
-        for (ArrayList<Vertex> path : output)
-        {
-            int j = 0;
-            for (Vertex vertex : path)
-            {
-                j++;
-                if (vertex.falseVertexId == vertex.trueVertexId)
-                {
-                    continue;
-                }
-                else
-                {
-                    // Todo: lam sao cho nay check duoc input thoa man nua la ngon
-                    String temp = vertex.getStatement();
-                    ParseTestpath parseTestpath = new ParseTestpath();
-                    boolean b = false;
-                    try
-                    {
-                        b = parseTestpath.evaluateExpressionTriangle(temp, A, B, C);
-                    }
-                    catch (EvaluationException EE)
-                    {
-                    }
-                    Vertex vertexTmp = path.get(j); // get the next vertex in this path
-                    if (b)
-                    {                        
-                        if (vertex.getTrueVertexId() == vertexTmp.getId())
-                            continue;
-                        else
-                            break;
-                    }
-                    else
-                    {
-                        if (vertex.getFalseVertexId() == vertexTmp.getId())
-                            continue;
-                        else
-                            break;
-                    }
-                }
-            }
-            if (path.size() == j)
-            {
-                ret = i;
-                break;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        //System.out.println("A = " + A + " B = " + B + " C = " + C + " ⇒　path " + ret);
-        //System.out.println("getExecutionPath end");
-        return ret;
-    }
-
     public static void main(String[] args) throws Exception
     {
         String nodeElement = "0#Bat dau ham\n1#float e\n2#a==0\n3#return 0\n4#Ket thuc ham\n5#int x=0\n6#a=b-2\n7#(a==b)\n11#(c==d)\n12#(a==0)\n8#x=1\n9#e=1/x\n10#return e";
@@ -986,22 +926,13 @@ class Vertex
 
 class VertexTF
 {
-    //public int id;
-    public String statement;
+    public int id;
+    //public String statement;
     public String decision;
     
     @Override
     public String toString()
     {
-        if (decision == null)
-        {
-            //return "[" + id + ", " + statement + "]";
-            return "[" + statement + "]";
-        }
-        else
-        {
-            //return "[" + id + ", " + statement + ", " + decision + "]";
-            return "[" + statement + ", " + decision + "]";
-        }
+        return "[" + id + ", " + decision + "]";
     }
 }
