@@ -679,9 +679,6 @@ public final class GUI3 extends javax.swing.JFrame
                 @Override
                 protected Object doInBackground() throws Exception
                 {
-                    // D.N.Thi for testing
-                    ctc.calculateDist();
-                    // D.N.Thi for testing                    
                     ArrayList<ArrayList<Integer>> pathList = ctc.getAllPaths(staticVariable.Statement.danhSachKe, 
                                                                              staticVariable.AllPath.NodeElements);// code
                     

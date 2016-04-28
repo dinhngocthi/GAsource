@@ -295,7 +295,7 @@ public class ChuongTrinhChinh
     static int[] pathListID;
     static getAllPaths geterTest;
     private int[][] disMatrix; 
-    private int totalPath;
+    private int totalTargetPaths; // current numbers of target paths
     static ArrayList<ArrayList<VertexTF>> targetPaths;
 
     public void initPathListID(int loop) throws Exception
@@ -304,18 +304,17 @@ public class ChuongTrinhChinh
         geterTest = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
         
-        totalPath = getOutput.size();
-        pathListID = new int[totalPath];
-        for (int i = 0; i < totalPath; i++)
-            pathListID[i] = 1;        
-        disMatrix = new int[totalPath][totalPath];
+        totalTargetPaths = getOutput.size();
+        pathListID = new int[totalTargetPaths];
+        for (int i = 0; i < totalTargetPaths; i++)
+            pathListID[i] = 1;                
 
         PrintWriter fpOut; // fp_rep fr
-        fpOut = new PrintWriter("CFGpath", "UTF-8");
+        fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
         System.out.println("------------Create all paths start-------------");
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
-        for (int i = 0; i < totalPath; i++ )
+        for (int i = 0; i < totalTargetPaths; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
@@ -360,34 +359,111 @@ public class ChuongTrinhChinh
             targetPaths.add(pathTF);
             //fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
             
+            /*
             int sum = 0;
             for (int j = 0; j < totalPath; j++ )
             {
-                disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
-                //System.out.print(disMatrix[i][j] + " ");
+                //disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
+                System.out.print(disMatrix[i][j] + " ");
                 //sum += disMatrix[i][j];
             }
+            */
             //System.out.print("   " + sum/(totalPath-1));
             //System.out.println();
         }
         
-        for (int i = 0; i < targetPaths.size(); i++)
+        for (int i = 0; i < totalTargetPaths; i++)
         {
             fpOut.printf("Path " + i + " -> :" + targetPaths.get(i) + "\n");
         }
-        fpOut.close();                
+        fpOut.printf("\n");
+        
+        disMatrix = new int[totalTargetPaths][totalTargetPaths];
+        for (int i = 0; i < totalTargetPaths; i++ )
+        {
+            for (int j = 0; j < totalTargetPaths; j++ )
+            {        
+                disMatrix[i][j] = calculatePathDistTF(targetPaths.get(i), targetPaths.get(j));
+                fpOut.printf("[" + i + "->" + j + "]: " + disMatrix[i][j] + "; ");
+            }
+            fpOut.printf("\n");
+        }
+        
+        fpOut.close();
         System.out.println("------------Create all paths end-------------");
     }
     
-    public int calculateDistTriangle(double a, double b, double c)// throws Exception
+    private boolean isSamePath(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
     {
-        int fitness = 0;
+        boolean ret = false;
+        int len1 = path1.size();
+        int len2 = path2.size();
+        int i = 0;
+        
+        if (len1 == len2)
+        {
+            for (i = 0; i < len1; i++)
+            {
+                VertexTF vertex1 = path1.get(i);
+                VertexTF vertex2 = path2.get(i);
+                if (vertex1.statement.equals(vertex2.statement) && vertex1.decision.equals(vertex2.decision))
+                    continue;
+                else                
+                    break;
+            }
+            ret = (i == len1); 
+        }
+        return ret;
+    }
+    
+    private double[] getDistExecutedPath2TargetPaths(ArrayList<VertexTF> executedPath)
+    {
+        int i = 0;
+        int size = targetPaths.size();
+        double[] ret = new double[2];
+        ret[0] = -1;
+
+        for (i = 0; i < size; i ++)
+        {
+            ArrayList<VertexTF> targetPathTmp = targetPaths.get(i);
+            if (isSamePath(targetPathTmp, executedPath))
+                break;
+        }
+        
+        if (pathListID[i] == 1)
+        {
+            totalTargetPaths--; // hit a feasible path
+            if (totalTargetPaths == 0) return ret;
+
+            pathListID[i] = 0;
+            ret[0] = i; 
+        }
+        
+        int sum = 0;
+        for (int j = 0; j < size; j ++)
+        {
+            sum += disMatrix[i][j];
+        }
+        ret[1] = (sum/totalTargetPaths);
+
+        return ret;
+    }
+
+    public double calculateDistTriangle(double a, double b, double c)// throws Exception
+    {
+        double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
         
         targetFunction.Tritype(a, b, c, executedPath);
 
-        return fitness;
+        fitness = getDistExecutedPath2TargetPaths(executedPath);
+        if (fitness[0] > -1)
+        {
+            // hit a feasible path
+            System.out.println("Path " + (int)fitness[0] + ": a = " + a + " b = " + b + " c = " + c);
+        }
+        return fitness[1];
     }
     /*
     public int calculateDistTriangle(double a, double b, double c) throws Exception
@@ -441,7 +517,7 @@ public class ChuongTrinhChinh
             {
                 int temp = 0;
                 int sum  = 0; 
-                for (int i = 0; i < totalPath; i++)
+                for (int i = 0; i < totalTargetPaths; i++)
                 {
                     if (pathListID[i] == 1)
                     {
@@ -495,7 +571,7 @@ public class ChuongTrinhChinh
                 }
                 System.out.print("}");
                 System.out.println(" ===> pathID = " + pathID);
-                System.out.println("Target paths = " + (totalPath - pathnum));
+                System.out.println("Target paths = " + (totalTargetPaths - pathnum));
                 //ret = 0;
             }
             //else
@@ -503,7 +579,7 @@ public class ChuongTrinhChinh
                 //approximation level (AL)                
                 int temp = 0;
                 int sum  = 0; 
-                for (int i = 0; i < totalPath; i++)
+                for (int i = 0; i < totalTargetPaths; i++)
                 {
                     if (pathListID[i] == 1)
                     {
@@ -560,7 +636,7 @@ public class ChuongTrinhChinh
             {
                 int temp = 0;
                 int sum  = 0; 
-                for (int i = 0; i < totalPath; i++)
+                for (int i = 0; i < totalTargetPaths; i++)
                 {
                     if (pathListID[i] == 1)
                     {
@@ -617,7 +693,7 @@ public class ChuongTrinhChinh
             {
                 int temp = 0;
                 int sum  = 0; 
-                for (int i = 0; i < totalPath; i++)
+                for (int i = 0; i < totalTargetPaths; i++)
                 {
                     if (pathListID[i] == 1)
                     {
@@ -667,7 +743,7 @@ public class ChuongTrinhChinh
             {
                 int temp = 0;
                 int sum  = 0; 
-                for (int i = 0; i < totalPath; i++)
+                for (int i = 0; i < totalTargetPaths; i++)
                 {
                     if (pathListID[i] == 1)
                     {
@@ -688,69 +764,25 @@ public class ChuongTrinhChinh
         return ret;
     }
     
-    
-
-    // Calculate distance for all programs
-    public void calculateDist() throws Exception
+ 
+    private int calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
     {
-        //String danhSachKe   = "-1 0\n0 1\n1 2\n2 3 10\n3 4 7\n4 5\n5 6\n6 -1\n7 8 9\n8 5\n9 5\n10 5\n";
-        //String NodeElements = "0#Bat dau ham\n1#int trityp=0\n2#(a+b>c)&&(b+c>a)&&(c+a>b)\n3#(a!=b)&&(b!=c)&&(c!=a)\n4#trityp=1\n5#return trityp\n6#Ket thuc ham\n7#((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))\n8#trityp=2\n9#trityp=3\n10#trityp=-1";
-        String dsKe = staticVariable.Statement.danhSachKe;
-        String nodeElement = staticVariable.AllPath.NodeElements;
-        getAllPaths geter = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
-        //getAllPaths geter = new getAllPaths(danhSachKe, NodeElements);
-        
-        ArrayList<ArrayList<Vertex>> getOutput = geter.getOutput();
-        int totalPath = getOutput.size();
-
-        // get distances from a path to each other
-        System.out.println("------------All paths start-------------");
-        double[][] disMatrix = new double[totalPath][totalPath];
-        for (int i = 0; i < totalPath; i++ )
+        int i = 0;
+        int len1 = path1.size();
+        int len2 = path2.size();
+        int len = Math.min(len1, len2);
+        for (i = 0; i < len; i++)
         {
-            ArrayList<Vertex> path = getOutput.get(i);
-            int pathSize = path.size(); 
-
-            ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
-
-            for (int k = 0; k < pathSize; k++)
-            {
-                Vertex vertex = path.get(k);
-                
-                VertexTF vertextf = new VertexTF();                
-                //vertextf.id = vertex.getId();
-                vertextf.statement = vertex.getStatement();
-                
-                if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
-                {
-                    vertextf.decision = null;
-                }
-                else
-                {
-                    Vertex vertexTmp = path.get(k + 1);
-                    if (vertex.getFalseVertexId() == vertexTmp.getId())
-                    {
-                        vertextf.decision = "F";
-                    }
-                    else
-                    {
-                        vertextf.decision = "T";
-                    }
-                }
-                pathTF.add(vertextf);
-            }
-            
-            System.out.println("Path " + i + "-> :" + pathTF);
-
-            for (int j = 0; j < totalPath; j++ )
-            {
-                disMatrix[i][j] = calculatePathDist(getOutput.get(i), getOutput.get(j));
-            }
-            
+            VertexTF vertex1 = path1.get(i);
+            VertexTF vertex2 = path2.get(i);
+            if (vertex1.statement.equals(vertex2.statement) && vertex1.decision.equals(vertex2.decision))
+                continue;
+            else                
+                break;
         }
-        System.out.println("------------All paths end-------------");
+        return (Math.max(len1, len2) - i);
     }
-    
+
     public int calculatePathDist(ArrayList<Vertex> path1, ArrayList<Vertex> path2)
     {
         int ret = 0;
