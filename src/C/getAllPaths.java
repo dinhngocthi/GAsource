@@ -984,10 +984,9 @@ class Vertex
 
 }
 
-
 class VertexTF
 {
-    public int id;
+    //public int id;
     public String statement;
     public String decision;
     
@@ -996,11 +995,13 @@ class VertexTF
     {
         if (decision == null)
         {
-            return "[" + id + ", " + statement + "]";
+            //return "[" + id + ", " + statement + "]";
+            return "[" + statement + "]";
         }
         else
         {
-            return "[" + id + ", " + statement + ", " + decision + "]";
+            //return "[" + id + ", " + statement + ", " + decision + "]";
+            return "[" + statement + ", " + decision + "]";
         }
     }
 }

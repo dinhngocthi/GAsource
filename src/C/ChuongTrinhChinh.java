@@ -296,14 +296,15 @@ public class ChuongTrinhChinh
     static getAllPaths geterTest;
     private int[][] disMatrix; 
     private int totalPath;
+    static ArrayList<ArrayList<VertexTF>> targetPaths;
 
     public void initPathListID(int loop) throws Exception
     {
         staticVariable.Paramater.depth = loop; // interation loop
         geterTest = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
-
-        totalPath = getOutput.size();        
+        
+        totalPath = getOutput.size();
         pathListID = new int[totalPath];
         for (int i = 0; i < totalPath; i++)
             pathListID[i] = 1;        
@@ -313,6 +314,7 @@ public class ChuongTrinhChinh
         fpOut = new PrintWriter("CFGpath", "UTF-8");
 
         System.out.println("------------Create all paths start-------------");
+        targetPaths = new ArrayList<ArrayList<VertexTF>>();
         for (int i = 0; i < totalPath; i++ )
         {
             ArrayList<Vertex> path = getOutput.get(i);
@@ -324,17 +326,24 @@ public class ChuongTrinhChinh
             {
                 Vertex vertex = path.get(k);
                 
-                VertexTF vertextf = new VertexTF();                
-                vertextf.id = vertex.getId();
-                String stm = vertex.getStatement().replace("%", "%%");
-                vertextf.statement = stm;
+                //VertexTF vertextf = new VertexTF();
+                //vertextf.id = vertex.getId();
+                //String stm = vertex.getStatement().replace("%", "%%");
+                //vertextf.statement = stm;
                 
-                if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
+                if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
+                    /*
                 {
                     vertextf.decision = null;
                 }
                 else
+                */
                 {
+                    VertexTF vertextf = new VertexTF();
+                    //vertextf.id = vertex.getId();
+                    String stm = vertex.getStatement().replace("%", "%%");
+                    vertextf.statement = stm;
+
                     Vertex vertexTmp = path.get(k + 1);
                     if (vertex.getFalseVertexId() == vertexTmp.getId())
                     {
@@ -344,23 +353,13 @@ public class ChuongTrinhChinh
                     {
                         vertextf.decision = "T";
                     }
+                    pathTF.add(vertextf);
                 }
-                pathTF.add(vertextf);
+                //pathTF.add(vertextf);
             }
+            targetPaths.add(pathTF);
+            //fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
             
-            fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
-
-            /*
-            fpOut.printf("Path " + i + " -> : ");
-            for (VertexTF vertextf : pathTF)
-            {
-                if (vertextf.id == 3 || vertextf.id == 6)
-                {                    
-                    fpOut.printf("" + vertextf);
-                }
-            }
-            fpOut.printf("\n");
-            */
             int sum = 0;
             for (int j = 0; j < totalPath; j++ )
             {
@@ -371,10 +370,26 @@ public class ChuongTrinhChinh
             //System.out.print("   " + sum/(totalPath-1));
             //System.out.println();
         }
+        
+        for (int i = 0; i < targetPaths.size(); i++)
+        {
+            fpOut.printf("Path " + i + " -> :" + targetPaths.get(i) + "\n");
+        }
         fpOut.close();                
         System.out.println("------------Create all paths end-------------");
     }
+    
+    public int calculateDistTriangle(double a, double b, double c)// throws Exception
+    {
+        int fitness = 0;
+        TargetFunctions targetFunction   = new TargetFunctions();        
+        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
+        
+        targetFunction.Tritype(a, b, c, executedPath);
 
+        return fitness;
+    }
+    /*
     public int calculateDistTriangle(double a, double b, double c) throws Exception
     {
         int ret = 1;
@@ -396,7 +411,7 @@ public class ChuongTrinhChinh
         }
         return ret;
     }
-    
+    */
     int pathnum = 0;
     public int calculateDistSelectionSort(double[] a, int size) throws Exception
     {
@@ -703,7 +718,7 @@ public class ChuongTrinhChinh
                 Vertex vertex = path.get(k);
                 
                 VertexTF vertextf = new VertexTF();                
-                vertextf.id = vertex.getId();
+                //vertextf.id = vertex.getId();
                 vertextf.statement = vertex.getStatement();
                 
                 if (vertex.getTrueVertexId() == vertex.getFalseVertexId())
