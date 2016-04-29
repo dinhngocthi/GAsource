@@ -8,6 +8,32 @@ public class TargetFunctions
     {
     }
 
+    public int gcd(int[] number)
+    {
+        int a = number[0];
+        int b = number[1];
+
+        if (a == 0)
+        {
+            return b;
+        }
+        else
+        {
+            while (b != 0)
+            {
+                if (a > b)
+                {
+                    a = a - b;
+                }
+                else
+                {
+                    b = b - a;
+                }
+            }
+            return a;
+        }
+    }
+    
     public int mmTriangle(double  arr[], int size, ArrayList<VertexTF> executedPath)
     {
         double min = arr[0];
@@ -75,7 +101,7 @@ public class TargetFunctions
         {
             // instrumented code
             VertexTF vertex2  = new VertexTF();
-            vertex2.id = 1;
+            vertex2.id = 2;
             vertex2.decision  = "T"; 
             executedPath.add(vertex2);
 

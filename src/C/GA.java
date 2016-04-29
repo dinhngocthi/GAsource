@@ -196,9 +196,9 @@ public class GA
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
+        String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-        String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();

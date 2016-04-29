@@ -1,10 +1,25 @@
-int gcd(int a, int b)
+int gcd(int[] number)
 {
-	while(a!=0 && b!=0) // until either one of them is 0
+	int a = number[0];
+	int b = number[1];
+
+	if (a == 0)
 	{
-	    int c = b;
-	    b = a%b;
-	    a = c;
+		return b;
 	}
-	return a+b; // either one is 0, so return the non-zero value
+	else
+	{
+		while (b != 0)
+		{
+			if (a > b)
+			{
+				a = a - b;
+			}
+			else
+			{
+				b = b - a;
+			}
+		}
+		return a;
+	}
 }
