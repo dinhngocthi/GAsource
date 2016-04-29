@@ -1,7 +1,7 @@
-void getMinMax(int a[], int size)
+void getMinMax(double a[], int size)
 {
-	int min = a[0];
-	int max = a[0];
+	double min = a[0];
+	double max = a[0];
 	int i = 1;
 	while (i < size)
 	{

@@ -323,7 +323,7 @@ public class ChuongTrinhChinh
             int pathSize = path.size(); 
 
             ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
-                                              
+                             
             for (int k = 0; k < pathSize; k++)
             {
                 Vertex vertex = path.get(k);
@@ -453,71 +453,19 @@ public class ChuongTrinhChinh
         return fitness[1];
     }
 
-    int pathnum = 0;
-    public int calculateDistSelectionSort(double[] a, int size) throws Exception
-    {
-        int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathSelectionSort(a, size);
-        if (pathID > -1)
-        {
-            if (pathListID[pathID] == 1)
-            {
-                pathnum++;
-                pathListID[pathID] = 0;
-                System.out.print("[" + pathnum + "]");
-                System.out.print("{");
-                for (int i = 0; i < size; i++)
-                {
-                    if (i < size-1)
-                        System.out.format(" %1.3f, ", a[i]);
-                    else
-                        System.out.format(" %1.3f ", a[i]);
-                }
-                System.out.print("}");
-                System.out.println(" ===> pathID = " + pathID);
-                
-                ret = 0; // hit a feasible test path
-            }
-            else
-            {
-                int temp = 0;
-                int sum  = 0; 
-                for (int i = 0; i < totalTargetPaths; i++)
-                {
-                    if (pathListID[i] == 1)
-                    {
-                        temp++;
-                        sum += disMatrix[pathID][i];
-                    }
-                }
-                ret = sum/temp;
-                System.out.println("Target paths = " + temp);
-                System.out.println("Distance     = " + ret);
-            }
-        }
-        else
-        {
-            System.out.print("{");
-            for (int i = 0; i < size; i++)
-            {
-                if (i < size-1)
-                    System.out.format(" %1.3f, ", a[i]);
-                else
-                    System.out.format(" %1.3f ", a[i]);
-            }
-            System.out.print("}");
-            System.out.println(" ===> pathID = " + pathID);
-        }
-        return ret;
-    }
-   
-    public double calculateDistInsertionSort(double[] a, int size) throws Exception
+    int pathnum = 0;       
+    public double calculateDistInsertionSort(double[] a, int size, String functionName) throws Exception
     {
         double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
         
-        targetFunction.InsertionSort(a, size, executedPath); 
+        if (functionName.equals("InsertionSort"))
+            targetFunction.InsertionSort(a, size, executedPath);
+        else if (functionName.equals("GetMinMax"))
+            targetFunction.getMinMax(a, size, executedPath);
+        else if (functionName.equals("GetMinMaxTriangle"))
+            targetFunction.mmTriangle(a, size, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] > -1)
@@ -538,162 +486,7 @@ public class ChuongTrinhChinh
             System.out.println("Target paths = " + totalTargetPaths);
         }
         return fitness[1];
-    }
-
-    public int calculateDistGetMinMax(double[] a, int size) throws Exception
-    {
-        //int ret = geterTest.getExecutionPathGetMinMax(a, size, pathListID);
-
-        int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathGetMinMax(a, size, pathListID);
-        if (pathID > -1)
-        {
-            if (pathListID[pathID] == 1)
-            {
-                pathnum++;
-                pathListID[pathID] = 0; // hit a feasible test path
-                System.out.print("[" + pathnum + "] {");
-                for (int i = 0; i < size; i++)
-                {
-                    if (i < size-1)
-                        System.out.format(" %1.3f, ", a[i]);
-                    else
-                        System.out.format(" %1.3f ", a[i]);
-                }
-                System.out.println("} ===> pathID = " + pathID);                
-                //ret = 0; 
-            }
-            //else
-            {
-                int temp = 0;
-                int sum  = 0; 
-                for (int i = 0; i < totalTargetPaths; i++)
-                {
-                    if (pathListID[i] == 1)
-                    {
-                        temp++;
-                        sum += disMatrix[pathID][i];
-                    }
-                }
-                ret = sum/temp;
-                //System.out.println("Target paths = " + temp);
-                //System.out.println("Distance     = " + ret);
-            }
-        }
-        else
-        {
-            System.out.print("{");
-            for (int i = 0; i < size; i++)
-            {
-                if (i < size-1)
-                    System.out.format(" %1.3f, ", a[i]);
-                else
-                    System.out.format(" %1.3f ", a[i]);
-            }
-            System.out.print("}");
-            System.out.println(" ===> pathID = " + pathID);
-        }
-
-        return ret;
-    }
-
-    public int calculateDistGetMinMaxTriangle(double[] a, int size) throws Exception
-    {
-        int ret = java.lang.Integer.MAX_VALUE;
-
-        int pathID = geterTest.getExecutionPathGetMinMaxTriangle(a, size);
-        
-        if (pathID > -1)
-        {
-            if (pathListID[pathID] == 1)
-            {
-                pathnum++;
-                pathListID[pathID] = 0; // hit a feasible test path
-                System.out.print("[" + pathnum + "] {");
-                for (int i = 0; i < size; i++)
-                {
-                    if (i < size-1)
-                        System.out.format(" %1.3f, ", a[i]);
-                    else
-                        System.out.format(" %1.3f ", a[i]);
-                }
-                System.out.println("} ===> pathID = " + pathID);                
-                //ret = 0; 
-            }
-            //else
-            {
-                int temp = 0;
-                int sum  = 0; 
-                for (int i = 0; i < totalTargetPaths; i++)
-                {
-                    if (pathListID[i] == 1)
-                    {
-                        temp++;
-                        sum += disMatrix[pathID][i];
-                    }
-                }
-                ret = sum/temp;
-                //System.out.println("Target paths = " + temp);
-                //System.out.println("Distance     = " + ret);
-            }
-        }
-        else
-        {
-            System.out.print("{");
-            for (int i = 0; i < size; i++)
-            {
-                if (i < size-1)
-                    System.out.format(" %1.3f, ", a[i]);
-                else
-                    System.out.format(" %1.3f ", a[i]);
-            }
-            System.out.print("}");
-            System.out.println(" ===> pathID = " + pathID);
-        }
-
-        return ret;
-    }
-
-    public int calculateDistGreatestCommonDivisor(double a, double b) throws Exception
-    {
-        int ret = java.lang.Integer.MAX_VALUE;
-        int pathID = geterTest.getExecutionPathGreatestCommonDivisor(a, b);
-        if (pathID > -1)
-        {
-            if (pathListID[pathID] == 1)
-            {
-                pathnum++;
-                pathListID[pathID] = 0;
-                System.out.print("[" + pathnum + "]");
-                System.out.format("{ %1.3f, %1.3f }", a, b);
-                System.out.println(" ===> pathID = " + pathID);
-                
-                ret = 0; // hit a feasible test path
-            }
-            else
-            {
-                int temp = 0;
-                int sum  = 0; 
-                for (int i = 0; i < totalTargetPaths; i++)
-                {
-                    if (pathListID[i] == 1)
-                    {
-                        temp++;
-                        sum += disMatrix[pathID][i];
-                    }
-                }
-                ret = sum/temp;
-                System.out.println("Target paths = " + temp);
-                System.out.println("Distance     = " + ret);
-            }
-        }
-        else
-        {
-            System.out.format("{ %1.3f, %1.3f }", a, b);
-            System.out.println(" ===> pathID = " + pathID);
-        }
-        return ret;
-    }
+    }    
 
     private double calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
     {
@@ -710,7 +503,8 @@ public class ChuongTrinhChinh
             else                
                 break;
         }
-        return ((double)(Math.max(len1, len2) - i)/(double)Math.max(len1, len2));
+        //return ((double)(Math.max(len1, len2) - i)/(double)Math.max(len1, len2));
+        return ((double)(Math.max(len1, len2) - i)/(double)len);
     }
 
     public boolean isGetAllFeasiblePathOK = false;

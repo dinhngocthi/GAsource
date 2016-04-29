@@ -197,8 +197,8 @@ public class GA
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-        String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
+        String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
@@ -458,77 +458,13 @@ public class GA
         return your_func;
     }
     
-    private static double fSelectionSort(double[] a, int size)
+    private static double fInsertionSort(double[] a, int size, String functionName)
     {
         double your_func = 0;
 
         try
         {
-            your_func = ctc.calculateDistSelectionSort(a, size);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
-
-    private static double fGetMinMax(double[] a, int size)
-    {
-        double your_func = 0;
-
-        try
-        {
-            your_func = ctc.calculateDistGetMinMax(a, size);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
-    
-    private static double fGetMinMaxTriangle(double[] a, int size)
-    {
-        double your_func = 0;
-
-        try
-        {
-            your_func = ctc.calculateDistGetMinMaxTriangle(a, size);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
-
-    private static double fGreatestCommonDivisor(double a, double b)
-    {
-        double your_func = 0;
-
-        try
-        {
-            your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
-
-    private static double fInsertionSort(double[] a, int size)
-    {
-        double your_func = 0;
-
-        try
-        {
-            your_func = ctc.calculateDistInsertionSort(a, size);            
+            your_func = ctc.calculateDistInsertionSort(a, size, functionName);
         }
         catch (Exception ex)
         {
@@ -557,149 +493,27 @@ public class GA
         for (i = nvarBin; i < nvarBin + nvarReal; i++)
             x[i] = indv.xreal[i - nvarBin];
 
-        // #ifdef prob1
-        if (false)
+        MINM = 1; // use -1 for maximization
+        // Put your function here
+        your_func = 0;
+        callObject++;
+        try
         {
-            MINM = 1; // for maximization use -1
-            term1 = (x[0] * x[0] + x[1] - 11.0) * (x[0] * x[0] + x[1] - 11.0);
-            term2 = (x[0] + x[1] * x[1] - 7.0) * (x[0] + x[1] * x[1] - 7.0);
-            term3 = term1 + term2;
-            your_func = term3;
+            //System.out.println("Call objective: " + callObject);
 
-            nc = 0;
-/*
-            nc = 1;
-            // add normalized constraints here
-            g[0] = (square(x[0] - 5.0) + square(x[1])) / 26.0 - 1.0;
-*/
+            //your_func = fTriangle(x[0], x[1], x[2]);
+            //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
+            //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
+            your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
+            //your_func = fSelectionSort(x, nvarReal);                         
+            //your_func = fGreatestCommonDivisor(x[0], x[1]);  
         }
-        // #endif
-
-        // #ifdef can
-        if (false)
+        catch (Exception ex) 
         {
-            MINM = 1;
-            pi = 4.0 * Math.atan(1.0);
-            term3 = pi * x[0] * x[0] / 2.0 + pi * x[0] * x[1];
-            your_func = term3;
-
-            nc = 0;
-/*            
-            nc = 1;
-            g[0] = (pi * x[0] * x[0] * x[1] / 4.0 - 400.0) / 400.0;
-*/
+            System.out.println("Calculation error");
         }
-        // #endif
-
-        // #ifdef prob2
-        if (false)
-        {
-            MINM = 1;
-            term1 = 5 * (x[0] + x[1] + x[2] + x[3]);
-            for (i = 0; i < 4; i++)
-                term1 += -5 * x[i] * x[i];
-            for (i = 4; i <= 12; i++)
-                term1 += -x[i];
-            your_func = term1;
-
-            nc = 9;
-            g[0] = (10 - 2 * (x[0] + x[1]) - x[9] - x[10]) / 10;
-            g[1] = (10 - 2 * (x[0] + x[2]) - x[9] - x[11]) / 10;
-            g[2] = (10 - 2 * (x[1] + x[2]) - x[10] - x[11]) / 10;
-            g[3] = x[0] - x[9] / 8.0;
-            g[4] = x[1] - x[10] / 8.0;
-            g[5] = x[2] - x[11] / 8.0;
-            g[6] = x[3] + 0.5 * x[4] - 0.5 * x[9];
-            g[7] = x[5] + 0.5 * x[6] - 0.5 * x[10];
-            g[8] = x[7] + 0.5 * x[8] - 0.5 * x[11];
-        }
-        // #endif
-
-        // #ifdef yours // define `yours' in the beginning of the code
-        // f1(x) = |x| + cos(x)
-        if (false)
-        {
-            MINM = 1; // use -1 for maximization
-            // Put your function here
-            your_func = Math.abs(x[0]) + Math.cos(x[0]);
-            nc = 0;
-            // Put your constraints here
-        }
-        // #endif
-
-        // f3(x1,x2,...,xn) = x1^2 + x2^2 + ... + xn^2
-        if (true)
-        {
-            MINM = 1; // use -1 for maximization
-            // Put your function here
-            your_func = 0;
-            callObject++;
-            /*
-            for (i = 0; i < 10; i++)
-            {
-                your_func += square(x[i]);
-            }
-            */
-            try
-            {
-                //System.out.println("Call objective: " + callObject);
-                //your_func = fTriangle(x[0], x[1], x[2]);                
-                //your_func = fSelectionSort(x, nvarReal);             
-                //your_func = fGetMinMax(x, nvarReal);
-                //your_func = fGreatestCommonDivisor(x[0], x[1]);
-                your_func = fInsertionSort(x, nvarReal);   
-                //your_func = fGetMinMaxTriangle(x, nvarReal);
-            }
-            catch (Exception ex) 
-            {
-                System.out.println("Calculation error");
-            }
-            nc = 0;
-            // Put your constraints here
-        }
-        // #endif
-
-        // f4(x1,x2,...,xn) = sum((100 * (x(n+1) - x(n)^2))^2 + (1 - x(n))^2)
-        if (false)
-        {
-            MINM = 1; // use -1 for maximization
-            // Put your function here
-            your_func = 0;
-            for (i = 0; i < 10; i++)
-            {
-                term1 = 100 * square(x[i + 1] - square(x[i]));
-                term2 = square(1 - x[i]);
-                your_func += (term1 + term2);
-            }
-            nc = 0;
-            // Put your constraints here
-        }
-        // #endif
-
-        // f5(x) = sum(|xn| - 10cos(square-root(|10*x|)))
-        if (false)
-        {
-            MINM = 1; // use -1 for maximization
-            // Put your function here
-            for (i = 0; i < 10; i++)
-            {
-                your_func += (Math.abs(x[i]) - (10 * Math.cos(Math.sqrt(Math.abs(10 * x[i])))));
-            }
-            nc = 0;
-            // Put your constraints here
-        }
-        // #endif
-
-        // triangle
-        if (false)
-        {
-            MINM = 1; // use -1 for maximization
-            // Put your function here\            
-            your_func = square(x[0]);
-            nc = 0;
-            // Put your constraints here
-        }
-        // #endif
+        nc = 0;
+        // Put your constraints here
         
         indv.obj = your_func;
         for (i = 0, gsum = 0.0; i < nc; i++)
