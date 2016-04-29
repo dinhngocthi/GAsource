@@ -473,6 +473,23 @@ public class GA
         
         return your_func;
     }
+    
+    private static double fGreatestCommonDivisor(int a, int b)
+    {
+        double your_func = 0;
+
+        try
+        {
+            your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Exception");
+        }
+        
+        return your_func;
+    }
+
 
     /*
      * ====================================================================
@@ -497,21 +514,16 @@ public class GA
         // Put your function here
         your_func = 0;
         callObject++;
-        try
-        {
-            //System.out.println("Call objective: " + callObject);
+        
+        //System.out.println("Call objective: " + callObject);
 
-            //your_func = fTriangle(x[0], x[1], x[2]);
-            //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
-            //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
-            your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
-            //your_func = fSelectionSort(x, nvarReal);                         
-            //your_func = fGreatestCommonDivisor(x[0], x[1]);  
-        }
-        catch (Exception ex) 
-        {
-            System.out.println("Calculation error");
-        }
+        //your_func = fTriangle(x[0], x[1], x[2]);
+        //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
+        //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
+        //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
+        //your_func = fSelectionSort(x, nvarReal);                         
+        your_func = fGreatestCommonDivisor((int)x[0], (int)x[1]);
+
         nc = 0;
         // Put your constraints here
         

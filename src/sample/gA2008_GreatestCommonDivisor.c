@@ -1,4 +1,4 @@
-int gcd(int[] number)
+int gcd(int number[])
 {
 	int a = number[0];
 	int b = number[1];

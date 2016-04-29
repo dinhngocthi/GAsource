@@ -436,7 +436,7 @@ public class ChuongTrinhChinh
         return ret;
     }
 
-    public double calculateDistTriangle(double a, double b, double c)// throws Exception
+    public double calculateDistTriangle(double a, double b, double c)
     {
         double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
@@ -453,8 +453,9 @@ public class ChuongTrinhChinh
         return fitness[1];
     }
 
-    int pathnum = 0;       
-    public double calculateDistInsertionSort(double[] a, int size, String functionName) throws Exception
+    int pathnum = 0; // number of hit feasible paths
+
+    public double calculateDistInsertionSort(double[] a, int size, String functionName)
     {
         double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
@@ -488,6 +489,30 @@ public class ChuongTrinhChinh
         return fitness[1];
     }    
 
+    public double calculateDistGreatestCommonDivisor(int a, int b)
+    {
+        double[] fitness;
+        TargetFunctions targetFunction   = new TargetFunctions();        
+        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
+        
+        int[] number = new int[2];
+        number[0] = a;
+        number[1] = b;
+        targetFunction.gcd(number, executedPath);
+
+        fitness = getDistExecutedPath2TargetPaths(executedPath);
+        if (fitness[0] > -1)
+        {
+            // hit a feasible path
+            pathnum++;
+            System.out.print("[" + pathnum + "]");
+            System.out.print("{" + a + ", " + b + "}");
+            System.out.println(" ===> pathID = " + (int)fitness[0]);
+            System.out.println("Target paths = " + totalTargetPaths);
+        }
+        return fitness[1];
+    }    
+    
     private double calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
     {
         int i = 0;

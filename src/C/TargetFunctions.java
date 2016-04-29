@@ -8,28 +8,64 @@ public class TargetFunctions
     {
     }
 
-    public int gcd(int[] number)
+    public int gcd(int number[], ArrayList<VertexTF> executedPath)
     {
         int a = number[0];
         int b = number[1];
 
         if (a == 0)
         {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "T"; 
+            executedPath.add(vertex1);
+            
             return b;
         }
         else
         {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "F"; 
+            executedPath.add(vertex1);
+
             while (b != 0)
             {
+                // instrumented code
+                VertexTF vertex2  = new VertexTF();
+                vertex2.id = 2;
+                vertex2.decision  = "T"; 
+                executedPath.add(vertex2);
+
                 if (a > b)
                 {
                     a = a - b;
+                    
+                    // instrumented code
+                    VertexTF vertex3  = new VertexTF();
+                    vertex3.id = 3;
+                    vertex3.decision  = "T"; 
+                    executedPath.add(vertex3);
                 }
                 else
                 {
                     b = b - a;
+                    
+                    // instrumented code
+                    VertexTF vertex3  = new VertexTF();
+                    vertex3.id = 3;
+                    vertex3.decision  = "F"; 
+                    executedPath.add(vertex3);
                 }
             }
+            // instrumented code
+            VertexTF vertex2  = new VertexTF();
+            vertex2.id = 2;
+            vertex2.decision  = "F"; 
+            executedPath.add(vertex2);
+
             return a;
         }
     }
