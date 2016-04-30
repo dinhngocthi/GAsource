@@ -19,15 +19,12 @@ int triangleMansour2004(double a, double b, double c)
 		{
 			type = 3; // Isosceles
 		}
-	}
+	}	
+
 	if (a*a == (b*b + c*c))
 	{
 		type = 4; // Right
 	}
-	else
-	{
-		
-	}
-	
+
 	return type;
 }

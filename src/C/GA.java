@@ -89,7 +89,6 @@ public class GA
     {
     };
 
-
     public static void inputParameters(String propFile) throws Exception
     {
         Properties prop = new Properties();
@@ -196,7 +195,10 @@ public class GA
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
-        String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c");
+        String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
@@ -442,13 +444,13 @@ public class GA
         return (x * x);
     }
 
-    private static double fTriangle(double a, double b, double c)
+    private static double fTriangle(double a, double b, double c, String functionName)
     {
         double your_func = 0;
 
         try
         {
-            your_func = ctc.calculateDistTriangle(a, b, c);
+            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
         }
         catch (Exception ex)
         {
@@ -517,12 +519,14 @@ public class GA
         
         //System.out.println("Call objective: " + callObject);
 
-        //your_func = fTriangle(x[0], x[1], x[2]);
+        //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
+        //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
+        your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004");        
         //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
         //your_func = fSelectionSort(x, nvarReal);                         
-        your_func = fGreatestCommonDivisor((int)x[0], (int)x[1]);
+        //your_func = fGreatestCommonDivisor((int)x[0], (int)x[1]);
 
         nc = 0;
         // Put your constraints here

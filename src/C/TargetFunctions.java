@@ -8,6 +8,222 @@ public class TargetFunctions
     {
     }
 
+    public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    {
+        int    type = -1; // Scalene
+        double area = 0;
+        
+        if ((a < b) || (b < c))
+        {
+            return type;
+        }
+        
+        if (a >= (b + c))
+        {
+            return type;
+        }
+        
+        if ((a != b) && (b != c) ) /* escaleno */
+        {
+            double as = a*a;
+            double bs = b*b;
+            double cs = c*c;
+            
+            if (as == (bs + cs))  /* retangulo */
+            {
+                type = 2;// 'Rectangle';
+                area = (b*c) / 2.0;
+            }
+            else
+            {
+                double s = (a+b+c) / 2.0;
+                area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+                
+                if ( as < bs + cs )
+                {
+                    type = 3; /* agudo */
+                }
+                else
+                {
+                    type = 4; /* obtuso */
+                }
+            }
+        }
+        else
+        {
+            if ((a == b) && (b == c))
+            {
+                type = 5;  /* equilatero */
+                area = a*a*Math.sqrt(3.0)/4.0;
+            }
+            else
+            {
+                type = 6; /* isoceles */
+
+                if (a == b)
+                {
+                    area = c*Math.sqrt(4*a*b-c*c)/4.0;
+                }
+                else
+                {
+                    area = a*Math.sqrt(4*b*c-a*c)/4.0;
+                }
+            }
+        }
+        
+        return type;
+    }
+    
+    public int triangleMansour2004(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    {
+        int type = 1; // Scalene
+        
+        if (a == b)
+        {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "T"; 
+            executedPath.add(vertex1);
+
+            if (b == c)
+            {
+                type = 2; // Equilateral
+                
+                // instrumented code
+                VertexTF vertex2  = new VertexTF();
+                vertex2.id = 2;
+                vertex2.decision  = "T"; 
+                executedPath.add(vertex2);
+            }
+            else 
+            {
+                type = 3; // Isosceles
+                
+                // instrumented code
+                VertexTF vertex2  = new VertexTF();
+                vertex2.id = 2;
+                vertex2.decision  = "F"; 
+                executedPath.add(vertex2);
+            }
+        }
+        else
+        {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "F"; 
+            executedPath.add(vertex1);
+
+            if (b == c)
+            {
+                type = 3; // Isosceles
+                
+                // instrumented code
+                VertexTF vertex2  = new VertexTF();
+                vertex2.id = 2;
+                vertex2.decision  = "T"; 
+                executedPath.add(vertex2);
+            }
+            else
+            {
+                // instrumented code
+                VertexTF vertex2  = new VertexTF();
+                vertex2.id = 2;
+                vertex2.decision  = "F"; 
+                executedPath.add(vertex2);
+            }
+        }
+        if (a*a == (b*b + c*c))
+        {
+            type = 4; // Right
+            
+            // instrumented code
+            VertexTF vertex3  = new VertexTF();
+            vertex3.id = 3;
+            vertex3.decision  = "T"; 
+            executedPath.add(vertex3);
+        }
+        else
+        {
+            // instrumented code
+            VertexTF vertex3  = new VertexTF();
+            vertex3.id = 3;
+            vertex3.decision  = "F"; 
+            executedPath.add(vertex3);            
+        }
+        
+        return type;
+    }
+
+    public void QuadraticEquation2(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    {
+        double root1, root2;
+
+        if (a == 0)
+        {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "T"; 
+            executedPath.add(vertex1);
+
+            if (b != 0)            
+            {
+                root1 = (-c)/b;
+            }
+            return;
+        }
+        // instrumented code
+        VertexTF vertex1  = new VertexTF();
+        vertex1.id = 1;
+        vertex1.decision  = "F"; 
+        executedPath.add(vertex1);
+
+        double delta = ((b*b) - (4*a*c));
+        
+        if (delta < 0)
+        {
+            // instrumented code
+            VertexTF vertex2  = new VertexTF();
+            vertex2.id = 2;
+            vertex2.decision  = "T"; 
+            executedPath.add(vertex2);
+            
+            return;
+        }
+        else 
+        {
+            // instrumented code
+            VertexTF vertex2  = new VertexTF();
+            vertex2.id = 2;
+            vertex2.decision  = "F"; 
+            executedPath.add(vertex2);
+
+            if (delta == 0)
+            {
+                root1 = (-b)/(a*2);
+                
+                // instrumented code
+                VertexTF vertex3  = new VertexTF();
+                vertex3.id = 3;
+                vertex3.decision  = "T"; 
+                executedPath.add(vertex3);
+            }
+            else
+            {
+                root1 = ((-b + Math.sqrt(delta))/(2*a));
+                root2 = ((-b - Math.sqrt(delta))/(2*a));
+                
+                // instrumented code
+                VertexTF vertex3  = new VertexTF();
+                vertex3.id = 3;
+                vertex3.decision  = "F"; 
+                executedPath.add(vertex3);
+            }
+        }
+    }
+    
     public int gcd(int number[], ArrayList<VertexTF> executedPath)
     {
         int a = number[0];

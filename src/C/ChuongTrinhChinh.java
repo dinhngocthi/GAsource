@@ -360,7 +360,7 @@ public class ChuongTrinhChinh
                 }
             }
             targetPaths.add(pathTF);
-            fpOut.printf("Path " + i + " -> :" + pathTF + "\n");
+            fpOut.printf("Path " + i + ":" + pathTF + "\n");
         }       
         fpOut.printf("\n");
         
@@ -436,13 +436,18 @@ public class ChuongTrinhChinh
         return ret;
     }
 
-    public double calculateDistTriangle(double a, double b, double c)
+    public double calculateDistTriangle(double a, double b, double c, String functionName)
     {
         double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-        
-        targetFunction.Tritype(a, b, c, executedPath);
+
+        if (functionName.equals("Triangle"))
+            targetFunction.Tritype(a, b, c, executedPath);
+        else if (functionName.equals("QuadraticEquation2"))
+            targetFunction.QuadraticEquation2(a, b, c, executedPath);
+        else if (functionName.equals("triangleMansour2004"))
+            targetFunction.triangleMansour2004(a, b, c, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] > -1)
