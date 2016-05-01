@@ -15,58 +15,141 @@ public class TargetFunctions
         
         if ((a < b) || (b < c))
         {
+            // instrumented code
+            VertexTF vertex1  = new VertexTF();
+            vertex1.id = 1;
+            vertex1.decision  = "T"; 
+            executedPath.add(vertex1);
+
             return type;
-        }
-        
+        }        
+        // instrumented code
+        VertexTF vertex1  = new VertexTF();
+        vertex1.id = 1;
+        vertex1.decision  = "F"; 
+        executedPath.add(vertex1);
+
         if (a >= (b + c))
         {
+            // instrumented code
+            VertexTF vertex2  = new VertexTF();
+            vertex2.id = 2;
+            vertex2.decision  = "T"; 
+            executedPath.add(vertex2);
+
             return type;
         }
+        // instrumented code
+        VertexTF vertex2  = new VertexTF();
+        vertex2.id = 2;
+        vertex2.decision  = "F"; 
+        executedPath.add(vertex2);
+
         
         if ((a != b) && (b != c) ) /* escaleno */
         {
+            // instrumented code
+            VertexTF vertex3  = new VertexTF();
+            vertex3.id = 3;
+            vertex3.decision  = "T"; 
+            executedPath.add(vertex3);
+
             double as = a*a;
             double bs = b*b;
             double cs = c*c;
             
             if (as == (bs + cs))  /* retangulo */
             {
+                // instrumented code
+                VertexTF vertex6  = new VertexTF();
+                vertex6.id = 6;
+                vertex6.decision  = "T"; 
+                executedPath.add(vertex6);
+
                 type = 2;// 'Rectangle';
-                area = (b*c) / 2.0;
+                area = (b*c)/2.0;
             }
             else
             {
+                // instrumented code
+                VertexTF vertex6  = new VertexTF();
+                vertex6.id = 6;
+                vertex6.decision  = "F"; 
+                executedPath.add(vertex6);
+
                 double s = (a+b+c) / 2.0;
                 area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
                 
                 if ( as < bs + cs )
                 {
                     type = 3; /* agudo */
+                    
+                    // instrumented code
+                    VertexTF vertex7  = new VertexTF();
+                    vertex7.id = 7;
+                    vertex7.decision  = "T"; 
+                    executedPath.add(vertex7);
                 }
                 else
                 {
                     type = 4; /* obtuso */
+                    
+                    // instrumented code
+                    VertexTF vertex7  = new VertexTF();
+                    vertex7.id = 7;
+                    vertex7.decision  = "F"; 
+                    executedPath.add(vertex7);
                 }
             }
         }
         else
         {
+            // instrumented code
+            VertexTF vertex3  = new VertexTF();
+            vertex3.id = 3;
+            vertex3.decision  = "F"; 
+            executedPath.add(vertex3);
+
             if ((a == b) && (b == c))
             {
                 type = 5;  /* equilatero */
                 area = a*a*Math.sqrt(3.0)/4.0;
+                
+                // instrumented code
+                VertexTF vertex4  = new VertexTF();
+                vertex4.id = 4;
+                vertex4.decision  = "T"; 
+                executedPath.add(vertex4);
             }
             else
             {
+                // instrumented code
+                VertexTF vertex4  = new VertexTF();
+                vertex4.id = 4;
+                vertex4.decision  = "F"; 
+                executedPath.add(vertex4);
+
                 type = 6; /* isoceles */
 
                 if (a == b)
                 {
                     area = c*Math.sqrt(4*a*b-c*c)/4.0;
+                    
+                    // instrumented code
+                    VertexTF vertex5  = new VertexTF();
+                    vertex5.id = 5;
+                    vertex5.decision  = "T"; 
+                    executedPath.add(vertex5);
                 }
                 else
                 {
                     area = a*Math.sqrt(4*b*c-a*c)/4.0;
+                    
+                    // instrumented code
+                    VertexTF vertex5  = new VertexTF();
+                    vertex5.id = 5;
+                    vertex5.decision  = "F"; 
+                    executedPath.add(vertex5);
                 }
             }
         }

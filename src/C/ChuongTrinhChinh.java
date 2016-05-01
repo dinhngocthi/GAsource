@@ -448,6 +448,8 @@ public class ChuongTrinhChinh
             targetFunction.QuadraticEquation2(a, b, c, executedPath);
         else if (functionName.equals("triangleMansour2004"))
             targetFunction.triangleMansour2004(a, b, c, executedPath);
+        else if (functionName.equals("tritypeBueno2002"))
+            targetFunction.tritypeBueno2002(a, b, c, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] > -1)

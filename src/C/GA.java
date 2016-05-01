@@ -492,7 +492,6 @@ public class GA
         return your_func;
     }
 
-
     /*
      * ====================================================================
      * OBJECTIVE FUNCTION ( Supposed to be minimized) : Change it for different
@@ -521,12 +520,13 @@ public class GA
 
         //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
         //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
-        your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004");        
+        //your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
+        your_func = fTriangle(x[0], x[1], x[2], "tritypeBueno2002");        
         //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
-        //your_func = fSelectionSort(x, nvarReal);                         
         //your_func = fGreatestCommonDivisor((int)x[0], (int)x[1]);
+        //your_func = fSelectionSort(x, nvarReal);
 
         nc = 0;
         // Put your constraints here
