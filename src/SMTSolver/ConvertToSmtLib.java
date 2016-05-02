@@ -362,7 +362,15 @@ class ConvertToSmtLib {
 		// new convertToSmtLibv2("(value[0]!=-2&&(0)<2)");
 		// new convertToSmtLibv2("!(!(a>0&&a<10))");
 		//System.out.println(new ConvertToSmtLib("((C==D/((B-2)-1)))").getSmt_Lib_Expression());
-		System.out.println(new ConvertToSmtLib("(2+4>3)&&(4+3>2)&&(3+2>4)").getSmt_Lib_Expression());
+		
+		String stm = "(a+b>c)&&(b+c>a)&&(c+a>b)";
+		System.out.print(stm + " -> ");
+		System.out.println("(assert " + new ConvertToSmtLib(stm).getSmt_Lib_Expression() + ")");
+		
+		stm = "(a==b)&&(b==c)";
+		System.out.print(stm + " -> ");
+        System.out.println("(assert " + new ConvertToSmtLib(stm).getSmt_Lib_Expression() + ")");
+		
 	}
 
 	protected String getSmt_Lib_Expression() {
