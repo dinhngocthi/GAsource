@@ -1,14 +1,33 @@
 package C;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
     public static void main(String[] args)
     {
-        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
+        //ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
         //tritypeBueno2002(1, 2, 3, executedPath);
-        Tritype(1, 2, 3, executedPath);
+        //Tritype(1, 2, 3, executedPath);
+        
+        try
+        {
+            RunZ3OnCMD RunZ3 = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", "C:/CFT4CUnit/he-rang-buoc2.smt2");
+            System.out.println(RunZ3.getOutput());
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (InterruptedException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
     }
 
     public static int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)

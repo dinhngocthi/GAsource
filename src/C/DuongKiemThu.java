@@ -51,7 +51,7 @@ public class DuongKiemThu {
 	public static void main(String[] args) throws Exception {
 		String testpath = "(int i,j)#(i=0)#(i=9)#(i<size-1)#(int min=i)#(j=i+1)#(j<size)#!(a[j]<a[min])#(j++)#!(j<size)#(int tem=a[i])#(a[i]=a[min])#(a[min]=tem)#(i++)";
 		DuongKiemThu d = new DuongKiemThu(testpath, new ArrayList<Integer>(), "int a[],int size", "#",
-				"c:/Z3/bin/z3.exe", "C:/CFT4CUnit/", "sdf.smt2");
+				"D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", "C:/CFT4CUnit/", "sdf.smt2");
 		System.out.println("He rang buoc:" + d.getConstraintList().toString());
 		System.out.println("Solution:" + d.getTestcaseInZ3());
 	}

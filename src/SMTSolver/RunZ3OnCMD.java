@@ -10,37 +10,43 @@ import java.io.InputStreamReader;
  * @author anhanh
  * 
  */
-public class RunZ3OnCMD {
+public class RunZ3OnCMD 
+{
 	private String Z3;
 	private String Smt_Lib_path_file;
 	private String result;
 
-	public RunZ3OnCMD(String Z3, String Smt_Lib_path_file) throws IOException, InterruptedException {
+	public RunZ3OnCMD(String Z3, String Smt_Lib_path_file) throws IOException, InterruptedException 
+	{
 		this.Z3 = Z3;
 		this.Smt_Lib_path_file = Smt_Lib_path_file;
 		result = "";
 		run();
 	}
 
-	private void run() throws IOException, InterruptedException {
+	private void run() throws IOException, InterruptedException 
+	{
 		Process p = Runtime.getRuntime().exec(Z3 + " -smt2 " + Smt_Lib_path_file);
-		while (p.isAlive()) {
+		while (p.isAlive()) 
+		{
 			Thread.sleep(10);
 		}
 		BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		String line;
-		while ((line = in.readLine()) != null) {
+		while ((line = in.readLine()) != null) 
+		{
 			result += line + "\n";
 		}
-
 	}
 
-	public String getOutput() {
+	public String getOutput() 
+	{
 		return result;
 	}
 
-	public static void main(String[] args) throws IOException, InterruptedException {
-		RunZ3OnCMD r = new RunZ3OnCMD("C:\\z3\\bin\\z3", "C:/he-rang-buoc1.smt2");
+	public static void main(String[] args) throws IOException, InterruptedException 
+	{
+		RunZ3OnCMD r = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", "C:/CFT4CUnit/he-rang-buoc2.smt2");
 		System.out.println(r.getOutput());
 	}
 }
