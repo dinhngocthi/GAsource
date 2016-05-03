@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import SMTSolver.ConvertToSmtLibv2;
+
 /**
  * @author nguyenducanh
  * 
@@ -308,7 +310,62 @@ public class ChuongTrinhChinh
         pathListID = new int[totalTargetPaths];
         for (int i = 0; i < totalTargetPaths; i++)
             pathListID[i] = 1;                
-
+                
+        for (int i = 0; i < totalTargetPaths; i++)
+        {
+            ArrayList<Vertex> path = getOutput.get(i);
+            int pathSize = path.size();
+            int k = 0;
+            for (k = 0; k < pathSize; k++)
+            {
+                Vertex vertex = path.get(k); 
+                if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
+                {
+                    if (vertex.statement.contains("==") || vertex.statement.contains("!="))
+                    {
+                        break;
+                    }
+                }
+            }
+            
+            if (k < pathSize)
+            {
+                String smtFileName = "path" + i + ".smt2";
+                PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
+                fpSmt.printf("(declare-const a Real)\n");
+                fpSmt.printf("(declare-const b Real)\n");
+                fpSmt.printf("(declare-const c Real)\n");
+                fpSmt.printf("(assert (> a 0))\n");
+                fpSmt.printf("(assert (> b 0))\n");
+                fpSmt.printf("(assert (> c 0))\n");
+                for (k = 0; k < pathSize; k++)
+                {
+                    Vertex vertex = path.get(k); 
+                    if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
+                    {
+                        ConvertToSmtLibv2 c = new ConvertToSmtLibv2(vertex.statement);                        
+                        c.run();
+                        Vertex vertexTmp = path.get(k+1);
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                        {
+                            // FALSE branch
+                            fpSmt.printf("(assert (not " +  c.getOutput() + ") )\n");
+                        }
+                        else
+                        {
+                            // TRUE branch
+                            fpSmt.printf("(assert " +  c.getOutput() + ")\n");
+                        }
+                    }
+                }
+                fpSmt.printf("(check-sat)\n");
+                fpSmt.printf("(get-model)");
+                fpSmt.close();
+                
+                System.out.println("Path " + i + ": ");
+            }
+        }
+        
         PrintWriter fpOut; // fp_rep fr
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 

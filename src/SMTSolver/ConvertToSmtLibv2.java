@@ -15,16 +15,16 @@ import java.util.regex.Pattern;
  * @author anhanh
  * 
  */
-class ConvertToSmtLibv2 {
+public class ConvertToSmtLibv2 {
 	private String expression;
 	private Map<String, String> arrayItemMap;
 
-	protected ConvertToSmtLibv2(String expression) {
+	public ConvertToSmtLibv2(String expression) {
 		this.expression = expression;
 		arrayItemMap = new HashMap<>();
 	}
 
-	protected void run() {
+	public void run() {
 		expression = new ConvertNotEqual(expression).getOutput();
 		expression = replaceArrayItem(expression, arrayItemMap);
 		expression = new ConvertToSmtLib(expression).getSmt_Lib_Expression();
@@ -44,14 +44,19 @@ class ConvertToSmtLibv2 {
 		}
 	}
 
-	protected String getOutput() {
+	public String getOutput() {
 		return expression;
 	}
 
-	public static void main(String[] args) {
-		ConvertToSmtLibv2 c = new ConvertToSmtLibv2("(C==D/((B-2)-1))");
+	public static void main(String[] args) 
+	{
+	    //String expression = "(a+b>c)&&(b+c>a)&&(c+a>b)";
+	    //String expression = "(a!=b)&&(b!=c)&&(c!=a)";
+	    String expression = "((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))";	    
+		//ConvertToSmtLibv2 c = new ConvertToSmtLibv2("(C==D/((B-2)-1))");
+		ConvertToSmtLibv2 c = new ConvertToSmtLibv2(expression);
 		c.run();
-		System.out.println(c.getOutput());
+		System.out.println("(assert " +  c.getOutput() + ")");
 	}
 
 	private void standlizeOutput() {
