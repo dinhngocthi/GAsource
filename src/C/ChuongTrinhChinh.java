@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import SMTSolver.ConvertToSmtLibv2;
+import SMTSolver.RunZ3OnCMD;
 
 /**
  * @author nguyenducanh
@@ -357,12 +358,14 @@ public class ChuongTrinhChinh
                             fpSmt.printf("(assert " +  c.getOutput() + ")\n");
                         }
                     }
-                }
+                }                
                 fpSmt.printf("(check-sat)\n");
                 fpSmt.printf("(get-model)");
                 fpSmt.close();
                 
+                RunZ3OnCMD r = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", smtFileName);
                 System.out.println("Path " + i + ": ");
+                System.out.println(r.getOutput());
             }
         }
         
