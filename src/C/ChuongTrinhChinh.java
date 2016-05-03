@@ -309,11 +309,10 @@ public class ChuongTrinhChinh
         
         totalTargetPaths = getOutput.size();
         pathListID = new int[totalTargetPaths];
-        for (int i = 0; i < totalTargetPaths; i++)
-            pathListID[i] = 1;                
                 
         for (int i = 0; i < totalTargetPaths; i++)
         {
+            pathListID[i] = 1;
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size();
             int k = 0;
@@ -329,7 +328,7 @@ public class ChuongTrinhChinh
                 }
             }
             
-            // Using constrain solver
+            // Using constraint solver
             if (k < pathSize)
             {
                 String smtFileName = "path" + i + ".smt2";
@@ -365,7 +364,7 @@ public class ChuongTrinhChinh
                 fpSmt.close();
                 
                 String classPath = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-                String Z3path = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");
+                String Z3path = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");  // Using constraint solver
                 RunZ3OnCMD r = new RunZ3OnCMD(Z3path, smtFileName);
                 System.out.println("Path " + i + ": ");
                 System.out.println(r.getOutput());
