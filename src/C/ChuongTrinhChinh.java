@@ -329,6 +329,7 @@ public class ChuongTrinhChinh
                 }
             }
             
+            // Using constrain solver
             if (k < pathSize)
             {
                 String smtFileName = "path" + i + ".smt2";
@@ -363,7 +364,9 @@ public class ChuongTrinhChinh
                 fpSmt.printf("(get-model)");
                 fpSmt.close();
                 
-                RunZ3OnCMD r = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", smtFileName);
+                String classPath = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                String Z3path = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");
+                RunZ3OnCMD r = new RunZ3OnCMD(Z3path, smtFileName);
                 System.out.println("Path " + i + ": ");
                 System.out.println(r.getOutput());
             }
