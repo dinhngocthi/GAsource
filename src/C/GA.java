@@ -1381,7 +1381,8 @@ public class GA
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
         }
-    }    
+        // Điều chỉnh quần thể mới ở đây
+    }   
     
     public static void main(String[] args) throws Exception
     {
