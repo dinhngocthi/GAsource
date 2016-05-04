@@ -333,12 +333,20 @@ public class ChuongTrinhChinh
             {
                 String smtFileName = "path" + i + ".smt2";
                 PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
+                /* z3
                 fpSmt.printf("(declare-const a Real)\n");
                 fpSmt.printf("(declare-const b Real)\n");
                 fpSmt.printf("(declare-const c Real)\n");
+                */
+                // yices                
+                fpSmt.printf("(set-logic QF_NRA)\n");
+                fpSmt.printf("(declare-fun a () Real)\n");
+                fpSmt.printf("(declare-fun b () Real)\n");
+                fpSmt.printf("(declare-fun c () Real)\n");
                 fpSmt.printf("(assert (> a 0))\n");
                 fpSmt.printf("(assert (> b 0))\n");
                 fpSmt.printf("(assert (> c 0))\n");
+
                 for (k = 0; k < pathSize; k++)
                 {
                     Vertex vertex = path.get(k); 
@@ -363,11 +371,11 @@ public class ChuongTrinhChinh
                 fpSmt.printf("(get-model)");
                 fpSmt.close();
                 
-                String classPath = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-                String Z3path = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");  // Using constraint solver
-                RunZ3OnCMD r = new RunZ3OnCMD(Z3path, smtFileName);
-                System.out.println("Path " + i + ": ");
-                System.out.println(r.getOutput());
+                String classPath     = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                //String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");  // Using smt solver Z3
+                String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "yices/bin/yices-smt2");  // Using smt solver yices
+                RunZ3OnCMD r = new RunZ3OnCMD(smtSolverPath, smtFileName);
+                System.out.println("Path " + i + ": " + r.getOutput());
             }
         }
         

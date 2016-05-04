@@ -12,13 +12,18 @@ import java.io.InputStreamReader;
  */
 public class RunZ3OnCMD 
 {
-	private String Z3;
+	private String smtSolver;
 	private String Smt_Lib_path_file;
 	private String result;
 
-	public RunZ3OnCMD(String Z3, String Smt_Lib_path_file) throws IOException, InterruptedException 
+	public RunZ3OnCMD(String smtSolver, String Smt_Lib_path_file) throws IOException, InterruptedException 
 	{
-		this.Z3 = Z3;
+		//this.smtSolver = smtSolver;
+	    if (smtSolver.contains("Z3"))
+	        this.smtSolver = smtSolver + " -smt2 ";
+	    else if (smtSolver.contains("yices"))
+	        this.smtSolver = smtSolver + " ";
+
 		this.Smt_Lib_path_file = Smt_Lib_path_file;
 		result = "";
 		run();
@@ -26,7 +31,8 @@ public class RunZ3OnCMD
 
 	private void run() throws IOException, InterruptedException 
 	{
-		Process p = Runtime.getRuntime().exec(Z3 + " -smt2 " + Smt_Lib_path_file);
+		//Process p = Runtime.getRuntime().exec(smtSolver + " -smt2 " + Smt_Lib_path_file);
+		Process p = Runtime.getRuntime().exec(smtSolver + Smt_Lib_path_file);
 		while (p.isAlive()) 
 		{
 			Thread.sleep(10);
