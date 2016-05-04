@@ -48,7 +48,6 @@ public class TargetFunctions
         vertex2.decision  = "F"; 
         executedPath.add(vertex2);
 
-        
         if ((a != b) && (b != c) ) /* escaleno */
         {
             // instrumented code

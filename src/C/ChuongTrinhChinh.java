@@ -309,7 +309,11 @@ public class ChuongTrinhChinh
         
         totalTargetPaths = getOutput.size();
         pathListID = new int[totalTargetPaths];
-                
+        for (int i = 0; i < totalTargetPaths; i++)
+        {
+            pathListID[i] = 1;
+        }
+/*
         for (int i = 0; i < totalTargetPaths; i++)
         {
             pathListID[i] = 1;
@@ -333,11 +337,11 @@ public class ChuongTrinhChinh
             {
                 String smtFileName = "path" + i + ".smt2";
                 PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
-                /* z3
-                fpSmt.printf("(declare-const a Real)\n");
-                fpSmt.printf("(declare-const b Real)\n");
-                fpSmt.printf("(declare-const c Real)\n");
-                */
+                // z3
+                //fpSmt.printf("(declare-const a Real)\n");
+                //fpSmt.printf("(declare-const b Real)\n");
+                //fpSmt.printf("(declare-const c Real)\n");
+
                 // yices                
                 fpSmt.printf("(set-logic QF_NRA)\n");
                 fpSmt.printf("(declare-fun a () Real)\n");
@@ -346,7 +350,7 @@ public class ChuongTrinhChinh
                 fpSmt.printf("(assert (> a 0))\n");
                 fpSmt.printf("(assert (> b 0))\n");
                 fpSmt.printf("(assert (> c 0))\n");
-
+                                                                    
                 for (k = 0; k < pathSize; k++)
                 {
                     Vertex vertex = path.get(k); 
@@ -378,7 +382,7 @@ public class ChuongTrinhChinh
                 System.out.println("Path " + i + ": " + r.getOutput());
             }
         }
-        
+*/
         PrintWriter fpOut; // fp_rep fr
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
