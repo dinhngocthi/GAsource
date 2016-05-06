@@ -976,7 +976,7 @@ public class GA
             break;
         }
         /* Update tourneypos */
-        tourneypos += tourneySize + minus;
+        tourneypos += (tourneySize + minus);
         return (winner);
     }
 
@@ -1391,17 +1391,11 @@ public class GA
             System.out.println("Please give a path of setting file");
             return;
         }
-        exeGA(args[0]);
-    }
-
-    public static void exeGA(String iniFileName) throws Exception
-    {
+    
         int genNo;
         Population[] temp;
 
-        // TODO Auto-generated method stub
-
-        inputParameters(iniFileName);
+        inputParameters(args[0]); //args[0] = "D:/GA.in"
 
         fpOut = new PrintWriter("java-report.out", "UTF-8");
         fpRep = new PrintWriter("java-result.out", "UTF-8");
