@@ -23,7 +23,7 @@ public class TargetFunctions
         }
     }
 
-    public static int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {
         int    type = -1; // Scalene
         double area = 0;
@@ -606,7 +606,7 @@ public class TargetFunctions
         executedPath.add(vertex1);
     }
     
-    public static int Tritype(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    public int Tritype(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {        
         int trityp = 0;
 

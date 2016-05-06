@@ -694,7 +694,6 @@ public class GA
 
     public static void freeAll()
     {
-
     }
 
     /*
@@ -827,7 +826,6 @@ public class GA
 
     public static void appReport()
     {
-
     }
 
     /* this routine should contain any application-dependent computations */
@@ -836,7 +834,6 @@ public class GA
      */
     public static void appComputation()
     {
-
     }
 
     public static void preselectTour()
@@ -1380,6 +1377,9 @@ public class GA
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
+            
+            for (int j = 0; j < nvarReal; j++)
+                newPop[k].xreal[j] = 19;
         }
         // Điều chỉnh quần thể mới ở đây
     }   
