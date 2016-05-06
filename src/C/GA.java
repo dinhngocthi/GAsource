@@ -1377,9 +1377,14 @@ public class GA
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-            
-            for (int j = 0; j < nvarReal; j++)
-                newPop[k].xreal[j] = 19;
+                /*
+            for (int i = 0; i < (nvarReal-1); i++)
+                for (int j = i; j < nvarReal; j++)
+                    if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 0.0001)
+                        newPop[k].xreal[i] = newPop[k].xreal[j];
+                        */
+            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
+                newPop[k].xreal[0] = newPop[k].xreal[1];
         }
         // Điều chỉnh quần thể mới ở đây
     }   
