@@ -194,12 +194,12 @@ public class GA
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
-        String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
         //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
         //String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
-        //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
+        String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
         ctc = new ChuongTrinhChinh(pathFile);
@@ -518,11 +518,11 @@ public class GA
         
         //System.out.println("Call objective: " + callObject);
 
-        your_func = fTriangle(x[0], x[1], x[2], "Triangle");
+        //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
         //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
         //your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
         //your_func = fTriangle(x[0], x[1], x[2], "tritypeBueno2002");        
-        //your_func = fInsertionSort(x, nvarReal, "InsertsionSort");
+        your_func = fInsertionSort(x, nvarReal, "InsertionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
         //your_func = fGreatestCommonDivisor((int)x[0], (int)x[1]);
@@ -1301,6 +1301,7 @@ public class GA
         int site;
 
         if (nvarReal > 0)
+        {
             for (site = 0; site < nvarReal; site++)
             {
                 if (flip(mutationReal))
@@ -1340,6 +1341,7 @@ public class GA
                         indiv.xreal[site] = xrealUpper[site];
                 } /* if flip() */
             }
+        }
         if (nvarBin > 0)
             binmutation(indiv.chrom);
     }
@@ -1383,8 +1385,16 @@ public class GA
                     if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 0.0001)
                         newPop[k].xreal[i] = newPop[k].xreal[j];
                         */
-            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
+            
+            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.001) &&
+                (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[2]) < 0.001))
+            {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
+                newPop[k].xreal[2] = newPop[k].xreal[1];
+            }            
+            else if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
+                newPop[k].xreal[0] = newPop[k].xreal[1];
+                
         }
         // Điều chỉnh quần thể mới ở đây
     }   
