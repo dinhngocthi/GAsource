@@ -194,10 +194,10 @@ public class GA
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
-        String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
         //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c");
+        String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
@@ -518,9 +518,9 @@ public class GA
         
         //System.out.println("Call objective: " + callObject);
 
-        your_func = fTriangle(x[0], x[1], x[2], "Triangle");
+        //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
         //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
-        //your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
+        your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
         //your_func = fTriangle(x[0], x[1], x[2], "tritypeBueno2002");        
         //your_func = fInsertionSort(x, nvarReal, "InsertionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
@@ -1385,18 +1385,20 @@ public class GA
                     if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 0.0001)
                         newPop[k].xreal[i] = newPop[k].xreal[j];
                         */
-            
+            // Adjust new population
+
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.001) &&
                 (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[2]) < 0.001))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }            
+            /*
             else if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
-                
+                */
+
         }
-        // Điều chỉnh quần thể mới ở đây
     }   
     
     public static void main(String[] args) throws Exception

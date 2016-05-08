@@ -128,8 +128,8 @@ public class ChuongTrinhChinh
         staticVariable.AllPathSubCondition.NodeRelations = staticVariable.SubCondition.NodeRelations;
         staticVariable.AllPathSubCondition.NodeElements = staticVariable.SubCondition.NodeElements;
         //
-        // System.out.println(staticVariable.AllPathSubCondition.NodeRelations);
-        // System.out.println(staticVariable.AllPathSubCondition.NodeElements);
+        //System.out.println(staticVariable.AllPathSubCondition.NodeRelations);
+        //System.out.println(staticVariable.AllPathSubCondition.NodeElements);
     }
 
     /**
@@ -313,10 +313,11 @@ public class ChuongTrinhChinh
         {
             pathListID[i] = 1;
         }
-/*
+        
+        // for generatenewPop adjust
         for (int i = 0; i < totalTargetPaths; i++)
         {
-            pathListID[i] = 1;
+            System.out.print("Path " + i + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size();
             int k = 0;
@@ -325,14 +326,49 @@ public class ChuongTrinhChinh
                 Vertex vertex = path.get(k); 
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
-                    if (vertex.statement.contains("==") || vertex.statement.contains("!="))
+                    //if (vertex.statement.contains("==") || vertex.statement.contains("!="))
+                    if (vertex.statement.contains("=="))
                     {
+                        System.out.print("[" + vertex.statement + "]");
+                        Vertex vertexTmp = path.get(k+1);
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                        {
+                            // FALSE branch
+                            System.out.print("F ");
+                        }
+                        else
+                        {
+                            // TRUE branch
+                            System.out.print("T ");
+                        }
+                        //break;
+                    }
+                }
+            }
+            System.out.println();
+        }
+/*
+        // for smt solver
+        for (int i = 0; i < totalTargetPaths; i++)
+        {
+            ArrayList<Vertex> path = getOutput.get(i);
+            int pathSize = path.size();
+            int k = 0;
+            for (k = 0; k < pathSize; k++)
+            {
+                Vertex vertex = path.get(k); 
+                if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
+                {
+                    //if (vertex.statement.contains("==") || vertex.statement.contains("!="))
+                    if (vertex.statement.contains("=="))
+                    {
+                        System.out.println(vertex.statement);
                         break;
                     }
                 }
             }
-            
-            // Using constraint solver
+
+            // Using SMT constraint solver
             if (k < pathSize)
             {
                 String smtFileName = "path" + i + ".smt2";
@@ -350,7 +386,7 @@ public class ChuongTrinhChinh
                 fpSmt.printf("(assert (> a 0))\n");
                 fpSmt.printf("(assert (> b 0))\n");
                 fpSmt.printf("(assert (> c 0))\n");
-                                                                    
+
                 for (k = 0; k < pathSize; k++)
                 {
                     Vertex vertex = path.get(k); 
@@ -383,7 +419,7 @@ public class ChuongTrinhChinh
             }
         }
 */
-        PrintWriter fpOut; // fp_rep fr
+        PrintWriter fpOut;
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
         System.out.println("------------Create all paths start-------------");
