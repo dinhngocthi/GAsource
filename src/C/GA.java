@@ -1386,14 +1386,14 @@ public class GA
                         newPop[k].xreal[i] = newPop[k].xreal[j];
                         */
             // Adjust new population
-
+            /*
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.001) &&
                 (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[2]) < 0.001))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }            
-            /*
+            
             else if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 */
