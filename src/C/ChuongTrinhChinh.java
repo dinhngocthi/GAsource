@@ -295,11 +295,12 @@ public class ChuongTrinhChinh
     }
     
     // D.N.Thi for testing
-    static int[] pathListID;
-    static getAllPaths geterTest;
+    private int[] pathListID;
+    private getAllPaths geterTest;
     private double[][] disMatrix; 
     private int totalTargetPaths; // current numbers of target paths
-    static ArrayList<ArrayList<VertexTF>> targetPaths;
+    private ArrayList<ArrayList<VertexTF>> targetPaths;
+    private ArrayList<String> equalCondList;
 
     public void initPathListID(int loop) throws Exception
     {
@@ -315,6 +316,7 @@ public class ChuongTrinhChinh
         }
         
         // for generatenewPop adjust
+        equalCondList = new ArrayList<String>();
         for (int i = 0; i < totalTargetPaths; i++)
         {
             System.out.print("Path " + i + ": ");
@@ -340,6 +342,8 @@ public class ChuongTrinhChinh
                         {
                             // TRUE branch
                             System.out.print("T ");
+                            if (!equalCondList.contains(vertex.statement))
+                            	equalCondList.add(vertex.statement);
                         }
                         //break;
                     }
@@ -347,6 +351,10 @@ public class ChuongTrinhChinh
             }
             System.out.println();
         }
+        
+        for (int i = 0; i < equalCondList.size(); i++)
+        	System.out.print(equalCondList.get(i) + " ");
+        System.out.println();
 /*
         // for smt solver
         for (int i = 0; i < totalTargetPaths; i++)

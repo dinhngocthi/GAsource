@@ -197,14 +197,14 @@ public class GA
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
         //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
-        String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c");
+        String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c"); //(1)
         //String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
-        ctc.initPathListID(nvarReal);        
+        ctc.initPathListID(nvarReal); 
     }
 
     public static void selectMemory()
@@ -1386,18 +1386,23 @@ public class GA
                         newPop[k].xreal[i] = newPop[k].xreal[j];
                         */
             // Adjust new population
-            /*
-            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.001) &&
-                (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[2]) < 0.001))
+            double a = newPop[k].xreal[0];
+            double b = newPop[k].xreal[1];
+            double c = newPop[k].xreal[2];
+            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.1) &&
+                (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.1))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }            
-            
-            else if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
+            else
+           	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
-                */
-
+            else
+            if (Math.abs(a*a - (b*b+c*c)) < 0.01)
+            {
+            	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
+            }
         }
     }   
     

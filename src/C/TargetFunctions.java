@@ -21,6 +21,7 @@ public class TargetFunctions
         {
             System.out.format("%8.10f", Math.abs(a-b));
         }
+        System.out.println(Math.sqrt(9));
     }
 
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
