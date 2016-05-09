@@ -1395,6 +1395,7 @@ public class GA
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }            
+            /*
             else
            	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
@@ -1403,6 +1404,7 @@ public class GA
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
+            */
         }
     }   
     

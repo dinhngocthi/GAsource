@@ -352,9 +352,11 @@ public class ChuongTrinhChinh
             System.out.println();
         }
         
+        System.out.print("Equal condition list: ");
         for (int i = 0; i < equalCondList.size(); i++)
         	System.out.print(equalCondList.get(i) + " ");
-        System.out.println();
+        System.out.println();  
+
 /*
         // for smt solver
         for (int i = 0; i < totalTargetPaths; i++)
