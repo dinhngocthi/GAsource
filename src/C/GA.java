@@ -1256,8 +1256,8 @@ public class GA
     }
 
     /*
-     * ================================================================== Binary
-     * mutation routine ( borrowed from sga.c )
+     * ===================================================================
+     * Binary mutation routine ( borrowed from sga.c )
      * ====================================================================
      */
     private static void binmutation(int[] child)
@@ -1389,22 +1389,29 @@ public class GA
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
+            /*
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.1) &&
                 (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.1))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
-            }            
-            /*
+            }
+
             else
            	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.00001)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
+            
             else
-            if (Math.abs(a*a - (b*b+c*c)) < 0.01)
+            if (Math.abs(a*a - (b*b+c*c)) < 0.1)
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
-            */
+            */           
+            if ((Math.abs(b-c) < 0.1) && (Math.abs(a*a - (b*b+c*c)) < 0.1))
+                {
+                    newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
+                    newPop[k].xreal[2] = newPop[k].xreal[1];
+                }
         }
     }   
     
