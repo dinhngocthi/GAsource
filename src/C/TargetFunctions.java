@@ -253,9 +253,21 @@ public class TargetFunctions
             vertex1.decision  = "T"; 
             executedPath.add(vertex1);
 
-            if (b != 0)            
+            if (b != 0)
             {
                 root1 = (-c)/b;
+                
+                VertexTF vertex4  = new VertexTF();
+                vertex4.id = 4;
+                vertex4.decision  = "T"; 
+                executedPath.add(vertex4);
+            }
+            else
+            {
+                VertexTF vertex4  = new VertexTF();
+                vertex4.id = 4;
+                vertex4.decision  = "F"; 
+                executedPath.add(vertex4);    
             }
             return;
         }

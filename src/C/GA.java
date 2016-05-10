@@ -1384,7 +1384,7 @@ public class GA
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-
+/*
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01) &&
                 (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01))
             {
@@ -1398,7 +1398,10 @@ public class GA
             if (Math.abs(a*a - (b*b+c*c)) < 0.01)    //triangleMansour2004
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
-            }            
+            }
+*/
+            if (Math.abs(a) < 0.001)
+                newPop[k].xreal[0] = 0.0;
         }
     }   
     
