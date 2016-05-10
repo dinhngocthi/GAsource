@@ -319,7 +319,7 @@ public class ChuongTrinhChinh
         equalCondList = new ArrayList<String>();
         for (int i = 0; i < totalTargetPaths; i++)
         {
-            System.out.print("Path " + i + ": ");
+            //System.out.print("Path " + i + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size();
             int k = 0;
@@ -331,17 +331,17 @@ public class ChuongTrinhChinh
                     //if (vertex.statement.contains("==") || vertex.statement.contains("!="))
                     if (vertex.statement.contains("=="))
                     {
-                        System.out.print("[" + vertex.statement + "]");
+                        //System.out.print("[" + vertex.statement + "]");
                         Vertex vertexTmp = path.get(k+1);
                         if (vertex.getFalseVertexId() == vertexTmp.getId())
                         {
                             // FALSE branch
-                            System.out.print("F ");
+                            //System.out.print("F ");
                         }
                         else
                         {
                             // TRUE branch
-                            System.out.print("T ");
+                            //System.out.print("T ");
                             if (!equalCondList.contains(vertex.statement))
                             	equalCondList.add(vertex.statement);
                         }
@@ -349,7 +349,7 @@ public class ChuongTrinhChinh
                     }
                 }
             }
-            System.out.println();
+            //System.out.println();
         }
         
         System.out.print("Equal condition list: ");
@@ -439,6 +439,7 @@ public class ChuongTrinhChinh
         
         for (int i = 0; i < totalTargetPaths; i++ )
         {
+            System.out.print("Path " + i + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
 
@@ -449,6 +450,7 @@ public class ChuongTrinhChinh
                 Vertex vertex = path.get(k);
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
+                    System.out.print("[" + vertex.getStatement() + "]");
                     VertexTF vertextf = new VertexTF();
                     int j = 0;
                     for (j = 0; j < branchlist.size(); j++)
@@ -471,16 +473,19 @@ public class ChuongTrinhChinh
                     if (vertex.getFalseVertexId() == vertexTmp.getId())
                     {
                         vertextf.decision = "F";
+                        System.out.print("F ");
                     }
                     else
                     {
                         vertextf.decision = "T";
+                        System.out.print("T ");
                     }
                     pathTF.add(vertextf);
                 }
             }
             targetPaths.add(pathTF);
             fpOut.printf("Path " + i + ":" + pathTF + "\n");
+            System.out.println();
         }       
         fpOut.printf("\n");
         

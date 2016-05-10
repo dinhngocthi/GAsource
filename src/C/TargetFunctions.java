@@ -9,19 +9,6 @@ public class TargetFunctions
 {
     public static void main(String[] args)
     {
-        double a = 9.00000000701390;
-        double b = 9.00000000701389;
-        double epsilon = 0.000001;
-        if (Math.abs(a-b) < epsilon)
-        {
-            System.out.format("%8.10f", Math.abs(a-b));
-            System.out.println();
-        }
-        if (a == b)
-        {
-            System.out.format("%8.10f", Math.abs(a-b));
-        }
-        System.out.println(Math.sqrt(9));
     }
 
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
