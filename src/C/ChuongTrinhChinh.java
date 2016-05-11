@@ -18,8 +18,8 @@ import SMTSolver.RunZ3OnCMD;
  */
 public class ChuongTrinhChinh
 {
-
     private String fileInput;
+    private int objectcall;
 
     public static void main(String[] args) throws Exception
     {
@@ -30,7 +30,7 @@ public class ChuongTrinhChinh
     public ChuongTrinhChinh(String fileInput)
     {
         this.fileInput = fileInput;
-
+        objectcall = 0;
     }
 
     public void run() throws Exception
@@ -564,6 +564,7 @@ public class ChuongTrinhChinh
     public double calculateDistTriangle(double a, double b, double c, String functionName)
     {
         double[] fitness;
+        objectcall++;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
 
@@ -581,6 +582,7 @@ public class ChuongTrinhChinh
         {
             // hit a feasible path
             System.out.println("Path " + (int)fitness[0] + ": a = " + a + " b = " + b + " c = " + c);
+            System.out.println("Objective call: " + objectcall);
         }
         return fitness[1];
     }

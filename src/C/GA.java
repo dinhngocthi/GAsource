@@ -497,8 +497,7 @@ public class GA
      * OBJECTIVE FUNCTION ( Supposed to be minimized) : Change it for different
      * applications
      * ====================================================================
-     */
-    private static int callObject = 0;
+     */    
     public static void objective(Population indv)
     {
         int i;
@@ -514,7 +513,6 @@ public class GA
         MINM = 1; // use -1 for maximization
         // Put your function here
         your_func = 0;
-        callObject++;
         
         //System.out.println("Call objective: " + callObject);
 
@@ -1400,8 +1398,12 @@ public class GA
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
-            if (Math.abs(a) < 0.001)
+            if (Math.abs(newPop[k].xreal[0]) < 0.001)
                 newPop[k].xreal[0] = 0.0;
+            if (Math.abs(newPop[k].xreal[1]) < 0.001)
+                newPop[k].xreal[1] = 0.0;
+            if (Math.abs(b*b - (4*a*c)) < 0.01)    //delta
+                newPop[k].xreal[1] = Math.sqrt(4*a*c);
         }
     }   
     
