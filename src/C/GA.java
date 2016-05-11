@@ -1406,7 +1406,7 @@ public class GA
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
         }
     }   
-    
+
     public static void main(String[] args) throws Exception
     {
         if (args.length < 1)
