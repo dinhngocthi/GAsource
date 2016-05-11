@@ -1,4 +1,4 @@
-void QuadraticEquation2(double a, double b, double c, ArrayList<VertexTF> executedPath)
+void QuadraticEquation2(double a, double b, double c)
 {
 	double root1, root2;
 
@@ -9,24 +9,22 @@ void QuadraticEquation2(double a, double b, double c, ArrayList<VertexTF> execut
 			root1 = (-c)/b;
 		}
 		return;
-	}
-
-	double delta = ((b*b) - (4*a*c));
+	}	
 	
-	if (delta < 0)
+	if (((b*b) - (4*a*c)) < 0)
 	{
 		return;
 	}
 	else 
 	{
-		if (delta == 0)
+		if (((b*b) - (4*a*c)) == 0)
 		{
 			root1 = (-b)/(a*2);
 		}
 		else
 		{
-			root1 = ((-b + Math.sqrt(delta))/(2*a));
-			root2 = ((-b - Math.sqrt(delta))/(2*a));
+			root1 = ((-b + Math.sqrt(((b*b) - (4*a*c))))/(2*a));
+			root2 = ((-b - Math.sqrt(((b*b) - (4*a*c))))/(2*a));
 		}
 	}
 }

@@ -1398,11 +1398,11 @@ public class GA
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
-            if (Math.abs(newPop[k].xreal[0]) < 0.001)
+            if (Math.abs(newPop[k].xreal[0]) < 0.1)
                 newPop[k].xreal[0] = 0.0;
-            if (Math.abs(newPop[k].xreal[1]) < 0.001)
+            if (Math.abs(newPop[k].xreal[1]) < 0.1)
                 newPop[k].xreal[1] = 0.0;
-            if (Math.abs(b*b - (4*a*c)) < 0.01)    //delta
+            if (Math.abs(b*b - (4*a*c)) < 0.1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
         }
     }   

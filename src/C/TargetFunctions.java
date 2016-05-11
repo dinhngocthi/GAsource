@@ -277,9 +277,9 @@ public class TargetFunctions
         vertex1.decision  = "F"; 
         executedPath.add(vertex1);
 
-        double delta = ((b*b) - (4*a*c));
+        //double delta = ((b*b) - (4*a*c));
         
-        if (delta < 0)
+        if (((b*b) - (4*a*c)) < 0)
         {
             // instrumented code
             VertexTF vertex2  = new VertexTF();
@@ -297,7 +297,7 @@ public class TargetFunctions
             vertex2.decision  = "F"; 
             executedPath.add(vertex2);
 
-            if (delta == 0)
+            if (((b*b) - (4*a*c)) == 0)
             {
                 root1 = (-b)/(a*2);
                 
@@ -309,8 +309,8 @@ public class TargetFunctions
             }
             else
             {
-                root1 = ((-b + Math.sqrt(delta))/(2*a));
-                root2 = ((-b - Math.sqrt(delta))/(2*a));
+                root1 = ((-b + Math.sqrt(((b*b) - (4*a*c))))/(2*a));
+                root2 = ((-b - Math.sqrt(((b*b) - (4*a*c))))/(2*a));
                 
                 // instrumented code
                 VertexTF vertex3  = new VertexTF();

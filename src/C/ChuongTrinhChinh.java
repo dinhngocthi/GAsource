@@ -328,28 +328,31 @@ public class ChuongTrinhChinh
                 Vertex vertex = path.get(k); 
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
-                    //if (vertex.statement.contains("==") || vertex.statement.contains("!="))
+                    Vertex vertexTmp = path.get(k+1);
                     if (vertex.statement.contains("=="))
-                    {
-                        //System.out.print("[" + vertex.statement + "]");
-                        Vertex vertexTmp = path.get(k+1);
-                        if (vertex.getFalseVertexId() == vertexTmp.getId())
-                        {
-                            // FALSE branch
-                            //System.out.print("F ");
-                        }
-                        else
+                    {                        
+                        if (vertex.getFalseVertexId() != vertexTmp.getId())
                         {
                             // TRUE branch
-                            //System.out.print("T ");
                             if (!equalCondList.contains(vertex.statement))
                             	equalCondList.add(vertex.statement);
                         }
-                        //break;
+
                     }
+                    else if (vertex.statement.contains("!="))
+                    {                        
+                        if (vertex.getFalseVertexId() == vertexTmp.getId())
+                        {
+                            // FALSE branch
+                            String stm = vertex.statement.replace("!=", "==");
+                            if (!equalCondList.contains(stm))
+                                equalCondList.add(stm);
+                        }
+
+                    }
+
                 }
             }
-            //System.out.println();
         }
         
         System.out.print("Equal condition list: ");
@@ -432,7 +435,7 @@ public class ChuongTrinhChinh
         PrintWriter fpOut;
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
-        System.out.println("------------Create all paths start-------------");
+        System.out.println("------------Create all target paths start-------------");
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
@@ -502,7 +505,7 @@ public class ChuongTrinhChinh
         }
         
         fpOut.close();
-        System.out.println("------------Create all paths end-------------");
+        System.out.println("------------Create all target paths end-------------");
     }
     
     private boolean isSamePath(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
