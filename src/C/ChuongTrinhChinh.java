@@ -337,7 +337,6 @@ public class ChuongTrinhChinh
                             if (!equalCondList.contains(vertex.statement))
                             	equalCondList.add(vertex.statement);
                         }
-
                     }
                     else if (vertex.statement.contains("!="))
                     {                        
@@ -348,16 +347,14 @@ public class ChuongTrinhChinh
                             if (!equalCondList.contains(stm))
                                 equalCondList.add(stm);
                         }
-
                     }
-
                 }
             }
         }
         
         System.out.print("Equal condition list: ");
         for (int i = 0; i < equalCondList.size(); i++)
-        	System.out.print(equalCondList.get(i) + " ");
+        	System.out.print("[" + equalCondList.get(i) + "] ");
         System.out.println();  
 
 /*
@@ -447,7 +444,7 @@ public class ChuongTrinhChinh
             int pathSize = path.size(); 
 
             ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
-                             
+
             for (int k = 0; k < pathSize; k++)
             {
                 Vertex vertex = path.get(k);

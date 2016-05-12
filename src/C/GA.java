@@ -194,9 +194,9 @@ public class GA
         String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
+        String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-        String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
         //String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c"); //(1)
         //String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
@@ -516,8 +516,8 @@ public class GA
         
         //System.out.println("Call objective: " + callObject);
 
-        //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
-        your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
+        your_func = fTriangle(x[0], x[1], x[2], "Triangle");
+        //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
         //your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
         //your_func = fTriangle(x[0], x[1], x[2], "tritypeBueno2002");        
         //your_func = fInsertionSort(x, nvarReal, "InsertionSort");
@@ -1382,7 +1382,7 @@ public class GA
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-/*
+
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01) &&
                 (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01))
             {
@@ -1390,20 +1390,29 @@ public class GA
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }
 
-           	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.0001)
+/*
+           	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
-
+            if (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01)
+                newPop[k].xreal[1] = newPop[k].xreal[2];
+            if (Math.abs(newPop[k].xreal[2] - newPop[k].xreal[0]) < 0.01)
+                newPop[k].xreal[2] = newPop[k].xreal[0];
+*/
+/*
+/*
             if (Math.abs(a*a - (b*b+c*c)) < 0.01)    //triangleMansour2004
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
+/*
             if (Math.abs(newPop[k].xreal[0]) < 0.1)
                 newPop[k].xreal[0] = 0.0;
             if (Math.abs(newPop[k].xreal[1]) < 0.1)
                 newPop[k].xreal[1] = 0.0;
             if (Math.abs(b*b - (4*a*c)) < 0.1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
+*/
         }
     }   
 
