@@ -174,7 +174,7 @@ public class TargetFunctions
             if (b == c)
             {
                 type = 2; // Equilateral
-                
+
                 // instrumented code
                 VertexTF vertex2  = new VertexTF();
                 vertex2.id = 2;

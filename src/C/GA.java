@@ -89,8 +89,11 @@ public class GA
     {
     };
 
-    public static void inputParameters(String propFile) throws Exception
+    public static void inputParameters() throws Exception
     {
+        String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String propFile = classPath.replace("bin/", "src/sample/GA.in");
+
         Properties prop = new Properties();
         InputStream input = null;
 
@@ -190,8 +193,7 @@ public class GA
 
         criticalSize = popSize / 4;
         inputAppParameters();
-        
-        String classPath = GA.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
@@ -1418,16 +1420,10 @@ public class GA
 
     public static void main(String[] args) throws Exception
     {
-        if (args.length < 1)
-        {
-            System.out.println("Please give a path of setting file");
-            return;
-        }
-    
         int genNo;
         Population[] temp;
 
-        inputParameters(args[0]); //args[0] = "D:/GA.in"
+        inputParameters();
 
         fpOut = new PrintWriter("java-report.out", "UTF-8");
         fpRep = new PrintWriter("java-result.out", "UTF-8");

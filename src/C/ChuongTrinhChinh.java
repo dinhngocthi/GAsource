@@ -182,8 +182,9 @@ public class ChuongTrinhChinh
         for (String c_output_arr1 : c_output_arr)
         {
             String[] item = c_output_arr1.split("#");
-            Node n = new Node(Integer.parseInt(item[0]), item[1], Integer.parseInt(item[2].replace("true=", "")), Integer.parseInt(item[3].replace(
-                    "false=", "")));
+            Node n = new Node(Integer.parseInt(item[0]), item[1], 
+                    Integer.parseInt(item[2].replace("true=", "")), 
+                    Integer.parseInt(item[3].replace("false=", "")));
             mnNode.add(n);
         }
         // xuat danh sach ke phu cap 1,2
@@ -311,9 +312,7 @@ public class ChuongTrinhChinh
         totalTargetPaths = getOutput.size();
         pathListID = new int[totalTargetPaths];
         for (int i = 0; i < totalTargetPaths; i++)
-        {
             pathListID[i] = 1;
-        }
         
         // for generatenewPop adjust
         equalCondList = new ArrayList<String>();
@@ -331,7 +330,7 @@ public class ChuongTrinhChinh
                     Vertex vertexTmp = path.get(k+1);
                     if (vertex.statement.contains("=="))
                     {                        
-                        if (vertex.getFalseVertexId() != vertexTmp.getId())
+                        if (vertex.getTrueVertexId() == vertexTmp.getId())
                         {
                             // TRUE branch
                             if (!equalCondList.contains(vertex.statement))
@@ -355,7 +354,7 @@ public class ChuongTrinhChinh
         System.out.print("Equal condition list: ");
         for (int i = 0; i < equalCondList.size(); i++)
         	System.out.print("[" + equalCondList.get(i) + "] ");
-        System.out.println();  
+        System.out.println();
 
 /*
         // for smt solver
