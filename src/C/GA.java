@@ -146,7 +146,6 @@ public class GA
             {
                 // Lower bounds of xreal
                 xrealLower[k] = xrealLowerTmp;
-
                 // Upper bounds of xreal
                 xrealUpper[k] = xrealUpperTmp;
             }
@@ -183,8 +182,7 @@ public class GA
         }
         if (nvarReal > 0)
         {
-            // Give distr. index nDistributionC and nDistributionM for SBX and
-            // mutation? ");
+            // Give distr. index nDistributionC and nDistributionM for SBX and mutation
             nDistributionC = Double.parseDouble(prop.getProperty("nDistributionC", "0.7"));
             nDistributionM = Double.parseDouble(prop.getProperty("nDistributionM", "0.8"));
         }
@@ -197,8 +195,8 @@ public class GA
         
         //testFunction =  "triangleMansour2004";
         //testFunction =  "tA2008_Triangle";
-        //testFunction =  "QuadraticEquation2";
-        testFunction =  "tritypeBueno2002";
+        testFunction =  "QuadraticEquation2";
+        //testFunction =  "tritypeBueno2002";
         String pathFile = classPath.replace("bin/", "src/sample/"+ testFunction + ".c");
 
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
@@ -1396,6 +1394,7 @@ public class GA
                     } 
                 }
             }
+
 /*            
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01) &&
                     (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01))
