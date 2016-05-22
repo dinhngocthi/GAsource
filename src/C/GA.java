@@ -84,6 +84,7 @@ public class GA
     static double seed; /* Random seed number */
     
     static ChuongTrinhChinh ctc;
+    static String testFunction;
 
     public static void inputAppParameters()
     {
@@ -193,14 +194,17 @@ public class GA
 
         criticalSize = popSize / 4;
         inputAppParameters();
+        
+        //testFunction =  "triangleMansour2004";
+        //testFunction =  "tA2008_Triangle";
+        //testFunction =  "QuadraticEquation2";
+        testFunction =  "tritypeBueno2002";
+        String pathFile = classPath.replace("bin/", "src/sample/"+ testFunction + ".c");
 
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/QuadraticEquation2.c");
-        String pathFile = classPath.replace("bin/", "src/sample/triangleMansour2004.c"); //(1)
-        //String pathFile = classPath.replace("bin/", "src/sample/tritypeBueno2002.c");        
+        //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
 
@@ -517,11 +521,8 @@ public class GA
         your_func = 0;
         
         //System.out.println("Call objective: " + callObject);
-
-        //your_func = fTriangle(x[0], x[1], x[2], "Triangle");
-        //your_func = fTriangle(x[0], x[1], x[2], "QuadraticEquation2");
-        your_func = fTriangle(x[0], x[1], x[2], "triangleMansour2004"); 
-        //your_func = fTriangle(x[0], x[1], x[2], "tritypeBueno2002");        
+ 
+        your_func = fTriangle(x[0], x[1], x[2], testFunction);                
         //your_func = fInsertionSort(x, nvarReal, "InsertionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");

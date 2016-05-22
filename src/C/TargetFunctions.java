@@ -606,7 +606,7 @@ public class TargetFunctions
         executedPath.add(vertex1);
     }
     
-    public int Tritype(double a, double b, double c, ArrayList<VertexTF> executedPath)
+    public int tA2008_Triangle(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {        
         int trityp = 0;
 
@@ -621,7 +621,7 @@ public class TargetFunctions
             if ((a != b) && (b != c) && (c != a))
             {
                 trityp = 1;      // Scalene
-                
+
                 // instrumented code
                 VertexTF vertex2 = new VertexTF();
                 vertex2.id = 2;

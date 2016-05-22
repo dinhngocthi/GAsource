@@ -567,8 +567,8 @@ public class ChuongTrinhChinh
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
 
-        if (functionName.equals("Triangle"))
-            targetFunction.Tritype(a, b, c, executedPath);
+        if (functionName.equals("tA2008_Triangle"))
+            targetFunction.tA2008_Triangle(a, b, c, executedPath);
         else if (functionName.equals("QuadraticEquation2"))
             targetFunction.QuadraticEquation2(a, b, c, executedPath);
         else if (functionName.equals("triangleMansour2004"))
