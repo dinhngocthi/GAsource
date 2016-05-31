@@ -547,7 +547,7 @@ public class ChuongTrinhChinh
             if (totalTargetPaths == 0) return ret;
 
             pathListID[i] = 0;
-            ret[0] = i; 
+            ret[0] = (i+1);     // PathID
         }
         
         double sum = 0;

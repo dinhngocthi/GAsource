@@ -1383,7 +1383,7 @@ public class GA
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-
+/*
             // New population adjustment
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
@@ -1399,7 +1399,7 @@ public class GA
                     } 
                 }
             }
-
+*/
 /*            
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01) &&
                     (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01))
