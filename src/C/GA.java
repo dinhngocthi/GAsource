@@ -196,8 +196,8 @@ public class GA
         // No loop
         //testFunction =  "tritypeBueno2002";
         //testFunction =  "triangleMansour2004";
-        testFunction =  "tA2008_Triangle";
-        //testFunction =  "QuadraticEquation2";
+        //testFunction =  "tA2008_Triangle";
+        testFunction =  "QuadraticEquation2";
 
         // Nested loop
         //testFunction =  "iA2008_InsertionSort";
@@ -1383,12 +1383,12 @@ public class GA
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-/*
+
             // New population adjustment
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-
+/*
             for (int i = 0; i < nvarReal - 1; i++)
             {
                 for (int j = i + 1; j < nvarReal; j++)
@@ -1422,21 +1422,21 @@ public class GA
             if (Math.abs(newPop[k].xreal[2] - newPop[k].xreal[0]) < 0.01)
                 newPop[k].xreal[2] = newPop[k].xreal[0];
 */
-/*
+
 /*
             if (Math.abs(a*a - (b*b+c*c)) < 0.01)    //triangleMansour2004
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
-/*
+
+ 			// QuadraticEquation2
             if (Math.abs(newPop[k].xreal[0]) < 0.1)
                 newPop[k].xreal[0] = 0.0;
             if (Math.abs(newPop[k].xreal[1]) < 0.1)
                 newPop[k].xreal[1] = 0.0;
             if (Math.abs(b*b - (4*a*c)) < 0.1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
-*/
         }
     }   
 
