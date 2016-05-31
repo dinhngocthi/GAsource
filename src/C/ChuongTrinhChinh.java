@@ -438,7 +438,7 @@ public class ChuongTrinhChinh
         
         for (int i = 0; i < totalTargetPaths; i++ )
         {
-            System.out.print("Path " + i + ": ");
+            System.out.print("Path " + (i + 1) + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
 
@@ -483,7 +483,7 @@ public class ChuongTrinhChinh
                 }
             }
             targetPaths.add(pathTF);
-            fpOut.printf("Path " + i + ":" + pathTF + "\n");
+            fpOut.printf("Path " + (i + 1) + ":" + pathTF + "\n");
             System.out.println();
         }       
         fpOut.printf("\n");
@@ -594,7 +594,7 @@ public class ChuongTrinhChinh
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
         
-        if (functionName.equals("InsertionSort"))
+        if (functionName.equals("iA2008_InsertionSort"))
             targetFunction.InsertionSort(a, size, executedPath);
         else if (functionName.equals("GetMinMax"))
             targetFunction.getMinMax(a, size, executedPath);

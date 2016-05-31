@@ -193,12 +193,16 @@ public class GA
         criticalSize = popSize / 4;
         inputAppParameters();
         
-        //testFunction =  "triangleMansour2004";
-        //testFunction =  "tA2008_Triangle";
-        testFunction =  "QuadraticEquation2";
+        // No loop
         //testFunction =  "tritypeBueno2002";
-        String pathFile = classPath.replace("bin/", "src/sample/"+ testFunction + ".c");
+        //testFunction =  "triangleMansour2004";
+        testFunction =  "tA2008_Triangle";
+        //testFunction =  "QuadraticEquation2";
 
+        // Nested loop
+        //testFunction =  "iA2008_InsertionSort";
+
+        String pathFile = classPath.replace("bin/", "src/sample/"+ testFunction + ".c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
         //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
@@ -521,6 +525,7 @@ public class GA
         //System.out.println("Call objective: " + callObject);
  
         your_func = fTriangle(x[0], x[1], x[2], testFunction);                
+        //your_func = fInsertionSort(x, nvarReal, testFunction);
         //your_func = fInsertionSort(x, nvarReal, "InsertionSort");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMax");
         //your_func = fInsertionSort(x, nvarReal, "GetMinMaxTriangle");
@@ -1407,8 +1412,8 @@ public class GA
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
-*/
 
+*/
 /*
            	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
