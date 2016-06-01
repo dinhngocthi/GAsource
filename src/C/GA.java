@@ -1412,7 +1412,6 @@ public class GA
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
-
 */
 /*
            	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01)
@@ -1422,14 +1421,12 @@ public class GA
             if (Math.abs(newPop[k].xreal[2] - newPop[k].xreal[0]) < 0.01)
                 newPop[k].xreal[2] = newPop[k].xreal[0];
 */
-
 /*
             if (Math.abs(a*a - (b*b+c*c)) < 0.01)    //triangleMansour2004
             {
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
-
  			// QuadraticEquation2
             if (Math.abs(newPop[k].xreal[0]) < 0.1)
                 newPop[k].xreal[0] = 0.0;
