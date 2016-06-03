@@ -196,8 +196,8 @@ public class GA
         // No loop
         //testFunction =  "tritypeBueno2002";
         //testFunction =  "triangleMansour2004";
-        //testFunction =  "tA2008_Triangle";
-        testFunction =  "QuadraticEquation2";
+        testFunction =  "tA2008_Triangle";
+        //testFunction =  "QuadraticEquation2";
 
         // Nested loop
         //testFunction =  "iA2008_InsertionSort";
@@ -458,7 +458,7 @@ public class GA
 
         try
         {
-            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+            your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
         }
         catch (Exception ex)
         {
@@ -1427,6 +1427,7 @@ public class GA
             	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
 */
+/*
  			// QuadraticEquation2
             if (Math.abs(newPop[k].xreal[0]) < 0.1)
                 newPop[k].xreal[0] = 0.0;
@@ -1434,6 +1435,7 @@ public class GA
                 newPop[k].xreal[1] = 0.0;
             if (Math.abs(b*b - (4*a*c)) < 0.1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
+*/
         }
     }   
 
