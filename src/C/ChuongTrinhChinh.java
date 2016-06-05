@@ -534,6 +534,13 @@ public class ChuongTrinhChinh
         double[] ret = new double[2];
         ret[0] = -1;
 
+              
+        if (totalTargetPaths == 0)  // Target paths list is empty
+        {
+            ret[0] = -2;
+            return ret;
+        }
+
         for (i = 0; i < size; i ++)
         {
             ArrayList<VertexTF> targetPathTmp = targetPaths.get(i);
@@ -544,7 +551,6 @@ public class ChuongTrinhChinh
         if (pathListID[i] == 1)
         {
             totalTargetPaths--; // hit a feasible path
-            if (totalTargetPaths == 0) return ret;
 
             pathListID[i] = 0;
             ret[0] = (i+1);     // PathID
@@ -577,6 +583,10 @@ public class ChuongTrinhChinh
             targetFunction.tritypeBueno2002(a, b, c, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
+        if (fitness[0] == -2)
+        {
+            return fitness[0];
+        }
         if (fitness[0] > -1)
         {
             // hit a feasible path

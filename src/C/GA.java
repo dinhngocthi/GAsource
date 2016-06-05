@@ -85,6 +85,7 @@ public class GA
     
     static ChuongTrinhChinh ctc;
     static String testFunction;
+    static boolean StopSearching = false;
 
     public static void inputAppParameters()
     {
@@ -458,7 +459,9 @@ public class GA
 
         try
         {
-            your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
+            //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
+            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+            StopSearching = (your_func == -2);
         }
         catch (Exception ex)
         {
@@ -641,6 +644,8 @@ public class GA
 
         for (k = 0; k < popSize; k++)
         {
+            if (StopSearching) return;
+
             decodeString(oldPop[k]);
             objective(oldPop[k]);
         }
@@ -1475,9 +1480,11 @@ public class GA
 
                 statistics(genNo);
                 report(genNo);
+                if (StopSearching) break;
             }
             /* One GA run is over */
             freeAll();
+            if (StopSearching) break;
         } /* for loop of run */
 
         fpOut.close();
