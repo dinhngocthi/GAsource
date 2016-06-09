@@ -1,6 +1,6 @@
 [GAParam]
-popsize=150
-maxgen=250
+popsize=100
+maxgen=100
 nvarbin=0
 nvarreal=3
 chrlen=20
