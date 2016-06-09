@@ -1172,7 +1172,7 @@ public class GA
      * random beta.
      * ====================================================================
      */
-    private static void cross_over(int first, int second, int childno1, int childno2)
+    private static void crossover(int first, int second, int childno1, int childno2)
     {
         int site, k, x_s;
         x_s = 0;
@@ -1382,7 +1382,7 @@ public class GA
                 mate2 = tour_select();
             }
             // crossover
-            cross_over(mate1, mate2, k, k + 1);
+            crossover(mate1, mate2, k, k + 1);
             // mutation
             mutation(newPop[k]);
             mutation(newPop[k + 1]);
