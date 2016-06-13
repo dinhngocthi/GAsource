@@ -199,8 +199,8 @@ public class GA
         maxObjectCall = (maxRun * maxGen * popSize);
         
         // No loop
-        testFunction =  "tritypeBueno2002";
-        //testFunction =  "triangleMansour2004";
+        //testFunction =  "tritypeBueno2002";
+        testFunction =  "triangleMansour2004";
         //testFunction =  "tA2008_Triangle";
         //testFunction =  "QuadraticEquation2";
 
@@ -463,8 +463,8 @@ public class GA
 
         try
         {
-            your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
-            //your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+            //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
+            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
             StopSearching = (your_func == -2);
         }
         catch (Exception ex)
@@ -1410,31 +1410,32 @@ public class GA
                 }
             }
 */
-
 /*
             // tA2008
-            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10) &&
-                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 10))
+            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1) &&
+                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 1))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }
 
-            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10)
+            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1)
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
-*/
 
+*/
             // New population adjustment
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
+
 /*
-            if (Math.abs(a*a - (b*b+c*c)) < 10)    //triangleMansour2004
+            if (Math.abs(a*a - (b*b+c*c)) < 1)    //triangleMansour2004
             {
                 newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
             }
+                        
             // ttB2002
            	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
@@ -1445,13 +1446,13 @@ public class GA
 */
 /*
  			// QuadraticEquation2
-            if (Math.abs(newPop[k].xreal[0]) < 0.1)
+            if (Math.abs(newPop[k].xreal[0]) < 1)
                 newPop[k].xreal[0] = 0.0;
-            if (Math.abs(newPop[k].xreal[1]) < 0.1)
+            if (Math.abs(newPop[k].xreal[1]) < 1)
                 newPop[k].xreal[1] = 0.0;
-            if (Math.abs(b*b - (4*a*c)) < 0.1)    //delta
+            if (Math.abs(b*b - (4*a*c)) < 1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
-*/
+*/                
         }
     }   
 
