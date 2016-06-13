@@ -590,7 +590,8 @@ public class ChuongTrinhChinh
         if (fitness[0] > -1)
         {
             // hit a feasible path
-            System.out.println("Path " + (int)fitness[0] + ": a = " + a + " b = " + b + " c = " + c);
+            //System.out.println("Path " + (int)fitness[0] + ": a = " + a + " b = " + b + " c = " + c);
+            System.out.println("Path " + (int)fitness[0] + ": a = " + (int)a + " b = " + (int)b + " c = " + (int)c);
             System.out.println("Objective call: " + objectcall);
         }
         return fitness[1];

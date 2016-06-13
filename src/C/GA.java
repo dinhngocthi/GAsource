@@ -86,6 +86,8 @@ public class GA
     static ChuongTrinhChinh ctc;
     static String testFunction;
     static boolean StopSearching = false;
+    static int objectcall = 0;
+    static long maxObjectCall = 0; 
 
     public static void inputAppParameters()
     {
@@ -194,10 +196,12 @@ public class GA
         criticalSize = popSize / 4;
         inputAppParameters();
         
+        maxObjectCall = (maxRun * maxGen * popSize);
+        
         // No loop
-        //testFunction =  "tritypeBueno2002";
+        testFunction =  "tritypeBueno2002";
         //testFunction =  "triangleMansour2004";
-        testFunction =  "tA2008_Triangle";
+        //testFunction =  "tA2008_Triangle";
         //testFunction =  "QuadraticEquation2";
 
         // Nested loop
@@ -459,8 +463,8 @@ public class GA
 
         try
         {
-            //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
-            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+            your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
+            //your_func = ctc.calculateDistTriangle(a, b, c, functionName);
             StopSearching = (your_func == -2);
         }
         catch (Exception ex)
@@ -546,6 +550,11 @@ public class GA
                 gsum += -1.0 * g[i];
         }
         indv.penalty = gsum;
+        objectcall++;
+        if (objectcall == maxObjectCall)
+        {
+            System.out.println("Objective call: " + objectcall);
+        }
     }
 
     public static void initialize()
@@ -1389,10 +1398,6 @@ public class GA
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
 
-            // New population adjustment
-            double a = newPop[k].xreal[0];
-            double b = newPop[k].xreal[1];
-            double c = newPop[k].xreal[2];
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1405,32 +1410,38 @@ public class GA
                 }
             }
 */
-/*            
-            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01) &&
-                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01))
+
+/*
+            // tA2008
+            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10) &&
+                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 10))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }
 
-            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.001)
+            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10)
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
 */
+
+            // New population adjustment
+            double a = newPop[k].xreal[0];
+            double b = newPop[k].xreal[1];
+            double c = newPop[k].xreal[2];
 /*
-           	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 0.01)
+            if (Math.abs(a*a - (b*b+c*c)) < 10)    //triangleMansour2004
+            {
+                newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
+            }
+            // ttB2002
+           	if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 10)
                 newPop[k].xreal[0] = newPop[k].xreal[1];
-            if (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 0.01)
+            if (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 10)
                 newPop[k].xreal[1] = newPop[k].xreal[2];
-            if (Math.abs(newPop[k].xreal[2] - newPop[k].xreal[0]) < 0.01)
+            if (Math.abs(newPop[k].xreal[2] - newPop[k].xreal[0]) < 10)
                 newPop[k].xreal[2] = newPop[k].xreal[0];
-*/
-/*
-            if (Math.abs(a*a - (b*b+c*c)) < 0.01)    //triangleMansour2004
-            {
-            	newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
-            }
 */
 /*
  			// QuadraticEquation2
@@ -1448,7 +1459,9 @@ public class GA
     {
         int genNo;
         Population[] temp;
-
+        
+        
+        
         inputParameters();
 
         fpOut = new PrintWriter("java-report.out", "UTF-8");
@@ -1458,9 +1471,10 @@ public class GA
         selectMemory();
         initReport();
 
+        System.out.println("GA started....");
         for (int run = 1; run <= maxRun; run++)
         {
-            System.out.println("Run No. " + run + " :  Wait Please .........");
+            //System.out.println("Run No. " + run + " :  Wait Please .........");
 
             fpRep.printf("Run No. %d ", run);
             seed = basicSeed + (1.0 - basicSeed) * (double) (run - 1) / (double) maxRun;
@@ -1490,5 +1504,7 @@ public class GA
         fpOut.close();
         fpRep.close();
         fpPlot.close();
+        
+        System.out.println("GA completed./.");
     }
 }
