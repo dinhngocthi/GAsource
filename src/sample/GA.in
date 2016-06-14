@@ -2,7 +2,7 @@
 popsize=100
 maxgen=250
 nvarbin=0
-nvarreal=10
+nvarreal=2
 chrlen=20
 xbinlower=-80
 xbinupper=80

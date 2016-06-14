@@ -529,6 +529,10 @@ public class GA201612
         //your_func = Math.pow((1.5 - x[0] + x[0]*x[1]), 2) + Math.pow((2.25 - x[0] + x[0]*x[1]*x[1]), 2) + Math.pow((2.625 - x[0] + x[0]*x[1]*x[1]*x[1]), 2);
         
         //Rosenbrock function
+        for (i = 0; i < nvarReal; i++)
+        {
+            x[i] = 1;
+        }
         for (i = 0; i < nvarReal - 1 ; i++)
         {
             your_func += 100 * Math.pow((x[i+1] - x[i]*x[i]), 2) + Math.pow((x[i] - 1), 2);
