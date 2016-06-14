@@ -1459,9 +1459,7 @@ public class GA
     public static void main(String[] args) throws Exception
     {
         int genNo;
-        Population[] temp;
-        
-        
+        Population[] temp;        
         
         inputParameters();
 
