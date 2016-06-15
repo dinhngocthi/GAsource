@@ -200,8 +200,8 @@ public class GA
         
         // No loop
         //testFunction =  "tritypeBueno2002";
-        testFunction =  "triangleMansour2004";
-        //testFunction =  "tA2008_Triangle";
+        //testFunction =  "triangleMansour2004";
+        testFunction =  "tA2008_Triangle";
         //testFunction =  "QuadraticEquation2";
 
         // Nested loop
@@ -1410,7 +1410,7 @@ public class GA
                 }
             }
 */
-/*
+
             // tA2008
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1) &&
                     (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 1))
@@ -1424,7 +1424,7 @@ public class GA
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
 
-*/
+
             // New population adjustment
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];

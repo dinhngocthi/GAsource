@@ -68,6 +68,7 @@ public class GA201612
     static boolean StopSearching = false;
     static int objectcall = 0;
     static long maxObjectCall = 0; 
+    static TargetFunctions targetFunction;
 
     public static void inputAppParameters()
     {
@@ -199,6 +200,7 @@ public class GA201612
         ctc.run();
         ctc.initPathListID(nvarReal);
 */         
+        targetFunction   = new TargetFunctions();
     }
 
     public static void selectMemory()
@@ -527,14 +529,15 @@ public class GA201612
         */
         //Beale's function
         //your_func = Math.pow((1.5 - x[0] + x[0]*x[1]), 2) + Math.pow((2.25 - x[0] + x[0]*x[1]*x[1]), 2) + Math.pow((2.625 - x[0] + x[0]*x[1]*x[1]*x[1]), 2);
-        
+        /*
         //Rosenbrock function        
         for (i = 0; i < nvarReal - 1 ; i++)
         {
             //your_func += 100 * Math.pow((x[i+1] - x[i]*x[i]), 2) + Math.pow((x[i] - 1), 2);
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
-        
+        */
+        your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
         nc = 0;
         // Put your constraints here
         

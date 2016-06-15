@@ -2,12 +2,12 @@
 popsize=100
 maxgen=250
 nvarbin=0
-nvarreal=10
+nvarreal=3
 chrlen=20
 xbinlower=-80
 xbinupper=80
-xreallower=-1000
-xrealupper=1000
+xreallower=1
+xrealupper=32768
 RIGID=y
 SHARING=y
 sigmashare=1

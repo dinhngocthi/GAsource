@@ -671,4 +671,42 @@ public class TargetFunctions
         
         return trityp;
     }
+    
+    public double TritypeKorel(double a, double b, double c)
+    {        
+        int trityp = 0;
+        double ret1 = 300; 
+        double ret2 = 100;
+        double ret3 = 10;
+
+        ret1  = -2 * (a + b + c);
+        if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (a > 0) && (a > 0))
+        {
+            ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a)); 
+            if ((a != b) && (b != c) && (c != a))
+            {
+                trityp = 1;      // Scalene
+            }
+            else
+            {
+                ret3 = - Math.abs(a-b) - Math.abs(b-c) - Math.abs(c-a);
+                if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
+                {
+                    trityp = 2;  // Isosceles
+                }
+                else
+                {
+                    trityp = 3;  // Equilateral
+                    
+                    System.out.println("a = " + a + " b = " + b + " c = " + c);
+                }
+            }
+        }
+        else
+        {
+            trityp = -1;        // Not a triangle
+        }
+        
+        return (ret1+ret2+ret3);
+    }
 }
