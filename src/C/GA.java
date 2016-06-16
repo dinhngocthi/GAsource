@@ -9,7 +9,7 @@ import java.lang.Math;
 
 class Population
 {
-    public final static int MAXPOPSIZE = 500;
+    public final static int MAXPOPSIZE = 5000;
     public final static int MAXVECSIZE = 30;
     public final static int MAXCONSTR = 10;
     public final static int BITS_PER_BYTE = 8;
@@ -112,7 +112,7 @@ public class GA
         popSize = Integer.parseInt(prop.getProperty("popsize", "100"));
         if (popSize > Population.MAXPOPSIZE)
         {
-            System.out.print("Increase the value of MAXPOPSIZE in program and re-run the program");
+            System.out.println("Increase the value of MAXPOPSIZE in program and re-run the program");
             return;
         }
 

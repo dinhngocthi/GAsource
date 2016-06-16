@@ -686,19 +686,19 @@ public class TargetFunctions
     public double TritypeKorel(double a, double b, double c)
     {        
         int trityp = 0;
-
+/*
         double ret1 = 300; 
         double ret2 = 100;
         double ret3 = 10;
-/*
+*/
+
         double ret1 = 0; 
         double ret2 = 0;
         double ret3 = 0;
-*/
         
         evaluationcall ++;
 
-        ret1  = -2 * (a + b + c);
+        //ret1  = -2 * (a + b + c);
         if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (a > 0) && (a > 0))
         {
             ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a)); 
@@ -726,6 +726,7 @@ public class TargetFunctions
         }
         else
         {
+            ret1  = -2 * (a + b + c);
             trityp = -1;        // Not a triangle
             trityp_1++;
         }

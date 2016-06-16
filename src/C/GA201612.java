@@ -93,7 +93,7 @@ public class GA201612
         popSize = Integer.parseInt(prop.getProperty("popsize", "100"));
         if (popSize > Population.MAXPOPSIZE)
         {
-            System.out.print("Increase the value of MAXPOPSIZE in program and re-run the program");
+            System.out.println("Increase the value of MAXPOPSIZE in program and re-run the program");
             return;
         }
 
