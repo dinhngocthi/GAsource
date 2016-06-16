@@ -7,6 +7,17 @@ import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
+    public static int trityp1;
+    public static int trityp2;
+    public static int trityp3;
+    public static int trityp_1;
+    public static int evaluationcall;
+    
+    TargetFunctions()
+    {
+        trityp1 = trityp2 = trityp3 = trityp_1 = evaluationcall = 0;
+    }
+    
     public static void main(String[] args)
     {
     }
@@ -675,9 +686,17 @@ public class TargetFunctions
     public double TritypeKorel(double a, double b, double c)
     {        
         int trityp = 0;
+
         double ret1 = 300; 
         double ret2 = 100;
         double ret3 = 10;
+/*
+        double ret1 = 0; 
+        double ret2 = 0;
+        double ret3 = 0;
+*/
+        
+        evaluationcall ++;
 
         ret1  = -2 * (a + b + c);
         if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (a > 0) && (a > 0))
@@ -686,6 +705,7 @@ public class TargetFunctions
             if ((a != b) && (b != c) && (c != a))
             {
                 trityp = 1;      // Scalene
+                trityp1++;
             }
             else
             {
@@ -693,20 +713,23 @@ public class TargetFunctions
                 if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
                 {
                     trityp = 2;  // Isosceles
+                    trityp2++;
                 }
                 else
                 {
                     trityp = 3;  // Equilateral
-                    
-                    System.out.println("a = " + a + " b = " + b + " c = " + c);
+                    if (trityp3 == 0) System.out.println("Object call = " + evaluationcall);
+                    trityp3++;
+                    //System.out.println("a = " + a + " b = " + b + " c = " + c);
                 }
             }
         }
         else
         {
             trityp = -1;        // Not a triangle
+            trityp_1++;
         }
-        
+
         return (ret1+ret2+ret3);
     }
 }

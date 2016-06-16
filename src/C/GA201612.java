@@ -1503,6 +1503,10 @@ public class GA201612
         fpRep.close();
         fpPlot.close();
         
+        System.out.println("trityp1  = " + targetFunction.trityp1);
+        System.out.println("trityp2  = " + targetFunction.trityp2);
+        System.out.println("trityp3  = " + targetFunction.trityp3);
+        System.out.println("trityp_1 = " + targetFunction.trityp_1);
         System.out.println("GA201612 completed./.");
     }
 }
