@@ -697,9 +697,15 @@ public class TargetFunctions
         double ret3 = 0;
         
         evaluationcall ++;
+        
+//        ret1  = -2 * (a + b + c);
+     
+        double ret11 = Math.min(a + b - c, b + c - a);
+        double ret12 = Math.min(c + a - b, a);
+        double ret13 = Math.min(b, c);        
+        ret1 = Math.min(Math.min(ret11, ret12), ret13);
 
-        //ret1  = -2 * (a + b + c);
-        if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (a > 0) && (a > 0))
+        if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (b > 0) && (c > 0))
         {
             ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a)); 
             if ((a != b) && (b != c) && (c != a))
@@ -726,7 +732,6 @@ public class TargetFunctions
         }
         else
         {
-            ret1  = -2 * (a + b + c);
             trityp = -1;        // Not a triangle
             trityp_1++;
         }
