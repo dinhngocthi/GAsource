@@ -698,13 +698,17 @@ public class TargetFunctions
         
         evaluationcall ++;
         
-//        ret1  = -2 * (a + b + c);
-     
+        double ret = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a); 
+        //double ret = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
+        ret1  = -2 * (a + b + c);
+/*     
         double ret11 = Math.min(a + b - c, b + c - a);
         double ret12 = Math.min(c + a - b, a);
         double ret13 = Math.min(b, c);        
         ret1 = Math.min(Math.min(ret11, ret12), ret13);
 
+        ret1 = Math.min(Math.min(a + b - c, b + c - a), c + a - b);
+*/
         if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (b > 0) && (c > 0))
         {
             ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a)); 
@@ -724,7 +728,14 @@ public class TargetFunctions
                 else
                 {
                     trityp = 3;  // Equilateral
-                    if (trityp3 == 0) System.out.println("Object call = " + evaluationcall);
+                    if (trityp3 == 0) 
+                    {
+                        System.out.println("Object call = " + evaluationcall);
+                        //System.out.println("a = " + a + " b = " + b + " c = " + c);
+                        System.out.format("a = %6.8f%n", a);
+                        System.out.format("b = %6.8f%n", b);
+                        System.out.format("c = %6.8f%n", c);
+                    }
                     trityp3++;
                     //System.out.println("a = " + a + " b = " + b + " c = " + c);
                 }
@@ -736,6 +747,7 @@ public class TargetFunctions
             trityp_1++;
         }
 
-        return (ret1+ret2+ret3);
+        //return (ret1+ret2+ret3);
+        return ret;
     }
 }
