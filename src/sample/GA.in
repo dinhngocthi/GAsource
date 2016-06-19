@@ -19,3 +19,4 @@ mutationreal=0.1
 nDistributionC=0.5
 nDistributionM=0.5
 basicseed=0.5
+num_obj=3

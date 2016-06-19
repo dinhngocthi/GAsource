@@ -691,7 +691,6 @@ public class TargetFunctions
         double ret2 = 100;
         double ret3 = 10;
 */
-
         double ret1 = 0; 
         double ret2 = 0;
         double ret3 = 0;
@@ -711,7 +710,8 @@ public class TargetFunctions
 */
         if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (b > 0) && (c > 0))
         {
-            ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a)); 
+            ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
+            //ret2 = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a);
             if ((a != b) && (b != c) && (c != a))
             {
                 trityp = 1;      // Scalene
@@ -719,7 +719,8 @@ public class TargetFunctions
             }
             else
             {
-                ret3 = - Math.abs(a-b) - Math.abs(b-c) - Math.abs(c-a);
+                ret3 = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a);
+                //ret3 = - Math.abs(a-b) - Math.abs(b-c) - Math.abs(c-a);
                 if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
                 {
                     trityp = 2;  // Isosceles
@@ -747,7 +748,8 @@ public class TargetFunctions
             trityp_1++;
         }
 
-        //return (ret1+ret2+ret3);
-        return ret;
+        return (ret1+ret2+ret3);
+        //return (ret1+ret2);
+        //return ret;
     }
 }
