@@ -88,6 +88,7 @@ public class GA
     static boolean StopSearching = false;
     static int objectcall = 0;
     static long maxObjectCall = 0; 
+    static TargetFunctions targetFunction;
 
     public static void inputAppParameters()
     {
@@ -217,7 +218,9 @@ public class GA
 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
-        ctc.initPathListID(nvarReal); 
+        ctc.initPathListID(nvarReal);
+        
+        targetFunction = new TargetFunctions();
     }
 
     public static void selectMemory()
@@ -465,6 +468,7 @@ public class GA
         {
             //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
             your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+                        
             StopSearching = (your_func == -2);
         }
         catch (Exception ex)
@@ -1397,7 +1401,6 @@ public class GA
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1410,7 +1413,6 @@ public class GA
                 }
             }
 */
-
             // tA2008
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1000) &&
                     (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 1000))
@@ -1423,7 +1425,6 @@ public class GA
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
-
 
             // New population adjustment
             double a = newPop[k].xreal[0];

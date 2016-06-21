@@ -1,5 +1,5 @@
 [GAParam]
-popsize=1000
+popsize=100
 maxgen=400
 nvarbin=0
 nvarreal=3
