@@ -1396,7 +1396,6 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1422,7 +1421,6 @@ public class GA201612
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
-
 */
             // New population adjustment
             double a = newPop[k].xreal[0];

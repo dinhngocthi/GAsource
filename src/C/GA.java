@@ -1414,14 +1414,14 @@ public class GA
             }
 */
             // tA2008
-            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1000) &&
-                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 1000))
+            if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 100) &&
+                    (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 100))
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
                 newPop[k].xreal[2] = newPop[k].xreal[1];
             }
 
-            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1000)
+            if (Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 100)
             {
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
