@@ -17,11 +17,50 @@ public class TargetFunctions
     {
         trityp1 = trityp2 = trityp3 = trityp_1 = evaluationcall = 0;
     }
-    
+        
     public static void main(String[] args)
     {
     }
 
+    public double example(int x, int y, double z) 
+    {
+        evaluationcall ++;
+
+        //double ret = 0;
+        //boolean flag = y > 1000;
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+        ret1 = Math.abs(x + y - 1024); 
+        if (x + y == 1024)
+        {
+            System.out.println("AAAA");
+            ret2 = (y - 1000);
+            if (y > 1000)
+            {
+                ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
+                if (Math.cos(z) - 0.95 < Math.exp(z))
+                {
+                    System.out.println(Math.cos(z));
+                    trityp1++;
+                }
+                else
+                {
+                    trityp2++;
+                }
+            }
+            else
+            {
+                trityp3++;
+            }
+        }
+        else
+        {
+            trityp_1++;
+        }
+        
+        return (ret1 + ret2 + ret3);
+    }    
+    
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {
         int    type = -1; // Scalene

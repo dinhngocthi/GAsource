@@ -537,7 +537,8 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
+        //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
+        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         nc = 0;
         // Put your constraints here
         
@@ -1501,6 +1502,7 @@ public class GA201612
         fpRep.close();
         fpPlot.close();
         
+        System.out.println("evaluationcall  = " + targetFunction.evaluationcall);
         System.out.println("trityp1  = " + targetFunction.trityp1);
         System.out.println("trityp2  = " + targetFunction.trityp2);
         System.out.println("trityp3  = " + targetFunction.trityp3);
