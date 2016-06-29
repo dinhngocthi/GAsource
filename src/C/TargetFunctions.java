@@ -33,8 +33,8 @@ public class TargetFunctions
         ret1 = Math.abs(x + y - 1024); 
         if (x + y == 1024)
         {
-            System.out.println("AAAA");
             ret2 = (y - 1000);
+            //ret2 = (1000 - y);
             if (y > 1000)
             {
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
