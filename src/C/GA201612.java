@@ -1503,10 +1503,10 @@ public class GA201612
         fpPlot.close();
         
         System.out.println("evaluationcall  = " + targetFunction.evaluationcall);
-        System.out.println("trityp1  = " + targetFunction.trityp1);
-        System.out.println("trityp2  = " + targetFunction.trityp2);
-        System.out.println("trityp3  = " + targetFunction.trityp3);
-        System.out.println("trityp_1 = " + targetFunction.trityp_1);
+        System.out.println("path1 = " + targetFunction.path1);
+        System.out.println("path2 = " + targetFunction.path2);
+        System.out.println("path3 = " + targetFunction.path3);
+        System.out.println("path4 = " + targetFunction.path4);
         System.out.println("GA201612 completed./.");
     }
 }

@@ -3,19 +3,19 @@ package C;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.jdt.core.refactoring.descriptors.ExtractSuperclassDescriptor;
+
 import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
-    public static int trityp1;
-    public static int trityp2;
-    public static int trityp3;
-    public static int trityp_1;
+    
+    public static int path1, path2, path3, path4, path5;
     public static int evaluationcall;
     
     TargetFunctions()
     {
-        trityp1 = trityp2 = trityp3 = trityp_1 = evaluationcall = 0;
+        path1 = path2 = path3 = path4 = evaluationcall = 0;
     }
         
     public static void main(String[] args)
@@ -30,7 +30,7 @@ public class TargetFunctions
         //boolean flag = y > 1000;
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
-        ret1 = Math.abs(x + y - 1024); 
+        ret1 = Math.abs((x + y) - 1024); 
         if (x + y == 1024)
         {
             ret2 = (y - 1000);
@@ -40,25 +40,24 @@ public class TargetFunctions
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
-                    System.out.println(Math.cos(z));
-                    trityp1++;
+                    path1++;
                 }
                 else
                 {
-                    trityp2++;
+                    path2++;                    
                 }
             }
             else
             {
-                trityp3++;
+                path3++;
             }
         }
         else
         {
-            trityp_1++;
+            path4++;
         }
         
-        return (ret1 + ret2 + ret3);
+        return Math.min(ret1, Math.min(ret2, ret3));
     }    
     
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
@@ -754,7 +753,7 @@ public class TargetFunctions
             if ((a != b) && (b != c) && (c != a))
             {
                 trityp = 1;      // Scalene
-                trityp1++;
+                path1++;
             }
             else
             {
@@ -763,12 +762,12 @@ public class TargetFunctions
                 if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
                 {
                     trityp = 2;  // Isosceles
-                    trityp2++;
+                    path2++;
                 }
                 else
                 {
                     trityp = 3;  // Equilateral
-                    if (trityp3 == 0) 
+                    if (path3 == 0) 
                     {
                         System.out.println("Object call = " + evaluationcall);
                         //System.out.println("a = " + a + " b = " + b + " c = " + c);
@@ -776,7 +775,7 @@ public class TargetFunctions
                         System.out.format("b = %6.8f%n", b);
                         System.out.format("c = %6.8f%n", c);
                     }
-                    trityp3++;
+                    path3++;
                     //System.out.println("a = " + a + " b = " + b + " c = " + c);
                 }
             }
@@ -784,7 +783,7 @@ public class TargetFunctions
         else
         {
             trityp = -1;        // Not a triangle
-            trityp_1++;
+            path4++;
         }
 
         return (ret1+ret2+ret3);
