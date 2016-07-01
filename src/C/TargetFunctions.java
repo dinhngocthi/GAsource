@@ -33,8 +33,8 @@ public class TargetFunctions
         ret1 = Math.abs((x + y) - 1024); 
         if (x + y == 1024)
         {
-            ret2 = (y - 1000);
-            //ret2 = (1000 - y);
+            //ret2 = (y - 1000);
+            ret2 = (1000 - y);
             if (y > 1000)
             {
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
@@ -57,7 +57,8 @@ public class TargetFunctions
             path4++;
         }
         
-        return Math.min(ret1, Math.min(ret2, ret3));
+        //return Math.min(ret1, Math.min(ret2, ret3));
+        return (ret1 + ret2 + ret3);
     }    
     
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
