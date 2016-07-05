@@ -1,7 +1,5 @@
 import gov.nasa.jpf.symbc.Debug;
 
-
-
 public class Assume {
 	public int test(int x, int y) {
 		Debug.assume(x>y);
