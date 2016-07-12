@@ -26,19 +26,22 @@ public class TargetFunctions
     {
         evaluationcall ++;
 
+        //double ret = 0;
         boolean flag = y > 1000;
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
         ret1 = Math.abs((x + y) - 1024); 
-        if (x + y == 1024)      // 1st condition
+        if (x + y == 1024)
         {
-            ret2 = (y - 1000);  // 2nd condition
+            ret2 = (y - 1000);
+            //ret2 = (1000 - y);
+            //if (y > 1000)
             if (flag)
             {
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
-                if (Math.cos(z) - 0.95 < Math.exp(z))  // 3rd condition
+                if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
-                    path1++; // target branch
+                    path1++;
                 }
                 else
                 {
@@ -54,10 +57,70 @@ public class TargetFunctions
         {
             path4++;
         }
-
+        
+        //return Math.min(ret1, Math.min(ret2, ret3));
         return (ret1 + ret2 + ret3);
     }    
     
+    public double example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
+    {
+        evaluationcall ++;
+
+        //double ret = 0;
+        //boolean flag = y > 1000;
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+        ret1 = Math.abs((x + y) - 1024); 
+        if (x + y == 1024)
+        {
+            // instrumented code
+            executedPath.add(new VertexTF(1, "T"));
+
+            ret2 = (y - 1000);
+            //ret2 = (1000 - y);
+            if (y > 1000)
+            //if (flag)
+            {
+                // instrumented code                
+                executedPath.add(new VertexTF(2, "T"));
+
+                ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
+                if (Math.cos(z) - 0.95 < Math.exp(z))
+                {
+                    // instrumented code
+                    executedPath.add(new VertexTF(3, "T"));
+
+                    path1++;
+                }
+                else
+                {
+                    // instrumented code                    
+                    executedPath.add(new VertexTF(3, "F"));
+
+                    path2++;
+                }
+            }
+            else
+            {
+                // instrumented code                
+                executedPath.add(new VertexTF(2, "F"));
+
+                path3++;
+            }
+        }
+        else
+        {
+            // instrumented code            
+            executedPath.add(new VertexTF(1, "F"));
+            
+            path4++;
+        }
+        
+        //return Math.min(ret1, Math.min(ret2, ret3));
+        return (ret1 + ret2 + ret3);
+    }
+
+/*
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {
         int    type = -1; // Scalene
@@ -95,7 +158,7 @@ public class TargetFunctions
         vertex2.decision  = "F"; 
         executedPath.add(vertex2);
 
-        if ((a != b) && (b != c) ) /* escaleno */
+        if ((a != b) && (b != c) ) // escaleno
         {
             // instrumented code
             VertexTF vertex3  = new VertexTF();
@@ -107,7 +170,7 @@ public class TargetFunctions
             double bs = b*b;
             double cs = c*c;
             
-            if (as == (bs + cs))  /* retangulo */
+            if (as == (bs + cs))  // retangulo
             {
                 // instrumented code
                 VertexTF vertex6  = new VertexTF();
@@ -131,7 +194,7 @@ public class TargetFunctions
                 
                 if ( as < bs + cs )
                 {
-                    type = 3; /* agudo */
+                    type = 3; // agudo
                     
                     // instrumented code
                     VertexTF vertex7  = new VertexTF();
@@ -141,7 +204,7 @@ public class TargetFunctions
                 }
                 else
                 {
-                    type = 4; /* obtuso */
+                    type = 4; // obtuso
                     
                     // instrumented code
                     VertexTF vertex7  = new VertexTF();
@@ -161,7 +224,7 @@ public class TargetFunctions
 
             if ((a == b) && (b == c))
             {
-                type = 5;  /* equilatero */
+                type = 5;  // equilatero 
                 area = a*a*Math.sqrt(3.0)/4.0;
                 
                 // instrumented code
@@ -178,7 +241,7 @@ public class TargetFunctions
                 vertex4.decision  = "F"; 
                 executedPath.add(vertex4);
 
-                type = 6; /* isoceles */
+                type = 6; // isoceles 
 
                 if (a == b)
                 {
@@ -722,11 +785,11 @@ public class TargetFunctions
     public double TritypeKorel(double a, double b, double c)
     {        
         int trityp = 0;
-/*
+//
         double ret1 = 300; 
         double ret2 = 100;
         double ret3 = 10;
-*/
+
         double ret1 = 0; 
         double ret2 = 0;
         double ret3 = 0;
@@ -736,14 +799,14 @@ public class TargetFunctions
         double ret = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a); 
         //double ret = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
         ret1  = -2 * (a + b + c);
-/*     
+//     
         double ret11 = Math.min(a + b - c, b + c - a);
         double ret12 = Math.min(c + a - b, a);
         double ret13 = Math.min(b, c);        
         ret1 = Math.min(Math.min(ret11, ret12), ret13);
 
         ret1 = Math.min(Math.min(a + b - c, b + c - a), c + a - b);
-*/
+
         if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (b > 0) && (c > 0))
         {
             ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
@@ -788,4 +851,5 @@ public class TargetFunctions
         //return (ret1+ret2);
         //return ret;
     }
+*/    
 }

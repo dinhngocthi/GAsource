@@ -57,7 +57,6 @@ public class DuongKiemThu {
 	}
 
 	/**
-	 * Khởi tạo đường kiểm thử và tìm lời giải
 	 * 
 	 * @param testpath
 	 * @param delimiter
@@ -81,8 +80,6 @@ public class DuongKiemThu {
 	}
 
 	/**
-	 * Kiểm tra đường kiểm thử có feasible không sử dụng kĩ thuật sinh ngẫu
-	 * nhiên
 	 * 
 	 * @return
 	 * @throws Exception
@@ -126,7 +123,6 @@ public class DuongKiemThu {
 	}
 
 	/**
-	 * Kiểm tra đường kiểm thử có feasible không sử dụng SMT-Solver Z3
 	 * 
 	 * @return
 	 * @throws Exception

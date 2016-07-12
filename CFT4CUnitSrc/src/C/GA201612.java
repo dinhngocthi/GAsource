@@ -1503,7 +1503,7 @@ public class GA201612
         fpPlot.close();
         
         System.out.println("evaluationcall  = " + targetFunction.evaluationcall);
-        System.out.println("path1(target branch) = " + targetFunction.path1);
+        System.out.println("path1 = " + targetFunction.path1);
         System.out.println("path2 = " + targetFunction.path2);
         System.out.println("path3 = " + targetFunction.path3);
         System.out.println("path4 = " + targetFunction.path4);

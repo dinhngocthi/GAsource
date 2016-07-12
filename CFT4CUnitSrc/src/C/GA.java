@@ -1413,6 +1413,7 @@ public class GA
                 }
             }
 */
+/*
             // tA2008
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 100) &&
                     (Math.abs(newPop[k].xreal[1] - newPop[k].xreal[2]) < 100))
@@ -1430,7 +1431,7 @@ public class GA
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-
+*/
 /*
             if (Math.abs(a*a - (b*b+c*c)) < 1)    //triangleMansour2004
             {

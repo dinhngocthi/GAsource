@@ -305,6 +305,7 @@ public class ChuongTrinhChinh
 
     public void initPathListID(int loop) throws Exception
     {
+
         staticVariable.Paramater.depth = loop; // interation loop
         geterTest = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
@@ -314,7 +315,7 @@ public class ChuongTrinhChinh
         for (int i = 0; i < totalTargetPaths; i++)
             pathListID[i] = 1;
         
-        // for generatenewPop adjust
+        // Create equal condition list for generatenewPop adjust
         equalCondList = new ArrayList<String>();
         for (int i = 0; i < totalTargetPaths; i++)
         {
@@ -432,6 +433,7 @@ public class ChuongTrinhChinh
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
         System.out.println("------------Create all target paths start-------------");
+/*        
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
@@ -487,14 +489,39 @@ public class ChuongTrinhChinh
             System.out.println();
         }       
         fpOut.printf("\n");
+*/
+
+        totalTargetPaths = 4;
+        targetPaths = new ArrayList<ArrayList<VertexTF>>();
         
+        ArrayList<VertexTF> pathTF1 = new ArrayList<VertexTF>();        
+        pathTF1.add(new VertexTF(1, "F"));
+        targetPaths.add(pathTF1);
+        
+        ArrayList<VertexTF> pathTF2 = new ArrayList<VertexTF>();        
+        pathTF2.add(new VertexTF(1, "T"));
+        pathTF2.add(new VertexTF(2, "F"));        
+        targetPaths.add(pathTF2);
+
+        ArrayList<VertexTF> pathTF3 = new ArrayList<VertexTF>();        
+        pathTF3.add(new VertexTF(1, "T"));
+        pathTF3.add(new VertexTF(2, "T"));        
+        pathTF3.add(new VertexTF(3, "F"));
+        targetPaths.add(pathTF3);
+
+        ArrayList<VertexTF> pathTF4 = new ArrayList<VertexTF>();        
+        pathTF4.add(new VertexTF(1, "T"));
+        pathTF4.add(new VertexTF(2, "T"));        
+        pathTF4.add(new VertexTF(3, "T"));
+        targetPaths.add(pathTF4);
+
         disMatrix = new double[totalTargetPaths][totalTargetPaths];
         for (int i = 0; i < totalTargetPaths; i++ )
         {
             for (int j = 0; j < totalTargetPaths; j++ )
             {        
                 disMatrix[i][j] = calculatePathDistTF(targetPaths.get(i), targetPaths.get(j));
-                fpOut.printf("[" + i + "->" + j + "]:");
+                fpOut.printf("[" + (i+1) + "->" + (j+1) + "]:");
                 fpOut.printf("%2.5f; ", disMatrix[i][j]);
             }
             fpOut.printf("\n");
@@ -532,8 +559,6 @@ public class ChuongTrinhChinh
         int i = 0;
         int size = targetPaths.size();
         double[] ret = new double[2];
-        ret[0] = -1;
-
               
         if (totalTargetPaths == 0)  // Target paths list is empty
         {
@@ -554,14 +579,19 @@ public class ChuongTrinhChinh
 
             pathListID[i] = 0;
             ret[0] = (i+1);     // PathID
+            ret[1] = 0;
         }
-        
-        double sum = 0;
-        for (int j = 0; j < size; j ++)
+        else
         {
-            sum += disMatrix[i][j];
+        	double sum = 0;
+        	for (int j = 0; j < size; j ++)
+        	{
+        		if (i != j && pathListID[j] == 1)
+        			sum += disMatrix[i][j];
+        	}
+            ret[0] = -1;
+        	ret[1] = ((double)sum/(double)totalTargetPaths);
         }
-        ret[1] = ((double)sum/(double)totalTargetPaths);
 
         return ret;
     }
@@ -572,7 +602,7 @@ public class ChuongTrinhChinh
         objectcall++;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-
+/*
         if (functionName.equals("tA2008_Triangle"))
             targetFunction.tA2008_Triangle(a, b, c, executedPath);
         else if (functionName.equals("QuadraticEquation2"))
@@ -581,6 +611,8 @@ public class ChuongTrinhChinh
             targetFunction.triangleMansour2004(a, b, c, executedPath);
         else if (functionName.equals("tritypeBueno2002"))
             targetFunction.tritypeBueno2002(a, b, c, executedPath);
+*/
+        targetFunction.example((int)a, (int)b, c, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] == -2)
@@ -604,14 +636,14 @@ public class ChuongTrinhChinh
         double[] fitness;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-        
+/*        
         if (functionName.equals("iA2008_InsertionSort"))
             targetFunction.InsertionSort(a, size, executedPath);
         else if (functionName.equals("GetMinMax"))
             targetFunction.getMinMax(a, size, executedPath);
         else if (functionName.equals("GetMinMaxTriangle"))
             targetFunction.mmTriangle(a, size, executedPath);
-
+*/
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] > -1)
         {
@@ -642,7 +674,7 @@ public class ChuongTrinhChinh
         int[] number = new int[2];
         number[0] = a;
         number[1] = b;
-        targetFunction.gcd(number, executedPath);
+//        targetFunction.gcd(number, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(executedPath);
         if (fitness[0] > -1)
