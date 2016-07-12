@@ -596,6 +596,58 @@ public class ChuongTrinhChinh
         return ret;
     }
 
+    private double distance(int pathid1, int pathid2, double x, double y, double z)
+    {
+    	double ret = 0;
+    	switch (pathid1)
+    	{
+    		case 1:
+    			switch (pathid2)
+    	    	{
+    	    		case 2:
+    	    			ret = Math.abs(x + y - 1024) - (y - 1024); // path 1 - > path 2
+    	    			break;
+    	    		case 3:
+    			        ret = Math.abs(x + y - 1024) + (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 3
+    			        break;
+    	    		case 4:
+    			        ret = Math.abs(x + y - 1024) + (y - 1024) + (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 4    			        
+    			        break;
+    	    	}
+    			break;
+    		case 2:
+    			switch (pathid2)
+    	    	{
+    	    		case 1:
+    	    			ret = Math.abs(x + y - 1024) - (y - 1024); // path 1 - > path 2
+    	    			break;
+    	    		case 3:
+    			        ret = (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 3
+    			        break;
+    	    		case 4:
+    			        ret = (y - 1024) + (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 4    			        
+    			        break;
+    	    	}
+    			break;
+    		case 3:
+    			switch (pathid2)
+    	    	{
+    	    		case 1:
+    	    			ret = Math.abs(x + y - 1024) + (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 3
+    	    			break;
+    	    		case 2:
+    	    			ret = (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 3
+    			        break;
+    	    		case 4:
+    			        ret = (Math.cos(z) - 0.95 - Math.exp(z));  // path 3 - > path 4    			        
+    			        break;
+    	    	}
+    			break;
+    		case 4:    		
+    			break;
+    	}
+    	return ret;
+    }
     public double calculateDistTriangle(double a, double b, double c, String functionName)
     {
         double[] fitness;
