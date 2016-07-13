@@ -62,29 +62,20 @@ public class TargetFunctions
         return (ret1 + ret2 + ret3);
     }    
     
-    public double example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
+    public void example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
     {
         evaluationcall ++;
 
-        //double ret = 0;
-        //boolean flag = y > 1000;
-        double ret1, ret2, ret3, ret4;
-        ret1 = ret2 = ret3 = ret4 = 0;
-        ret1 = Math.abs((x + y) - 1024); 
         if (x + y == 1024)
         {
             // instrumented code
             executedPath.add(new VertexTF(1, "T"));
 
-            ret2 = (y - 1000);
-            //ret2 = (1000 - y);
             if (y > 1000)
-            //if (flag)
             {
                 // instrumented code                
                 executedPath.add(new VertexTF(2, "T"));
-
-                ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
+ 
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
                     // instrumented code
@@ -115,9 +106,6 @@ public class TargetFunctions
             
             path4++;
         }
-        
-        //return Math.min(ret1, Math.min(ret2, ret3));
-        return (ret1 + ret2 + ret3);
     }
 
 /*

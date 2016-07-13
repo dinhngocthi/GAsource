@@ -79,8 +79,8 @@ public class ChuongTrinhChinh
         for (String c_output_arr1 : c_output_arr)
         {
             String[] item = c_output_arr1.split("#");
-            Node n = new Node(Integer.parseInt(item[0]), item[1], Integer.parseInt(item[2].replace("true=", "")), Integer.parseInt(item[3].replace(
-                    "false=", "")));
+            Node n = new Node(Integer.parseInt(item[0]), item[1], Integer.parseInt(item[2].replace("true=", "")), 
+            		Integer.parseInt(item[3].replace("false=", "")));
             mnNode.add(n);
         }
         String expectOutput = new String();
@@ -554,7 +554,7 @@ public class ChuongTrinhChinh
         return ret;
     }
     
-    private double[] getDistExecutedPath2TargetPaths(ArrayList<VertexTF> executedPath)
+    private double[] getDistExecutedPath2TargetPaths(double x, double y, double z, ArrayList<VertexTF> executedPath)
     {
         int i = 0;
         int size = targetPaths.size();
@@ -587,7 +587,8 @@ public class ChuongTrinhChinh
         	for (int j = 0; j < size; j ++)
         	{
         		if (i != j && pathListID[j] == 1)
-        			sum += disMatrix[i][j];
+        			//sum += disMatrix[i][j];
+        			sum += distance(i+1, j+1, x, y, z);
         	}
             ret[0] = -1;
         	ret[1] = ((double)sum/(double)totalTargetPaths);
@@ -605,13 +606,13 @@ public class ChuongTrinhChinh
     			switch (pathid2)
     	    	{
     	    		case 2:
-    	    			ret = Math.abs(x + y - 1024) - (y - 1024); // path 1 - > path 2
+    	    			ret = Math.abs(x + y - 1024) - (y - 1000); // path 1 - > path 2
     	    			break;
     	    		case 3:
-    			        ret = Math.abs(x + y - 1024) + (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 3
+    			        ret = Math.abs(x + y - 1024) + (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 3
     			        break;
     	    		case 4:
-    			        ret = Math.abs(x + y - 1024) + (y - 1024) + (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 4    			        
+    			        ret = Math.abs(x + y - 1024) + (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 4    			        
     			        break;
     	    	}
     			break;
@@ -619,13 +620,13 @@ public class ChuongTrinhChinh
     			switch (pathid2)
     	    	{
     	    		case 1:
-    	    			ret = Math.abs(x + y - 1024) - (y - 1024); // path 1 - > path 2
+    	    			ret = Math.abs(x + y - 1024) - (y - 1000); // path 1 - > path 2
     	    			break;
     	    		case 3:
-    			        ret = (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 3
+    			        ret = (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 3
     			        break;
     	    		case 4:
-    			        ret = (y - 1024) + (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 4    			        
+    			        ret = (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 4    			        
     			        break;
     	    	}
     			break;
@@ -633,21 +634,34 @@ public class ChuongTrinhChinh
     			switch (pathid2)
     	    	{
     	    		case 1:
-    	    			ret = Math.abs(x + y - 1024) + (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 1 - > path 3
+    	    			ret = Math.abs(x + y - 1024) + (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 3
     	    			break;
     	    		case 2:
-    	    			ret = (y - 1024) - (Math.cos(z) - 0.95 - Math.exp(z));  // path 2 - > path 3
+    	    			ret = (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 3
     			        break;
     	    		case 4:
-    			        ret = (Math.cos(z) - 0.95 - Math.exp(z));  // path 3 - > path 4    			        
+    			        ret = (Math.exp(z) - (Math.cos(z) - 0.95));  // path 3 - > path 4    			        
     			        break;
     	    	}
     			break;
-    		case 4:    		
+    		case 4:
+    			switch (pathid2)
+    	    	{
+    	    		case 1:
+    	    			ret = Math.abs(x + y - 1024) + (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 4
+    	    			break;
+    	    		case 2:
+    	    			ret = (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 4
+    			        break;
+    	    		case 3:
+    	    			ret = (Math.exp(z) - (Math.cos(z) - 0.95));  // path 3 - > path 4    			        
+    			        break;
+    	    	}
     			break;
     	}
     	return ret;
     }
+
     public double calculateDistTriangle(double a, double b, double c, String functionName)
     {
         double[] fitness;
@@ -666,7 +680,7 @@ public class ChuongTrinhChinh
 */
         targetFunction.example((int)a, (int)b, c, executedPath);
 
-        fitness = getDistExecutedPath2TargetPaths(executedPath);
+        fitness = getDistExecutedPath2TargetPaths(a, b, c, executedPath);
         if (fitness[0] == -2)
         {
             return fitness[0];
@@ -696,7 +710,7 @@ public class ChuongTrinhChinh
         else if (functionName.equals("GetMinMaxTriangle"))
             targetFunction.mmTriangle(a, size, executedPath);
 */
-        fitness = getDistExecutedPath2TargetPaths(executedPath);
+        fitness = getDistExecutedPath2TargetPaths(a[0], a[1], a[2], executedPath);
         if (fitness[0] > -1)
         {
             // hit a feasible path
@@ -719,7 +733,7 @@ public class ChuongTrinhChinh
 
     public double calculateDistGreatestCommonDivisor(int a, int b)
     {
-        double[] fitness;
+        double[] fitness = null;
         TargetFunctions targetFunction   = new TargetFunctions();        
         ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
         
@@ -728,7 +742,7 @@ public class ChuongTrinhChinh
         number[1] = b;
 //        targetFunction.gcd(number, executedPath);
 
-        fitness = getDistExecutedPath2TargetPaths(executedPath);
+        //fitness = getDistExecutedPath2TargetPaths(a, b, c, executedPath);
         if (fitness[0] > -1)
         {
             // hit a feasible path
