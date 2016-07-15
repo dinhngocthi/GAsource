@@ -1,8 +1,8 @@
 [GAParam]
 popsize=100
 maxgen=400
-nvarbin=3
-nvarreal=0
+nvarbin=0
+nvarreal=3
 chrlen=20
 xbinlower=-10000
 xbinupper=10000
@@ -12,7 +12,7 @@ RIGID=y
 SHARING=y
 sigmashare=1
 REPORT=y
-maxrun=5
+maxrun=3
 xover=0.5
 mutationbin=0.1
 mutationreal=0.1

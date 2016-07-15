@@ -27,5 +27,7 @@
 	<classpathentry kind="lib" path="lib/jedis-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/green.jar"/>
 	<classpathentry kind="lib" path="lib/com.microsoft.z3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/Thi.DN/PhD/Tools/eclipseluna/plugins/org.evosuite.plugins.eclipse.deps_1.0.2.201512261016/lib/evosuite.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
