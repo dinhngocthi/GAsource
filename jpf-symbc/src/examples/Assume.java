@@ -15,8 +15,8 @@ public class Assume {
 	{
 		Assume testinst = new Assume();
 		int x = testinst.test(1, 2);
-		 x = testinst.test1(1, 2);
-		System.out.println("symbolic value of x: "+Debug.getSymbolicIntegerValue(x));
+		x = testinst.test1(1, 2);
+		System.out.println("symbolic value of x: " + Debug.getSymbolicIntegerValue(x));
 		Debug.printPC("\n Path Condition: ");
 	}
 }
