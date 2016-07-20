@@ -30,7 +30,7 @@ public class Sample {
             else
             {
             	ret = 3;
-            	System.out.println("path 3");;
+            	System.out.println("path 3");
             }
         }
         else

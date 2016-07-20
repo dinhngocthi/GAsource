@@ -9,13 +9,11 @@ import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
-    
-    public static int path1, path2, path3, path4, path5;
-    public static int evaluationcall;
+    public static int path1, path2, path3, path4, path5, calltime;
     
     TargetFunctions()
     {
-        path1 = path2 = path3 = path4 = evaluationcall = 0;
+        path1 = path2 = path3 = path4 = calltime = 0;
     }
         
     public static void main(String[] args)
@@ -24,9 +22,9 @@ public class TargetFunctions
 
     public double example(int x, int y, double z) 
     {
-        evaluationcall ++;
-
         //double ret = 0;
+    	calltime++;
+
         boolean flag = y > 1000;
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
@@ -35,8 +33,8 @@ public class TargetFunctions
         {
             ret2 = (y - 1000);
             //ret2 = (1000 - y);
-            //if (y > 1000)
-            if (flag)
+            if (y > 1000)
+            //if (flag)
             {
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
                 if (Math.cos(z) - 0.95 < Math.exp(z))
@@ -46,6 +44,7 @@ public class TargetFunctions
                 else
                 {
                     path2++;
+                    System.out.println("Call times = " + calltime);
                 }
             }
             else
@@ -64,8 +63,6 @@ public class TargetFunctions
     
     public void example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
     {
-        evaluationcall ++;
-
         if (x + y == 1024)
         {
             // instrumented code

@@ -66,8 +66,7 @@ public class GA201612
     //static ChuongTrinhChinh ctc;
     static String testFunction;
     static boolean StopSearching = false;
-    static int objectcall = 0;
-    static long maxObjectCall = 0; 
+    static int objectcall = 0; 
     static TargetFunctions targetFunction;
 
     public static void inputAppParameters()
@@ -176,8 +175,6 @@ public class GA201612
 
         criticalSize = popSize / 4;
         inputAppParameters();
-        
-        maxObjectCall = (maxRun * maxGen * popSize);
         
         // No loop
         //testFunction =  "tritypeBueno2002";
@@ -551,10 +548,6 @@ public class GA201612
         }
         indv.penalty = gsum;
         objectcall++;
-        if (objectcall == maxObjectCall)
-        {
-            System.out.println("Objective call: " + objectcall);
-        }
     }
 
     public static void initialize()
@@ -1397,6 +1390,16 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
+            
+            //if (x + y == 1024)
+            	
+            	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
+            	{
+            		//newPop[k].xreal[0] =  20; 
+            		//newPop[k].xreal[1] = 1004;
+            		
+            		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
+            	}
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1427,7 +1430,6 @@ public class GA201612
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-
 /*
             if (Math.abs(a*a - (b*b+c*c)) < 1)    //triangleMansour2004
             {
@@ -1501,8 +1503,8 @@ public class GA201612
         fpOut.close();
         fpRep.close();
         fpPlot.close();
-        
-        System.out.println("evaluationcall  = " + targetFunction.evaluationcall);
+
+        System.out.println("Objective call: " + objectcall);
         System.out.println("path1 = " + targetFunction.path1);
         System.out.println("path2 = " + targetFunction.path2);
         System.out.println("path3 = " + targetFunction.path3);
