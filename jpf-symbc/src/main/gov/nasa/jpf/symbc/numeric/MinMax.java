@@ -43,22 +43,26 @@ public class MinMax {
 	/**
 	 * Lower bound on symbolic integer variables.
 	 */
-	private static int minInt = -1000000;
+	//private static int minInt = -1000000;
+	private static int minInt = -Integer.MAX_VALUE;
 
 	/**
 	 * Upper bound on symbolic integer variables.
 	 */
-	private static int maxInt = 1000000;
+	//private static int maxInt = 1000000;
+	private static int maxInt = Integer.MAX_VALUE;
 
 	/**
 	 * Lower bound on symbolic real variables.
 	 */
-	private static double minDouble = -8;
+	//private static double minDouble = -8;
+	private static double minDouble = -Double.MAX_VALUE;
 
 	/**
 	 * Upper bound on symbolic real variables.
 	 */
-	private static double maxDouble = 7;
+	//private static double maxDouble = 7;
+	private static double maxDouble = Double.MAX_VALUE;
 
 	/**
 	 * Mapping from variable names to minimum integer values.

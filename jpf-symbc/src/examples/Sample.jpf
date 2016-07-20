@@ -7,8 +7,8 @@ symbolic.method=Sample.example(sym#sym#sym)
 
 symbolic.min_int=-10000
 symbolic.max_int=10000
-#symbolic.min_double=-10000.0
-#symbolic.max_double=10000.0
+symbolic.min_double=-10000.0
+symbolic.max_double=10000.0
 
 symbolic.dp=coral
 symbolic.debug=true
