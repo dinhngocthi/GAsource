@@ -6,7 +6,7 @@ public class Sample {
 		// TODO Auto-generated method stub
 		example(2, 1022, 3);
 	}
-	
+
     public static int example(int x, int y, double z) 
     {
     	int ret = 0;

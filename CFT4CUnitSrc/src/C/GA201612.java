@@ -1392,14 +1392,13 @@ public class GA201612
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
             //if (x + y == 1024)
-            	
-            	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
-            	{
-            		//newPop[k].xreal[0] =  20; 
-            		//newPop[k].xreal[1] = 1004;
-            		
-            		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
-            	}
+        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
+        	{
+        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
+        	}
+
+//            	if (newPop[k].xreal[1] > 900)
+//            		newPop[k].xreal[1] += 100;
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {

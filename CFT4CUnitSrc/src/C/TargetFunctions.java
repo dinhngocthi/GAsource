@@ -22,19 +22,16 @@ public class TargetFunctions
 
     public double example(int x, int y, double z) 
     {
-        //double ret = 0;
     	calltime++;
 
-        boolean flag = y > 1000;
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
+
         ret1 = Math.abs((x + y) - 1024); 
         if (x + y == 1024)
         {
             ret2 = (y - 1000);
-            //ret2 = (1000 - y);
             if (y > 1000)
-            //if (flag)
             {
                 ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
                 if (Math.cos(z) - 0.95 < Math.exp(z))
