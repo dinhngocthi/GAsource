@@ -30,10 +30,10 @@ public class TargetFunctions
         ret1 = Math.abs((x + y) - 1024); 
         if (x + y == 1024)
         {
-            ret2 = (y - 1000);
+            ret2 = (1000 - y);
             if (y > 1000)
             {
-                ret3 = Math.exp(z) - (Math.cos(z) - 0.95); 
+                ret3 = (Math.cos(z) - 0.95) - Math.exp(z); 
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
                     path1++;
@@ -763,36 +763,20 @@ public class TargetFunctions
         
         return trityp;
     }
-    
+*/    
     public double TritypeKorel(double a, double b, double c)
     {        
         int trityp = 0;
-//
-        double ret1 = 300; 
-        double ret2 = 100;
-        double ret3 = 10;
-
         double ret1 = 0; 
         double ret2 = 0;
         double ret3 = 0;
         
-        evaluationcall ++;
+        calltime ++;
         
-        double ret = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a); 
-        //double ret = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
-        ret1  = -2 * (a + b + c);
-//     
-        double ret11 = Math.min(a + b - c, b + c - a);
-        double ret12 = Math.min(c + a - b, a);
-        double ret13 = Math.min(b, c);        
-        ret1 = Math.min(Math.min(ret11, ret12), ret13);
-
-        ret1 = Math.min(Math.min(a + b - c, b + c - a), c + a - b);
-
-        if ((a + b > c) && (b + c > a) && (c + a > b) && (a > 0) && (b > 0) && (c > 0))
+        ret1 = -(a + b + c); // (c - a - b) + (a - b - c) + (b - c - a);        
+        if ((a + b > c) && (b + c > a) && (c + a > b))
         {
-            ret2 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
-            //ret2 = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a);
+            ret2 = 0;
             if ((a != b) && (b != c) && (c != a))
             {
                 trityp = 1;      // Scalene
@@ -800,8 +784,7 @@ public class TargetFunctions
             }
             else
             {
-                ret3 = Math.abs(a-b) + Math.abs(b-c) + Math.abs(c-a);
-                //ret3 = - Math.abs(a-b) - Math.abs(b-c) - Math.abs(c-a);
+                ret3 = Math.min(Math.min(Math.abs(a-b), Math.abs(b-c)), Math.abs(c-a));
                 if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
                 {
                     trityp = 2;  // Isosceles
@@ -812,7 +795,7 @@ public class TargetFunctions
                     trityp = 3;  // Equilateral
                     if (path3 == 0) 
                     {
-                        System.out.println("Object call = " + evaluationcall);
+                        System.out.println("Object call = " + calltime);
                         //System.out.println("a = " + a + " b = " + b + " c = " + c);
                         System.out.format("a = %6.8f%n", a);
                         System.out.format("b = %6.8f%n", b);
@@ -830,8 +813,5 @@ public class TargetFunctions
         }
 
         return (ret1+ret2+ret3);
-        //return (ret1+ret2);
-        //return ret;
-    }
-*/    
+    }    
 }

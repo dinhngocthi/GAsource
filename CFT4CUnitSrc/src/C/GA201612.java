@@ -536,6 +536,7 @@ public class GA201612
         */
         //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
         your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+
         nc = 0;
         // Put your constraints here
         
@@ -1392,25 +1393,26 @@ public class GA201612
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
             //if (x + y == 1024)
+/*            
         	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
         	{
         		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
-
+*/
 //            	if (newPop[k].xreal[1] > 900)
 //            		newPop[k].xreal[1] += 100;
-/*
+
             for (int i = 0; i < nvarReal - 1; i++)
             {
                 for (int j = i + 1; j < nvarReal; j++)
                 {
-                    if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 0.01)
+                    if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 1000)
                     {
-                        newPop[k].xreal[i] = newPop[k].xreal[j];
+//                        newPop[k].xreal[i] = newPop[k].xreal[j];
                     } 
                 }
             }
-*/
+
 /*
             // tA2008
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1) &&
