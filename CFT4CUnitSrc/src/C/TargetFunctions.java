@@ -41,7 +41,8 @@ public class TargetFunctions
                 else
                 {
                     path2++;
-                    System.out.println("Call times = " + calltime);
+                    if (path2 == 1)
+                    	System.out.println("Call times = " + calltime);
                 }
             }
             else
@@ -53,7 +54,7 @@ public class TargetFunctions
         {
             path4++;
         }
-        
+
         //return Math.min(ret1, Math.min(ret2, ret3));
         return (ret1 + ret2 + ret3);
     }    

@@ -1399,20 +1399,18 @@ public class GA201612
         		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
 */
-//            	if (newPop[k].xreal[1] > 900)
-//            		newPop[k].xreal[1] += 100;
-
+/*
             for (int i = 0; i < nvarReal - 1; i++)
             {
                 for (int j = i + 1; j < nvarReal; j++)
                 {
                     if (Math.abs(newPop[k].xreal[i] - newPop[k].xreal[j]) < 1000)
                     {
-//                        newPop[k].xreal[i] = newPop[k].xreal[j];
+                        newPop[k].xreal[i] = newPop[k].xreal[j];
                     } 
                 }
             }
-
+*/
 /*
             // tA2008
             if ((Math.abs(newPop[k].xreal[0] - newPop[k].xreal[1]) < 1) &&
