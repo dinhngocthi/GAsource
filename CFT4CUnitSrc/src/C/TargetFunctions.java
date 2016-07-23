@@ -42,7 +42,10 @@ public class TargetFunctions
                 {
                     path2++;
                     if (path2 == 1)
+                    {
+                    	System.out.println("example");
                     	System.out.println("Call times = " + calltime);
+                    }
                 }
             }
             else
