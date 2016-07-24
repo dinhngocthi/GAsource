@@ -534,8 +534,8 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
-        //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
+        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
 
         nc = 0;
         // Put your constraints here
@@ -1425,11 +1425,12 @@ public class GA201612
                 newPop[k].xreal[0] = newPop[k].xreal[1];
             }
 */
+/*
             // New population adjustment
             double a = newPop[k].xreal[0];
             double b = newPop[k].xreal[1];
             double c = newPop[k].xreal[2];
-/*
+
             if (Math.abs(a*a - (b*b+c*c)) < 1)    //triangleMansour2004
             {
                 newPop[k].xreal[0] = Math.sqrt(b*b+c*c);

@@ -27,13 +27,13 @@ public class TargetFunctions
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
 
-        ret1 = Math.abs((x + y) - 1024); 
+        ret1 = Math.abs((x + y) - 1024);
         if (x + y == 1024)
         {
             ret2 = (1000 - y);
             if (y > 1000)
             {
-                ret3 = (Math.cos(z) - 0.95) - Math.exp(z); 
+                ret3 = (Math.cos(z) - 0.95) - Math.exp(z);
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
                     path1++;
@@ -60,7 +60,7 @@ public class TargetFunctions
 
         //return Math.min(ret1, Math.min(ret2, ret3));
         return (ret1 + ret2 + ret3);
-    }    
+    }
     
     public void example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
     {
