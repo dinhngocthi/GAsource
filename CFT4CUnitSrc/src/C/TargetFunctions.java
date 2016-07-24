@@ -10,10 +10,12 @@ import SMTSolver.RunZ3OnCMD;
 public class TargetFunctions
 {
     public static int path1, path2, path3, path4, path5, calltime;
+    public static boolean stopCriteria; 
     
     TargetFunctions()
     {
         path1 = path2 = path3 = path4 = calltime = 0;
+        stopCriteria = false;
     }
         
     public static void main(String[] args)
@@ -36,29 +38,36 @@ public class TargetFunctions
                 ret3 = (Math.cos(z) - 0.95) - Math.exp(z);
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
-                    path1++;
+                	if (path1 > 0) return Double.MIN_VALUE;
+                    path1++;                    
                 }
                 else
                 {
+                	if (path2 > 0) return Double.MIN_VALUE;
                     path2++;
+/*
                     if (path2 == 1)
                     {
                     	System.out.println("example");
                     	System.out.println("Call times = " + calltime);
                     }
+*/
                 }
             }
             else
             {
+            	if (path3 > 0) return Double.MIN_VALUE;
                 path3++;
             }
         }
         else
         {
+        	if (path4 > 0) return Double.MIN_VALUE;
             path4++;
         }
 
         //return Math.min(ret1, Math.min(ret2, ret3));
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
     

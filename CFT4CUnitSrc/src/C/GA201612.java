@@ -647,7 +647,8 @@ public class GA201612
 
         for (k = 0; k < popSize; k++)
         {
-            if (StopSearching) return;
+            //if (StopSearching) return;
+            if (targetFunction.stopCriteria) return;
 
             decodeString(oldPop[k]);
             objective(oldPop[k]);
@@ -1479,6 +1480,7 @@ public class GA201612
             seed = basicSeed + (1.0 - basicSeed) * (double) (run - 1) / (double) maxRun;
             if (seed > 1.0)
                 System.out.println("Warning !!! seed number exceeds 1.0");
+
             genNo = 0;
             initialize();
             statistics(genNo);
@@ -1493,11 +1495,13 @@ public class GA201612
 
                 statistics(genNo);
                 report(genNo);
-                if (StopSearching) break;
+                //if (StopSearching) break;
+                if (targetFunction.stopCriteria) break;
             }
             /* One GA run is over */
             freeAll();
-            if (StopSearching) break;
+            //if (StopSearching) break;
+            if (targetFunction.stopCriteria) break;
         } /* for loop of run */
 
         fpOut.close();
