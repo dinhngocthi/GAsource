@@ -38,12 +38,10 @@ public class TargetFunctions
                 ret3 = (Math.cos(z) - 0.95) - Math.exp(z);
                 if (Math.cos(z) - 0.95 < Math.exp(z))
                 {
-                	if (path1 > 0) return Double.MIN_VALUE;
                     path1++;                    
                 }
                 else
                 {
-                	if (path2 > 0) return Double.MIN_VALUE;
                     path2++;
 /*
                     if (path2 == 1)
@@ -56,13 +54,11 @@ public class TargetFunctions
             }
             else
             {
-            	if (path3 > 0) return Double.MIN_VALUE;
                 path3++;
             }
         }
         else
         {
-        	if (path4 > 0) return Double.MIN_VALUE;
             path4++;
         }
 
