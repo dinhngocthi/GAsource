@@ -821,6 +821,7 @@ public class TargetFunctions
             path4++;
         }
 
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
         return (ret1+ret2+ret3);
-    }    
+    }
 }

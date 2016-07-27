@@ -534,8 +534,8 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
-        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
+        //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
 
         nc = 0;
         // Put your constraints here
@@ -1304,7 +1304,7 @@ public class GA201612
      * ===================================================================
      * Mutation Using polynomial probability distribution. Picks up a random
      * site and generates a random number u between -1 to 1, ( or between minu
-     * to maxu in case of rigid boudaries) and calls the routine get_delta() to
+     * to maxu in case of rigid boundaries) and calls the routine get_delta() to
      * calculate the actual shift of the value.
      * ====================================================================
      */
@@ -1394,11 +1394,12 @@ public class GA201612
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
             //if (x + y == 1024)
+/*
         	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
         	{
         		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
-
+*/
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
