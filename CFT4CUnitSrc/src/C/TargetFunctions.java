@@ -22,6 +22,28 @@ public class TargetFunctions
     {
     }
 
+    public double insertion(double[] anyArray, int length)
+    {
+    	calltime++;
+
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+	
+        for (int i = 1; i < length; i++)
+        {
+        	double x = anyArray[i];
+        	int j = i - 1;
+        	while ((j > 0) && (anyArray[j] > x))
+        	{
+        		anyArray[j+1] = anyArray[j];
+        		j = j - 1;
+        		anyArray[j+1] = x;
+        	}
+        }
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        return (ret1 + ret2 + ret3);
+    }
+
     public double example(int x, int y, double z) 
     {
     	calltime++;
