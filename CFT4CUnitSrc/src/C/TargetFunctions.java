@@ -133,6 +133,81 @@ public class TargetFunctions
         }
     }
 
+    public int tritypeBueno2002(double a, double b, double c)
+    {
+        int    type = -1; // Scalene
+        double area = 0;
+        
+        if ((a < b) || (b < c))
+        {
+            return type;
+        }        
+
+        if (a >= (b + c))
+        {
+            return type;
+        }
+        if ((a != b) && (b != c) ) // escaleno
+        {
+            double as = a*a;
+            double bs = b*b;
+            double cs = c*c;
+            
+            if (as == (bs + cs))  // retangulo
+            {        
+                type = 2;// 'Rectangle';
+                area = (b*c)/2.0;
+            }
+            else
+            {
+                double s = (a+b+c) / 2.0;
+                area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+                
+                if ( as < bs + cs )
+                {
+                    type = 3; // agudo                    
+                }
+                else
+                {
+                    type = 4; // obtuso
+                }
+            }
+        }
+        else
+        {
+            if ((a == b) && (b == c))
+            {
+                type = 5;  // equilatero 
+                area = a*a*Math.sqrt(3.0)/4.0;                
+            }
+            else
+            {
+                if (a == b)
+                {
+                    area = c*Math.sqrt(4*a*b-c*c)/4.0;
+                    
+                    // instrumented code
+                    VertexTF vertex5  = new VertexTF();
+                    vertex5.id = 5;
+                    vertex5.decision  = "T"; 
+                    executedPath.add(vertex5);
+                }
+                else
+                {
+                    area = a*Math.sqrt(4*b*c-a*c)/4.0;
+                    
+                    // instrumented code
+                    VertexTF vertex5  = new VertexTF();
+                    vertex5.id = 5;
+                    vertex5.decision  = "F"; 
+                    executedPath.add(vertex5);
+                }
+            }
+        }
+        
+        return type;
+    }
+    
 /*
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
     {
