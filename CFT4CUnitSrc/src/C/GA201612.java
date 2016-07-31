@@ -534,8 +534,9 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
-        //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
+        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
         nc = 0;
         // Put your constraints here
@@ -1393,13 +1394,28 @@ public class GA201612
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
-            //if (x + y == 1024)
+            //if (Math.abs(newPop[k].xreal[0]) < 10000)
+//            	newPop[k].xreal[0] = 0;
+
+            //if (Math.abs(newPop[k].xreal[1]) < 10000)
+//            	newPop[k].xreal[1] = 0;
 /*
-        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
+            // New population adjustment
+            double a = newPop[k].xreal[0];
+            double b = newPop[k].xreal[1];
+            double c = newPop[k].xreal[2];
+
+            if (Math.abs(b*b - (4*a*c)) < 5000)    //delta
+                newPop[k].xreal[1] = Math.sqrt(4*a*c);
+*/
+            //if (x + y == 1024)
+
+//        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
         	{
         		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
-*/
+
+        	
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1427,11 +1443,6 @@ public class GA201612
             }
 */
 /*
-            // New population adjustment
-            double a = newPop[k].xreal[0];
-            double b = newPop[k].xreal[1];
-            double c = newPop[k].xreal[2];
-
             if (Math.abs(a*a - (b*b+c*c)) < 1)    //triangleMansour2004
             {
                 newPop[k].xreal[0] = Math.sqrt(b*b+c*c);
@@ -1513,6 +1524,7 @@ public class GA201612
         System.out.println("path2 = " + targetFunction.path2);
         System.out.println("path3 = " + targetFunction.path3);
         System.out.println("path4 = " + targetFunction.path4);
+        System.out.println("path5 = " + targetFunction.path5);
         System.out.println("GA201612 completed./.");
     }
 }

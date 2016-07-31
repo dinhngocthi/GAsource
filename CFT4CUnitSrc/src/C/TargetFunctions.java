@@ -9,23 +9,51 @@ import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
-    public static int path1, path2, path3, path4, path5, calltime;
+    public static int path1, path2, path3, path4, path5;
     public static boolean stopCriteria; 
     
     TargetFunctions()
     {
-        path1 = path2 = path3 = path4 = calltime = 0;
+        path1 = path2 = path3 = path4 = path5 = 0;
         stopCriteria = false;
     }
         
     public static void main(String[] args)
     {
+    	Tritype(1, 2, 3);
+    	Tritype(2, 2, 3);
+    	Tritype(2, 2, 2);
+    	Tritype(2, 3, 4);
     }
 
+    public static double Tritype(double a, double b, double c)
+    {
+    	int type = -1;
+    	if (a + b <= c || a + c <= b || b + c <= a)
+    	{
+    		type = -1; // Not a triangle
+    		System.out.println("Not a triangle");
+    	}
+    	else if (a == b && b == c)
+    	{
+    		type = 3;  // Equilateral
+    		System.out.println("Equilateral");
+    	}
+    	else if (a == b || b == c || c == a)
+    	{
+    		type = 2;  // Isosceles
+    		System.out.println("Isosceles");
+    	}
+    	else
+    	{
+    		type = 1;  // Scalene
+    		System.out.println("Scalene");
+    	}
+    	return type;
+    }
+    
     public double insertion(double[] anyArray, int length)
     {
-    	calltime++;
-
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
 	
@@ -46,8 +74,6 @@ public class TargetFunctions
 
     public double example(int x, int y, double z) 
     {
-    	calltime++;
-
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
 
@@ -133,80 +159,57 @@ public class TargetFunctions
         }
     }
 
-    public int tritypeBueno2002(double a, double b, double c)
+
+    public double QuadraticEquation2(double a, double b, double c)
     {
-        int    type = -1; // Scalene
-        double area = 0;
-        
-        if ((a < b) || (b < c))
+        double root1, root2;
+
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+
+        ret1 = Math.abs(a);
+        if (a == 0)
         {
-            return type;
+        	ret2 = Math.abs(a);
+            if (b != 0)
+            {
+                root1 = (-c)/b;
+                path1++;
+            }
+            else
+            {
+            	path2++;
+            }
+            //return ret1;
+            return (ret1 + ret2);
         }        
 
-        if (a >= (b + c))
+        ret2 = (b*b) - (4*a*c);
+        if (((b*b) - (4*a*c)) < 0)
+        {            
+        	path3++;
+        	return ret2;
+        }        
+        else 
         {
-            return type;
-        }
-        if ((a != b) && (b != c) ) // escaleno
-        {
-            double as = a*a;
-            double bs = b*b;
-            double cs = c*c;
-            
-            if (as == (bs + cs))  // retangulo
-            {        
-                type = 2;// 'Rectangle';
-                area = (b*c)/2.0;
+        	ret3 = Math.abs((b*b) - (4*a*c));
+            if (((b*b) - (4*a*c)) == 0)
+            {
+                root1 = (-b)/(a*2);
+                path4++;
             }
             else
             {
-                double s = (a+b+c) / 2.0;
-                area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
-                
-                if ( as < bs + cs )
-                {
-                    type = 3; // agudo                    
-                }
-                else
-                {
-                    type = 4; // obtuso
-                }
-            }
-        }
-        else
-        {
-            if ((a == b) && (b == c))
-            {
-                type = 5;  // equilatero 
-                area = a*a*Math.sqrt(3.0)/4.0;                
-            }
-            else
-            {
-                if (a == b)
-                {
-                    area = c*Math.sqrt(4*a*b-c*c)/4.0;
-                    
-                    // instrumented code
-                    VertexTF vertex5  = new VertexTF();
-                    vertex5.id = 5;
-                    vertex5.decision  = "T"; 
-                    executedPath.add(vertex5);
-                }
-                else
-                {
-                    area = a*Math.sqrt(4*b*c-a*c)/4.0;
-                    
-                    // instrumented code
-                    VertexTF vertex5  = new VertexTF();
-                    vertex5.id = 5;
-                    vertex5.decision  = "F"; 
-                    executedPath.add(vertex5);
-                }
+                root1 = ((-b + Math.sqrt(((b*b) - (4*a*c))))/(2*a));
+                root2 = ((-b - Math.sqrt(((b*b) - (4*a*c))))/(2*a));
+                path5++;
             }
         }
         
-        return type;
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0);
+        return (ret1 + ret2 + ret3);
     }
+    
     
 /*
     public int tritypeBueno2002(double a, double b, double c, ArrayList<VertexTF> executedPath)
@@ -873,11 +876,8 @@ public class TargetFunctions
     public double TritypeKorel(double a, double b, double c)
     {        
         int trityp = 0;
-        double ret1 = 0; 
-        double ret2 = 0;
-        double ret3 = 0;
-        
-        calltime ++;
+        double ret1, ret2, ret3, ret4;			
+        ret1 = ret2 = ret3 = ret4 = 0;			
         
         ret1 = -(a + b + c); // (c - a - b) + (a - b - c) + (b - c - a);        
         if ((a + b > c) && (b + c > a) && (c + a > b))
@@ -901,7 +901,6 @@ public class TargetFunctions
                     trityp = 3;  // Equilateral
                     if (path3 == 0) 
                     {
-                        System.out.println("Object call = " + calltime);
                         //System.out.println("a = " + a + " b = " + b + " c = " + c);
                         System.out.format("a = %6.8f%n", a);
                         System.out.format("b = %6.8f%n", b);
