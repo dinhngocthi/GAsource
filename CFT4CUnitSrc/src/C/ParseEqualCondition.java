@@ -16,7 +16,6 @@ public class ParseEqualCondition
     private ArrayList<ArrayList<VertexTF>> targetPaths;
     private ArrayList<String> equalCondList;
 
-    
 	ParseEqualCondition(String filename)
 	{
 		this.filename = filename;
@@ -25,7 +24,11 @@ public class ParseEqualCondition
 	public static void main(String[] args) throws Exception 
 	{
 		// TODO Auto-generated method stub
-		ParseEqualCondition ParseEqualCond = new ParseEqualCondition("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/tA2008_Triangle.c");
+        String classPath = ParseEqualCondition.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
+		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/tA2008_Triangle.java"));
+		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/QuadraticEquation2.java"));		
+		ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/example.java"));
 		ParseEqualCond.parsing();
 		ParseEqualCond.initPathListID();
 	}
