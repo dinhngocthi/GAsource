@@ -23,8 +23,10 @@ public class ChuongTrinhChinh
 
     public static void main(String[] args) throws Exception
     {
-        ChuongTrinhChinh c = new ChuongTrinhChinh("E:\\PhD\\CFT4CUnit\\CFT4CUnit\\Vi Du\\SelectionSort.c");
+        //ChuongTrinhChinh c = new ChuongTrinhChinh("E:\\PhD\\CFT4CUnit\\CFT4CUnit\\Vi Du\\SelectionSort.c");
+        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/tA2008_Triangle.c");
         c.run();
+        c.initPathListID(3);
     }
 
     public ChuongTrinhChinh(String fileInput)
@@ -81,7 +83,7 @@ public class ChuongTrinhChinh
             String[] item = c_output_arr1.split("#");
             Node n = new Node(Integer.parseInt(item[0]), item[1], Integer.parseInt(item[2].replace("true=", "")), 
             		Integer.parseInt(item[3].replace("false=", "")));
-            mnNode.add(n);
+            mnNode.add(n);            
         }
         String expectOutput = new String();
         int newRootIndex = staticVariable.Statement.NodeRelations.split("\n").length - 2;

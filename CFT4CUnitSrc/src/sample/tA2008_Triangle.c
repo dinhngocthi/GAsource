@@ -1,18 +1,29 @@
-int Tritype(double a, double b, double c)
+double Tritype(double a, double b, double c)
 {
-	int trityp = 0;
-	if ((a + b > c) && (b + c > a) && (c + a > b))
+	int type = -1;
+
+	if (a + b > c && a + c > b && b + c > a)
 	{
-		if ((a != b) && (b != c) && (c != a))
-			trityp = 1;  	 // Scalene
+		if (a == b && b == c)
+		{
+			type = 3;  // Equilateral
+		}
 		else
-			if (((a == b) && (b != c)) || ((b == c) && (c != a)) || ((c == a) && (a != b)))
-				trityp = 2;  // Isosceles
+		{
+			if (a == b || b == c || c == a)
+			{
+				type = 2;  // Isosceles
+			}
 			else
-				trityp = 3;  // Equilateral
+			{
+				type = 1;  // Scalene
+			}
+		}
 	}
 	else
-		trityp = -1; 		// Not a triangle
+	{
+		type = -1; // Not a triangle
+	}
 
-	return trityp;
+	return type;
 }

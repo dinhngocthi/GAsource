@@ -29,27 +29,46 @@ public class TargetFunctions
     public static double Tritype(double a, double b, double c)
     {
     	int type = -1;
-    	if (a + b <= c || a + c <= b || b + c <= a)
+        
+    	double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+
+        ret1 = -(a + b + c); // if (a + b > c && a + c > b && b + c > a) 
+    	if (a + b > c && a + c > b && b + c > a)
     	{
-    		type = -1; // Not a triangle
-    		System.out.println("Not a triangle");
-    	}
-    	else if (a == b && b == c)
-    	{
-    		type = 3;  // Equilateral
-    		System.out.println("Equilateral");
-    	}
-    	else if (a == b || b == c || c == a)
-    	{
-    		type = 2;  // Isosceles
-    		System.out.println("Isosceles");
+    		ret2 = Math.abs(a - b) + Math.abs(b - c); 
+    		if (a == b && b == c)
+	    	{
+	    		type = 3;  // Equilateral
+	    		//System.out.println("Equilateral");
+	    		path2++;
+	    	}
+	    	else
+	    	{
+	    		ret3 = Math.min(Math.min(Math.abs(a - b), Math.abs(b - a)), Math.abs(c - a));
+	    		if (a == b || b == c || c == a)
+		    	{
+		    		type = 2;  // Isosceles
+		    		//System.out.println("Isosceles");
+		    		path3++;
+		    	}
+		    	else
+		    	{
+		    		type = 1;  // Scalene
+		    		//System.out.println("Scalene");
+		    		path4++;
+		    	}
+	    	}
     	}
     	else
     	{
-    		type = 1;  // Scalene
-    		System.out.println("Scalene");
+    		type = -1; // Not a triangle
+    		//System.out.println("Not a triangle");
+    		path1++;
     	}
-    	return type;
+
+    	stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+    	return (ret1 + ret2 + ret3);
     }
     
     public double insertion(double[] anyArray, int length)

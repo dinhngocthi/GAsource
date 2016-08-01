@@ -30,7 +30,8 @@ public class getGraphC {
 		p.runFromSource("C:\\Users\\anhanh\\Documents\\5_Sum.c");
 	}
 
-	private static IASTTranslationUnit getIASTTranslationUnit(char[] code) throws Exception {
+	private static IASTTranslationUnit getIASTTranslationUnit(char[] code) throws Exception 
+	{
 		FileContent fc = FileContent.create("/Path/ToResolveIncludePaths.c", code);
 		Map<String, String> macroDefinitions = new HashMap<String, String>();
 		String[] includeSearchPaths = new String[0];
@@ -83,25 +84,18 @@ public class getGraphC {
 			subBegin[i] = new Node();
 			subEnd[i] = new Node();
 		}
-		// Nếu function chỉ có một khối lệnh bọc trong { và }
 		if (childSet.length == 1)
 			visitBlock(begin, end, childSet[0], breakPoint, continuePoint);
 		else
-		// Nếu function là tập hợp nhiều khối lệnh liên tiếp nhau
 		{
 			visitBlock(subBegin[childSet.length - 1], end, childSet[childSet.length - 1],
 					/* breakPoint */breakPoint, /* ContinuePoint */
 					continuePoint);
 			for (int i = childSet.length - 2; i >= 1; i--)
-				// Nếu children này không phải câu lệnh for,do,while : nếu có
-				// lệnh break gọi trong children này thì điểm break trỏ tới
-				// chính là breakpoint của cha nó
 				if (!isForWhileStatement(childSet[i]))
 					visitBlock(subBegin[i], subBegin[i + 1].trueBranch, childSet[i], /* breakPoint */
 							breakPoint, /* ContinuePoint */continuePoint);
 				else
-					// Ngược lại, nếu trong children này có lệnh break. Điểm mà
-					// break này trỏ tới chính là khối mà children này trỏ tới
 					visitBlock(subBegin[i], subBegin[i + 1].trueBranch, childSet[i], /* breakPoint */
 							subBegin[i + 1].trueBranch, /* ContinuePoint */
 							subBegin[i]);

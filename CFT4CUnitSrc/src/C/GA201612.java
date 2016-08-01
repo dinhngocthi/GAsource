@@ -535,7 +535,8 @@ public class GA201612
         }
         */
         //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
-        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        your_func = targetFunction.Tritype(x[0], x[1], x[2]);
+        //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
         nc = 0;
@@ -1394,6 +1395,9 @@ public class GA201612
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
+            newPop[k].xreal[0] = newPop[k].xreal[1];
+            newPop[k].xreal[2] = newPop[k].xreal[1];
+            
             //if (Math.abs(newPop[k].xreal[0]) < 10000)
 //            	newPop[k].xreal[0] = 0;
 
@@ -1412,7 +1416,7 @@ public class GA201612
 
 //        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
         	{
-        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
+//        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
 
         	
