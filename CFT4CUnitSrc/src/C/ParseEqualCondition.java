@@ -27,8 +27,8 @@ public class ParseEqualCondition
         String classPath = ParseEqualCondition.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
 		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/tA2008_Triangle.java"));
-		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/QuadraticEquation2.java"));		
-		ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/example.java"));
+		ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/QuadraticEquation2.java"));		
+		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/example.java"));
 		ParseEqualCond.parsing();
 		ParseEqualCond.initPathListID();
 	}
