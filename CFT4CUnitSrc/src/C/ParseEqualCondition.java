@@ -31,6 +31,14 @@ public class ParseEqualCondition
 		//ParseEqualCondition ParseEqualCond = new ParseEqualCondition(classPath.replace("bin/", "src/sample/example.java"));
 		ParseEqualCond.parsing();
 		ParseEqualCond.initPathListID();
+
+		String operand1 = null;
+		String operand2 = null;
+
+		//ParseEqualCond.parseExpression(operand1, operand2, "x+y==1024");		
+		ParseEqualCond.parseExpression(operand1, operand2, "a==b||b==c||c==a");
+		System.out.println(operand1);
+		System.out.println(operand2);
 	}
 	
 	private void parsing() throws Exception
@@ -217,6 +225,16 @@ public class ParseEqualCondition
         for (int i = 0; i < equalCondList.size(); i++)
         	System.out.print("[" + equalCondList.get(i) + "] ");
         System.out.println();
+    }
+
+    private void parseExpression(String operand1, String operand2, String expression)
+    {
+    	if (!expression.contains("=="))
+    		return;
+
+    	int index = expression.indexOf("==");
+    	operand1 = expression.substring(0, index);
+    	operand2 = expression.substring(index+2);
     }
     
     class Node
