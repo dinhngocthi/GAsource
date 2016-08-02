@@ -68,9 +68,11 @@ public class GA201612
     static boolean StopSearching = false;
     static int objectcall = 0; 
     static TargetFunctions targetFunction;
-
+    static Adjust[] adjustList = new Adjust[10];
+    
     public static void inputAppParameters()
     {
+    	
     };
 
     public static void inputParameters() throws Exception
@@ -1394,10 +1396,11 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-
-            newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
-            //newPop[k].xreal[2] = newPop[k].xreal[1];
             
+            //newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
+            
+            //newPop[k].xreal[2] = newPop[k].xreal[1];
+
             //if (Math.abs(newPop[k].xreal[0]) < 10000)
 //            	newPop[k].xreal[0] = 0;
 
@@ -1530,5 +1533,19 @@ public class GA201612
         System.out.println("path4 = " + targetFunction.path4);
         System.out.println("path5 = " + targetFunction.path5);
         System.out.println("GA201612 completed./.");
+    }
+    
+    class Adjust
+    {
+    	public int index1;
+    	public boolean value;
+    	public double index2;
+    	
+    	Adjust(int index1, boolean value, double index2)
+    	{
+    		this.index1 = index1;
+    		this.value = value;
+    		this.index2 = index2;
+    	}
     }
 }
