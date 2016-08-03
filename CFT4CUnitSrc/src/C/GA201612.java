@@ -177,6 +177,7 @@ public class GA201612
         criticalSize = popSize / 4;
         inputAppParameters();
         
+        
         // No loop
         //testFunction =  "tritypeBueno2002";
         testFunction =  "triangleMansour2004";
@@ -193,12 +194,14 @@ public class GA201612
         //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");        
         //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
         //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
-/*
-        ctc = new ChuongTrinhChinh(pathFile);
-        ctc.run();
-        ctc.initPathListID(nvarReal);
-*/         
+                 
         targetFunction   = new TargetFunctions();
+        
+        for (int i = 0; i < 10; i++) 
+        {
+        	Adjust adjust = new Adjust(-1, true, 0);
+        	adjustList[i] = adjust;
+        }
     }
 
     public static void selectMemory()
@@ -1395,7 +1398,17 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-            
+
+            for (int i = 0; i < 10; i++)
+            {
+            	if (adjustList[i].index1 == -1) break;
+
+            	if (adjustList[i].value)
+            		newPop[k].xreal[adjustList[i].index1] = adjustList[i].index2;
+            	else
+            		newPop[k].xreal[adjustList[i].index1] = newPop[k].xreal[(int) adjustList[i].index2];
+            }
+
             //newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
             
             //newPop[k].xreal[2] = newPop[k].xreal[1];
