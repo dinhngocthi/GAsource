@@ -188,7 +188,6 @@ public class ParseEqualCondition
         equalCondList = new ArrayList<String>();
         for (int i = 0; i < totalTargetPaths; i++)
         {
-            //System.out.print("Path " + i + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size();
             int k = 0;

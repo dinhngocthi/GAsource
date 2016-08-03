@@ -62,8 +62,7 @@ public class GA201612
     static double[] oldrand = new double[55]; /* Array of 55 random numbers */
     static int jrand; /* current random number */
     static double seed; /* Random seed number */
-    
-    //static ChuongTrinhChinh ctc;
+
     static String testFunction;
     static boolean StopSearching = false;
     static int objectcall = 0; 
@@ -1540,7 +1539,7 @@ public class GA201612
     	public int index1;
     	public boolean value;
     	public double index2;
-    	
+
     	Adjust(int index1, boolean value, double index2)
     	{
     		this.index1 = index1;
