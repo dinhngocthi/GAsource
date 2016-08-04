@@ -1403,10 +1403,10 @@ public class GA201612
             {
             	if (adjustList[i].index1 == -1) break;
 
-            	if (adjustList[i].value)
+            	if (adjustList[i].bIsValue)
             		newPop[k].xreal[adjustList[i].index1] = adjustList[i].index2;
             	else
-            		newPop[k].xreal[adjustList[i].index1] = newPop[k].xreal[(int) adjustList[i].index2];
+            		newPop[k].xreal[adjustList[i].index1] = newPop[k].xreal[(int) adjustList[i].index2] + adjustList[i].adjustvalue;
             }
 
             //newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
@@ -1550,14 +1550,16 @@ public class GA201612
     class Adjust
     {
     	public int index1;
-    	public boolean value;
+    	public boolean bIsValue;
     	public double index2;
+    	public double adjustvalue;
 
-    	Adjust(int index1, boolean value, double index2)
+    	Adjust(int index1, boolean bIsValue, double index2, double adjustvalue)
     	{
     		this.index1 = index1;
-    		this.value = value;
+    		this.bIsValue = bIsValue;
     		this.index2 = index2;
+    		this.adjustvalue = adjustvalue; 
     	}
     }
 }
