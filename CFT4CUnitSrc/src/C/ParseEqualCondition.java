@@ -253,7 +253,6 @@ public class ParseEqualCondition
 
         protected String getData()
         {
-
             return data;
         }
 

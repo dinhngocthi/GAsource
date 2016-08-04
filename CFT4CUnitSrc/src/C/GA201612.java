@@ -67,7 +67,7 @@ public class GA201612
     static boolean StopSearching = false;
     static int objectcall = 0; 
     static TargetFunctions targetFunction;
-    static Adjust[] adjustList = new Adjust[10];
+    static Adjustment[] adjustList = new Adjustment[10];
     
     public static void inputAppParameters()
     {
@@ -199,7 +199,7 @@ public class GA201612
         
         for (int i = 0; i < 10; i++) 
         {
-        	Adjust adjust = new Adjust(-1, true, 0);
+        	Adjustment adjust = new Adjustment(-1, true, 0, 0);
         	adjustList[i] = adjust;
         }
     }
@@ -1546,15 +1546,15 @@ public class GA201612
         System.out.println("path5 = " + targetFunction.path5);
         System.out.println("GA201612 completed./.");
     }
-    
-    class Adjust
+
+    class Adjustment
     {
     	public int index1;
     	public boolean bIsValue;
     	public double index2;
     	public double adjustvalue;
 
-    	Adjust(int index1, boolean bIsValue, double index2, double adjustvalue)
+    	Adjustment(int index1, boolean bIsValue, double index2, double adjustvalue)
     	{
     		this.index1 = index1;
     		this.bIsValue = bIsValue;
