@@ -176,32 +176,25 @@ public class GA201612
 
         criticalSize = popSize / 4;
         inputAppParameters();
-        
-        
-        // No loop
-        //testFunction =  "tritypeBueno2002";
-        testFunction =  "triangleMansour2004";
-        //testFunction =  "tA2008_Triangle";
-        //testFunction =  "QuadraticEquation2";
-
-        // Nested loop
-        //testFunction =  "iA2008_InsertionSort";
-
-        String pathFile = classPath.replace("bin/", "src/sample/"+ testFunction + ".c");
-        //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/tA2008_Triangle.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");        
-        //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
                  
         targetFunction   = new TargetFunctions();
         
         for (int i = 0; i < 10; i++) 
         {
-        	Adjust adjust = new Adjust(-1, true, 0, 0);
+        	Adjust adjust = new Adjust(-1, true, 0, 0,"");
         	adjustList[i] = adjust;
         }
+
+        adjustList[0].index1 = 0;
+        adjustList[0].bIsValue = true;
+//        adjustList[0].index2 = 1;
+        adjustList[0].adjustvalue = 0;
+//        adjustList[0].op = "+";
+
+        adjustList[1].index1 = 1;
+        adjustList[1].bIsValue = true;
+//        adjustList[1].index2 = 2;
+        adjustList[1].adjustvalue = 0;
     }
 
     public static void selectMemory()
@@ -538,10 +531,9 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        //your_func = targetFunction.TritypeKorel(x[0], x[1], x[2]);
-        your_func = targetFunction.Tritype(x[0], x[1], x[2]);
+        //your_func = targetFunction.Tritype(x[0], x[1], x[2]);
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
-        //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
+        your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
         nc = 0;
         // Put your constraints here
@@ -1404,9 +1396,33 @@ public class GA201612
             	if (adjustList[i].index1 == -1) break;
 
             	if (adjustList[i].bIsValue)
-            		newPop[k].xreal[adjustList[i].index1] = adjustList[i].index2;
+            		newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue;
             	else
-            		newPop[k].xreal[adjustList[i].index1] = newPop[k].xreal[(int) adjustList[i].index2] + adjustList[i].adjustvalue;
+            	{
+            		switch (adjustList[i].op)
+            		{
+            			case "+":
+            				newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue - newPop[k].xreal[adjustList[i].index2];
+            				break;
+
+            			case "-":
+            				newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue + newPop[k].xreal[adjustList[i].index2];
+            				break;
+
+            			case "/":
+            				newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue * newPop[k].xreal[adjustList[i].index2];
+            				break;
+
+            			case "*":
+            				if (newPop[k].xreal[(int) adjustList[i].index2] != 0)
+            					newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue / newPop[k].xreal[adjustList[i].index2];
+            				break;
+
+            			default:
+            				newPop[k].xreal[adjustList[i].index1] = adjustList[i].adjustvalue + newPop[k].xreal[adjustList[i].index2];
+            				break;
+            		}
+            	}
             }
 
             //newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
@@ -1552,14 +1568,16 @@ class Adjust
 {
 	public int index1;
 	public boolean bIsValue;
-	public double index2;
+	public int index2;
 	public double adjustvalue;
+	public String op;
 
-	Adjust(int index1, boolean bIsValue, double index2, double adjustvalue)
+	Adjust(int index1, boolean bIsValue, int index2, double adjustvalue, String op)
 	{
 		this.index1 = index1;
 		this.bIsValue = bIsValue;
 		this.index2 = index2;
-		this.adjustvalue = adjustvalue; 
+		this.adjustvalue = adjustvalue;
+		this.op = op;
 	}
 }
