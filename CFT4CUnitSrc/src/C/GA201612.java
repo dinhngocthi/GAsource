@@ -535,8 +535,11 @@ public class GA201612
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
-        nc = 0;
+        nc = 2; 
         // Put your constraints here
+        g[0] = Math.abs(x[0] - x[1]);
+        g[1] = Math.abs(x[1] - x[2]);
+//        g[1] = x[1] - x[2];
         
         indv.obj = your_func;
         for (i = 0, gsum = 0.0; i < nc; i++)
@@ -1390,7 +1393,7 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-
+/*
             for (int i = 0; i < 10; i++)
             {
             	if (adjustList[i].index1 == -1) break;
@@ -1424,7 +1427,7 @@ public class GA201612
             		}
             	}
             }
-
+*/
             //newPop[k].xreal[0] = newPop[k].xreal[1] = newPop[k].xreal[2];
             
             //newPop[k].xreal[2] = newPop[k].xreal[1];
