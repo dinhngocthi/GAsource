@@ -1,20 +1,18 @@
 package SMTSolver;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Phân tích một biểu thức logic về dạng chuẩn Smt-Lib. Biểu thức logic có thể
- * có phép so sánh khác nhau, biến mảng một chiều và hai chiều. Biểu thức đầu ra
- * không có dấu cách thừa. Cụ thể: trước sau dấu mở ngoặc/đóng ngoặc không có
- * dấu cách; không có hai dấu cách liền kề; biểu thức đầu ra đặt trong cặp ngoặc
- * 
- * @author anhanh
- * 
- */
+import C.ChuongTrinhChinh;
+
+
 public class ConvertToSmtLibv2 {
 	private String expression;
 	private Map<String, String> arrayItemMap;
@@ -48,27 +46,51 @@ public class ConvertToSmtLibv2 {
 		return expression;
 	}
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException, InterruptedException 
 	{
 	    //String expression = "(a+b>c)&&(b+c>a)&&(c+a>b)";
-	    //String expression = "(a!=b)&&(b!=c)&&(c!=a)";
-	    String expression = "((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))";	    
+	    String expression = "(a!=b)&&(b!=c)&&(c!=a)";
+	    //String expression = "((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))";
+	    //String expression = "b * b == 4 * a * c";
+		//String expression = "b == c";
 		//ConvertToSmtLibv2 c = new ConvertToSmtLibv2("(C==D/((B-2)-1))");
 		ConvertToSmtLibv2 c = new ConvertToSmtLibv2(expression);
 		c.run();
 		System.out.println("(assert " +  c.getOutput() + ")");
+
+        String smtFileName = "test.smt2";
+        PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
+        // z3
+        //fpSmt.printf("(declare-const a Real)\n");
+        //fpSmt.printf("(declare-const b Real)\n");
+        //fpSmt.printf("(declare-const c Real)\n");
+
+        // yices                
+        fpSmt.printf("(set-logic QF_NRA)\n");
+        fpSmt.printf("(declare-fun a () Real)\n");
+        fpSmt.printf("(declare-fun b () Real)\n");
+        fpSmt.printf("(declare-fun c () Real)\n");
+        fpSmt.printf("(assert (> a 0))\n");
+        fpSmt.printf("(assert (> b 0))\n");
+        fpSmt.printf("(assert (> c 0))\n");
+        
+        fpSmt.printf(c.getOutput() + "\n");
+        
+        fpSmt.printf("(check-sat)\n");
+        fpSmt.printf("(get-model)");
+        fpSmt.close();
+
+        String classPath     = ConvertToSmtLibv2.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");  // Using smt solver Z3
+//        String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "yices/bin/yices-smt2");  // Using smt solver yices
+        RunZ3OnCMD r = new RunZ3OnCMD(smtSolverPath, smtFileName);
+        System.out.println(r.getOutput());
 	}
 
 	private void standlizeOutput() {
 		expression = expression.replaceAll("\\s*\\(\\s*", "(").replaceAll("\\s*\\)\\s*", ")").replaceAll("\\s+", " ");
 	}
 
-	/**
-	 * 
-	 * @param arrayItem
-	 *            Biến mảng một chiều hoặc hai chiều
-	 * @return danh sách chỉ số mảng
-	 */
 	private String[] getArrayIndexList(String arrayItem) {
 		// Ex: arrayItem=a[3][3+x]
 		return arrayItem./* step 1 */substring(arrayItem.indexOf("[") + 1)
@@ -76,10 +98,6 @@ public class ConvertToSmtLibv2 {
 				./* step 4 */split(" ");
 	}
 
-	/**
-	 * 
-	 * @return Danh sách biến mảng có trong biểu thức logic expression
-	 */
 	private ArrayList<String> getArrayItemList(String expression) {
 		ArrayList<String> arrayItemList = new ArrayList<>();
 		// do something here
@@ -91,14 +109,6 @@ public class ConvertToSmtLibv2 {
 		return arrayItemList;
 	}
 
-	/**
-	 * 
-	 * @param expression
-	 *            Biếu thức logic
-	 * @param arrayItemMap
-	 *            Bảng ánh xa biến mảng với tên thay thế
-	 * @return
-	 */
 	private String replaceArrayItem(String expression, Map<String, String> arrayItemMap) {
 		final String PREFIX = "tvw";
 		int startPREFIX = 65;

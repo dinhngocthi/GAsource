@@ -359,7 +359,7 @@ public class ChuongTrinhChinh
         	System.out.print("[" + equalCondList.get(i) + "] ");
         System.out.println();
 
-/*
+
         // for smt solver
         for (int i = 0; i < totalTargetPaths; i++)
         {
@@ -430,7 +430,7 @@ public class ChuongTrinhChinh
                 System.out.println("Path " + i + ": " + r.getOutput());
             }
         }
-*/
+
         PrintWriter fpOut;
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 

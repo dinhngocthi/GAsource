@@ -52,7 +52,9 @@ public class RunZ3OnCMD
 
 	public static void main(String[] args) throws IOException, InterruptedException 
 	{
-		RunZ3OnCMD r = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", "C:/CFT4CUnit/he-rang-buoc2.smt2");
+		// https://z3.codeplex.com/releases
+		//RunZ3OnCMD r = new RunZ3OnCMD("D:/PhD/SymbolicExecution/tool/SPF/z3/bin/Z3", "C:/CFT4CUnit/he-rang-buoc2.smt2");
+		RunZ3OnCMD r = new RunZ3OnCMD("D:/Thi.DN/PhD/GA/GASource/z3/bin/Z3", "D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/test.smt2"); 
 		System.out.println(r.getOutput());
 	}
 }
