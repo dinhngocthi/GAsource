@@ -48,10 +48,9 @@ public class ConvertToSmtLibv2 {
 
 	public static void main(String[] args) throws IOException, InterruptedException 
 	{
-	    //String expression = "(a+b>c)&&(b+c>a)&&(c+a>b)";
-	    String expression = "(a!=b)&&(b!=c)&&(c!=a)";
+	    String expression = "a + b = 1024 && a > 1000";
 	    //String expression = "((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))";
-	    //String expression = "b * b == 4 * a * c";
+	    //String expression = "a * a * 3 == 27";
 		//String expression = "b == c";
 		//ConvertToSmtLibv2 c = new ConvertToSmtLibv2("(C==D/((B-2)-1))");
 		ConvertToSmtLibv2 c = new ConvertToSmtLibv2(expression);
@@ -61,11 +60,17 @@ public class ConvertToSmtLibv2 {
         String smtFileName = "test.smt2";
         PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
         // z3
-        //fpSmt.printf("(declare-const a Real)\n");
-        //fpSmt.printf("(declare-const b Real)\n");
-        //fpSmt.printf("(declare-const c Real)\n");
+        fpSmt.printf("(declare-const a Real)\n");
+        fpSmt.printf("(declare-const b Real)\n");
+        fpSmt.printf("(declare-const c Real)\n");
+        fpSmt.printf("(assert (> a -10000))\n");
+        fpSmt.printf("(assert (> b -10000))\n");
+        fpSmt.printf("(assert (> c 0))\n");
+        fpSmt.printf("(assert (< a 10000))\n");
+        fpSmt.printf("(assert (< b 10000))\n");
 
-        // yices                
+        // yices               
+/*        
         fpSmt.printf("(set-logic QF_NRA)\n");
         fpSmt.printf("(declare-fun a () Real)\n");
         fpSmt.printf("(declare-fun b () Real)\n");
@@ -73,8 +78,8 @@ public class ConvertToSmtLibv2 {
         fpSmt.printf("(assert (> a 0))\n");
         fpSmt.printf("(assert (> b 0))\n");
         fpSmt.printf("(assert (> c 0))\n");
-        
-        fpSmt.printf(c.getOutput() + "\n");
+*/        
+        fpSmt.printf("(assert" + c.getOutput() + ")\n");
         
         fpSmt.printf("(check-sat)\n");
         fpSmt.printf("(get-model)");

@@ -130,10 +130,11 @@ public class TargetFunctions
         }
 
         //return Math.min(ret1, Math.min(ret2, ret3));
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        //stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
-    
+/*    
     public void example(int x, int y, double z, ArrayList<VertexTF> executedPath) 
     {
         if (x + y == 1024)
@@ -177,7 +178,7 @@ public class TargetFunctions
             path4++;
         }
     }
-
+*/
 
     public double QuadraticEquation2(double a, double b, double c)
     {

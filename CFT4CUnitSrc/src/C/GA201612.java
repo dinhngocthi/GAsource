@@ -531,13 +531,13 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = targetFunction.Tritype(x[0], x[1], x[2]);
-        //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
+        //your_func = targetFunction.Tritype(x[0], x[1], x[2]);
+        your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
-        nc = 1; 
+        nc = 0; 
         // Put your constraints here
-        g[0] = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
+//        g[0] = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
 //        g[1] = Math.abs(x[1] - x[2]);
 //        g[0] = x[0] - x[1];
 //        g[1] = x[1] - x[2];
@@ -1394,6 +1394,12 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
+            
+            newPop[k].xreal[0] = 23; 
+            newPop[k].xreal[1] = 1001;
+            
+//            newPop[k].xreal[1] = 1024 - newPop[k].xreal[0];
+
 /*
             for (int i = 0; i < 10; i++)
             {

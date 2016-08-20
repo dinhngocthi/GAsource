@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Chạy file smt-lib trên cmd sử dụng SMT-Solver Z3
  * 
- * @author anhanh
  * 
  */
 public class RunZ3OnCMD 
