@@ -95,12 +95,13 @@ public class TargetFunctions
     {
         double ret1, ret2, ret3, ret4;
         ret1 = ret2 = ret3 = ret4 = 0;
-
+        boolean flag = y > 1000; 
 //        ret1 = Math.abs((x + y) - 1024);
-        if (x + y == 1024)
+//        if (x + y == 1024)
         {
-//            ret2 = (1000 - y);
-            if (y > 1000)
+            ret2 = (1000 - y);
+//            if (y > -0)
+        	if (flag)
             {
                 ret3 = (Math.cos(z) - 0.95) - Math.exp(z);
                 if (Math.cos(z) - 0.95 < Math.exp(z))
@@ -124,14 +125,14 @@ public class TargetFunctions
                 path3++;
             }
         }
-        else
+//        else
         {
-            path4++;
+//            path4++;
         }
 
         //return Math.min(ret1, Math.min(ret2, ret3));
-        //stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path4 > 0);
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        //stopCriteria = (path1 > 0) && (path2 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
 /*    
