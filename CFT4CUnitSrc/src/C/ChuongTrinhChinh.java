@@ -13,7 +13,6 @@ import SMTSolver.ConvertToSmtLibv2;
 import SMTSolver.RunZ3OnCMD;
 
 /**
- * @author nguyenducanh
  * 
  */
 public class ChuongTrinhChinh
@@ -680,7 +679,7 @@ public class ChuongTrinhChinh
         else if (functionName.equals("tritypeBueno2002"))
             targetFunction.tritypeBueno2002(a, b, c, executedPath);
 */
-        targetFunction.example((int)a, (int)b, c, executedPath);
+        //targetFunction.example((int)a, (int)b, c, executedPath);
 
         fitness = getDistExecutedPath2TargetPaths(a, b, c, executedPath);
         if (fitness[0] == -2)
