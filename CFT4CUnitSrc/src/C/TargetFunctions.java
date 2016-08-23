@@ -90,6 +90,26 @@ public class TargetFunctions
         stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
+    
+    public double example1(double x, double y, double z) 
+    {
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+        
+        ret1 = (Math.cos(z) - 0.95) - Math.exp(z);
+        if (Math.cos(z) - 0.95 < Math.exp(z))
+        {
+        	if ((x + y == 1024) && (y > 1000))
+        		path1++;
+        }
+        else
+        {
+        	path2++;
+        }
+
+        stopCriteria = (path1 > 0) && (path2 > 0);
+        return (ret1 + ret2 + ret3);
+    }
 
     public double example(int x, int y, double z) 
     {

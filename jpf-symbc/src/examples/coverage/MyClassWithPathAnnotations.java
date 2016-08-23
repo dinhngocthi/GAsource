@@ -3,6 +3,16 @@ package coverage;
 import gov.nasa.jpf.symbc.Symbolic;
 
 public class MyClassWithPathAnnotations {
+
+	public void f(int x, int y) {
+		int z = 2*y;
+		if (x == 100000) {
+			if (x < z) {
+				assert(false); /* error */
+			}
+		}
+	}
+	
     public int myMethod(int x, int y) {
         StringBuilder path = new StringBuilder();
         int z = x + y;

@@ -2,8 +2,6 @@ package sequences;
 
 import gov.nasa.jpf.symbc.Preconditions;
 
-
-
 /**
  *
  * @author Mithun Acharya
@@ -12,7 +10,6 @@ import gov.nasa.jpf.symbc.Preconditions;
 public class BankAccount {
 	private int balance;
 	private int numberOfWithdrawals;
-
 
 	public BankAccount(int amount){
 		balance = amount;

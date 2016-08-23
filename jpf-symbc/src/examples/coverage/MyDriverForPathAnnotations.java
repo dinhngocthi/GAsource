@@ -16,7 +16,8 @@ public class MyDriverForPathAnnotations {
         //mca.sample5(1, 1, 1);
         //mca.sample6(1, 1);
         //mca.test1(A, B);
-        mca.min(1, 2, 3);
+        //mca.min(1, 2, 3);
         //mca.sum(1, 1, 1);
+        mca.f(1, 2);
     }
 }
