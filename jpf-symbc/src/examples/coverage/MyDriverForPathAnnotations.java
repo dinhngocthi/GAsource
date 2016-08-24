@@ -7,7 +7,7 @@ public class MyDriverForPathAnnotations {
     	int B[] = new int[100];
 
         MyClassWithPathAnnotations mca = new MyClassWithPathAnnotations();
-        //mca.myMethod(1, 2);
+        mca.myMethod(1, 2);
         //mca.sample1(0, 1, 2);
         //mca.sample2(1);
         //mca.sample3(1);
@@ -18,6 +18,6 @@ public class MyDriverForPathAnnotations {
         //mca.test1(A, B);
         //mca.min(1, 2, 3);
         //mca.sum(1, 1, 1);
-        mca.f(1, 2);
+        //mca.f(1, 2);
     }
 }

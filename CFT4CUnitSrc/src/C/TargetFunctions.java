@@ -20,10 +20,42 @@ public class TargetFunctions
         
     public static void main(String[] args)
     {
-    	Tritype(1, 2, 3);
-    	Tritype(2, 2, 3);
-    	Tritype(2, 2, 2);
-    	Tritype(2, 3, 4);
+    	System.out.println(Math.round(Math.hypot(10, 10)));
+    	
+    	example2(131, 10, 10);
+    }
+
+    public static double example2(double x, double y, double z) 
+    {
+    	double ret = Math.min(Math.abs(x - Math.hypot(y, z)), Math.abs(y - z));    	
+
+    	if ((Math.round(x) == Math.round(Math.hypot(y, z))) && (y == z))
+    		path1++;
+    	else
+    		path2++;
+
+        stopCriteria = (path1 > 0) && (path2 > 0);
+    	return ret;
+    }
+
+    public double example1(double x, double y, double z) 
+    {
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+        
+        ret1 = (Math.cos(z) - 0.95) - Math.exp(z);
+        if (Math.cos(z) - 0.95 < Math.exp(z))
+        {
+        	if ((x + y == 1024) && (y > 1000))
+        		path1++;
+        }
+        else
+        {
+        	path2++;
+        }
+
+        stopCriteria = (path1 > 0) && (path2 > 0);
+        return (ret1 + ret2 + ret3);
     }
 
     public static double Tritype(double a, double b, double c)
@@ -88,26 +120,6 @@ public class TargetFunctions
         	}
         }
         stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
-        return (ret1 + ret2 + ret3);
-    }
-    
-    public double example1(double x, double y, double z) 
-    {
-        double ret1, ret2, ret3, ret4;
-        ret1 = ret2 = ret3 = ret4 = 0;
-        
-        ret1 = (Math.cos(z) - 0.95) - Math.exp(z);
-        if (Math.cos(z) - 0.95 < Math.exp(z))
-        {
-        	if ((x + y == 1024) && (y > 1000))
-        		path1++;
-        }
-        else
-        {
-        	path2++;
-        }
-
-        stopCriteria = (path1 > 0) && (path2 > 0);
         return (ret1 + ret2 + ret3);
     }
 
