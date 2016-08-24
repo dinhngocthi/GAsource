@@ -19,10 +19,42 @@ public class TargetFunctions
     }
         
     public static void main(String[] args)
+    {    	
+    	example3(2, 5, 5);
+    }
+
+    public static double example3(double corner, double edge1, double edge2) 
     {
-    	System.out.println(Math.round(Math.hypot(10, 10)));
-    	
-    	example2(131, 10, 10);
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+
+        ret1 = Math.min(-corner, corner - Math.PI);
+    	if (corner > 0 && corner < Math.PI)
+    	{
+    		ret2 = Math.abs(edge1 - edge2);
+    		if (edge1 == edge2) {
+    			ret3 = (0.01 - Math.abs(Math.toDegrees(corner) - 60));
+    			if (Math.abs(Math.toDegrees(corner) - 60) < 0.01) {
+    				path1 ++;  // Equilateral
+//    				System.out.println("Equilateral");
+    			}
+    			else {
+    				path2 ++;  // Isosceles
+//    				System.out.println("Isosceles");
+    			}
+    		}
+    		else {
+    			path3 ++; // Scalene
+//    			System.out.println("Scalene");
+    		}
+    	}
+    	else {
+    		path4++; // Not a triangle
+//    		System.out.println("Not a triangle");
+    	}
+
+        stopCriteria = (path1 > 0) && (path2 > 0);
+    	return (ret1 + ret2 + ret3);
     }
 
     public static double example2(double x, double y, double z) 
@@ -37,7 +69,7 @@ public class TargetFunctions
         stopCriteria = (path1 > 0) && (path2 > 0);
     	return ret;
     }
-
+    
     public double example1(double x, double y, double z) 
     {
         double ret1, ret2, ret3, ret4;
