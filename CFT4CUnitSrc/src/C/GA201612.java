@@ -534,7 +534,8 @@ public class GA201612
         //your_func = targetFunction.Tritype(x[0], x[1], x[2]);
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
-        your_func = targetFunction.example3(x[0], x[1], x[2]);
+        //your_func = targetFunction.example3(x[0], x[1], x[2]);
+        your_func = targetFunction.example4(x[0], x[1], x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
@@ -1398,8 +1399,8 @@ public class GA201612
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
 
+            newPop[k].xreal[0] = 1;
             newPop[k].xreal[1] = 1;
-            newPop[k].xreal[2] = 1;
 
 //            newPop[k].xreal[1] = 1024 - newPop[k].xreal[0];
 
@@ -1544,8 +1545,22 @@ public class GA201612
             initialize();
             statistics(genNo);
             report(0);
-            for (genNo = 1; genNo <= maxGen; genNo++)
+            
+            if (run == 1)
             {
+            	System.out.println("---------------------------------");
+            	System.out.println("Before calling generatenewPop");            
+	            System.out.println("Objective call: " + objectcall);
+	            System.out.println("path1 = " + targetFunction.path1);
+	            System.out.println("path2 = " + targetFunction.path2);
+	            System.out.println("path3 = " + targetFunction.path3);
+	            System.out.println("path4 = " + targetFunction.path4);
+	            System.out.println("path5 = " + targetFunction.path5);
+	            System.out.println("path6 = " + targetFunction.path6);
+	            System.out.println("---------------------------------");
+            }
+            for (genNo = 1; genNo <= maxGen; genNo++)
+            {            	
                 generatenewPop();
 
                 temp = oldPop;
@@ -1573,6 +1588,7 @@ public class GA201612
         System.out.println("path3 = " + targetFunction.path3);
         System.out.println("path4 = " + targetFunction.path4);
         System.out.println("path5 = " + targetFunction.path5);
+        System.out.println("path6 = " + targetFunction.path6);
         System.out.println("GA201612 completed./.");
     }
 }

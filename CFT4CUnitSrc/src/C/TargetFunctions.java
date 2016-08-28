@@ -9,12 +9,12 @@ import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
-    public static int path1, path2, path3, path4, path5;
+    public static int path1, path2, path3, path4, path5, path6;
     public static boolean stopCriteria; 
     
     TargetFunctions()
     {
-        path1 = path2 = path3 = path4 = path5 = 0;
+        path1 = path2 = path3 = path4 = path5 = path6 = 0;
         stopCriteria = false;
     }
         
@@ -23,6 +23,38 @@ public class TargetFunctions
     	example3(2, 5, 5);
     }
 
+    public static double example4(double a, double b, double c)
+    {
+        double ret1, ret2, ret3, ret4;
+        ret1 = ret2 = ret3 = ret4 = 0;
+        
+        if (a == b)
+        {
+        	ret1 = 100 - Math.abs(c); 
+        	if (Math.abs(c) > 100)
+        		path1++;
+        	else
+        		path2++;
+        }
+        else if (a > b)
+        {
+        	ret1 = 100 - Math.abs(c);
+        	if (Math.abs(c) > 100)
+        		path3++;
+        	else
+        		path4++;
+        }
+        else
+        {
+        	ret1 = 100 - Math.abs(c);
+        	if (Math.abs(c) > 100)
+        		path5++;
+        	else
+        		path6++;
+        }
+    	return (ret1 + ret2 + ret3);
+    }
+    
     public static double example3(double corner, double edge1, double edge2) 
     {
         double ret1, ret2, ret3, ret4;
