@@ -1400,7 +1400,7 @@ public class GA201612
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
 
             newPop[k].xreal[0] = 1;
-            newPop[k].xreal[1] = 1;
+            newPop[k].xreal[1] = 6;
 
 //            newPop[k].xreal[1] = 1024 - newPop[k].xreal[0];
 

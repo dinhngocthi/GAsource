@@ -44,7 +44,7 @@ public class TargetFunctions
         	else
         		path4++;
         }
-        else
+        else if (a == (b-5))
         {
         	ret1 = 100 - Math.abs(c);
         	if (Math.abs(c) > 100)
@@ -52,6 +52,8 @@ public class TargetFunctions
         	else
         		path6++;
         }
+
+        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0) && (path6 > 0);        
     	return (ret1 + ret2 + ret3);
     }
     
