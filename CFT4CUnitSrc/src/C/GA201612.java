@@ -1399,8 +1399,15 @@ public class GA201612
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
 
-            newPop[k].xreal[0] = 1;
-            newPop[k].xreal[1] = 6;
+            if (targetFunction.path1 == 0 || targetFunction.path2 == 0)
+            {
+            	newPop[k].xreal[0] = newPop[k].xreal[1] = 1;
+            }
+            else if (targetFunction.path5 == 0 || targetFunction.path6 == 0)
+            {
+            	newPop[k].xreal[0] = 1;
+            	newPop[k].xreal[1] = 6;
+            }
 
 //            newPop[k].xreal[1] = 1024 - newPop[k].xreal[0];
 
