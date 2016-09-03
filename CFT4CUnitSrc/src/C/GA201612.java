@@ -535,9 +535,9 @@ public class GA201612
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
         //your_func = targetFunction.example3(x[0], x[1], x[2]);
-        your_func = targetFunction.example4(x[0], x[1], x[2]);
+        //your_func = targetFunction.example4(x[0], x[1], x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
-        //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
+        your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
 
         nc = 0; 
         // Put your constraints here
@@ -1398,7 +1398,22 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
+            
+            if (targetFunction.path1 == 0)
+            {
+            	newPop[k].xreal[0] = 0;
+				newPop[k].xreal[1] = 100;
+            }
+            else if (targetFunction.path2 == 0)
+            {
+            	newPop[k].xreal[0] = newPop[k].xreal[1] = 0;
+            }
+			else if (targetFunction.path4 == 0)
+			{
+				newPop[k].xreal[1] = 2 * Math.sqrt(newPop[k].xreal[0] * newPop[k].xreal[2]);
+			}
 
+/*            
             if (targetFunction.path1 == 0 || targetFunction.path2 == 0)
             {
             	newPop[k].xreal[0] = newPop[k].xreal[1] = 1;
@@ -1408,7 +1423,7 @@ public class GA201612
             	newPop[k].xreal[0] = 1;
             	newPop[k].xreal[1] = 6;
             }
-
+*/
 //            newPop[k].xreal[1] = 1024 - newPop[k].xreal[0];
 
 /*
