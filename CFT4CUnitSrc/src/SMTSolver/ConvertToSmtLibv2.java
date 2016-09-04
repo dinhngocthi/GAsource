@@ -49,7 +49,7 @@ public class ConvertToSmtLibv2 {
 	public static void main(String[] args) throws IOException, InterruptedException 
 	{
 	    //String expression = "(c == 2 * b) && (a == 1000) && (a < c)";
-	    String expression = "(a + b == 1024) && (b > 1000)";
+	    String expression = "(b*b == 4*a*c)";
 	    //String expression = "(a == 1000)";
 	    //String expression = "((a==b)&&(b!=c))||((b==c)&&(c!=a))||((c==a)&&(a!=b))";
 	    //String expression = "a * a * 3 == 27";
@@ -65,9 +65,9 @@ public class ConvertToSmtLibv2 {
         fpSmt.printf("(declare-const a Real)\n");
         fpSmt.printf("(declare-const b Real)\n");
         fpSmt.printf("(declare-const c Real)\n");
-        fpSmt.printf("(assert (> a -10000))\n");
-        fpSmt.printf("(assert (> b -10000))\n");
-        fpSmt.printf("(assert (> c -10000))\n");
+        fpSmt.printf("(assert (> a 0))\n");
+        fpSmt.printf("(assert (> b 0))\n");
+        fpSmt.printf("(assert (> c 0))\n");
         fpSmt.printf("(assert (< a 10000))\n");
         fpSmt.printf("(assert (< b 10000))\n");
         fpSmt.printf("(assert (< c 10000))\n");
