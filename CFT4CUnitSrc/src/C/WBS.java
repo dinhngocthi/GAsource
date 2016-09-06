@@ -10,6 +10,7 @@ public class WBS {
 	private int Nor_Pressure;
 	private int Alt_Pressure;
 	private int Sys_Mode;
+	public int[] path; 
 	
 	public WBS() {
 		WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE = 0;	
@@ -18,9 +19,14 @@ public class WBS {
 		Nor_Pressure = 0;
 		Alt_Pressure = 0;
 		Sys_Mode = 0;
+		
+		path = new int[100];
 	}
 
-	public void update(int PedalPos, boolean AutoBrake, boolean Skid) {
+	public double update(int PedalPos, boolean AutoBrake, boolean Skid) {
+		
+		double ret = 0;
+
 		int WBS_Node_WBS_AS_MeterValve_Switch; 
 		int WBS_Node_WBS_AccumulatorValve_Switch; 
 		int WBS_Node_WBS_BSCU_Command_AntiSkidCommand_Normal_Switch; 
@@ -43,21 +49,32 @@ public class WBS {
 
 	   WBS_Node_WBS_BSCU_Command_Is_Normal_Relational_Operator = (WBS_Node_WBS_BSCU_SystemModeSelCmd_Unit_Delay == 0); 
 
+	   ret += Math.abs(PedalPos);
 	   if ((PedalPos == 0)) {
+		   	  path[0]++;
 		      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 0;
 		   } else { 
+			   ret += Math.abs(PedalPos - 1);
 			   if ((PedalPos == 1)) {
+				  path[1]++;
 			      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 1;
 			   }  else { 
-				   if ((PedalPos == 2)) { 
+				   ret += Math.abs(PedalPos - 2);
+				   if ((PedalPos == 2)) {
+					   path[2]++;
 				      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 2;
 				   } else { 
+					   ret += Math.abs(PedalPos - 3);
 					   if ((PedalPos == 3)) { 
+						   path[3]++;
 					      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 3;
 					   } else { 
+						   ret += Math.abs(PedalPos - 4);
 						   if ((PedalPos == 4)) {
+							   path[4]++;
 						      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 4;
 						   }  else { 
+							   path[5]++;
 						      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 0;
 						   }
 					   }
@@ -227,6 +244,7 @@ public class WBS {
 
 	   WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE = Sys_Mode; 
 
+	   return ret;
 	}
 	
 	public static void launch(int pedal1, boolean auto1, boolean skid1, int pedal2, boolean auto2, boolean skid2, int pedal3, boolean auto3, boolean skid3) {

@@ -1,9 +1,6 @@
-
 import gov.nasa.jpf.vm.Verify;
 
-
 public class WBS {
-	
 	//Internal state
 	private int WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE; 
 	private int WBS_Node_WBS_BSCU_rlt_PRE1; 
@@ -22,7 +19,7 @@ public class WBS {
 		Alt_Pressure = 0;
 		Sys_Mode = 0;
 	}
-	
+
 	public void update(int PedalPos, boolean AutoBrake, 
 			boolean Skid) {
 		int WBS_Node_WBS_AS_MeterValve_Switch; 
