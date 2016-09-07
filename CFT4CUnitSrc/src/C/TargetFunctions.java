@@ -7,6 +7,7 @@ import org.eclipse.jdt.core.refactoring.descriptors.ExtractSuperclassDescriptor;
 
 import SMTSolver.RunZ3OnCMD;
 
+
 public class TargetFunctions
 {
     public static int path1, path2, path3, path4, path5, path6;
@@ -19,7 +20,7 @@ public class TargetFunctions
     }
         
     public static void main(String[] args)
-    {    	
+    {
     	example3(2, 5, 5);
     }
 
@@ -993,3 +994,4 @@ public class TargetFunctions
     }
 */    
 }
+
