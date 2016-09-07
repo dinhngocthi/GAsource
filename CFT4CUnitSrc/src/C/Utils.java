@@ -14,8 +14,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
+	public static boolean stopCriteria = false;
+	public static int maxpathcount = 1000;
+	public static int[] path = new int[maxpathcount];
+
 	/**
-	 * [0]: phút [1]: giây
+	 * [0]: minute [1]: second
 	 * 
 	 * @return
 	 */
@@ -177,13 +181,10 @@ public class Utils {
 		return output;
 	}
 
-	/**
-	 * Lấy nội dung bên trong của vòng lặp ngoài nhất.
-	 * 
+	/** 
 	 * @param indexList
 	 * @param luanlyList
-	 * @return phần tử đầu tiên: luận lý; [2]: index tương ứng, [3]: nội dung
-	 *         điểm phủ định vòng lặp ngoài
+	 * @return 
 	 */
 	public static String[] getContentOfOuterLoop(String[] indexList, String[] luanlyList) {
 		int[] loopIndex = getLoopIndexForSimpleLoopAndNestedLoop(indexList);
@@ -201,9 +202,6 @@ public class Utils {
 	}
 
 	/**
-	 * Lấy chỉ số hai phần tử đầu và cuối trong mảng thỏa mãn: giá trị tại hai
-	 * chỉ số đó bằng nhau. Do chỉ áp dụng cho vòng lặp đơn và vòng lặp lồng
-	 * nhau nên 2 chỉ số đó chính là điểm lặp.
 	 * 
 	 * @param indexList
 	 * @return

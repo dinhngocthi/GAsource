@@ -64,7 +64,6 @@ public class GA201612
     static double seed; /* Random seed number */
 
     static String testFunction;
-    static boolean StopSearching = false;
     static int objectcall = 0; 
     static TargetFunctions targetFunction;
     static private Adjust[] adjustList = new Adjust[10];
@@ -434,57 +433,7 @@ public class GA201612
     private static double square(double x)
     {
         return (x * x);
-    }
-
-    private static double fTriangle(double a, double b, double c, String functionName)
-    {
-        double your_func = 0;
-
-        try
-        {
-            //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
-//            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
-            StopSearching = (your_func == -2);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-
-        return your_func;
-    }
-    
-    private static double fInsertionSort(double[] a, int size, String functionName)
-    {
-        double your_func = 0;
-
-        try
-        {
-//            your_func = ctc.calculateDistInsertionSort(a, size, functionName);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
-    
-    private static double fGreatestCommonDivisor(int a, int b)
-    {
-        double your_func = 0;
-
-        try
-        {
-//            your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Exception");
-        }
-        
-        return your_func;
-    }
+    }    
 
     /*
      * ====================================================================
@@ -657,7 +606,8 @@ public class GA201612
         for (k = 0; k < popSize; k++)
         {
             //if (StopSearching) return;
-            if (targetFunction.stopCriteria) return;
+            //if (targetFunction.stopCriteria) return;
+            if (Utils.stopCriteria) return;
 
             decodeString(oldPop[k]);
             objective(oldPop[k]);
@@ -1400,7 +1350,9 @@ public class GA201612
             mutation(newPop[k + 1]);
             newPop[k].parent1 = newPop[k + 1].parent1 = mate1 + 1;
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
-/*            
+            
+            /*-------------------Constraint-based adjustment----START-----------------------------*/
+/*
             if (targetFunction.path1 == 0)
             {
             	newPop[k].xreal[0] = 0;
@@ -1537,7 +1489,8 @@ public class GA201612
                 newPop[k].xreal[1] = 0.0;
             if (Math.abs(b*b - (4*a*c)) < 1)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
-*/                
+*/       
+        	/*-------------------Constraint-based adjustment----END-----------------------------*/
         }
     }   
 
@@ -1583,8 +1536,8 @@ public class GA201612
 	            System.out.println("path5 = " + targetFunction.path5);
 	            System.out.println("path6 = " + targetFunction.path6);
 */
-	            for (int i = 0; i < 6; i ++)
-	            	System.out.println("path[" + i + "] = " + wbs.path[i]);
+	            for (int i = 0; i < 48; i ++)
+	            	System.out.println("path[" + i + "] = " + Utils.path[i]);
 
 	            System.out.println("---------------------------------");
             }
@@ -1599,12 +1552,12 @@ public class GA201612
                 statistics(genNo);
                 report(genNo);
                 //if (StopSearching) break;
-                if (targetFunction.stopCriteria) break;
+                if (Utils.stopCriteria) break;
             }
             /* One GA run is over */
             freeAll();
             //if (StopSearching) break;
-            if (targetFunction.stopCriteria) break;
+            if (Utils.stopCriteria) break;
         } /* for loop of run */
 
         fpOut.close();
@@ -1619,9 +1572,9 @@ public class GA201612
         System.out.println("path4 = " + targetFunction.path4);
         System.out.println("path5 = " + targetFunction.path5);
         System.out.println("path6 = " + targetFunction.path6);
-*/
-        for (int i = 0; i < 5; i ++)
-        	System.out.println("path[" + i + "] = " + wbs.path[i]);
+*/        
+        for (int i = 0; i < 48; i ++)
+        	System.out.println("path[" + i + "] = " + Utils.path[i]);
         System.out.println("GA201612 completed./.");
     }
 }

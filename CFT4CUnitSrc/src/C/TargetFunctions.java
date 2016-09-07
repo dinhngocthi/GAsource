@@ -10,13 +10,12 @@ import SMTSolver.RunZ3OnCMD;
 
 public class TargetFunctions
 {
-    public static int path1, path2, path3, path4, path5, path6;
-    public static boolean stopCriteria; 
+    public static int path1, path2, path3, path4, path5, path6; 
     
     TargetFunctions()
     {
         path1 = path2 = path3 = path4 = path5 = path6 = 0;
-        stopCriteria = false;
+        Utils.stopCriteria = false;
     }
         
     public static void main(String[] args)
@@ -54,7 +53,7 @@ public class TargetFunctions
         		path6++;
         }
 
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0) && (path6 > 0);        
+        Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0) && (path6 > 0);        
     	return (ret1 + ret2 + ret3);
     }
     
@@ -88,7 +87,7 @@ public class TargetFunctions
 //    		System.out.println("Not a triangle");
     	}
 
-        stopCriteria = (path1 > 0) && (path2 > 0);
+    	Utils.stopCriteria = (path1 > 0) && (path2 > 0);
     	return (ret1 + ret2 + ret3);
     }
 
@@ -101,7 +100,7 @@ public class TargetFunctions
     	else
     		path2++;
 
-        stopCriteria = (path1 > 0) && (path2 > 0);
+    	Utils.stopCriteria = (path1 > 0) && (path2 > 0);
     	return ret;
     }
     
@@ -121,7 +120,7 @@ public class TargetFunctions
         	path2++;
         }
 
-        stopCriteria = (path1 > 0) && (path2 > 0);
+        Utils.stopCriteria = (path1 > 0) && (path2 > 0);
         return (ret1 + ret2 + ret3);
     }
 
@@ -166,7 +165,7 @@ public class TargetFunctions
     		path1++;
     	}
 
-    	stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+    	Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
     	return (ret1 + ret2 + ret3);
     }
     
@@ -186,7 +185,7 @@ public class TargetFunctions
         		anyArray[j+1] = x;
         	}
         }
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
 
@@ -230,7 +229,7 @@ public class TargetFunctions
         }
 
         //return Math.min(ret1, Math.min(ret2, ret3));
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+        Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
         //stopCriteria = (path1 > 0) && (path2 > 0) && (path4 > 0);
         return (ret1 + ret2 + ret3);
     }
@@ -326,7 +325,7 @@ public class TargetFunctions
             }
         }
         
-        stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0);
+        Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0) && (path5 > 0);
         return (ret1 + ret2 + ret3);
     }
     
