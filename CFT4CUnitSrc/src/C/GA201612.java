@@ -1573,8 +1573,15 @@ public class GA201612
         System.out.println("path5 = " + targetFunction.path5);
         System.out.println("path6 = " + targetFunction.path6);
 */        
+        int coveredpathcount = 0;
         for (int i = 0; i < 48; i ++)
+        {
         	System.out.println("path[" + i + "] = " + Utils.path[i]);
+        	if (Utils.path[i] > 0) coveredpathcount++;
+        }
+
+        double r = ((double)coveredpathcount/(double)47);
+        System.out.println("Path coverage = " + r);
         System.out.println("GA201612 completed./.");
     }
 }
