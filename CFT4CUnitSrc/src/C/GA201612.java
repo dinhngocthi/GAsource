@@ -605,8 +605,6 @@ public class GA201612
 
         for (k = 0; k < popSize; k++)
         {
-            //if (StopSearching) return;
-            //if (targetFunction.stopCriteria) return;
             if (Utils.stopCriteria) return;
 
             decodeString(oldPop[k]);
@@ -1551,12 +1549,10 @@ public class GA201612
 
                 statistics(genNo);
                 report(genNo);
-                //if (StopSearching) break;
                 if (Utils.stopCriteria) break;
             }
             /* One GA run is over */
             freeAll();
-            //if (StopSearching) break;
             if (Utils.stopCriteria) break;
         } /* for loop of run */
 
