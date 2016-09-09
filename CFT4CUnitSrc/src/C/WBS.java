@@ -9,7 +9,7 @@ public class WBS {
 	//Outputs
 	private int Nor_Pressure;
 	private int Alt_Pressure;
-	private int Sys_Mode; 
+	private int Sys_Mode;
 	
 	public WBS() {
 		WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE = 0;	
@@ -21,7 +21,7 @@ public class WBS {
 	}
 
 	public double update(int PedalPos, boolean AutoBrake, boolean Skid) {
-		
+
 		double ret = 0;
 
 		int WBS_Node_WBS_AS_MeterValve_Switch; 
@@ -283,7 +283,9 @@ public class WBS {
 
 	   WBS_Node_WBS_rlt_PRE2 = Nor_Pressure; 
 
-	   WBS_Node_WBS_BSCU_rlt_PRE1 = WBS_Node_WBS_BSCU_Switch2; 
+	   WBS_Node_WBS_BSCU_rlt_PRE1 = WBS_Node_WBS_BSCU_Switch2;
+	   if (WBS_Node_WBS_BSCU_rlt_PRE1 > 0)
+		   System.out.println("WBS_Node_WBS_BSCU_rlt_PRE1 = " + WBS_Node_WBS_BSCU_rlt_PRE1);
 
 	   WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE = Sys_Mode; 
 
