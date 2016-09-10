@@ -21,13 +21,13 @@ public class TargetFunctions
     public static void main(String[] args)
     {
     	//example3(2, 5, 5);
-    	fisher(3925, 2895, -752.7043905427072);
+    	fisher(5, 2895, -752.7043905427072);
     }
 
     static double fisher(int m, int n, double x) {
       int a, b, j;
       double w, y, z, zk, d, p;
-      a = 2*(m/2)-m+2;
+      a = 2*(m/2)-m+2;      
       b = 2*(n/2)-n+2;
       w = (x*m)/n;
       z = 1.0/(1.0+w);
