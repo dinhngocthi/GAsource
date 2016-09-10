@@ -20,9 +20,75 @@ public class TargetFunctions
         
     public static void main(String[] args)
     {
-    	example3(2, 5, 5);
+    	//example3(2, 5, 5);
+    	fisher(3925, 2895, -752.7043905427072);
     }
 
+    static double fisher(int m, int n, double x) {
+      int a, b, j;
+      double w, y, z, zk, d, p;
+      a = 2*(m/2)-m+2;
+      b = 2*(n/2)-n+2;
+      w = (x*m)/n;
+      z = 1.0/(1.0+w);
+      if(a == 1){
+        if(b == 1){
+        	Utils.path[0]++;
+          p = Math.sqrt(w);
+          y = 0.3183098862;
+          d = y*z/p;
+          p = 2.0*y*Math.atan(p);
+        }
+        else {
+        	Utils.path[1]++;
+          p = Math.sqrt(w*z);
+          d = 0.5*p*z/w;
+        }
+      }
+      else if(b == 1) {
+    	  Utils.path[2]++;
+        p = Math.sqrt(z);
+        d = 0.5*z*p;
+        p = 1.0-p;
+      }
+      else {
+    	  Utils.path[3]++;
+        d = z*z;
+        p = w*z;
+      }
+      y = 2.0*w/z;
+      if(a == 1)
+        for(j = b+2; j <= n; j += 2) {
+        	Utils.path[4]++;
+          d *= (1.0+1.0/(j-2))*z;
+          p += d*y/(j-1);
+        }
+      else {
+    	  Utils.path[5]++;
+        zk = Math.pow(z, (double)((n-1)/2));
+        d *= (zk*n)/b;
+        p = p*zk+w*z*(zk-1.0)/(z-1.0);
+      }
+      y = w*z;
+      z = 2.0/z;
+      b = n-2;
+      for(int i = a+2; i <= m; i += 2) {
+    	  Utils.path[6]++;
+        j = i+b;
+        d *= (y*j)/(i-2);
+        p -= z*d/j;
+      }
+      
+      Utils.stopCriteria = true;
+	   for (int i = 0; i < 7; i++)
+		   if (Utils.path[i] == 0)
+		   {
+			   Utils.stopCriteria = false;
+			   break;
+		   }
+      return(p<0.0? 0.0: p>1.0? 1.0: p);
+    }
+      
     public static double example4(double a, double b, double c)
     {
         double ret1, ret2, ret3, ret4;

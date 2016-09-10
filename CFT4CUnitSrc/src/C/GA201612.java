@@ -68,6 +68,7 @@ public class GA201612
     static TargetFunctions targetFunction;
     static private Adjust[] adjustList = new Adjust[10];
     static WBS wbs;
+    static int pathcount = 7;
     
     public static void inputAppParameters()
     {
@@ -489,7 +490,8 @@ public class GA201612
         //your_func = targetFunction.example4(x[0], x[1], x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
-        your_func = wbs.update((int)x[0], (x[1] > 0), (x[2] > 0));
+        your_func = targetFunction.fisher((int)x[0], (int)x[1], x[2]);
+        //your_func = wbs.update((int)x[0], (x[1] > 0), (x[2] > 0));
 
         nc = 0; 
         // Put your constraints here
@@ -1534,7 +1536,7 @@ public class GA201612
 	            System.out.println("path5 = " + targetFunction.path5);
 	            System.out.println("path6 = " + targetFunction.path6);
 */
-	            for (int i = 0; i < 48; i ++)
+	            for (int i = 0; i < pathcount; i ++)
 	            	System.out.println("path[" + i + "] = " + Utils.path[i]);
 
 	            System.out.println("---------------------------------");
@@ -1570,13 +1572,13 @@ public class GA201612
         System.out.println("path6 = " + targetFunction.path6);
 */        
         int coveredpathcount = 0;
-        for (int i = 0; i < 48; i ++)
+        for (int i = 0; i < pathcount; i ++)
         {
         	System.out.println("path[" + i + "] = " + Utils.path[i]);
         	if (Utils.path[i] > 0) coveredpathcount++;
         }
 
-        double r = ((double)coveredpathcount/(double)47);
+        double r = ((double)coveredpathcount/(double)pathcount);
         System.out.println("Path coverage = " + r);
         System.out.println("GA201612 completed./.");
     }

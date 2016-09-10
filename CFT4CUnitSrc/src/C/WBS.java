@@ -282,11 +282,7 @@ public class WBS {
 	   }
 
 	   WBS_Node_WBS_rlt_PRE2 = Nor_Pressure; 
-
 	   WBS_Node_WBS_BSCU_rlt_PRE1 = WBS_Node_WBS_BSCU_Switch2;
-	   if (WBS_Node_WBS_BSCU_rlt_PRE1 > 0)
-		   System.out.println("WBS_Node_WBS_BSCU_rlt_PRE1 = " + WBS_Node_WBS_BSCU_rlt_PRE1);
-
 	   WBS_Node_WBS_BSCU_SystemModeSelCmd_rlt_PRE = Sys_Mode; 
 
 	   Utils.stopCriteria = true;
