@@ -1440,7 +1440,6 @@ public class GA201612
 //        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
 
-        	
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
@@ -1527,7 +1526,7 @@ public class GA201612
             {
             	System.out.println("---------------------------------");
             	System.out.println("Before calling generatenewPop");            
-	            System.out.println("Objective call: " + objectcall);
+	            System.out.println("Test data generation count: " + objectcall);
 /*	            
 	            System.out.println("path1 = " + targetFunction.path1);
 	            System.out.println("path2 = " + targetFunction.path2);
@@ -1562,7 +1561,7 @@ public class GA201612
         fpRep.close();
         fpPlot.close();
 
-        System.out.println("Objective call: " + objectcall);
+        System.out.println("Test data generation count: " + objectcall);
 /*
         System.out.println("path1 = " + targetFunction.path1);
         System.out.println("path2 = " + targetFunction.path2);
