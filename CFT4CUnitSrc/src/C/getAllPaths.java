@@ -9,10 +9,7 @@ import net.sourceforge.jeval.EvaluationException;
 
 
 /**
- * Vﾃｩt c蘯｡n ﾄ柁ｰ盻拵g ﾄ訴 c盻ｧa CFG. ﾄ雪ｻ� sﾃ｢u m蘯ｷc ﾄ黛ｻ杵h b蘯ｱng 1 (t盻ｩc m盻擁 vﾃｲng l蘯ｷp ch盻� ﾄ訴 qua
- * nhi盻「 nh蘯･t 1 l蘯ｧn)
  * 
- * @author nguyenducanh
  * @version 3
  */
 public class getAllPaths
@@ -48,8 +45,6 @@ public class getAllPaths
     }
 
     /**
-     * L蘯･y danh sﾃ｡ch cﾃ｡c ﾄ柁ｰ盻拵g ki盻ノ th盻ｭ th盻ｱc thi ﾄ柁ｰ盻｣c vﾃ� khﾃｴng th盻ｱc thi ﾄ柁ｰ盻｣c
-     * d蘯｡ng s盻�
      * 
      * @return
      */
@@ -67,7 +62,6 @@ public class getAllPaths
     }
 
     /**
-     * L蘯･y danh sﾃ｡ch cﾃ｡c ﾄ柁ｰ盻拵g ki盻ノ th盻ｭ th盻ｱc thi ﾄ柁ｰ盻｣c d蘯｡ng s盻�
      * 
      * @return
      */
@@ -326,7 +320,6 @@ public class getAllPaths
     }
     
     /**
-     * Chuy盻ハ thﾃｴng tin cﾃ｡c ﾄ黛ｻ穎h trong ma tr蘯ｭn k盻� sang d蘯｡ng ArrayList
      * 
      * @param maTranKe
      * @return
@@ -351,7 +344,6 @@ public class getAllPaths
     }
 
     /**
-     * Xﾃ｢y d盻ｱng ﾄ黛ｻ訴 lﾆｰ盻｣ng lﾆｰu thﾃｴng tin ﾄ黛ｻ穎h
      * 
      * @param nodeelement
      * @return

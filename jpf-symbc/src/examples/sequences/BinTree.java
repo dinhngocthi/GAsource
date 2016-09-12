@@ -1,7 +1,5 @@
 package sequences;
 
-
-
 class BSTNode {
 	public int value;
 
