@@ -1,6 +1,5 @@
 package sequences;
 
-
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.symbc.Debug;

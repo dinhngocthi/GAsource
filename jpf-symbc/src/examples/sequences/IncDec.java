@@ -2,8 +2,6 @@ package sequences;
 
 import gov.nasa.jpf.symbc.Debug;
 
-
-
 /**
  *
  * @author Mithun Acharya

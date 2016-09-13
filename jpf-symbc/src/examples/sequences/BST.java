@@ -61,7 +61,6 @@ public class BST {
 	}
   }
 
-
   public boolean find(int x) {
     Node current = root;
 
@@ -78,7 +77,6 @@ public class BST {
 	}
 	return false;
   }
-
 
   public boolean remove(int x) {
     Node current = root;

@@ -1,7 +1,5 @@
 package sequences;
 
-
-
 class LinkedListNode{
 	public int data;
 	public LinkedListNode next;

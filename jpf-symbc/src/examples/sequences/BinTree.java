@@ -10,7 +10,6 @@ class BSTNode {
 		left = null;
 		right = null;
 	}
-
 }
 
 /**
@@ -24,7 +23,6 @@ public class BinTree {
 	public BinTree() {
 		root = null;
 	}
-
 
 	public void add(int x) {
 		BSTNode current = root;
@@ -55,7 +53,6 @@ public class BinTree {
 		BSTNode current = root;
 
 		while (current != null) {
-
 			if (current.value == x) {
 				return true;
 			}
@@ -76,7 +73,6 @@ public class BinTree {
 		boolean branch = true; //true =left, false =right
 
 		while (current != null) {
-
 			if (current.value == x) {
 				BSTNode bigson = current;
 				while (bigson.left != null || bigson.right != null) {
@@ -120,5 +116,4 @@ public class BinTree {
 
 		return false;
 	}
-
 }

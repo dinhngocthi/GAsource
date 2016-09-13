@@ -1,6 +1,5 @@
 package sequences;
 
-
 /**
  *
  * @author Mithun Acharya
@@ -13,10 +12,14 @@ public class TestBinTree {
 		BinTree t = new BinTree();
 		if(t.find(9) == true)
 			System.out.println("Not possible for sure!!");
-		t.add(9);
-		t.remove(9);
-		if(t.find(9) == true){
-			System.out.println("BUG");
-		}
+		for (int i = 0; i < 100; i++)
+			t.add(i);
+		for (int i = 0; i < 100; i++)
+			t.remove(i);
+		for (int i = 0; i < 100; i++)
+			if(t.find(i) == true){
+				System.out.println("BUG");
+				System.out.println("i = " + i);
+			}
 	}
 }
