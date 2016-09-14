@@ -1,8 +1,5 @@
 package sequences;
 
-
-
-
 import gov.nasa.jpf.symbc.Debug;
 import gov.nasa.jpf.symbc.Preconditions;
 import gov.nasa.jpf.vm.Verify;

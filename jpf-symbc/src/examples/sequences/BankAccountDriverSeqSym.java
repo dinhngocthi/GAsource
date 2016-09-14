@@ -35,7 +35,7 @@ public class BankAccountDriverSeqSym {
 
 	public static void main(String[] args){
 		testDriver(3);
-		Debug.printPC("Path Condition: ");
+//		Debug.printPC("Path Condition: ");
 		System.out.println();
 	}
 }

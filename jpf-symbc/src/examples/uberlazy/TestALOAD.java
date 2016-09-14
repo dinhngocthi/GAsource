@@ -1,6 +1,5 @@
 package uberlazy;
 
-
 public class TestALOAD {
 	
 	public void run(Node n) { 
@@ -15,8 +14,7 @@ public class TestALOAD {
 			System.out.println("n is null");
 		}
 	}
-	
-	
+
 	public static void main(String[] args) {
 		TestALOAD taload = new TestALOAD();
 		Node n = null; 
