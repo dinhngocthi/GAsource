@@ -9,9 +9,6 @@ import net.sourceforge.jeval.Evaluator;
 import C.Utils;
 
 /**
- * Xây dựng hệ ràng buộc từ đường kiểm thử. Đường kiểm thử chứa các biến số
- * nguyên, số thực, mảng 1 chiều, mảng 2 chiều. Trong đó chỉ số mảng không chứa
- * biến mảng.
  * 
  * @author anhanh
  * 
@@ -96,8 +93,6 @@ public class ParseTestpath
     }
 
     /**
-     * Biến đổi phép ++, --, *=, etc về dạng biểu diễn tương đương. VD:"i++" trở
-     * thành "i=i+1"
      * 
      * @param bieuThuc
      * @return
@@ -154,7 +149,6 @@ public class ParseTestpath
     }
 
     /**
-     * Thêm biến mới vào danh sách biến
      * 
      * @param arrayVar
      * @param danhSachBien
@@ -173,7 +167,6 @@ public class ParseTestpath
     }
 
     /**
-     * Cập nhật giá trị mới của biến danh sách biến
      * 
      * @param nameVar
      * @param danhSachBien
@@ -190,7 +183,6 @@ public class ParseTestpath
     }
 
     /**
-     * Kiểm tra biến đã nằm trong bảng biến chưa
      * 
      * @param nameVar
      * @param danhSachBien
@@ -209,7 +201,6 @@ public class ParseTestpath
     }
 
     /**
-     * Rút gọn vế phải câu lệnh gán
      * 
      * @param vePhai
      * @return
@@ -221,13 +212,7 @@ public class ParseTestpath
 
     }
 
-    /**
-     * Rút gọn vế trái câu lệnh gán. Nếu vế trái chỉ là biến thường hoặc biến
-     * mảng có chỉ số là số nguyên thì không cần rút gọn. Ngược lại, nếu chỉ số
-     * biến mảng là một biểu thức thì cần rút gọn.<br/>
-     * Trong các ví dụ thực tế, trường hợp ngược lại rất hiếm khi xảy ra nên có
-     * thể bỏ qua.
-     * 
+    /** 
      * @param veTrai
      * @return
      */
@@ -248,11 +233,7 @@ public class ParseTestpath
 
     }
     
-    /**
-     * Thay thế các biến trong biểu thức với giá trị cụ thể. Tất cả những biến
-     * không mang giá trị cụ thể, và không phải tham số truyền vào thì nhận giá
-     * trị mặc định là 0
-     * 
+    /** 
      * @param bieuThuc
      * @param danhSachBien
      * @return
@@ -282,7 +263,6 @@ public class ParseTestpath
     }
 
     /**
-     * Kiểm tra biến có phải tham số truyền vào hàm hay không
      * 
      * @param bien
      * @return
@@ -298,7 +278,6 @@ public class ParseTestpath
     }
 
     /**
-     * Lấy danh sách biến mảng có trong biểu thức logic
      * 
      * @return
      */
@@ -335,7 +314,6 @@ public class ParseTestpath
     }
 
     /**
-     * Tính toán giá trị chỉ số mảng nếu là một biểu thức. Ex: a[1+2] => a[3] <br/>
      * a[1/2] => a[0] a[1+a[3+1]] =>a[1+a[4]]
      * 
      * @param expression
@@ -356,7 +334,6 @@ public class ParseTestpath
     }
 
     /**
-     * Thay thế các biến trong biểu thức logic với giá trị cụ thể
      * 
      * @param bieuThucLogic
      * @param danhSachBien
@@ -382,7 +359,6 @@ public class ParseTestpath
     }
 
     /**
-     * Lấy vế trái và vế phải của phép gán
      * 
      * @param phepGan
      * @return
@@ -393,7 +369,6 @@ public class ParseTestpath
     }
 
     /**
-     * Thêm các biến được khai báo vào bảng biến
      * 
      * @param tapKhaiBaoDon
      * @param danhSachBien
@@ -442,8 +417,6 @@ public class ParseTestpath
     }
 
     /**
-     * Lấy tập câu lệnh khai báo đơn trong câu lệnh khai báo kép. Ví
-     * dụ:cauLenhKhaiBao="int a,b" thì output gồm "int a" và "int b"
      * 
      * @param cauLenhKhaiBao
      * @return
@@ -469,7 +442,6 @@ public class ParseTestpath
     }
 
     /**
-     * Lấy kiểu câu lệnh
      * 
      * @param cauLenh
      * @return
@@ -490,16 +462,7 @@ public class ParseTestpath
                     kieuCauLenh = CAU_LENH_GAN;
         return kieuCauLenh;
     }
-
-    /**
-     * Phân tich testpath dạng xâu về dạng danh sách liên kết
-     * 
-     * @param testpath
-     *            đường thi hành dạng xâu
-     * @param delimiter
-     *            kí tự phân tách các câu lệnh
-     * @return
-     */
+    
     private ArrayList<String> chuanHoaTestpath(String testpath, String delimiter)
     {
         ArrayList<String> output = new ArrayList<String>();
@@ -512,7 +475,6 @@ public class ParseTestpath
     }
 
     /**
-     * Chuẩn hóa danh sách tham số truyền vào về dạng danh sách liên kết
      * 
      * @param danhSachThamSo
      * @return
@@ -527,7 +489,7 @@ public class ParseTestpath
             if (khaiBao.contains("]"))
             {
                 String name = khaiBao.substring(khaiBao.indexOf(" ") + 1, khaiBao.indexOf("["));
-                if (khaiBao.contains("][")) // nếu là mảng hai chiều
+                if (khaiBao.contains("][")) // náº¿u lÃ  máº£ng hai chiá»�u
                     switch (type)
                     {
                     case "int":
@@ -538,7 +500,6 @@ public class ParseTestpath
                         break;
                     }
                 else
-                    // nếu là mảng 1 chiều
                     switch (type)
                     {
                     case "int":
@@ -550,7 +511,7 @@ public class ParseTestpath
                     }
             }
             else
-            { // nếu không phải khai báo mảng
+            {
                 String name = khaiBao.split(" ")[1];
                 switch (type)
                 {

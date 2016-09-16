@@ -18,7 +18,7 @@ public class DuongKiemThu {
 	private String testcase = "";
 	private String testcaseInZ3 = "", testcaseInRandom = "";
 	private String realOutput = "";
-	private ArrayList<String> testpath = new ArrayList<>();// dạng luận lý
+	private ArrayList<String> testpath = new ArrayList<>();
 	private ArrayList<Integer> testpathIndex = new ArrayList<>();
 	private ArrayList<String> analysisPath = new ArrayList<>();
 	private int solver;

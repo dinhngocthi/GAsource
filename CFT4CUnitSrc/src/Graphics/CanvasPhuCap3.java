@@ -469,5 +469,4 @@ public class CanvasPhuCap3 extends JPanel {
 			this.revalidate();
 		}
 	}
-
 }
