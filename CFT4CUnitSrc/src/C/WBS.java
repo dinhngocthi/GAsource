@@ -46,27 +46,27 @@ public class WBS {
 
 	   WBS_Node_WBS_BSCU_Command_Is_Normal_Relational_Operator = (WBS_Node_WBS_BSCU_SystemModeSelCmd_Unit_Delay == 0); 
 
-	   ret += Math.abs(PedalPos);
+//	   ret += Math.abs(PedalPos);
 	   if ((PedalPos == 0)) {
 		   	  Utils.path[0]++;		   	  
 		      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 0;
 		   } else { 
-			   ret += Math.abs(PedalPos - 1);
+//			   ret += Math.abs(PedalPos - 1);
 			   if ((PedalPos == 1)) {
 				   Utils.path[1]++;
 			      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 1;
 			   }  else { 
-				   ret += Math.abs(PedalPos - 2);
+//				   ret += Math.abs(PedalPos - 2);
 				   if ((PedalPos == 2)) {
 					   Utils.path[2]++;   	  
 				      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 2;
 				   } else { 
-					   ret += Math.abs(PedalPos - 3);
+//					   ret += Math.abs(PedalPos - 3);
 					   if ((PedalPos == 3)) { 
 						   Utils.path[3]++;
 					      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 3;
 					   } else { 
-						   ret += Math.abs(PedalPos - 4);
+//						   ret += Math.abs(PedalPos - 4);
 						   if ((PedalPos == 4)) {
 							   Utils.path[4]++;
 						      WBS_Node_WBS_BSCU_Command_PedalCommand_Switch1 = 4;
@@ -88,6 +88,18 @@ public class WBS {
 		      WBS_Node_WBS_BSCU_Command_Switch = 0;
 		   }
 	   
+	   int temp1 =  Math.abs(WBS_Node_WBS_BSCU_Unit_Delay1);
+	   int temp2 = WBS_Node_WBS_Unit_Delay2;
+	   int temp3 = Math.abs(WBS_Node_WBS_BSCU_SystemModeSelCmd_Unit_Delay);
+	   
+	   if (ret > 0)
+	   {
+		   System.out.println("temp1 = " + temp1);
+		   System.out.println("temp2 = " + temp2);
+		   System.out.println("temp3 = " + temp3);
+	   }
+	   
+	   ret += Math.min((temp1 + temp2 + temp3), temp3); 
 	   WBS_Node_WBS_BSCU_SystemModeSelCmd_Logical_Operator6 = ((((!(WBS_Node_WBS_BSCU_Unit_Delay1 == 0)) && 
 	         (WBS_Node_WBS_Unit_Delay2 <= 0)) && 
 	         WBS_Node_WBS_BSCU_Command_Is_Normal_Relational_Operator) || 

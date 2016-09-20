@@ -68,7 +68,7 @@ public class GA201612
     static TargetFunctions targetFunction;
     static private Adjust[] adjustList = new Adjust[10];
     static WBS wbs;
-    static int pathcount = 7;
+    static int pathcount = 48; // WBS = 48
     
     public static void inputAppParameters()
     {
@@ -180,7 +180,7 @@ public class GA201612
                  
         targetFunction   = new TargetFunctions();
         wbs = new WBS();
-
+/*
         for (int i = 0; i < 10; i++) 
         {
         	Adjust adjust = new Adjust(-1, true, 0, 0,"");
@@ -197,6 +197,7 @@ public class GA201612
         adjustList[1].bIsValue = true;
 //        adjustList[1].index2 = 2;
         adjustList[1].adjustvalue = 0;
+*/
     }
 
     public static void selectMemory()
@@ -490,8 +491,8 @@ public class GA201612
         //your_func = targetFunction.example4(x[0], x[1], x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
-        your_func = targetFunction.fisher((int)x[0], (int)x[1], x[2]);
-        //your_func = wbs.update((int)x[0], (x[1] > 0), (x[2] > 0));
+        //your_func = targetFunction.fisher((int)x[0], (int)x[1], x[2]);
+        your_func = wbs.update((int)x[0], (x[1] > 0), (x[2] > 0));
 
         nc = 0; 
         // Put your constraints here
