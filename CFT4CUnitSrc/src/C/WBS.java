@@ -91,15 +91,15 @@ public class WBS {
 	   int temp1 =  Math.abs(WBS_Node_WBS_BSCU_Unit_Delay1);
 	   int temp2 = WBS_Node_WBS_Unit_Delay2;
 	   int temp3 = Math.abs(WBS_Node_WBS_BSCU_SystemModeSelCmd_Unit_Delay);
-	   
+
+	   ret = Math.min((temp1 + temp2 + temp3), temp3);
 	   if (ret > 0)
 	   {
 		   System.out.println("temp1 = " + temp1);
 		   System.out.println("temp2 = " + temp2);
 		   System.out.println("temp3 = " + temp3);
 	   }
-	   
-	   ret += Math.min((temp1 + temp2 + temp3), temp3); 
+
 	   WBS_Node_WBS_BSCU_SystemModeSelCmd_Logical_Operator6 = ((((!(WBS_Node_WBS_BSCU_Unit_Delay1 == 0)) && 
 	         (WBS_Node_WBS_Unit_Delay2 <= 0)) && 
 	         WBS_Node_WBS_BSCU_Command_Is_Normal_Relational_Operator) || 
