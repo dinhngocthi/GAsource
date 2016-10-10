@@ -306,7 +306,6 @@ public class ChuongTrinhChinh
 
     public void initPathListID(int loop) throws Exception
     {
-
         staticVariable.Paramater.depth = loop; // interation loop
         geterTest = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
