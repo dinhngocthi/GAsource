@@ -39,9 +39,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Xóa bỏ những phần tử thừa trong danh sách index các đỉnh. Nguyên nhân:
-	 * danh sách chỉ số đỉnh truyền vào có thể thừa đỉnh đầu tiên và đỉnh cuối
-	 * cùng
 	 * 
 	 * @param IndexList
 	 * @param vertexList
@@ -56,7 +53,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Phá vỡ cấu trúc vòng lặp ngoài
 	 */
 	protected ArrayList<String> runInnerSimpleLoopForTest(int giaTriKhoiTaoBienLapNgoai) {
 		int[] diemLapVongLapNgoai = layPhamViVongLapNgoai(indexList);
@@ -69,9 +65,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Phá vỡ cấu trúc vòng lặp ngoài
-	 * 
-	 * @return [0]: luận lý [1]:index
 	 */
 	protected ArrayList<String> runInnerSimpleLoop() {
 		int[] diemLapVongLapNgoai = layPhamViVongLapNgoai(indexList);
@@ -91,7 +84,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Phá vỡ cấu trúc vòng lặp trong
 	 */
 	protected ArrayList<String> runOuterSimpleLoop() {
 		int[] diemLapVongLapTrong = layPhamViVongLapTrong(indexList);
@@ -100,7 +92,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Thay thế điểm quyết định đi vào vòng lặp ngoài với câu lệnh khởi tạo
 	 * 
 	 * @param vertexList
 	 * @param indexList
@@ -118,21 +109,19 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Xóa điểm quyết định thoát khỏi vòng lặp ngoài
 	 * 
 	 * @param vertexList
 	 * @return
 	 */
 	protected ArrayList<String> xoaDiemLapThoatKhoiVongLapNgoai(ArrayList<String> vertexList, int endOuterLoopRange) {
-		vertexList.remove(endOuterLoopRange + 1);// +1 do vertexList đã thêm câu
-													// lệnh gán cho biến ở trước
-													// đó
+		vertexList.remove(endOuterLoopRange + 1);// +1 do vertexList ﾄ妥｣ thﾃｪm cﾃ｢u
+													// l盻㌻h gﾃ｡n cho bi蘯ｿn 盻� trﾆｰ盻嫩
+													// ﾄ妥ｳ
 		innerSimpleLoopIndex.remove(endOuterLoopRange);
 		return vertexList;
 	}
 
 	/**
-	 * Xóa điểm quyết định thoát khỏi vòng lặp trong
 	 * 
 	 * @param vertexList
 	 * @return
@@ -144,7 +133,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Tạo cho biến lặp một giá trị khởi tạo hợp lệ
 	 * 
 	 * @param vertexList
 	 * @param indexList
@@ -163,7 +151,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Lấy giá trị khởi đầu biến lặp
 	 * 
 	 * @param bienLap
 	 * @param vertexList
@@ -183,7 +170,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Xác định biến lặp sẽ tăng hay giảm
 	 * 
 	 * @param bienlap
 	 * @param vertexList
@@ -200,17 +186,6 @@ public class HandleTwoNestedLoop {
 		return xuHuong;
 	}
 
-	/**
-	 * Lấy biến lặp bằng cách phân tích câu lệnh
-	 * 
-	 * @param cauLenhDieuKien
-	 *            câu lệnh cần phân tích
-	 * @param outerLoopRange
-	 *            phạm vi đoạn lặp ngoài
-	 * @param vertexList
-	 *            danh sách đỉnh
-	 * @return
-	 */
 	protected String layBienLap(String cauLenhDieuKien, int[] outerLoopRange, ArrayList<String> vertexList) {
 		String bienLap = XAU_KHONG_XAC_DINH;
 		ArrayList<String> danhSachBien = layDanhSachBien(cauLenhDieuKien);
@@ -223,12 +198,12 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Lấy khoảng lặp vòng lặp trong
+	 * L蘯･y kho蘯｣ng l蘯ｷp vﾃｲng l蘯ｷp trong
 	 * 
 	 * @param indexList
-	 *            danh sách đỉnh nêu thứ tự thực hiện các câu lệnh
-	 * @return int[] [0]: điểm đi vào vòng lặp trong. [1]: điểm thoát khỏi vòng
-	 *         lặp trong
+	 *            danh sﾃ｡ch ﾄ黛ｻ穎h nﾃｪu th盻ｩ t盻ｱ th盻ｱc hi盻㌻ cﾃ｡c cﾃ｢u l盻㌻h
+	 * @return int[] [0]: ﾄ訴盻ノ ﾄ訴 vﾃ�o vﾃｲng l蘯ｷp trong. [1]: ﾄ訴盻ノ thoﾃ｡t kh盻淑 vﾃｲng
+	 *         l蘯ｷp trong
 	 */
 	protected int[] layPhamViVongLapTrong(ArrayList<Integer> indexList) {
 		int[] innerLoopRange = new int[2];
@@ -243,14 +218,6 @@ public class HandleTwoNestedLoop {
 		return null;
 	}
 
-	/**
-	 * Lấy khoảng lặp vòng lặp ngoài
-	 * 
-	 * @param indexList
-	 *            danh sách đỉnh nêu thứ tự thực hiện các câu lệnh
-	 * @return int[] [0]: điểm đi vào vòng lặp ngoài. [1]: điểm thoát khỏi vòng
-	 *         lặp ngoài
-	 */
 	protected int[] layPhamViVongLapNgoai(ArrayList<Integer> indexList) {
 		int[] outerLoopRange = new int[2];
 		for (int i = 0; i < indexList.size() - 1; i++)
@@ -263,17 +230,6 @@ public class HandleTwoNestedLoop {
 		return null;
 	}
 
-	/**
-	 * Kiếm tra xem có sự thay đổi giá trị biến
-	 * 
-	 * @param bien
-	 *            tên biến
-	 * @param outerLoopRange
-	 *            Phạm vi đoạn lặp ngoài
-	 * @param vertexList
-	 *            Danh sách đỉnh
-	 * @return
-	 */
 	protected boolean coSuThayDoiGiaTri(String bien, int[] outerLoopRange, ArrayList<String> vertexList) {
 		boolean isChanged = false;
 		for (int i = outerLoopRange[0] + 1; i < outerLoopRange[1]; i++)
@@ -293,7 +249,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Lấy danh sách biến có trong câu lệnh
 	 * 
 	 * @param statement
 	 * @return
@@ -309,7 +264,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Biến đổi sang dạng danh sách
 	 * 
 	 * @param indexPath
 	 * @return
@@ -322,7 +276,6 @@ public class HandleTwoNestedLoop {
 	}
 
 	/**
-	 * Biến đổi sang dạng danh sách
 	 * 
 	 * @param indexPath
 	 * @return

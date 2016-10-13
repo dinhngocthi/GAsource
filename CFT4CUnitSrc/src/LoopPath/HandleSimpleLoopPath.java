@@ -7,9 +7,7 @@ import java.util.Map;
 import C.Utils;
 
 /**
- * Sinh các đường thi hành mới từ một đường đi chứa vòng lặp đơn
  * 
- * @author thu
  *
  */
 public class HandleSimpleLoopPath {
@@ -35,9 +33,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Xóa bỏ những phần tử thừa trong danh sách index các đỉnh. Nguyên nhân:
-	 * danh sách chỉ số đỉnh truyền vào có thể thừa đỉnh đầu tiên và đỉnh cuối
-	 * cùng
 	 * 
 	 * @param IndexList
 	 * @param vertexList
@@ -52,7 +47,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Biến đổi sang dạng danh sách
 	 * 
 	 * @param indexPath
 	 * @return
@@ -65,7 +59,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Biến đổi sang dạng danh sách
 	 * 
 	 * @param indexPath
 	 * @return
@@ -78,10 +71,8 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Xây dựng tập đường kiểm thử mới
 	 * 
 	 * @param soLanlapToiDa
-	 *            giá trị -1 nếu không xác định số lần lặp tối đa
 	 * @param simpleLoopPath
 	 * @param loopPathIndex
 	 * @return
@@ -108,7 +99,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Sao chép khối lặp một số lần cụ thể tạo đường đi mới
 	 * 
 	 * @param vertexList
 	 * @param IndexList
@@ -131,7 +121,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Sao chép khối lặp một số lần cụ thể
 	 * 
 	 * @param khoiLap
 	 * @param numLoop
@@ -145,7 +134,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Lấy một khối gồm tập các đỉnh từ đường thi hành vòng lặp đơn
 	 * 
 	 * @param diemBatDau
 	 * @param diemKetThuc
@@ -161,7 +149,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Lấy đoạn lặp dạng xâu, phân cách các đỉnh bởi kí tự #
 	 * 
 	 * @param vertexList
 	 * @param IndexList
@@ -187,7 +174,6 @@ public class HandleSimpleLoopPath {
 	}
 
 	/**
-	 * Lấy số thứ tự của điểm lặp của đường đi vòng lặp đơn
 	 * 
 	 * @param loopPathIndex
 	 * @return

@@ -26,7 +26,6 @@ public class ParseLoopTestpath {
 		Set<Integer> tapDinhKhacNhau = layTapDinhKhacNhau(testpathIndex);
 		Set<Integer> tapDinhLap = layTapDinhLap(testpathIndex);
 		if (tapDinhLap.size() == 1 && tapDinhKhacNhau.size() == testpathIndex.size() - 1)
-			// Tồn tại một đỉnh lặp lại và đỉnh này chỉ lặp lại duy nhất 1 lần
 			return true;
 		else
 			return false;
@@ -36,8 +35,6 @@ public class ParseLoopTestpath {
 		Set<Integer> tapDinhLap = layTapDinhLap(testpathIndex);
 		Set<Integer> tapDinhKhacNhau = layTapDinhKhacNhau(testpathIndex);
 		if (tapDinhLap.size() == 2 && tapDinhKhacNhau.size() == testpathIndex.size() - 2) {
-			// Tồn tại hai đỉnh lặp lại và mỗi đỉnh này chỉ lặp lại duy nhất 1
-			// lần
 			int dinhLap1 = (int) tapDinhLap.toArray()[0];
 			int dinhLap2 = (int) tapDinhLap.toArray()[1];
 			// kiem tra hai vong lap nay bao nhau hay khong
@@ -46,10 +43,8 @@ public class ParseLoopTestpath {
 			int posDinhLap2_Begin = testpathIndex.indexOf(dinhLap2);
 			int posDinhLap2_End = testpathIndex.lastIndexOf(dinhLap2);
 			if (posDinhLap1_Begin < posDinhLap2_Begin && posDinhLap1_End > posDinhLap2_End) {
-				// nếu vòng lặp tại đỉnh lặp 1 chứa vòng lặp tại vòng lặp 2
 				return true;
 			} else if (posDinhLap2_Begin < posDinhLap1_Begin && posDinhLap2_End > posDinhLap1_End) {
-				// nếu vòng lặp tại đỉnh lặp 2 chứa vòng lặp tại vòng lặp 1
 				return true;
 			} else
 				return false;
