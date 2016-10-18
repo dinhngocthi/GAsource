@@ -1353,7 +1353,7 @@ public class GA201612
             newPop[k].parent2 = newPop[k + 1].parent2 = mate2 + 1;
             
             /*-------------------Constraint-based adjustment----START-----------------------------*/
-/*
+
             if (targetFunction.path1 == 0)
             {
             	newPop[k].xreal[0] = 0;
@@ -1367,7 +1367,6 @@ public class GA201612
 			{
 				newPop[k].xreal[1] = 2 * Math.sqrt(newPop[k].xreal[0] * newPop[k].xreal[2]);
 			}
-*/
 /*            
             if (targetFunction.path1 == 0 || targetFunction.path2 == 0)
             {
