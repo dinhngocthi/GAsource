@@ -5,6 +5,15 @@ public class MSExample {
   //@Symbolic("true")
   public static String s = "http://www./EasyChair";
 
+  private static boolean IsPasswordQuery(String str1, String str2) {
+	  if (str1.equals(str2)) 
+		  System.out.println("OK");
+	  else
+		  System.out.println("NG");
+	  
+	  return false;
+  }
+
   private static boolean IsEasyChairQuery(String str) {
     // (1) check that str contains "/" followed by anything not
     // containing "/" and containing "EasyChair"
@@ -25,7 +34,6 @@ public class MSExample {
     String t =
         str.substring("http://".length(), lastSlash);
     if (t.startsWith("www.")) {
-    	
       t = t.substring("www.".length());
     }
     // (4) Check that after stripping we have either "live.com"
@@ -43,7 +51,8 @@ public class MSExample {
   }
 
   public static void main(String srgs[]) {
-    doTest();
-    System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    //doTest();
+	  IsPasswordQuery("abc", "abcw");
+    //System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
   }
 }

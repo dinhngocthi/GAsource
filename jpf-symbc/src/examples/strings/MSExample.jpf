@@ -38,7 +38,8 @@ symbolic.string_dp_timeout_ms=0
 # "Verify..." does not work. In order to run cvc3
 # you need to go through "Run Configuration"
 
-symbolic.method= strings.MSExample.IsEasyChairQuery(sym)
+#symbolic.method = strings.MSExample.IsEasyChairQuery(sym)
+symbolic.method = strings.MSExample.IsPasswordQuery(sym#sym)
 
 listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
 
