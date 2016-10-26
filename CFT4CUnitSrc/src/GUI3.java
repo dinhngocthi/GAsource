@@ -665,7 +665,7 @@ public final class GUI3 extends javax.swing.JFrame
             //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
             //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
             //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-            String pathFile = classPath.replace("bin/", "src/sample/mmTriangle.c");
+            String pathFile = classPath.replace("bin/", "src/sample/mid.c");
 
             staticVariable.Paramater.depth = Utils.toInt(jtpDepth.getText() + "");
             staticVariable.Paramater.Smt_Lib_path_lib = jtfSmt_Lib_path_lib.getText();
@@ -756,7 +756,6 @@ public final class GUI3 extends javax.swing.JFrame
                     displaySubConditionCoverageResult();
                     invalidate();
                 }
-
             };
             task1.execute();
             task2.execute();
@@ -797,20 +796,20 @@ public final class GUI3 extends javax.swing.JFrame
                 ImageIO.write(bi2, "png", new File(currentPathFile + "_Sub_Condition.png"));
                 ArrayList<String[]> titleColumn = new ArrayList<String[]>();
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 titleColumn.add(new String[]
-                { "STT", "Đường kiểm thử", "Hệ ràng buộc" });
+                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
                 GUtils.exportJTableToExcel(new JTable[]
                 { jtStatementTable, jtBranchCoverage, jtSubConditionCoverage, jtBasisPaths, }, new String[]
-                { "Phủ câu lệnh", "Phủ nhánh", "Phủ điều kiện con", "Tập đường thực thi được phủ câu lệnh/nhánh" }, titleColumn, new File(currentPathFile + ".xls"));
+                { "Phá»§ cÃ¢u lá»‡nh", "Phá»§ nhÃ¡nh", "Phá»§ Ä‘iá»�u kiá»‡n con", "Táº­p Ä‘Æ°á»�ng thá»±c thi Ä‘Æ°á»£c phá»§ cÃ¢u lá»‡nh/nhÃ¡nh" }, titleColumn, new File(currentPathFile + ".xls"));
                 JOptionPane.showMessageDialog(GUI3.this, "Export Successfully");
             }
             catch (IOException ex)
@@ -1052,9 +1051,9 @@ public final class GUI3 extends javax.swing.JFrame
         {
             String __testpath__ = simpleLoopList.get(numLoop);
 
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// có
-            // thể
-            // rỗng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
+            // thá»ƒ
+            // rá»—ng
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1082,9 +1081,9 @@ public final class GUI3 extends javax.swing.JFrame
         for (Object numLoop : innerLoopList.keySet())
         {
             String __testpath__ = innerLoopList.get(numLoop);
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// có
-            // thể
-            // rỗng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
+            // thá»ƒ
+            // rá»—ng
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1098,9 +1097,9 @@ public final class GUI3 extends javax.swing.JFrame
         for (Object numLoop : outerLoopList.keySet())
         {
             String __testpath__ = outerLoopList.get(numLoop);
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// có
-            // thể
-            // rỗng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
+            // thá»ƒ
+            // rá»—ng
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1208,8 +1207,8 @@ public final class GUI3 extends javax.swing.JFrame
                     cPhuCap1va2.showSttSelectedTestpath(clickedTestpath);
                     jtpSmt_LibFile.setText(testpath.getSmtFile());
                     jtpTestcase.setText("Output from Z3:\n" + testpath.getTestcaseInZ3() + "\n\nNormalized output:\n" + testpath.getTestcase());
-                    // Khi click vào từng đường đi thì hiện danh sách
-                    // đường
+                    // Khi click vÃ o tá»«ng Ä‘Æ°á»�ng Ä‘i thÃ¬ hiá»‡n danh sÃ¡ch
+                    // Ä‘Æ°á»�ng
                     ParseLoopTestpath parser = new ParseLoopTestpath(testpath);
                     try
                     {
