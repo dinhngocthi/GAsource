@@ -69,7 +69,7 @@ public class TargetFunctions
       		  Utils.stopCriteria = false;
       		  break;
       	  }
-    	return mid;
+    	return ret;
     }
 
     static double fisher(int m, int n, double x) {
