@@ -23,6 +23,55 @@ public class TargetFunctions
     	fisher(5, 2895, -752.7043905427072);
     }
 
+    int middle(int X, int Y, int Z)
+    {
+    	int mid = Z;
+    	int ret = (Y - Z); 
+    	if (Y < Z) {
+    		ret += (X - Y);     	
+    		if (X < Y)
+    		{
+    			Utils.path[0] ++;
+    			mid = Y;
+    		}
+    		else
+    		{
+    			ret += (X - Z);
+    			if (X < Z)
+    			{
+    				Utils.path[1] ++;
+    				mid = X;
+    			}
+    		}
+    	}
+    	else {
+    		ret += (Y - X);
+    		if (X >= Y)
+    		{
+    			Utils.path[2] ++;
+    			mid = Y;
+    		}
+    		else
+    		{
+    			ret += (Z - X);
+    			if (X > Z)
+    			{
+    				Utils.path[3] ++;
+    				mid = X;
+    			}
+    		}
+    	}
+
+    	Utils.stopCriteria = true;
+        for (int i = 0; i < 4; i++)
+      	  if (Utils.path[i] == 0)
+      	  {
+      		  Utils.stopCriteria = false;
+      		  break;
+      	  }
+    	return mid;
+    }
+
     static double fisher(int m, int n, double x) {
       int a, b, j;
       double w, y, z, zk, d, p;
@@ -79,12 +128,12 @@ public class TargetFunctions
       }
       
       Utils.stopCriteria = true;
-	   for (int i = 0; i < 7; i++)
-		   if (Utils.path[i] == 0)
-		   {
-			   Utils.stopCriteria = false;
-			   break;
-		   }
+      for (int i = 0; i < 7; i++)
+    	  if (Utils.path[i] == 0)
+    	  {
+    		  Utils.stopCriteria = false;
+    		  break;
+    	  }
       return(p<0.0? 0.0: p>1.0? 1.0: p);
     }
       

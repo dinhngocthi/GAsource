@@ -68,7 +68,7 @@ public class GA201612
     static TargetFunctions targetFunction;
     static private Adjust[] adjustList = new Adjust[10];
     static WBS wbs;
-    static int pathcount = 48; // WBS = 48
+    static int pathcount = 4; // WBS = 48
     
     public static void inputAppParameters()
     {
@@ -488,7 +488,8 @@ public class GA201612
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
         //your_func = targetFunction.example3(x[0], x[1], x[2]);
-        your_func = targetFunction.example4(x[0], x[1], x[2]);
+        //your_func = targetFunction.example4(x[0], x[1], x[2]);
+        your_func = targetFunction.middle((int)x[0], (int)x[1], (int)x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
         //your_func = targetFunction.fisher((int)x[0], (int)x[1], x[2]);
