@@ -25,6 +25,7 @@ public class TargetFunctions
 
     int middle(int X, int Y, int Z)
     {
+    	System.out.println("middle");
     	int mid = Z;
     	int ret = (Y - Z); 
     	if (Y < Z) {
@@ -253,22 +254,25 @@ public class TargetFunctions
 	    	{
 	    		type = 3;  // Equilateral
 	    		//System.out.println("Equilateral");
-	    		path2++;
+	    		//path2++;
+	    		Utils.path[1]++;
 	    	}
 	    	else
 	    	{
-	    		ret3 = Math.min(Math.min(Math.abs(a - b), Math.abs(b - a)), Math.abs(c - a));
+	    		//ret3 = Math.min(Math.min(Math.abs(a - b), Math.abs(b - a)), Math.abs(c - a));
 	    		if (a == b || b == c || c == a)
 		    	{
 		    		type = 2;  // Isosceles
 		    		//System.out.println("Isosceles");
-		    		path3++;
+		    		//path3++;
+		    		Utils.path[2]++;
 		    	}
 		    	else
 		    	{
 		    		type = 1;  // Scalene
 		    		//System.out.println("Scalene");
-		    		path4++;
+		    		//path4++;
+		    		Utils.path[3]++;
 		    	}
 	    	}
     	}
@@ -276,10 +280,11 @@ public class TargetFunctions
     	{
     		type = -1; // Not a triangle
     		//System.out.println("Not a triangle");
-    		path1++;
+    		//path1++;
+    		Utils.path[0]++;
     	}
 
-    	Utils.stopCriteria = (path1 > 0) && (path2 > 0) && (path3 > 0) && (path4 > 0);
+    	Utils.stopCriteria = (Utils.path[0] > 0) && (Utils.path[1] > 0) && (Utils.path[2] > 0) && (Utils.path[3] > 0);
     	return (ret1 + ret2 + ret3);
     }
     

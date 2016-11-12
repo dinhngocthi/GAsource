@@ -484,17 +484,23 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        //your_func = targetFunction.Tritype(x[0], x[1], x[2]);
+        your_func = targetFunction.Tritype(x[0], x[1], x[2]);
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
         //your_func = targetFunction.example3(x[0], x[1], x[2]);
         //your_func = targetFunction.example4(x[0], x[1], x[2]);
-        your_func = targetFunction.middle((int)x[0], (int)x[1], (int)x[2]);
+        //your_func = targetFunction.middle((int)x[0], (int)x[1], (int)x[2]);
         //your_func = targetFunction.example2(x[0], x[1], x[2]);
         //your_func = targetFunction.QuadraticEquation2(x[0], x[1], x[2]);
         //your_func = targetFunction.fisher((int)x[0], (int)x[1], x[2]);
         //your_func = wbs.update((int)x[0], (x[1] > 0), (x[2] > 0));
-
+        /*
+        double x1 = x[0];
+        double y1 = x[1];
+        your_func = Math.pow(2.8125 - x1 + x1 * Math.pow(y1, 4), 2) + 
+				Math.pow(2.25 - x1 + x1 * Math.pow(y1, 2), 2) + 
+				Math.pow(1.5 - x1 + x1 * y1, 2);
+		*/
         nc = 0; 
         // Put your constraints here
 //        g[0] = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
@@ -1435,13 +1441,13 @@ public class GA201612
             if (Math.abs(b*b - (4*a*c)) < 5000)    //delta
                 newPop[k].xreal[1] = Math.sqrt(4*a*c);
 */
-            //if (x + y == 1024)
-
-//        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
+/*
+            if (x + y == 1024)
+        	if (newPop[k].xreal[0] + newPop[k].xreal[1] < 1050 && newPop[k].xreal[0] + newPop[k].xreal[1] > 1000)
         	{
-//        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
+        		newPop[k].xreal[1] = 1024 - newPop[k].xreal[0]; 
         	}
-
+*/
 /*
             for (int i = 0; i < nvarReal - 1; i++)
             {
