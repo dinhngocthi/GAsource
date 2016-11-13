@@ -13,8 +13,8 @@ import C.Utils;
 //you need to introduce a new variable (other than x and y)
 
 public class ProblemSet {
-	public static final double LOC_LOW = -1000;
-	public static final double LOC_HIGH = 1000;
+	public static final double LOC_LOW  = 1;
+	public static final double LOC_HIGH = 10000;
 	/*
 	public static final double LOC_X_LOW = 1;
 	public static final double LOC_X_HIGH = 1000;
@@ -26,7 +26,7 @@ public class ProblemSet {
 	public static final double VEL_LOW = -1;
 	public static final double VEL_HIGH = 1;
 	
-	public static final double ERR_TOLERANCE = 1E-20; // the smaller the tolerance, the more accurate the result, 
+	public static final double ERR_TOLERANCE = 1E-10; // the smaller the tolerance, the more accurate the result, 
 	                                                  // but the number of iteration is increased
 	
 	public static double evaluate(Location location) {
@@ -41,7 +41,7 @@ public class ProblemSet {
 		*/
 		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
 		result = Math.abs(x - y) + Math.abs(y - z);
-		//Utils.iterationcount++;
+		Utils.iterationcount++;
 		//result = TargetFunctions.Tritype(x, y, z);
 		return result;
 	}

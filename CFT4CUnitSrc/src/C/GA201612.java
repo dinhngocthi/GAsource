@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.Properties;
 import java.lang.Math;
 
+import pso.ProblemSet;
+
 public class GA201612
 {
     static int maxGen;
@@ -482,7 +484,7 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = TargetFunctions.Tritype(x[0], x[1], x[2]);
+        //your_func = TargetFunctions.Tritype(x[0], x[1], x[2]);
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
         //your_func = targetFunction.example3(x[0], x[1], x[2]);
@@ -499,6 +501,16 @@ public class GA201612
 				Math.pow(2.25 - x1 + x1 * Math.pow(y1, 2), 2) + 
 				Math.pow(1.5 - x1 + x1 * y1, 2);
 		*/
+        your_func = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
+        if (your_func < ProblemSet.ERR_TOLERANCE)
+        {
+        	Utils.stopCriteria = true;
+        	System.out.println("x = " + x[0]);
+        	System.out.println("y = " + x[1]);
+        	System.out.println("z = " + x[2]);
+        	System.out.println("Done");
+        }
+        
         nc = 0; 
         // Put your constraints here
 //        g[0] = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
@@ -614,7 +626,6 @@ public class GA201612
         for (k = 0; k < popSize; k++)
         {
             if (Utils.stopCriteria) return;
-
             decodeString(oldPop[k]);
             objective(oldPop[k]);
         }
@@ -1527,25 +1538,7 @@ public class GA201612
             initialize();
             statistics(genNo);
             report(0);
-            
-            if (run == 1)
-            {
-            	System.out.println("---------------------------------");
-            	System.out.println("Before calling generatenewPop");            
-	            System.out.println("Test data generation count: " + objectcall);
-/*	            
-	            System.out.println("path1 = " + targetFunction.path1);
-	            System.out.println("path2 = " + targetFunction.path2);
-	            System.out.println("path3 = " + targetFunction.path3);
-	            System.out.println("path4 = " + targetFunction.path4);
-	            System.out.println("path5 = " + targetFunction.path5);
-	            System.out.println("path6 = " + targetFunction.path6);
-*/
-	            for (int i = 0; i < pathcount; i ++)
-	            	System.out.println("path[" + i + "] = " + Utils.path[i]);
 
-	            System.out.println("---------------------------------");
-            }
             for (genNo = 1; genNo <= maxGen; genNo++)
             {            	
                 generatenewPop();
@@ -1567,24 +1560,7 @@ public class GA201612
         fpRep.close();
         fpPlot.close();
 
-        System.out.println("Test data generation count: " + objectcall);
-/*
-        System.out.println("path1 = " + targetFunction.path1);
-        System.out.println("path2 = " + targetFunction.path2);
-        System.out.println("path3 = " + targetFunction.path3);
-        System.out.println("path4 = " + targetFunction.path4);
-        System.out.println("path5 = " + targetFunction.path5);
-        System.out.println("path6 = " + targetFunction.path6);
-*/        
-        int coveredpathcount = 0;
-        for (int i = 0; i < pathcount; i ++)
-        {
-        	System.out.println("path[" + i + "] = " + Utils.path[i]);
-        	if (Utils.path[i] > 0) coveredpathcount++;
-        }
-
-        double r = ((double)coveredpathcount/(double)pathcount);
-        System.out.println("Path coverage = " + r);
+        System.out.println("Test data generation count: " + objectcall);        
         System.out.println("GA201612 completed./.");
     }
 }

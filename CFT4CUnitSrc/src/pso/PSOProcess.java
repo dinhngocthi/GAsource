@@ -38,8 +38,10 @@ public class PSOProcess implements PSOConstants
 		while(t < MAX_ITERATION && err > ProblemSet.ERR_TOLERANCE) 
 		{
 			// step 1 - update pBest
-			for(int i=0; i<SWARM_SIZE; i++) {
-				if(fitnessValueList[i] < pBest[i]) {
+			for (int i=0; i<SWARM_SIZE; i++) 
+			{
+				if (fitnessValueList[i] < pBest[i]) 
+				{
 					pBest[i] = fitnessValueList[i];
 					pBestLocation.set(i, swarm.get(i).getLocation());
 				}
@@ -47,7 +49,8 @@ public class PSOProcess implements PSOConstants
 				
 			// step 2 - update gBest
 			int bestParticleIndex = PSOUtility.getMinPos(fitnessValueList);
-			if(t == 0 || fitnessValueList[bestParticleIndex] < gBest) {
+			if(t == 0 || fitnessValueList[bestParticleIndex] < gBest) 
+			{
 				gBest = fitnessValueList[bestParticleIndex];
 				gBestLocation = swarm.get(bestParticleIndex).getLocation();
 			}
@@ -83,13 +86,13 @@ public class PSOProcess implements PSOConstants
 			}
 			
 			err = ProblemSet.evaluate(gBestLocation) - 0; // minimizing the functions means it's getting closer to 0
-			Utils.iterationcount++;
+			//Utils.iterationcount++;
 			
 			System.out.println("ITERATION " + t + ": ");
 			System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
 			System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
 			System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-			System.out.println("     Value: " + ProblemSet.evaluate(gBestLocation));
+			System.out.println("     Value: " + err);
 			
 			t++;
 			updateFitnessList();
