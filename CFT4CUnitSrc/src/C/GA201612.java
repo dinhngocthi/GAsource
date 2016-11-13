@@ -65,7 +65,6 @@ public class GA201612
 
     static String testFunction;
     static int objectcall = 0; 
-    static TargetFunctions targetFunction;
     static private Adjust[] adjustList = new Adjust[10];
     static WBS wbs;
     static int pathcount = 4; // WBS = 48
@@ -177,8 +176,7 @@ public class GA201612
 
         criticalSize = popSize / 4;
         inputAppParameters();
-                 
-        targetFunction   = new TargetFunctions();
+
         wbs = new WBS();
 /*
         for (int i = 0; i < 10; i++) 
@@ -484,7 +482,7 @@ public class GA201612
             your_func += (100 * (x[i+1] - x[i]*x[i]) * (x[i+1] - x[i]*x[i])) + ((x[i] - 1) * (x[i] - 1));
         }
         */
-        your_func = targetFunction.Tritype(x[0], x[1], x[2]);
+        your_func = TargetFunctions.Tritype(x[0], x[1], x[2]);
         //your_func = targetFunction.example((int)x[0], (int)x[1], x[2]);
         //your_func = targetFunction.example1(x[0], x[1], x[2]);
         //your_func = targetFunction.example3(x[0], x[1], x[2]);

@@ -17,6 +17,7 @@ public class Utils {
 	public static boolean stopCriteria = false;
 	public static int maxpathcount = 1000;
 	public static int[] path = new int[maxpathcount];
+	public static int iterationcount = 0;
 
 	/**
 	 * [0]: minute [1]: second
