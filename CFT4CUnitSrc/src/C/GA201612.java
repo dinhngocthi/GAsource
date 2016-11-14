@@ -501,7 +501,9 @@ public class GA201612
 				Math.pow(2.25 - x1 + x1 * Math.pow(y1, 2), 2) + 
 				Math.pow(1.5 - x1 + x1 * y1, 2);
 		*/
-        your_func = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
+        //your_func = Math.abs(x[0] - x[1]) + Math.abs(x[1] - x[2]);
+        your_func = Math.abs(Math.pow(x[1], 2) - (4 * x[0] * x[2]));
+        
         if (your_func < ProblemSet.ERR_TOLERANCE)
         {
         	Utils.stopCriteria = true;

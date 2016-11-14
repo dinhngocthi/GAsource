@@ -40,7 +40,8 @@ public class ProblemSet {
 				Math.pow(1.5 - x + x * y, 2);
 		*/
 		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
-		result = Math.abs(x - y) + Math.abs(y - z);
+		//result = Math.abs(x - y) + Math.abs(y - z);
+		result = Math.abs(Math.pow(y, 2) - (4 * x * z));
 		Utils.iterationcount++;
 		//result = TargetFunctions.Tritype(x, y, z);
 		return result;
