@@ -29,7 +29,8 @@ public class ProblemSet {
 	public static final double ERR_TOLERANCE = 1E-10; // the smaller the tolerance, the more accurate the result, 
 	                                                  // but the number of iteration is increased
 	
-	public static double evaluate(Location location) {
+	public static double evaluate(Location location, int functionID) 
+	{
 		double result = 0;
 		double x = location.getLoc()[0]; // the "x" part of the location
 		double y = location.getLoc()[1]; // the "y" part of the location
@@ -41,7 +42,17 @@ public class ProblemSet {
 		*/
 		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
 		//result = Math.abs(x - y) + Math.abs(y - z);
-		result = Math.abs(Math.pow(y, 2) - (4 * x * z));
+		switch (functionID)
+		{
+			case 0:	
+				result = Math.abs(Math.pow(y, 2) - (4 * x * z));
+				break;
+			case 1:
+				result = Math.abs(x) + Math.abs(y);
+				break;
+			default:
+				break;
+		}
 		Utils.iterationcount++;
 		//result = TargetFunctions.Tritype(x, y, z);
 		return result;

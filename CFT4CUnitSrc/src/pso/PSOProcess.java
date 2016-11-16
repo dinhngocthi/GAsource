@@ -20,10 +20,11 @@ public class PSOProcess implements PSOConstants
 	
 	Random generator = new Random();
 	
-	public void execute() 
+	public void execute(int functionID) 
 	{
 		initializeSwarm();
-		updateFitnessList();
+		updateFitnessList(functionID);
+		Utils.iterationcount = 0;
 		
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
@@ -85,29 +86,30 @@ public class PSOProcess implements PSOConstants
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation) - 0; // minimizing the functions means it's getting closer to 0
-			//Utils.iterationcount++;
-			
+			err = ProblemSet.evaluate(gBestLocation, functionID) - 0; // minimizing the functions means it's getting closer to 0
+/*
 			System.out.println("ITERATION " + t + ": ");
 			System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
 			System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
 			System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
 			System.out.println("     Value: " + err);
-			
+*/
 			t++;
-			updateFitnessList();
+			updateFitnessList(functionID);
 		}
 		
-		System.out.println("\nSolution found at iteration " + (t - 1) + ", the solutions is:");
+		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
 		System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-		System.out.println("Iteration count = " + Utils.iterationcount);
+		System.out.println("Evaluation count = " + Utils.iterationcount);
 	}
 	
-	public void initializeSwarm() {
+	public void initializeSwarm() 
+	{
 		Particle p;
-		for(int i=0; i<SWARM_SIZE; i++) {
+		for(int i=0; i<SWARM_SIZE; i++) 
+		{
 			p = new Particle();
 			
 			// randomize location inside a space defined in Problem Set
@@ -130,11 +132,11 @@ public class PSOProcess implements PSOConstants
 		}
 	}
 	
-	public void updateFitnessList() 
+	public void updateFitnessList(int functionID) 
 	{
 		for(int i = 0; i < SWARM_SIZE; i++) 
 		{
-			fitnessValueList[i] = swarm.get(i).getFitnessValue();
+			fitnessValueList[i] = swarm.get(i).getFitnessValue(functionID);
 		}
 	}
 }
