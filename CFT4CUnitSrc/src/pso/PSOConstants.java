@@ -1,6 +1,6 @@
 package pso;
 
-public interface PSOConstants 
+public interface PSOConstants
 {
 	int SWARM_SIZE = 30;
 	int MAX_ITERATION = 10000;

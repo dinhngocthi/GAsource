@@ -9,7 +9,7 @@ import java.util.Vector;
 
 import C.Utils;
 
-public class PSOProcess implements PSOConstants 
+public class PSOProcess implements PSOConstants
 {
 	private Vector<Particle> swarm = new Vector<Particle>();
 	private double[] pBest = new double[SWARM_SIZE];
