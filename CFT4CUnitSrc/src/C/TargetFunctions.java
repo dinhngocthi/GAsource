@@ -23,6 +23,34 @@ public class TargetFunctions
     	fisher(5, 2895, -752.7043905427072);
     }
 
+    int getDayNum(int year, int month)
+    {
+    	int maxDay=0;
+    	int ret = Math.min(1 - month, month - 12);
+	    if( month>=1 && month<=12) //bch1: branch 1
+	    {
+	    	ret += Math.abs(month - 2);
+	    	if(month==2) //bch2: branch 2
+		    {
+	    		ret += Math.abs(year%400) + Math.min(Math.abs(year%400), Math.abs(year%100));
+			    if (year%400==0||(year%4==0&&year%100==0))
+			    	//bch3: branch 3
+			    	maxDay=29;
+			    else //bch4: branch 4
+			    	maxDay=28;
+		    }
+	    	else 
+	    		if (month==4||month==6||month==9||month==11)
+	    			//	bch5: branch 5
+	    			maxDay=30;
+	    		else //bch6: branch 6
+	    			maxDay=31;
+	    }
+	    else //bch7: branch 7
+	    	maxDay=-1;
+	    return maxDay;
+    }
+    	
     int middle(int X, int Y, int Z)
     {
     	System.out.println("middle");

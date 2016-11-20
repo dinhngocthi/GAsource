@@ -42,13 +42,25 @@ public class ProblemSet {
 		*/
 		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
 		//result = Math.abs(x - y) + Math.abs(y - z);
+		
+		int month = (int)x;
+		int year = (int)y;
+
+		int ret1 = Math.abs(Math.min(1 - month, month - 12));
+		int ret2 = Math.abs(month - 2);
+		int ret3 = Math.abs(year%400) + Math.min(Math.abs(year%400), Math.abs(year%100));
+		
 		switch (functionID)
 		{
 			case 0:	
-				result = Math.abs(Math.pow(y, 2) - (4 * x * z));
+				//result = Math.abs(Math.pow(y, 2) - (4 * x * z));
+				//result  = Math.min(ret1, Math.min(ret2, ret3)); 
+				result  = Math.min(ret1, ret2) + ret3;
+				//result = ret3;
 				break;
 			case 1:
-				result = Math.abs(x) + Math.abs(y);
+				//result = Math.abs(x) + Math.abs(y);
+				result = ret3;
 				break;
 			default:
 				break;
