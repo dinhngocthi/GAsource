@@ -1,6 +1,7 @@
 package pso;
 
-public class PSODriver {
+public class PSODriver 
+{
 	public static void main(String[] args)
 	{		
 		long t1 = System.currentTimeMillis(); // start time
