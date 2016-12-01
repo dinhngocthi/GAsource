@@ -28,7 +28,8 @@ public class ProblemSet {
 	
 	public static final double ERR_TOLERANCE = 1E-20; // the smaller the tolerance, the more accurate the result, 
 	                                                  // but the number of iteration is increased
-	
+	private static final double k = 0.1;
+
 	public static double evaluate(Location location, int functionID) 
 	{
 		double result = 0;
@@ -46,16 +47,19 @@ public class ProblemSet {
 		int month = (int)x;
 		int year = (int)y;
 
-		int ret1 = Math.abs(Math.min(1 - month, month - 12));
-		int ret2 = Math.abs(month - 2);
-		int ret3 = Math.abs(year%400) + Math.min(Math.abs(year%400), Math.abs(year%100));
+		double ret1 = GetBranchDistance(month, 1, 8) + GetBranchDistance(month, 12, 6);
+		double ret2 = GetBranchDistance(month, 2, 3);
+		
+		double ret31 = GetBranchDistance(year % 4, 0, 3) + GetBranchDistance(year % 100, 0, 3);
+		double ret32 = GetBranchDistance(year % 400, 0, 3);
+		double ret3 = Math.min(ret31, ret32);
 		
 		switch (functionID)
 		{
 			case 0:	
 				//result = Math.abs(Math.pow(y, 2) - (4 * x * z));
 				//result  = Math.min(ret1, Math.min(ret2, ret3)); 
-				result  = Math.min(ret1, ret2) + ret3;
+				result  = ret1 + ret2 + ret3;
 				//result = ret3;
 				break;
 			case 1:
@@ -68,5 +72,52 @@ public class ProblemSet {
 		Utils.iterationcount++;
 		//result = TargetFunctions.Tritype(x, y, z);
 		return result;
+	}
+	
+	private static double GetBranchDistance(double x, double y, int opType)
+	{
+		double ret = 0;
+		switch (opType)
+		{
+			case 3: // == operator
+				if (Math.abs(x - y) == 0)
+					ret = 0;
+				else
+					ret = Math.abs(x - y) + k;
+				break;
+			case 4: // != operator
+				if (Math.abs(x - y) != 0)
+					ret = 0;
+				else
+					ret = k;
+				break;
+			case 5: // < operator
+				if (x - y < 0)
+					ret = 0;
+				else
+					ret = Math.abs(x - y) + k;
+				break;
+			case 6: // <= operator
+				if (x - y <= 0)
+					ret = 0;
+				else
+					ret = Math.abs(x - y) + k;
+				break;
+			case 7: // > operator
+				if (y - x < 0)
+					ret = 0;
+				else
+					ret = Math.abs(y - x) + k;
+				break;
+			case 8: // >= operator
+				if (y - x <= 0)
+					ret = 0;
+				else
+					ret = Math.abs(y - x) + k;
+				break;
+			default:
+				break;
+		}
+		return ret;
 	}
 }
