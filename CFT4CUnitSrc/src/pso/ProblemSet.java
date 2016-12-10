@@ -57,14 +57,13 @@ public class ProblemSet {
 		switch (functionID)
 		{
 			case 0:	
-				//result = Math.abs(Math.pow(y, 2) - (4 * x * z));
-				//result  = Math.min(ret1, Math.min(ret2, ret3)); 
-				result  = ret1 + ret2 + ret3;
-				//result = ret3;
+				result  = ret1;
 				break;
 			case 1:
-				//result = Math.abs(x) + Math.abs(y);
-				result = ret3;
+				result = ret1 + ret2;
+				break;
+			case 2:
+				result = ret1 + ret2 + ret3;
 				break;
 			default:
 				break;

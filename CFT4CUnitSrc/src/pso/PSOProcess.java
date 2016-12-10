@@ -75,7 +75,7 @@ public class PSOProcess implements PSOConstants
 				}
 				Velocity vel = new Velocity(newVel);
 				p.setVelocity(vel);
-				
+
 				// step 4 - update location
 				double[] newLoc = new double[PROBLEM_DIMENSION];
 				for (int j = 0; j < PROBLEM_DIMENSION; j++)
@@ -99,9 +99,9 @@ public class PSOProcess implements PSOConstants
 		}
 		
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
-		System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
-		System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
-		System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
+		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
+		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
+		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
 		System.out.println("Evaluation count = " + Utils.iterationcount);
 	}
 	
