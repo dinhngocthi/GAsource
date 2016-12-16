@@ -34,8 +34,8 @@ import java.util.Map;
  *  The class declares an abstract method called <code>execute</code>, which 
  *  defines the behavior of the algorithm.
  */ 
-public abstract class Algorithm implements Serializable {
-   
+public abstract class Algorithm implements Serializable 
+{
   /**
    * Stores the problem to solve
    */

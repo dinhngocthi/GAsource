@@ -27,8 +27,8 @@ import java.io.Serializable;
 /**
  * jMetal exception class
  */
-public class JMException extends Exception implements Serializable {
-  
+public class JMException extends Exception implements Serializable 
+{  
   /**
    * Constructor
    * @param Error message

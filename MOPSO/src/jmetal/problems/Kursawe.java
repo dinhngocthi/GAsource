@@ -89,21 +89,27 @@ public class Kursawe extends Problem {
     for (int i = 0 ; i < numberOfVariables_; i++)
     	x[i] = vars.getValue(i) ;
     
-    fx[0] = 0.0 ; 
-    for (int var = 0; var < numberOfVariables_ - 1; var++) {        
+    fx[0] = 0.0 ;
+    /*
+    for (int var = 0; var < numberOfVariables_ - 1; var++) 
+    {        
       xi = x[var] *  x[var];
       xj = x[var+1] * x[var+1] ;
       aux = (-0.2) * Math.sqrt(xi + xj);
       fx[0] += (-10.0) * Math.exp(aux);
+      fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
     } // for
-        
+    */
+    fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
+    fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
+    /*
     fx[1] = 0.0;
-        
-    for (int var = 0; var < numberOfVariables_ ; var++) {
+    for (int var = 0; var < numberOfVariables_ ; var++) 
+    {
       fx[1] += Math.pow(Math.abs(x[var]), 0.8) + 
            5.0 * Math.sin(Math.pow(x[var], 3.0));
     } // for
-    
+    */
     solution.setObjective(0, fx[0]);
     solution.setObjective(1, fx[1]);
   } // evaluate
