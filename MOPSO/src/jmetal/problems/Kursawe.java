@@ -89,7 +89,7 @@ public class Kursawe extends Problem {
     for (int i = 0 ; i < numberOfVariables_; i++)
     	x[i] = vars.getValue(i) ;
     
-    fx[0] = 0.0 ;
+    //fx[0] = 0.0 ;
     /*
     for (int var = 0; var < numberOfVariables_ - 1; var++) 
     {        
