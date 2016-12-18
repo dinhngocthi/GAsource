@@ -37,8 +37,8 @@ import java.util.Comparator;
 /**
  * This class representing an asynchronous version of OMOPSO algorithm
  */
-public class OMOPSO extends Algorithm {
-                 
+public class OMOPSO extends Algorithm 
+{                 
   /**
    * Stores the number of particles_ used
    */
@@ -123,19 +123,20 @@ public class OMOPSO extends Algorithm {
   * Constructor
   * @param problem Problem to solve
   */    
-  public OMOPSO(Problem problem) {                
+  public OMOPSO(Problem problem) 
+  {                
     super (problem) ;
   } // OMOPSO
   
   /**
    * Initialize all parameter of the algorithm
    */
-  public void initParams(){
+  public void initParams()
+  {
     particlesSize_ = ((Integer)getInputParameter("swarmSize")).intValue();
     archiveSize_   = ((Integer)getInputParameter("archiveSize")).intValue();
     maxIterations_ = ((Integer)getInputParameter("maxIterations")).intValue();
 
-    
     particles_     = new SolutionSet(particlesSize_);        
     best_          = new Solution[particlesSize_];
     leaders_       = new CrowdingArchive(archiveSize_,problem_.getNumberOfObjectives());
@@ -187,15 +188,13 @@ public class OMOPSO extends Algorithm {
       W  = PseudoRandom.randDouble(0.1,0.5);            
       //
 
-      for (int var = 0; var < particle.length; var++){                                     
+      for (int var = 0; var < particle.length; var++)
+      {                                     
         //Computing the velocity of this particle
         speed_[i][var] = W  * speed_[i][var] +
-                   C1 * r1 * (bestParticle[var].getValue() - 
-                              particle[var].getValue()) +
-                   C2 * r2 * (bestGlobal[var].getValue() - 
-                              particle[var].getValue());
+                   C1 * r1 * (bestParticle[var].getValue() - particle[var].getValue()) +
+                   C2 * r2 * (bestGlobal[var].getValue() - particle[var].getValue());
       }
-                
     }
   } // computeSpeed
      
@@ -266,8 +265,7 @@ public class OMOPSO extends Algorithm {
         speed_[i][j] = 0.0;
       }
     }
-    
-        
+
     // Step4 and 5   
     for (int i = 0; i < particles_.size(); i++){
       Solution particle = new Solution(particles_.get(i));            
@@ -312,9 +310,11 @@ public class OMOPSO extends Algorithm {
       }
             
       //Actualize the memory of this particle
-      for (int i = 0; i < particles_.size();i++){
+      for (int i = 0; i < particles_.size();i++)
+      {
         int flag = dominance_.compare(particles_.get(i),best_[i]);
-        if (flag != 1) { // the new particle is best_ than the older remeber        
+        if (flag != 1) 
+        { // the new particle is best_ than the older remeber        
           Solution particle = new Solution(particles_.get(i));                    
           //this.best_.reemplace(i,particle);
           best_[i] = particle;
@@ -322,8 +322,7 @@ public class OMOPSO extends Algorithm {
       }       
             
       //Crowding the leaders_
-      distance_.crowdingDistanceAssignment(leaders_,
-                                              problem_.getNumberOfObjectives());            
+      distance_.crowdingDistanceAssignment(leaders_, problem_.getNumberOfObjectives());            
       iteration_++;
     }
         

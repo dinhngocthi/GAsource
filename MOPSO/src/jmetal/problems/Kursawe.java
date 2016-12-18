@@ -32,14 +32,15 @@ import jmetal.util.wrapper.XReal;
 /**
  * Class representing problem Kursawe
  */
-public class Kursawe extends Problem {  
-    
+public class Kursawe extends Problem 
+{    
   /** 
    * Constructor.
    * Creates a default instance of the Kursawe problem.
    * @param solutionType The solution type must "Real", "BinaryReal, and "ArrayReal". 
    */
-  public Kursawe(String solutionType) throws ClassNotFoundException {
+  public Kursawe(String solutionType) throws ClassNotFoundException 
+  {
     this(solutionType, 3);
   } // Kursawe
   
@@ -49,30 +50,31 @@ public class Kursawe extends Problem {
    * @param numberOfVariables Number of variables of the problem 
    * @param solutionType The solution type must "Real", "BinaryReal, and "ArrayReal". 
    */
-  public Kursawe(String solutionType, Integer numberOfVariables) {
+  public Kursawe(String solutionType, Integer numberOfVariables) 
+  {
     numberOfVariables_   = numberOfVariables;
-    //numberOfObjectives_  = 2;
+    numberOfObjectives_  = 2;
     numberOfConstraints_ = 0;
     problemName_         = "Kursawe";
         
-    upperLimit_ = new double[numberOfVariables_] ;
-    lowerLimit_ = new double[numberOfVariables_] ;
+    upperLimit_ = new double[numberOfVariables_];
+    lowerLimit_ = new double[numberOfVariables_];
        
     for (int i = 0; i < numberOfVariables_; i++) 
     {
-      lowerLimit_[i] = -5.0 ;
-      upperLimit_[i] = 5.0  ;
+      lowerLimit_[i] = -1000.0;
+      upperLimit_[i] = 1000.0;
     } // for
         
     if (solutionType.compareTo("BinaryReal") == 0)
-    	solutionType_ = new BinaryRealSolutionType(this) ;
+    	solutionType_ = new BinaryRealSolutionType(this);
     else if (solutionType.compareTo("Real") == 0)
-    	solutionType_ = new RealSolutionType(this) ;
+    	solutionType_ = new RealSolutionType(this);
     else if (solutionType.compareTo("ArrayReal") == 0)
-    	solutionType_ = new ArrayRealSolutionType(this) ;
+    	solutionType_ = new ArrayRealSolutionType(this);
     else {
-    	System.out.println("Error: solution type " + solutionType + " invalid") ;
-    	System.exit(-1) ;
+    	System.out.println("Error: solution type " + solutionType + " invalid");
+    	System.exit(-1);
     }
   } // Kursawe
     
@@ -85,7 +87,7 @@ public class Kursawe extends Problem {
 		XReal vars = new XReal(solution) ;
         
     double aux, xi, xj           ; // auxiliary variables
-    double [] fx = new double[1] ; // fitness function values     
+    double [] fx = new double[numberOfObjectives_] ; // fitness function values     
     double [] x = new double[numberOfVariables_] ;
     for (int i = 0 ; i < numberOfVariables_; i++)
     	x[i] = vars.getValue(i) ;
@@ -102,7 +104,8 @@ public class Kursawe extends Problem {
     } // for
     */
     fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
-    //fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
+    fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
+
     /*
     fx[1] = 0.0;
     for (int var = 0; var < numberOfVariables_ ; var++) 
@@ -111,7 +114,14 @@ public class Kursawe extends Problem {
            5.0 * Math.sin(Math.pow(x[var], 3.0));
     } // for
     */
+    
+    for (int i = 0; i < numberOfObjectives_; i++)
+    {
+    	solution.setObjective(i, fx[i]);
+    }
+    /*
     solution.setObjective(0, fx[0]);
-    //solution.setObjective(1, fx[1]);
+    solution.setObjective(1, fx[1]);
+    */
   } // evaluate
 } // Kursawe

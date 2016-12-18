@@ -41,7 +41,8 @@ import java.util.logging.Logger;
 /**
  * Class for configuring and running the OMOPSO algorithm
  */
-public class OMOPSO_main {
+public class OMOPSO_main 
+{
   public static Logger      logger_ ;      // Logger object
   public static FileHandler fileHandler_ ; // FileHandler object
 
@@ -73,16 +74,19 @@ public class OMOPSO_main {
     logger_.addHandler(fileHandler_) ;
     
     indicators = null ;
-    if (args.length == 1) {
+    if (args.length == 1) 
+    {
       Object [] params = {"Real"};
       problem = (new ProblemFactory()).getProblem(args[0],params);
     } // if
-    else if (args.length == 2) {
+    else if (args.length == 2)
+    {
       Object [] params = {"Real"};
       problem = (new ProblemFactory()).getProblem(args[0],params);
       indicators = new QualityIndicator(problem, args[1]) ;
     } // if
-    else { // Default problem
+    else 
+    { // Default problem
       problem = new Kursawe("Real", 3); 
       //problem = new Water("Real");
       //problem = new ZDT4("Real");

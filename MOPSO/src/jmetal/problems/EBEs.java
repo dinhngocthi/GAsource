@@ -4956,10 +4956,9 @@ switch(selectedOF){
       // clse the file
       input.close();
     }
-    catch (Exception ex) {
+    catch (Exception ex) 
+    {
       System.out.println("Error: data file EBEs not readed");
     }
-
   }
-
 }    // EBEs

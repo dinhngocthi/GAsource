@@ -27,6 +27,7 @@ import jmetal.core.SolutionSet;
 import jmetal.operators.mutation.Mutation;
 import jmetal.operators.mutation.MutationFactory;
 import jmetal.problems.ProblemFactory;
+import jmetal.problems.Kursawe;
 import jmetal.problems.ZDT.ZDT4;
 import jmetal.qualityIndicator.QualityIndicator;
 import jmetal.util.Configuration;
@@ -74,17 +75,20 @@ public class SMPSO_main {
     logger_.addHandler(fileHandler_) ;
     
     indicators = null ;
-    if (args.length == 1) {
+    if (args.length == 1) 
+    {
       Object [] params = {"Real"};
       problem = (new ProblemFactory()).getProblem(args[0],params);
     } // if
-    else if (args.length == 2) {
+    else if (args.length == 2) 
+    {
       Object [] params = {"Real"};
       problem = (new ProblemFactory()).getProblem(args[0],params);
       indicators = new QualityIndicator(problem, args[1]) ;
     } // if
-    else { // Default problem
-      //problem = new Kursawe("Real", 3); 
+    else 
+    { // Default problem
+      problem = new Kursawe("Real", 3); 
       //problem = new Water("Real");
       //problem = new ZDT1("ArrayReal", 1000);
       //problem = new ZDT4("BinaryReal");
@@ -92,7 +96,7 @@ public class SMPSO_main {
       //problem = new DTLZ1("Real");
       //problem = new OKA2("Real") ;
        //problem = new DTLZ1("Real",7,5);
-        problem = new ZDT4("Real");
+      //  problem = new ZDT4("Real");
     } // else
 
     algorithm = new SMPSO(problem) ;
@@ -121,7 +125,8 @@ public class SMPSO_main {
     logger_.info("Variables values have been writen to file VAR");
     population.printVariablesToFile("VAR");      
     
-    if (indicators != null) {
+    if (indicators != null) 
+    {
       logger_.info("Quality indicators") ;
       logger_.info("Hypervolume: " + indicators.getHypervolume(population)) ;
       logger_.info("GD         : " + indicators.getGD(population)) ;
