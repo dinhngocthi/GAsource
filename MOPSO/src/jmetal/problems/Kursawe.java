@@ -104,7 +104,7 @@ public class Kursawe extends Problem
     } // for
     */
     fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
-    fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
+    fx[1] = Math.pow((x[0] - 11), 2) + Math.pow((x[1] - 12), 2) + Math.pow((x[2] - 13), 2);
 
     /*
     fx[1] = 0.0;
