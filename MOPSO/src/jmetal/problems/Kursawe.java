@@ -51,14 +51,15 @@ public class Kursawe extends Problem {
    */
   public Kursawe(String solutionType, Integer numberOfVariables) {
     numberOfVariables_   = numberOfVariables;
-    numberOfObjectives_  = 2                            ;
-    numberOfConstraints_ = 0                            ;
-    problemName_         = "Kursawe"                    ;
+    //numberOfObjectives_  = 2;
+    numberOfConstraints_ = 0;
+    problemName_         = "Kursawe";
         
     upperLimit_ = new double[numberOfVariables_] ;
     lowerLimit_ = new double[numberOfVariables_] ;
        
-    for (int i = 0; i < numberOfVariables_; i++) {
+    for (int i = 0; i < numberOfVariables_; i++) 
+    {
       lowerLimit_[i] = -5.0 ;
       upperLimit_[i] = 5.0  ;
     } // for
@@ -84,7 +85,7 @@ public class Kursawe extends Problem {
 		XReal vars = new XReal(solution) ;
         
     double aux, xi, xj           ; // auxiliary variables
-    double [] fx = new double[2] ; // function values     
+    double [] fx = new double[1] ; // fitness function values     
     double [] x = new double[numberOfVariables_] ;
     for (int i = 0 ; i < numberOfVariables_; i++)
     	x[i] = vars.getValue(i) ;
@@ -101,7 +102,7 @@ public class Kursawe extends Problem {
     } // for
     */
     fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
-    fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
+    //fx[1] = Math.pow((x[0] - 10), 2) + Math.pow((x[1] - 11), 2) + Math.pow((x[2] - 12), 2);
     /*
     fx[1] = 0.0;
     for (int var = 0; var < numberOfVariables_ ; var++) 
@@ -111,6 +112,6 @@ public class Kursawe extends Problem {
     } // for
     */
     solution.setObjective(0, fx[0]);
-    solution.setObjective(1, fx[1]);
+    //solution.setObjective(1, fx[1]);
   } // evaluate
 } // Kursawe
