@@ -45,7 +45,8 @@ import java.util.logging.Logger;
  * IEEE Symposium on Computational Intelligence in Multicriteria Decision-Making 
  * (MCDM 2009), pp: 66-73. March 2009
  */
-public class SMPSO_main {
+public class SMPSO_main 
+{
   public static Logger      logger_ ;      // Logger object
   public static FileHandler fileHandler_ ; // FileHandler object
 
@@ -60,7 +61,8 @@ public class SMPSO_main {
    *      - jmetal.metaheuristics.smpso.SMPSO_main problemName
    *      - jmetal.metaheuristics.smpso.SMPSO_main problemName ParetoFrontFile
    */
-  public static void main(String [] args) throws JMException, IOException, ClassNotFoundException {
+  public static void main(String [] args) throws JMException, IOException, ClassNotFoundException 
+  {
     Problem   problem   ;  // The problem to solve
     Algorithm algorithm ;  // The algorithm to use
     Mutation  mutation  ;  // "Turbulence" operator

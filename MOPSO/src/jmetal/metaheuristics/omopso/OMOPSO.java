@@ -156,14 +156,16 @@ public class OMOPSO extends Algorithm
            
   
   /**
-   * Update the spped of each particle
+   * Update the speed of each particle
    * @throws JMException 
    */
-  private void computeSpeed() throws JMException{        
+  private void computeSpeed() throws JMException
+  {        
     double r1,r2,W,C1,C2; 
     Variable[] bestGlobal;                                            
         
-    for (int i = 0; i < particlesSize_; i++){
+    for (int i = 0; i < particlesSize_; i++)
+    {
       Variable[] particle     = particles_.get(i).getDecisionVariables();
       Variable[] bestParticle = best_[i].getDecisionVariables();                        
 

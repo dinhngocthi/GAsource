@@ -231,14 +231,17 @@ public class SolutionSet implements Serializable {
    * objects into the set in a file.
    * @param path The output file name
    */
-  public void printObjectivesToFile(String path){
-    try {
+  public void printObjectivesToFile(String path)
+  {
+    try 
+    {
       /* Open the file */
-      FileOutputStream fos   = new FileOutputStream(path)     ;
-      OutputStreamWriter osw = new OutputStreamWriter(fos)    ;
-      BufferedWriter bw      = new BufferedWriter(osw)        ;
+      FileOutputStream fos   = new FileOutputStream(path);
+      OutputStreamWriter osw = new OutputStreamWriter(fos);
+      BufferedWriter bw      = new BufferedWriter(osw);
 
-      for (Solution aSolutionsList_ : solutionsList_) {
+      for (Solution aSolutionsList_ : solutionsList_) 
+      {
         //if (this.vector[i].getFitness()<1.0) {
         bw.write(aSolutionsList_.toString());
         bw.newLine();
@@ -247,7 +250,9 @@ public class SolutionSet implements Serializable {
 
       /* Close the file */
       bw.close();
-    }catch (IOException e) {
+    }
+    catch (IOException e) 
+    {
       Configuration.logger_.severe("Error acceding to the file");
       e.printStackTrace();
     }
@@ -284,20 +289,26 @@ public class SolutionSet implements Serializable {
    * Write the function values of feasible solutions into a file
    * @param path File name
    */
-  public void printFeasibleFUN(String path) {
-    try {
+  public void printFeasibleFUN(String path) 
+  {
+    try 
+    {
       FileOutputStream fos   = new FileOutputStream(path);
       OutputStreamWriter osw = new OutputStreamWriter(fos);
       BufferedWriter bw      = new BufferedWriter(osw);
 
-      for (Solution aSolutionsList_ : solutionsList_) {
-        if (aSolutionsList_.getOverallConstraintViolation() == 0.0) {
+      for (Solution aSolutionsList_ : solutionsList_) 
+      {
+        if (aSolutionsList_.getOverallConstraintViolation() == 0.0) 
+        {
           bw.write(aSolutionsList_.toString());
           bw.newLine();
         }
       }
       bw.close();
-    }catch (IOException e) {
+    }
+    catch (IOException e) 
+    {
       Configuration.logger_.severe("Error acceding to the file");
       e.printStackTrace();
     }

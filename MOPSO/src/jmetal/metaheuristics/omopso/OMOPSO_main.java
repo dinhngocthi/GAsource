@@ -133,7 +133,8 @@ public class OMOPSO_main
     logger_.info("Objectives values have been writen to file FUN");
     population.printObjectivesToFile("FUN");
   
-    if (indicators != null) {
+    if (indicators != null) 
+    {
       logger_.info("Quality indicators") ;
       logger_.info("Hypervolume: " + indicators.getHypervolume(population)) ;
       logger_.info("GD         : " + indicators.getGD(population)) ;
