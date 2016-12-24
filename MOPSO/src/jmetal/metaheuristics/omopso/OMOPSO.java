@@ -204,17 +204,21 @@ public class OMOPSO extends Algorithm
    * Update the position of each particle
    * @throws JMException 
    */
-  private void computeNewPositions() throws JMException{
+  private void computeNewPositions() throws JMException
+  {
     for (int i = 0; i < particlesSize_; i++){
     	Variable[] particle = particles_.get(i).getDecisionVariables();
       //particle.move(speed_[i]);
-      for (int var = 0; var < particle.length; var++){
+      for (int var = 0; var < particle.length; var++)
+      {
         particle[var].setValue(particle[var].getValue()+ speed_[i][var]);
-        if (particle[var].getValue() < problem_.getLowerLimit(var)){
+        if (particle[var].getValue() < problem_.getLowerLimit(var))
+        {
           particle[var].setValue(problem_.getLowerLimit(var));                    
           speed_[i][var] = speed_[i][var] * -1.0;    
         }
-        if (particle[var].getValue() > problem_.getUpperLimit(var)){
+        if (particle[var].getValue() > problem_.getUpperLimit(var))
+        {
           particle[var].setValue(problem_.getUpperLimit(var));                    
           speed_[i][var] = speed_[i][var] * -1.0;    
         }                                             
@@ -269,15 +273,18 @@ public class OMOPSO extends Algorithm
     }
 
     // Step4 and 5   
-    for (int i = 0; i < particles_.size(); i++){
+    for (int i = 0; i < particles_.size(); i++)
+    {
       Solution particle = new Solution(particles_.get(i));            
-      if (leaders_.add(particle)){
+      if (leaders_.add(particle))
+      {
         eArchive_.add(new Solution(particle));
       }
     }
                 
     //-> Step 6. Initialice the memory of each particle
-    for (int i = 0; i < particles_.size(); i++){
+    for (int i = 0; i < particles_.size(); i++)
+    {
       Solution particle = new Solution(particles_.get(i));           
       best_[i] = particle;
     }
@@ -286,7 +293,8 @@ public class OMOPSO extends Algorithm
     distance_.crowdingDistanceAssignment(leaders_,problem_.getNumberOfObjectives());        
 
     //-> Step 7. Iterations ..        
-    while (iteration_ < maxIterations_){
+    while (iteration_ < maxIterations_)
+    {
       //Compute the speed_        
       computeSpeed();
             
@@ -297,14 +305,16 @@ public class OMOPSO extends Algorithm
       mopsoMutation(iteration_,maxIterations_);                       
             
       //Evaluate the new particles_ in new positions
-      for (int i = 0; i < particles_.size(); i++){
+      for (int i = 0; i < particles_.size(); i++)
+      {
         Solution particle = particles_.get(i);
         problem_.evaluate(particle);                
         problem_.evaluateConstraints(particle);                
       }
             
       //Actualize the archive          
-      for (int i = 0; i < particles_.size(); i++){
+      for (int i = 0; i < particles_.size(); i++)
+      {
         Solution particle = new Solution(particles_.get(i));                
         if (leaders_.add(particle)){
           eArchive_.add(new Solution(particle));

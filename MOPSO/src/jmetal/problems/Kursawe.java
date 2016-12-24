@@ -53,7 +53,7 @@ public class Kursawe extends Problem
   public Kursawe(String solutionType, Integer numberOfVariables) 
   {
     numberOfVariables_   = numberOfVariables;
-    numberOfObjectives_  = 2;
+    numberOfObjectives_  = 1;
     numberOfConstraints_ = 0;
     problemName_         = "Kursawe";
         
@@ -72,7 +72,8 @@ public class Kursawe extends Problem
     	solutionType_ = new RealSolutionType(this);
     else if (solutionType.compareTo("ArrayReal") == 0)
     	solutionType_ = new ArrayRealSolutionType(this);
-    else {
+    else 
+    {
     	System.out.println("Error: solution type " + solutionType + " invalid");
     	System.exit(-1);
     }
@@ -104,7 +105,7 @@ public class Kursawe extends Problem
     } // for
     */
     fx[0] = Math.pow((x[0] - 1), 2) + Math.pow((x[1] - 2), 2) + Math.pow((x[2] - 3), 2);
-    fx[1] = Math.pow((x[0] - 11), 2) + Math.pow((x[1] - 12), 2) + Math.pow((x[2] - 13), 2);
+    //fx[1] = Math.pow((x[0] - 11), 2) + Math.pow((x[1] - 12), 2) + Math.pow((x[2] - 13), 2);
 
     /*
     fx[1] = 0.0;

@@ -170,7 +170,8 @@ public class SMPSO extends Algorithm {
    * Constructor
    * @param problem Problem to solve
    */
-  public SMPSO(Problem problem, String trueParetoFront) throws FileNotFoundException {
+  public SMPSO(Problem problem, String trueParetoFront) throws FileNotFoundException 
+  {
     super(problem) ;
     hy_ = new Hypervolume();
     jmetal.qualityIndicator.util.MetricsUtil mu = new jmetal.qualityIndicator.util.MetricsUtil();
