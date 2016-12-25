@@ -9,8 +9,18 @@ import java.util.Vector;
 
 import C.Utils;
 
-public class PSOProcess implements PSOConstants
+//public class PSOProcess implements PSOConstants
+public class PSOProcess extends Thread  
 {
+	// Constants
+	int SWARM_SIZE = 30;
+	int MAX_ITERATION = 10000;
+	int PROBLEM_DIMENSION = 3;
+	double C1 = 2.0;  // acceleration coefficient
+	double C2 = 2.0;  // acceleration coefficient
+	double W_UPPERBOUND = 1.0;
+	double W_LOWERBOUND = 0.0;
+	
 	private Vector<Particle> swarm = new Vector<Particle>();
 	private double[] pBest = new double[SWARM_SIZE];
 	private Vector<Location> pBestLocation = new Vector<Location>();
@@ -20,8 +30,12 @@ public class PSOProcess implements PSOConstants
 	
 	Random generator = new Random();
 	
-	public void execute(int functionID) 
+	//public void execute(int functionID) 
+	public void run()
 	{
+		int functionID = PSOConstants.functionID;
+		System.out.println("Function ID = " + functionID);
+
 		initializeSwarm();
 		updateFitnessList(functionID);
 		Utils.iterationcount = 0;
@@ -103,6 +117,8 @@ public class PSOProcess implements PSOConstants
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
 		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
 		System.out.println("Evaluation count = " + Utils.iterationcount);
+		
+		functionID ++;
 	}
 	
 	public void initializeSwarm() 
