@@ -116,7 +116,7 @@ public class PSOProcess extends Thread
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
 		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-		System.out.println("Evaluation count = " + Utils.iterationcount);
+		System.out.println("Evaluation count Thi = " + Utils.iterationcount);
 		
 		functionID ++;
 	}
