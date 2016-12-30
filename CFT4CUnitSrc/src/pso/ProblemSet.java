@@ -1,8 +1,5 @@
 package pso;
 
-import C.TargetFunctions;
-import C.Utils;
-
 //this is the problem to be solved
 //to find an x and a y that minimize the function below:
 //f(x, y) = (2.8125 - x + x * y^4)^2 + (2.25 - x + x * y^2)^2 + (1.5 - x + x*y)^2
@@ -26,7 +23,7 @@ public class ProblemSet {
 	public static final double VEL_LOW = -1;
 	public static final double VEL_HIGH = 1;
 	
-	public static final double ERR_TOLERANCE = 1E-20; // the smaller the tolerance, the more accurate the result, 
+	public static final double ERR_TOLERANCE = 1E-5; // the smaller the tolerance, the more accurate the result, 
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
@@ -68,7 +65,6 @@ public class ProblemSet {
 			default:
 				break;
 		}
-		Utils.iterationcount++;
 		//result = TargetFunctions.Tritype(x, y, z);
 		return result;
 	}

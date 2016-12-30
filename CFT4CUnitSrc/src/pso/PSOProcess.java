@@ -7,14 +7,12 @@ package pso;
 import java.util.Random;
 import java.util.Vector;
 
-import C.Utils;
-
 //public class PSOProcess implements PSOConstants
 public class PSOProcess extends Thread  
 {
 	// Constants
 	int SWARM_SIZE = 30;
-	int MAX_ITERATION = 10000;
+	int MAX_ITERATION = 100;
 	int PROBLEM_DIMENSION = 3;
 	double C1 = 2.0;  // acceleration coefficient
 	double C2 = 2.0;  // acceleration coefficient
@@ -38,7 +36,6 @@ public class PSOProcess extends Thread
 
 		initializeSwarm();
 		updateFitnessList(functionID);
-		Utils.iterationcount = 0;
 		
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
@@ -116,7 +113,6 @@ public class PSOProcess extends Thread
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
 		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-		System.out.println("Evaluation count Thi = " + Utils.iterationcount);
 		
 		functionID ++;
 	}
