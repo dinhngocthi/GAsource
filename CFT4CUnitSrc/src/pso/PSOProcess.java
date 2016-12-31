@@ -58,7 +58,7 @@ public class PSOProcess extends Thread
 					pBestLocation.set(i, swarm.get(i).getLocation());
 				}
 			}
-				
+
 			// step 2 - update gBest
 			int bestParticleIndex = PSOUtility.getMinPos(fitnessValueList);
 			if(t == 0 || fitnessValueList[bestParticleIndex] < gBest) 

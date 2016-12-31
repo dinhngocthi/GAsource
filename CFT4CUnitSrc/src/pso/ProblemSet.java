@@ -54,7 +54,7 @@ public class ProblemSet {
 		switch (functionID)
 		{
 			case 0:	
-				result  = ret1;
+				result = ret1;
 				break;
 			case 1:
 				result = ret1 + ret2;
