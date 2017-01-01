@@ -50,17 +50,22 @@ public class ProblemSet {
 		double ret31 = GetBranchDistance(year % 4, 0, 3) + GetBranchDistance(year % 100, 0, 3);
 		double ret32 = GetBranchDistance(year % 400, 0, 3);
 		double ret3 = Math.min(ret31, ret32);
-		
+
+		double ret4 = GetBranchDistance(year % 4, 0, 4);
+
 		switch (functionID)
 		{
 			case 0:	
-				result = ret1;
+				result = ret1;  // branch 1 
 				break;
 			case 1:
-				result = ret1 + ret2;
+				result = ret1 + ret2; // branch 2
 				break;
 			case 2:
-				result = ret1 + ret2 + ret3;
+				result = ret1 + ret2 + ret3; // branch 3
+				break;
+			case 3:
+				result = ret1 + ret2 + ret4; // branch 4
 				break;
 			default:
 				break;
@@ -74,37 +79,37 @@ public class ProblemSet {
 		double ret = 0;
 		switch (opType)
 		{
-			case 3: // == operator
+			case 3: // == condition
 				if (Math.abs(x - y) == 0)
 					ret = 0;
 				else
 					ret = Math.abs(x - y) + k;
 				break;
-			case 4: // != operator
+			case 4: // != condition
 				if (Math.abs(x - y) != 0)
 					ret = 0;
 				else
 					ret = k;
 				break;
-			case 5: // < operator
+			case 5: // < condition
 				if (x - y < 0)
 					ret = 0;
 				else
 					ret = Math.abs(x - y) + k;
 				break;
-			case 6: // <= operator
+			case 6: // <= condition
 				if (x - y <= 0)
 					ret = 0;
 				else
 					ret = Math.abs(x - y) + k;
 				break;
-			case 7: // > operator
+			case 7: // > condition
 				if (y - x < 0)
 					ret = 0;
 				else
 					ret = Math.abs(y - x) + k;
 				break;
-			case 8: // >= operator
+			case 8: // >= condition
 				if (y - x <= 0)
 					ret = 0;
 				else
