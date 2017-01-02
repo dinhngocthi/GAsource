@@ -14,7 +14,7 @@ public class PSODriver
 */
 		PSOConstants.functionID = 2;
 		new PSOProcess().start();
-		Thread.sleep(3);
+		//Thread.sleep(3);
 		PSOConstants.functionID = 3;
 		new PSOProcess().start();
 
