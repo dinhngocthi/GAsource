@@ -10,6 +10,5 @@ public class PSOConstants
 	double C2 = 2.0;  // acceleration coefficient
 	double W_UPPERBOUND = 1.0;
 	double W_LOWERBOUND = 0.0;
-	public static int functionID = 0;
 }
 

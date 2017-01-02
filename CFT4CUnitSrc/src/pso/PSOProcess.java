@@ -11,13 +11,13 @@ import java.util.Vector;
 public class PSOProcess extends Thread  
 {
 	// Constants
-	int SWARM_SIZE = 30;
-	int MAX_ITERATION = 100;
-	int PROBLEM_DIMENSION = 3;
-	double C1 = 2.0;  // acceleration coefficient
-	double C2 = 2.0;  // acceleration coefficient
-	double W_UPPERBOUND = 1.0;
-	double W_LOWERBOUND = 0.0;
+	final int SWARM_SIZE = 30;
+	final int MAX_ITERATION = 100;
+	final int PROBLEM_DIMENSION = 3;
+	final double C1 = 2.0;  // acceleration coefficient
+	final double C2 = 2.0;  // acceleration coefficient
+	final double W_UPPERBOUND = 1.0;
+	final double W_LOWERBOUND = 0.0;
 	
 	private Vector<Particle> swarm = new Vector<Particle>();
 	private double[] pBest = new double[SWARM_SIZE];
@@ -25,18 +25,24 @@ public class PSOProcess extends Thread
 	private double gBest;
 	private Location gBestLocation;
 	private double[] fitnessValueList = new double[SWARM_SIZE];
+	private int branchID;
 	
 	Random generator = new Random();
 	
+	PSOProcess(int branchID)
+	{
+		this.branchID = branchID;	
+	}
+
 	//public void execute(int functionID) 
 	public void run()
 	{
-		int functionID = PSOConstants.functionID;
-		System.out.println("Function ID = " + functionID);
+		//int functionID = PSOConstants.functionID;
+		System.out.println("branch ID = " + branchID);
 
 		initializeSwarm();
-		updateFitnessList(functionID);
-		
+		updateFitnessList(branchID);
+
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
 			pBest[i] = fitnessValueList[i];
@@ -97,7 +103,7 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation, functionID) - 0; // minimizing the functions means it's getting closer to 0
+			err = ProblemSet.evaluate(gBestLocation, branchID) - 0; // minimizing the functions means it's getting closer to 0
 /*
 			System.out.println("ITERATION " + t + ": ");
 			System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
@@ -106,15 +112,13 @@ public class PSOProcess extends Thread
 			System.out.println("     Value: " + err);
 */
 			t++;
-			updateFitnessList(functionID);
+			updateFitnessList(branchID);
 		}
 		
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
 		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-		
-		functionID ++;
 	}
 	
 	public void initializeSwarm() 
@@ -144,11 +148,11 @@ public class PSOProcess extends Thread
 		}
 	}
 	
-	public void updateFitnessList(int functionID) 
+	public void updateFitnessList(int branchID) 
 	{
 		for(int i = 0; i < SWARM_SIZE; i++) 
 		{
-			fitnessValueList[i] = swarm.get(i).getFitnessValue(functionID);
+			fitnessValueList[i] = swarm.get(i).getFitnessValue(branchID);
 		}
 	}
 }

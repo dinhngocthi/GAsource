@@ -27,7 +27,7 @@ public class ProblemSet {
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
-	public static double evaluate(Location location, int functionID) 
+	public static double evaluate(Location location, int branchID) 
 	{
 		double result = 0;
 		double x = location.getLoc()[0]; // the "x" part of the location
@@ -53,7 +53,7 @@ public class ProblemSet {
 
 		double ret4 = GetBranchDistance(year % 4, 0, 4);
 
-		switch (functionID)
+		switch (branchID)
 		{
 			case 0:	
 				result = ret1;  // branch 1 
