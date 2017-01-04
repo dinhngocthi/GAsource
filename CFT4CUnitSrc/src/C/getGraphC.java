@@ -243,9 +243,10 @@ public class getGraphC {
 		if (begin.visited == false) {
 			return;
 		}
-		if (begin.trueBranch == null && begin.falseBranch == null) {
-
-			ListNodeDescription += begin.ID + "#Ket thuc ham#true=-1#false=-1\n";
+		if (begin.trueBranch == null && begin.falseBranch == null) 
+		{
+			//ListNodeDescription += begin.ID + "#Ket thuc ham#true=-1#false=-1\n";
+			ListNodeDescription += begin.ID + "#End#true=-1#false=-1\n";
 			nodelist.add(begin);
 			begin.visited = false;
 			return;
@@ -310,8 +311,8 @@ public class getGraphC {
 	}
 
 	public getGraphC() {
-		beginFun = new Node("Bat dau ham");
-		endFunc = new Node("Ket thuc ham");
+		beginFun = new Node("Start");
+		endFunc = new Node("End");
 		ListNodeDescription = new String();
 	}
 
