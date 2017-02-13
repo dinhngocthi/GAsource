@@ -666,7 +666,8 @@ public final class GUI3 extends javax.swing.JFrame
             //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
             //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
             //String pathFile = classPath.replace("bin/", "src/sample/mid.c");
-            String pathFile = classPath.replace("bin/", "src/sample/getDayNum.c");
+            String pathFile = fc.getSelectedFile().getAbsolutePath();
+            //String pathFile = classPath.replace("bin/", "src/sample/getDayNum.c");
 
             staticVariable.Paramater.depth = Utils.toInt(jtpDepth.getText() + "");
             staticVariable.Paramater.Smt_Lib_path_lib = jtfSmt_Lib_path_lib.getText();
