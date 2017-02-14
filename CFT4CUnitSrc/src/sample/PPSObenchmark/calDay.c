@@ -1,7 +1,7 @@
 int calDay (int id, int mm, int iyyy) 
 {	
-	int jul;
-    long IGREG= (15+31L*(10+12L*1582));
+	int jul = 0;
+    long jul1, IGREG= (15+31L*(10+12L*1582));
 	
 	int ja,jy=iyyy,jm;
 
@@ -9,10 +9,7 @@ int calDay (int id, int mm, int iyyy)
     { 
 	    printf("Error: there is no year zero\n");
 	}
-    else
-    {
 
-	}
 	if (jy<0)
     {
 		++jy;
@@ -27,7 +24,7 @@ int calDay (int id, int mm, int iyyy)
 		jm=mm+13;
 	}
 
-    long jul1 =(long)((int)(365.25 * jy) + (int)(30.6001*jm) + id + 1720995);
+    jul1 =(long)((int)(365.25 * jy) + (int)(30.6001*jm) + id + 1720995);
 
 	if (id+31L*(mm+12L*iyyy)>=(IGREG))
     {
@@ -38,7 +35,7 @@ int calDay (int id, int mm, int iyyy)
 	printf("Julian Day: %d\n", jul1);	
 
 	jul = (int)(jul1+1) % 7;
-	
+
 	if (jul==0)
     {
 		printf("Sunday\n");
