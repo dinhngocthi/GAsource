@@ -40,7 +40,7 @@ public class ProblemSet {
 		*/
 		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
 		//result = Math.abs(x - y) + Math.abs(y - z);
-		
+
 		int month = (int)x;
 		int year = (int)y;
 
