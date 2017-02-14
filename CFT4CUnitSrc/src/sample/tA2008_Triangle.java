@@ -24,6 +24,5 @@ double Tritype(double a, double b, double c)
 	{
 		type = -1; // Not a triangle
 	}
-
 	return type;
 }
