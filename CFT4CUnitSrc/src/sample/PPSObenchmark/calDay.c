@@ -1,69 +1,72 @@
-void calDay(int iyyy, int mm, int id) 
-{
+int calDay (int id, int mm, int iyyy) 
+{	
+	int jul;
+    long IGREG= (15+31L*(10+12L*1582));
 	
-	int jm, ja, jy;
-	int jul = -1;
-
-	long IGREG= (15+31L*(10+12L*1582));
-	
-	
-	jy=iyyy;
-	
+	int ja,jy=iyyy,jm;
 
 	if (jy==0)
-	{ 
-		//error("Error: there is no year zero\n");
+    { 
+	    printf("Error: there is no year zero\n");
 	}
-	else
-	{
+    else
+    {
 
 	}
-/*
-	if (jy<0){
+	if (jy<0)
+    {
 		++jy;
 	}
-	if (mm>2) {
+	if (mm>2) 
+    {
 		jm=mm+1;
 	}
-	else {
+	else 
+    {
 		--jy;
 		jm=mm+13;
 	}
-*/
-/*
-	//long jul1 =(long)(Math.floor(365.25*jy)+Math.floor(30.6001*jm)+id+1720995);
-	long jul1 = 10;
 
-	if (id+31L*(mm+12L*iyyy)>=(IGREG)){
+    long jul1 =(long)((int)(365.25 * jy) + (int)(30.6001*jm) + id + 1720995);
+
+	if (id+31L*(mm+12L*iyyy)>=(IGREG))
+    {
 		ja=(int)(0.01*jy);
 		jul1 += 2-ja+(int) (0.25*ja);
 	}
-*/
-/*	
-	System.out.println("Julian Day:"+jul1);	
+	
+	printf("Julian Day: %d\n", jul1);	
 
 	jul = (int)(jul1+1) % 7;
 	
-	if (jul==0){
-		System.out.println("Sunday\n");
+	if (jul==0)
+    {
+		printf("Sunday\n");
 	}
-	else if (jul==1){
-		System.out.println("Monday\n");
+	else if (jul==1)
+    {
+		printf("Monday\n");
 	}
-	else if (jul==2){
-		System.out.println("Tuesday\n");
+	else if (jul==2)
+    {
+		printf("Tuesday\n");
 	}
-	else if (jul==3){
-		System.out.println("Wednesday\n");
+	else if (jul==3)
+    {
+		printf("Wednesday\n");
 	}
-	else if (jul==4){
-		System.out.println("Thursday\n");
+	else if (jul==4)
+    {
+		printf("Thursday\n");
 	}
-	else if (jul==5){
-		System.out.println("Friday\n");
+	else if (jul==5)
+    {
+		printf("Friday\n");
 	}
-	else if (jul==6){
-		System.out.println("Saturday\n");
+	else if (jul==6)
+    {
+		printf("Saturday\n");
 	}
-*/
+
+    return jul;
 }
