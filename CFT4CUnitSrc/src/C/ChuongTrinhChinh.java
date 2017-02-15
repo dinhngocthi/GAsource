@@ -22,8 +22,9 @@ public class ChuongTrinhChinh
 
     public static void main(String[] args) throws Exception
     {
-        //ChuongTrinhChinh c = new ChuongTrinhChinh("E:\\PhD\\CFT4CUnit\\CFT4CUnit\\Vi Du\\SelectionSort.c");
-        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.c");
+        //ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.c");
+        //ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/computeTax.c");
+        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/line.c");
         c.run();
         c.initPathListID(3);
     }
@@ -297,12 +298,8 @@ public class ChuongTrinhChinh
     }
     
     // D.N.Thi for testing
-    private int[] pathListID;
-    private getAllPaths geterTest;
-    private double[][] disMatrix; 
-    private int totalTargetPaths; // current numbers of target paths
-    private ArrayList<ArrayList<VertexTF>> targetPaths;
-    private ArrayList<String> equalCondList;
+    private getAllPaths geterTest; 
+    private int totalTargetPaths; 
 
     public void initPathListID(int loop) throws Exception
     {
@@ -311,129 +308,11 @@ public class ChuongTrinhChinh
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
         
         totalTargetPaths = getOutput.size();
-        pathListID = new int[totalTargetPaths];
-        for (int i = 0; i < totalTargetPaths; i++)
-            pathListID[i] = 1;
-/*        
-        // Create equal condition list for generatenewPop adjust
-        equalCondList = new ArrayList<String>();
-        for (int i = 0; i < totalTargetPaths; i++)
-        {
-            //System.out.print("Path " + i + ": ");
-            ArrayList<Vertex> path = getOutput.get(i);
-            int pathSize = path.size();
-            int k = 0;
-            for (k = 0; k < pathSize; k++)
-            {
-                Vertex vertex = path.get(k); 
-                if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
-                {
-                    Vertex vertexTmp = path.get(k+1);
-                    if (vertex.statement.contains("=="))
-                    {                        
-                        if (vertex.getTrueVertexId() == vertexTmp.getId())
-                        {
-                            // TRUE branch
-                            if (!equalCondList.contains(vertex.statement))
-                            	equalCondList.add(vertex.statement);
-                        }
-                    }
-                    else if (vertex.statement.contains("!="))
-                    {                        
-                        if (vertex.getFalseVertexId() == vertexTmp.getId())
-                        {
-                            // FALSE branch
-                            String stm = vertex.statement.replace("!=", "==");
-                            if (!equalCondList.contains(stm))
-                                equalCondList.add(stm);
-                        }
-                    }
-                }
-            }
-        }
-        
-        System.out.print("Equal condition list: ");
-        for (int i = 0; i < equalCondList.size(); i++)
-        	System.out.print("[" + equalCondList.get(i) + "] ");
-        System.out.println();
-
-        // for smt solver
-        for (int i = 0; i < totalTargetPaths; i++)
-        {
-            ArrayList<Vertex> path = getOutput.get(i);
-            int pathSize = path.size();
-            int k = 0;
-            for (k = 0; k < pathSize; k++)
-            {
-                Vertex vertex = path.get(k); 
-                if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
-                {
-                    //if (vertex.statement.contains("==") || vertex.statement.contains("!="))
-                    if (vertex.statement.contains("=="))
-                    {
-                        System.out.println(vertex.statement);
-                        break;
-                    }
-                }
-            }
-
-            // Using SMT constraint solver
-            if (k < pathSize)
-            {
-                String smtFileName = "path" + i + ".smt2";
-                PrintWriter fpSmt = new PrintWriter(smtFileName, "UTF-8");
-                // z3
-                //fpSmt.printf("(declare-const a Real)\n");
-                //fpSmt.printf("(declare-const b Real)\n");
-                //fpSmt.printf("(declare-const c Real)\n");
-
-                // yices                
-                fpSmt.printf("(set-logic QF_NRA)\n");
-                fpSmt.printf("(declare-fun a () Real)\n");
-                fpSmt.printf("(declare-fun b () Real)\n");
-                fpSmt.printf("(declare-fun c () Real)\n");
-                fpSmt.printf("(assert (> a 0))\n");
-                fpSmt.printf("(assert (> b 0))\n");
-                fpSmt.printf("(assert (> c 0))\n");
-
-                for (k = 0; k < pathSize; k++)
-                {
-                    Vertex vertex = path.get(k); 
-                    if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
-                    {
-                        ConvertToSmtLibv2 c = new ConvertToSmtLibv2(vertex.statement);                        
-                        c.run();
-                        Vertex vertexTmp = path.get(k+1);
-                        if (vertex.getFalseVertexId() == vertexTmp.getId())
-                        {
-                            // FALSE branch
-                            fpSmt.printf("(assert (not " +  c.getOutput() + ") )\n");
-                        }
-                        else
-                        {
-                            // TRUE branch
-                            fpSmt.printf("(assert " +  c.getOutput() + ")\n");
-                        }
-                    }
-                }                
-                fpSmt.printf("(check-sat)\n");
-                fpSmt.printf("(get-model)");
-                fpSmt.close();
-                
-                String classPath     = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-                //String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "z3/bin/Z3");  // Using smt solver Z3
-                String smtSolverPath = classPath.replace("CFT4CUnitSrc/bin/", "yices/bin/yices-smt2");  // Using smt solver yices
-                RunZ3OnCMD r = new RunZ3OnCMD(smtSolverPath, smtFileName);
-                System.out.println("Path " + i + ": " + r.getOutput());
-            }
-        }
-*/
         PrintWriter fpOut;
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
         System.out.println("------------Create all target paths start-------------");
 
-        targetPaths = new ArrayList<ArrayList<VertexTF>>();
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
         
@@ -452,7 +331,6 @@ public class ChuongTrinhChinh
                 {
                     System.out.print("[" + vertex.getStatement() + "]");
                     VertexTF vertextf = new VertexTF(1, "");
-                    
                     int j = 0;
                     for (j = 0; j < branchlist.size(); j++)
                     {
@@ -484,294 +362,15 @@ public class ChuongTrinhChinh
                     pathTF.add(vertextf);
                 }
             }
-            targetPaths.add(pathTF);
-            fpOut.printf("Path " + (i + 1) + ":" + pathTF + "\n");
             System.out.println();
         }       
         fpOut.printf("\n");
-
-        totalTargetPaths = 4;
-        targetPaths = new ArrayList<ArrayList<VertexTF>>();
-        
-        ArrayList<VertexTF> pathTF1 = new ArrayList<VertexTF>();        
-        pathTF1.add(new VertexTF(1, "F"));
-        targetPaths.add(pathTF1);
-        
-        ArrayList<VertexTF> pathTF2 = new ArrayList<VertexTF>();        
-        pathTF2.add(new VertexTF(1, "T"));
-        pathTF2.add(new VertexTF(2, "F"));        
-        targetPaths.add(pathTF2);
-
-        ArrayList<VertexTF> pathTF3 = new ArrayList<VertexTF>();        
-        pathTF3.add(new VertexTF(1, "T"));
-        pathTF3.add(new VertexTF(2, "T"));        
-        pathTF3.add(new VertexTF(3, "F"));
-        targetPaths.add(pathTF3);
-
-        ArrayList<VertexTF> pathTF4 = new ArrayList<VertexTF>();        
-        pathTF4.add(new VertexTF(1, "T"));
-        pathTF4.add(new VertexTF(2, "T"));        
-        pathTF4.add(new VertexTF(3, "T"));
-        targetPaths.add(pathTF4);
-
-        disMatrix = new double[totalTargetPaths][totalTargetPaths];
-        for (int i = 0; i < totalTargetPaths; i++ )
-        {
-            for (int j = 0; j < totalTargetPaths; j++ )
-            {        
-                disMatrix[i][j] = calculatePathDistTF(targetPaths.get(i), targetPaths.get(j));
-                fpOut.printf("[" + (i+1) + "->" + (j+1) + "]:");
-                fpOut.printf("%2.5f; ", disMatrix[i][j]);
-            }
-            fpOut.printf("\n");
-        }
         
         fpOut.close();
         System.out.println("------------Create all target paths end-------------");
     }
     
-    private boolean isSamePath(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
-    {
-        boolean ret = false;
-        int len1 = path1.size();
-        int len2 = path2.size();
-        int i = 0;
-        
-        if (len1 == len2)
-        {
-            for (i = 0; i < len1; i++)
-            {
-                VertexTF vertex1 = path1.get(i);
-                VertexTF vertex2 = path2.get(i);
-                if ((vertex1.id == vertex2.id) && vertex1.decision.equals(vertex2.decision))
-                    continue;
-                else                
-                    break;
-            }
-            ret = (i == len1); 
-        }
-        return ret;
-    }
-    
-    private double[] getDistExecutedPath2TargetPaths(double x, double y, double z, ArrayList<VertexTF> executedPath)
-    {
-        int i = 0;
-        int size = targetPaths.size();
-        double[] ret = new double[2];
-              
-        if (totalTargetPaths == 0)  // Target paths list is empty
-        {
-            ret[0] = -2;
-            return ret;
-        }
-
-        for (i = 0; i < size; i ++)
-        {
-            ArrayList<VertexTF> targetPathTmp = targetPaths.get(i);
-            if (isSamePath(targetPathTmp, executedPath))
-                break;
-        }
-        
-        if (pathListID[i] == 1)
-        {
-            totalTargetPaths--; // hit a feasible path
-
-            pathListID[i] = 0;
-            ret[0] = (i+1);     // PathID
-            ret[1] = 0;
-        }
-        else
-        {
-        	double sum = 0;
-        	for (int j = 0; j < size; j ++)
-        	{
-        		if (i != j && pathListID[j] == 1)
-        			//sum += disMatrix[i][j];
-        			sum += distance(i+1, j+1, x, y, z);
-        	}
-            ret[0] = -1;
-        	ret[1] = ((double)sum/(double)totalTargetPaths);
-        }
-
-        return ret;
-    }
-
-    private double distance(int pathid1, int pathid2, double x, double y, double z)
-    {
-    	double ret = 0;
-    	switch (pathid1)
-    	{
-    		case 1:
-    			switch (pathid2)
-    	    	{
-    	    		case 2:
-    	    			ret = Math.abs(x + y - 1024) - (y - 1000); // path 1 - > path 2
-    	    			break;
-    	    		case 3:
-    			        ret = Math.abs(x + y - 1024) + (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 3
-    			        break;
-    	    		case 4:
-    			        ret = Math.abs(x + y - 1024) + (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 4    			        
-    			        break;
-    	    	}
-    			break;
-    		case 2:
-    			switch (pathid2)
-    	    	{
-    	    		case 1:
-    	    			ret = Math.abs(x + y - 1024) - (y - 1000); // path 1 - > path 2
-    	    			break;
-    	    		case 3:
-    			        ret = (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 3
-    			        break;
-    	    		case 4:
-    			        ret = (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 4    			        
-    			        break;
-    	    	}
-    			break;
-    		case 3:
-    			switch (pathid2)
-    	    	{
-    	    		case 1:
-    	    			ret = Math.abs(x + y - 1024) + (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 3
-    	    			break;
-    	    		case 2:
-    	    			ret = (y - 1000) - (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 3
-    			        break;
-    	    		case 4:
-    			        ret = (Math.exp(z) - (Math.cos(z) - 0.95));  // path 3 - > path 4    			        
-    			        break;
-    	    	}
-    			break;
-    		case 4:
-    			switch (pathid2)
-    	    	{
-    	    		case 1:
-    	    			ret = Math.abs(x + y - 1024) + (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 1 - > path 4
-    	    			break;
-    	    		case 2:
-    	    			ret = (y - 1000) + (Math.exp(z) - (Math.cos(z) - 0.95));  // path 2 - > path 4
-    			        break;
-    	    		case 3:
-    	    			ret = (Math.exp(z) - (Math.cos(z) - 0.95));  // path 3 - > path 4    			        
-    			        break;
-    	    	}
-    			break;
-    	}
-    	return ret;
-    }
-
-    public double calculateDistTriangle(double a, double b, double c, String functionName)
-    {
-        double[] fitness;
-        objectcall++;
-        TargetFunctions targetFunction   = new TargetFunctions();        
-        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-/*
-        if (functionName.equals("tA2008_Triangle"))
-            targetFunction.tA2008_Triangle(a, b, c, executedPath);
-        else if (functionName.equals("QuadraticEquation2"))
-            targetFunction.QuadraticEquation2(a, b, c, executedPath);
-        else if (functionName.equals("triangleMansour2004"))
-            targetFunction.triangleMansour2004(a, b, c, executedPath);
-        else if (functionName.equals("tritypeBueno2002"))
-            targetFunction.tritypeBueno2002(a, b, c, executedPath);
-*/
-        //targetFunction.example((int)a, (int)b, c, executedPath);
-
-        fitness = getDistExecutedPath2TargetPaths(a, b, c, executedPath);
-        if (fitness[0] == -2)
-        {
-            return fitness[0];
-        }
-        if (fitness[0] > -1)
-        {
-            // hit a feasible path
-            System.out.println("Path " + (int)fitness[0] + ": a = " + a + " b = " + b + " c = " + c);
-            //System.out.println("Path " + (int)fitness[0] + ": a = " + (int)a + " b = " + (int)b + " c = " + (int)c);
-            System.out.println("Objective call: " + objectcall);
-        }
-        return fitness[1];
-    }
-
-    int pathnum = 0; // number of hit feasible paths
-
-    public double calculateDistInsertionSort(double[] a, int size, String functionName)
-    {
-        double[] fitness;
-        TargetFunctions targetFunction   = new TargetFunctions();        
-        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-/*        
-        if (functionName.equals("iA2008_InsertionSort"))
-            targetFunction.InsertionSort(a, size, executedPath);
-        else if (functionName.equals("GetMinMax"))
-            targetFunction.getMinMax(a, size, executedPath);
-        else if (functionName.equals("GetMinMaxTriangle"))
-            targetFunction.mmTriangle(a, size, executedPath);
-*/
-        fitness = getDistExecutedPath2TargetPaths(a[0], a[1], a[2], executedPath);
-        if (fitness[0] > -1)
-        {
-            // hit a feasible path
-            pathnum++;
-            System.out.print("[" + pathnum + "]");
-            System.out.print("{");
-            for (int i = 0; i < size; i++)
-            {
-                if (i < size-1)
-                    System.out.format(" %1.3f, ", a[i]);
-                else
-                    System.out.format(" %1.3f ", a[i]);
-            }
-            System.out.print("}");
-            System.out.println(" ===> pathID = " + (int)fitness[0]);
-            System.out.println("Target paths = " + totalTargetPaths);
-        }
-        return fitness[1];
-    }    
-
-    public double calculateDistGreatestCommonDivisor(int a, int b)
-    {
-        double[] fitness = null;
-        TargetFunctions targetFunction   = new TargetFunctions();        
-        ArrayList<VertexTF> executedPath = new ArrayList<VertexTF>();
-        
-        int[] number = new int[2];
-        number[0] = a;
-        number[1] = b;
-//        targetFunction.gcd(number, executedPath);
-
-        //fitness = getDistExecutedPath2TargetPaths(a, b, c, executedPath);
-        if (fitness[0] > -1)
-        {
-            // hit a feasible path
-            pathnum++;
-            System.out.print("[" + pathnum + "]");
-            System.out.print("{" + a + ", " + b + "}");
-            System.out.println(" ===> pathID = " + (int)fitness[0]);
-            System.out.println("Target paths = " + totalTargetPaths);
-        }
-        return fitness[1];
-    }    
-    
-    private double calculatePathDistTF(ArrayList<VertexTF> path1, ArrayList<VertexTF> path2)
-    {
-        int i = 0;
-        int len1 = path1.size();
-        int len2 = path2.size();
-        int len = Math.min(len1, len2);
-        for (i = 0; i < len; i++)
-        {
-            VertexTF vertex1 = path1.get(i);
-            VertexTF vertex2 = path2.get(i);
-            if ((vertex1.id == vertex2.id) && vertex1.decision.equals(vertex2.decision))
-                continue;
-            else                
-                break;
-        }
-        //return ((double)(Math.max(len1, len2) - i)/(double)Math.max(len1, len2));
-        return ((double)(Math.max(len1, len2) - i)/(double)len);
-    }
+    int pathnum = 0; // number of hit feasible paths    
 
     public boolean isGetAllFeasiblePathOK = false;
     /**

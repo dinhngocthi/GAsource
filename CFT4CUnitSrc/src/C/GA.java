@@ -467,7 +467,7 @@ public class GA
         try
         {
             //your_func = ctc.calculateDistTriangle((int)a, (int)b, (int)c, functionName);
-            your_func = ctc.calculateDistTriangle(a, b, c, functionName);
+            //your_func = ctc.calculateDistTriangle(a, b, c, functionName);
                         
             StopSearching = (your_func == -2);
         }
@@ -485,7 +485,7 @@ public class GA
 
         try
         {
-            your_func = ctc.calculateDistInsertionSort(a, size, functionName);
+            //your_func = ctc.calculateDistInsertionSort(a, size, functionName);
         }
         catch (Exception ex)
         {
@@ -501,7 +501,7 @@ public class GA
 
         try
         {
-            your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
+            //your_func = ctc.calculateDistGreatestCommonDivisor(a, b);
         }
         catch (Exception ex)
         {
