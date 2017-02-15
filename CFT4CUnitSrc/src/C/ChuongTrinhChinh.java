@@ -1,5 +1,7 @@
 package C;
 
+//import GUI3;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,9 +24,14 @@ public class ChuongTrinhChinh
 
     public static void main(String[] args) throws Exception
     {
-        //ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.c");
-        //ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/computeTax.c");
-        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/line.c");
+        // For PPSO benchmark START
+        String classPath = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
+        //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/line.c");
+        // For PPSO benchmark END            
+        
+        ChuongTrinhChinh c = new ChuongTrinhChinh(PUTPath);
         c.run();
         c.initPathListID(3);
     }
@@ -322,7 +329,7 @@ public class ChuongTrinhChinh
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
 
-            ArrayList<VertexTF> pathTF = new ArrayList<VertexTF>();
+            ArrayList<VertexTF> testpathTF = new ArrayList<VertexTF>();
 
             for (int k = 0; k < pathSize; k++)
             {
@@ -359,7 +366,7 @@ public class ChuongTrinhChinh
                         vertextf.decision = "T";
                         System.out.print("T ");
                     }
-                    pathTF.add(vertextf);
+                    testpathTF.add(vertextf);
                 }
             }
             System.out.println();

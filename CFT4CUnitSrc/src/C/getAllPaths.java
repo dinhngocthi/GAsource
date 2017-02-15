@@ -7,7 +7,6 @@ import java.util.Map;
 import ConstraintsCreation.ParseTestpath;
 import net.sourceforge.jeval.EvaluationException;
 
-
 /**
  * 
  * @version 3
@@ -93,7 +92,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (check(myPath, v.getId(), ""))
+            if (check(myPath, v.getId()))
             {
                 myPath.add(v);
                 if (v.getFalseVertexId() == v.getTrueVertexId())
@@ -127,10 +126,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            //if (checkSelectionSort(myPath))  // for SelectionSort (nested loop)
-            //if (checkInsertionSort(myPath))    // for InsertionSort (nested loop)
-            //if (check(myPath, v.id, "InsertionSort"))       // for nested loop, only for loop = 3
-            if (check(myPath, v.id, ""))       // for loop <= 1
+            if (check(myPath, v.id))
             {
                 myPath.add(v);
                 Vertex u;
@@ -229,94 +225,15 @@ public class getAllPaths
                 return v;
         return null;
     }
-        
-    // For selection sort (nested loop)
-    private boolean checkSelectionSort(ArrayList<Vertex> myPath)
-    {
-        int loop1 = 0;
-        int loop2 = 0;
-        boolean ret = true;
-        for (Vertex v : myPath)                        
-        {
-            if (v.getId() == 3)
-            {         
-                if (loop1 > 0)
-                {
-                    if (loop2 != (DEFAULT_DEPTH - loop1 + 1))
-                    {
-                        ret = false;
-                        break;
-                    }
-                }
-                loop1++;
-                loop2 = 0;                
-            }
 
-            if (v.getId() == 6)
-            {
-                loop2++;    
-                if (loop2 > (DEFAULT_DEPTH - loop1 + 1))
-                {
-                    ret = false;
-                    break;
-                }
-            }
-        }
-          
-        if (ret && loop1 <= DEFAULT_DEPTH)
-            return true;
-        else
-            return false;
-    }
-
-    // For insertion sort (nested loop)
-    private boolean checkInsertionSort(ArrayList<Vertex> myPath)
-    {
-        int loop1 = 0;
-        int loop2 = 0;
-        boolean ret = true;
-        for (Vertex v : myPath)                        
-        {
-            if (v.getId() == 2)  // node [2, i<size, T]
-            {         
-                if (loop1 > 0)
-                {
-                    if (loop2 != loop1)
-                    {
-                        ret = false;
-                        break;
-                    }
-                }
-                loop1++;
-                loop2 = 0;                
-            }
-
-            if (v.getId() == 4)  // node [4, j>0&&a[j]<a[j-1], T]
-            {
-                loop2++;    
-                if (loop2 > (loop1+1))
-                {
-                    ret = false;
-                    break;
-                }
-            }
-        }
-          
-        if (ret && loop1 <= DEFAULT_DEPTH)
-            return true;
-        else
-            return false;
-    }
-    
     // For find min/max 
-    private boolean check(ArrayList<Vertex> myPath, int id, String checktype)
+    private boolean check(ArrayList<Vertex> myPath, int id)
     {
         int count = 0;
-        int limit = checktype.equals("InsertionSort")? (DEFAULT_DEPTH + 1) : DEFAULT_DEPTH;
         for (Vertex v : myPath)
             if (v.getId() == id) count++;
         
-        return (count <= limit);
+        return (count <= DEFAULT_DEPTH);
     }
     
     /**
