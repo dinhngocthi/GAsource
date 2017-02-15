@@ -658,16 +658,12 @@ public final class GUI3 extends javax.swing.JFrame
         try
         {
             staticVariable.reset();
+            //String pathFile = fc.getSelectedFile().getAbsolutePath(); // select PUT from choose file dialog
+            
+            // For PPSO benchmark START
             String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            //String pathFile = classPath.replace("bin/", "src/sample/mmA2008_MinMax.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/iA2008_InsertionSort.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/binA2008_BinarySearch.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/Triangle.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/SelectionSort.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/gA2008_GreatestCommonDivisor.c");
-            //String pathFile = classPath.replace("bin/", "src/sample/mid.c");
-            String pathFile = fc.getSelectedFile().getAbsolutePath();
-            //String pathFile = classPath.replace("bin/", "src/sample/getDayNum.c");
+            String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
+            // For PPSO benchmark END            
 
             staticVariable.Paramater.depth = Utils.toInt(jtpDepth.getText() + "");
             staticVariable.Paramater.Smt_Lib_path_lib = jtfSmt_Lib_path_lib.getText();
@@ -683,7 +679,6 @@ public final class GUI3 extends javax.swing.JFrame
                 {
                     ArrayList<ArrayList<Integer>> pathList = ctc.getAllPaths(staticVariable.Statement.danhSachKe, 
                                                                              staticVariable.AllPath.NodeElements);// code
-                    
                     String text = "The process for generating test paths satisfying " + "statement/branch coverage\n---------------------\n";
                     jtpInfor1vs2.setText(text);
                     text = jtpInfor1vs2.getText() + "\nTotal possible test paths = " + pathList.size();
@@ -723,8 +718,8 @@ public final class GUI3 extends javax.swing.JFrame
                     displayLoopPaths();
                     invalidate();
                 }
-
             };
+
             SwingWorker task2 = new SwingWorker() {
                 @Override
                 protected Object doInBackground() throws Exception
@@ -773,7 +768,6 @@ public final class GUI3 extends javax.swing.JFrame
 
     private void jbSolveEquationActionPerformed(java.awt.event.ActionEvent evt)
     {
-
     }
 
     private void jbSaveMouseClicked(java.awt.event.MouseEvent evt)
@@ -797,21 +791,15 @@ public final class GUI3 extends javax.swing.JFrame
                 ImageIO.write(bi1, "png", new File(currentPathFile + "_Statement_And_Branch.png"));
                 ImageIO.write(bi2, "png", new File(currentPathFile + "_Sub_Condition.png"));
                 ArrayList<String[]> titleColumn = new ArrayList<String[]>();
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
-                titleColumn.add(new String[]
-                { "STT", "Ä�Æ°á»�ng kiá»ƒm thá»­", "Há»‡ rÃ ng buá»™c" });
+                titleColumn.add(new String[] { "STT", "", "" });
+                titleColumn.add(new String[] { "STT", "", "" });
+                titleColumn.add(new String[] { "STT", "", "" });
+                titleColumn.add(new String[] { "STT", "", "" });
+                titleColumn.add(new String[] { "STT", "", "" });
+                titleColumn.add(new String[] { "STT", "", "" });
                 GUtils.exportJTableToExcel(new JTable[]
                 { jtStatementTable, jtBranchCoverage, jtSubConditionCoverage, jtBasisPaths, }, new String[]
-                { "Phá»§ cÃ¢u lá»‡nh", "Phá»§ nhÃ¡nh", "Phá»§ Ä‘iá»�u kiá»‡n con", "Táº­p Ä‘Æ°á»�ng thá»±c thi Ä‘Æ°á»£c phá»§ cÃ¢u lá»‡nh/nhÃ¡nh" }, titleColumn, new File(currentPathFile + ".xls"));
+                { "", "", "", "" }, titleColumn, new File(currentPathFile + ".xls"));
                 JOptionPane.showMessageDialog(GUI3.this, "Export Successfully");
             }
             catch (IOException ex)
@@ -1053,9 +1041,7 @@ public final class GUI3 extends javax.swing.JFrame
         {
             String __testpath__ = simpleLoopList.get(numLoop);
 
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
-            // thá»ƒ
-            // rá»—ng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1083,9 +1069,7 @@ public final class GUI3 extends javax.swing.JFrame
         for (Object numLoop : innerLoopList.keySet())
         {
             String __testpath__ = innerLoopList.get(numLoop);
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
-            // thá»ƒ
-            // rá»—ng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1099,9 +1083,7 @@ public final class GUI3 extends javax.swing.JFrame
         for (Object numLoop : outerLoopList.keySet())
         {
             String __testpath__ = outerLoopList.get(numLoop);
-            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cÃ³
-            // thá»ƒ
-            // rá»—ng
+            ArrayList<Integer> testpathIndex = new ArrayList<Integer>();// cﾃδｳ
             DuongKiemThu d = new DuongKiemThu(__testpath__, testpathIndex, staticVariable.Paramater.variableOfTC, "#", staticVariable.Paramater.Smt_Lib_path_lib,
                     staticVariable.Paramater.Smt_Lib_path_file, "simpleLoop.smt2");
             GUtils.updateRow(rowId, new String[]
@@ -1130,7 +1112,8 @@ public final class GUI3 extends javax.swing.JFrame
                 }
             }
         });
-        jtSubConditionCoverage.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        jtSubConditionCoverage.getSelectionModel().addListSelectionListener(new ListSelectionListener() 
+        {
             @Override
             public void valueChanged(ListSelectionEvent event)
             {
@@ -1209,8 +1192,6 @@ public final class GUI3 extends javax.swing.JFrame
                     cPhuCap1va2.showSttSelectedTestpath(clickedTestpath);
                     jtpSmt_LibFile.setText(testpath.getSmtFile());
                     jtpTestcase.setText("Output from Z3:\n" + testpath.getTestcaseInZ3() + "\n\nNormalized output:\n" + testpath.getTestcase());
-                    // Khi click vÃ o tá»«ng Ä‘Æ°á»�ng Ä‘i thÃ¬ hiá»‡n danh sÃ¡ch
-                    // Ä‘Æ°á»�ng
                     ParseLoopTestpath parser = new ParseLoopTestpath(testpath);
                     try
                     {
@@ -1315,5 +1296,4 @@ public final class GUI3 extends javax.swing.JFrame
         });
     }
     //
-
 }

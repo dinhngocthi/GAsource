@@ -23,7 +23,7 @@ public class ChuongTrinhChinh
     public static void main(String[] args) throws Exception
     {
         //ChuongTrinhChinh c = new ChuongTrinhChinh("E:\\PhD\\CFT4CUnit\\CFT4CUnit\\Vi Du\\SelectionSort.c");
-        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/tA2008_Triangle.c");
+        ChuongTrinhChinh c = new ChuongTrinhChinh("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.c");
         c.run();
         c.initPathListID(3);
     }
@@ -314,7 +314,7 @@ public class ChuongTrinhChinh
         pathListID = new int[totalTargetPaths];
         for (int i = 0; i < totalTargetPaths; i++)
             pathListID[i] = 1;
-        
+/*        
         // Create equal condition list for generatenewPop adjust
         equalCondList = new ArrayList<String>();
         for (int i = 0; i < totalTargetPaths; i++)
@@ -356,7 +356,6 @@ public class ChuongTrinhChinh
         for (int i = 0; i < equalCondList.size(); i++)
         	System.out.print("[" + equalCondList.get(i) + "] ");
         System.out.println();
-
 
         // for smt solver
         for (int i = 0; i < totalTargetPaths; i++)
@@ -428,12 +427,12 @@ public class ChuongTrinhChinh
                 System.out.println("Path " + i + ": " + r.getOutput());
             }
         }
-
+*/
         PrintWriter fpOut;
         fpOut = new PrintWriter("TargetPaths", "UTF-8");
 
         System.out.println("------------Create all target paths start-------------");
-/*        
+
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
@@ -452,7 +451,8 @@ public class ChuongTrinhChinh
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
                     System.out.print("[" + vertex.getStatement() + "]");
-                    VertexTF vertextf = new VertexTF();
+                    VertexTF vertextf = new VertexTF(1, "");
+                    
                     int j = 0;
                     for (j = 0; j < branchlist.size(); j++)
                     {
@@ -489,7 +489,6 @@ public class ChuongTrinhChinh
             System.out.println();
         }       
         fpOut.printf("\n");
-*/
 
         totalTargetPaths = 4;
         targetPaths = new ArrayList<ArrayList<VertexTF>>();
@@ -1325,7 +1324,6 @@ public class ChuongTrinhChinh
 
     class Node
     {
-
         protected String data;
         protected int idNode;
         protected int true_id;
@@ -1341,7 +1339,6 @@ public class ChuongTrinhChinh
 
         protected String getData()
         {
-
             return data;
         }
 
