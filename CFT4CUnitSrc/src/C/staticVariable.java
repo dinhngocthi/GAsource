@@ -25,15 +25,16 @@ public class staticVariable {
 	}
 	//
 
-	public static class Statement {
-
+	public static class Statement 
+	{
 		public static ArrayList<DuongKiemThu> pathList = new ArrayList<DuongKiemThu>();
 		public static String danhSachKe = new String();
 		public static String NodeElements = new String();
 		public static String NodeRelations = new String();
 		public static String dsk = new String();
 
-		public static void reset() {
+		public static void reset() 
+		{
 			pathList = new ArrayList<DuongKiemThu>();
 			danhSachKe = "";
 			NodeElements = "";
@@ -42,8 +43,8 @@ public class staticVariable {
 		}
 	}
 
-	public static class Branch {
-
+	public static class Branch 
+	{
 		public static ArrayList<DuongKiemThu> pathList = new ArrayList<DuongKiemThu>();
 		public static String danhSachKe = new String();
 		public static String NodeElements = new String();
@@ -111,15 +112,16 @@ public class staticVariable {
 		}
 	}
 
-	public static class PossiblePathSubCondition {
-
+	public static class PossiblePathSubCondition 
+	{
 		public static ArrayList<DuongKiemThu> pathList = new ArrayList<DuongKiemThu>();
 		public static String danhSachKe = new String();
 		public static String NodeElements = new String();
 		public static String NodeRelations = new String();
 		public static String dsk = new String();
 
-		public static void reset() {
+		public static void reset() 
+		{
 			pathList = new ArrayList<DuongKiemThu>();
 			danhSachKe = "";
 			NodeElements = "";
@@ -128,15 +130,16 @@ public class staticVariable {
 		}
 	}
 
-	public static class AllPathSubCondition {
-
+	public static class AllPathSubCondition 
+	{
 		public static ArrayList<DuongKiemThu> pathList = new ArrayList<DuongKiemThu>();
 		public static String danhSachKe = new String();
 		public static String NodeElements = new String();
 		public static String NodeRelations = new String();
 		public static String dsk = new String();
 
-		public static void reset() {
+		public static void reset() 
+		{
 			pathList = new ArrayList<DuongKiemThu>();
 			danhSachKe = "";
 			NodeElements = "";
@@ -170,12 +173,6 @@ public class staticVariable {
 		public static final int NESTED_LOOP = 1;
 		public static final int CONCATENATED_LOOP = 2;
 		public static final int NOT_DEFINED_LOOP = -1;
-	}
-
-	public static class Constant {
-
-		public static final String VO_NGHIEM = "Luôn luôn vô nghiệm";
-		public static final String CHUA_TIM_THAY_NGHIEM = "Chưa tìm thấy nghiệm";
 	}
 
 	public static void reset() {
