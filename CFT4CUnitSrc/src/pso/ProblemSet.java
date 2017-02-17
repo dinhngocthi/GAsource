@@ -33,14 +33,7 @@ public class ProblemSet {
 		double x = location.getLoc()[0]; // the "x" part of the location
 		double y = location.getLoc()[1]; // the "y" part of the location
 		double z = location.getLoc()[2]; // the "z" part of the location
-		/*
-		result = Math.pow(2.8125 - x + x * Math.pow(y, 4), 2) + 
-				Math.pow(2.25 - x + x * Math.pow(y, 2), 2) + 
-				Math.pow(1.5 - x + x * y, 2);
-		*/
-		//result = Math.pow(x - 1, 2) + Math.pow(y - 2, 2) + Math.pow(z - 3, 2);
-		//result = Math.abs(x - y) + Math.abs(y - z);
-
+/*		
 		int month = (int)x;
 		int year = (int)y;
 
@@ -71,6 +64,9 @@ public class ProblemSet {
 				break;
 		}
 		//result = TargetFunctions.Tritype(x, y, z);
+*/
+		result = GetBranchDistance(x + y, z, 7) + GetBranchDistance(x + z, y, 7) + GetBranchDistance(y + z, x, 7);
+		result = Integer.MAX_VALUE - Math.abs(result);
 		return result;
 	}
 	

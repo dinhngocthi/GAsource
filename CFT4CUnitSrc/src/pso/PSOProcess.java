@@ -118,7 +118,7 @@ public class PSOProcess extends Thread
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
-		//System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
+		System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
 	}
 	
 	public void initializeSwarm() 
