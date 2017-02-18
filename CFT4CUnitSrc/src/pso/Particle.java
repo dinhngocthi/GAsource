@@ -39,9 +39,9 @@ public class Particle
 		this.location = location;
 	}
 
-	public double getFitnessValue(int testpathID) 
+	public double getFitnessValue(String PUTName, int testpathID) 
 	{
-		fitnessValue = ProblemSet.evaluate(location, testpathID);
+		fitnessValue = ProblemSet.evaluate(location, PUTName, testpathID);
 		return fitnessValue;
 	}
 }

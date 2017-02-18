@@ -28,12 +28,13 @@ public class ProblemSet
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
-	public static double evaluate(Location location, int testpathID) 
+	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
 		double x = location.getLoc()[0]; // the "x" part of the location
 		double y = location.getLoc()[1]; // the "y" part of the location
 		double z = location.getLoc()[2]; // the "z" part of the location
+		//double w = location.getLoc()[3]; // the "w" part of the location
 /*		
 		int month = (int)x;
 		int year = (int)y;
@@ -67,8 +68,14 @@ public class ProblemSet
 		//result = TargetFunctions.Tritype(x, y, z);
 */
 		//result = Math.min(GetBranchDistance(x + y, z, 6), Math.min(GetBranchDistance(x + z, y, 6), GetBranchDistance(y + z, x, 6)));
-		//result = FtriangleType(x, y, z, testpathID);
-		result = computeTax((int)x, y, testpathID);
+		
+		if (PUTName.equals("triangleType"))
+			result = FtriangleType(x, y, z, testpathID);
+		else if (PUTName.equals("computeTax"))
+			result = FcomputeTax((int)x, y, testpathID);
+
+		//xr1<xr2&&yr1<yr2 
+		//result = GetBranchDistance(x, y, "<") + GetBranchDistance(z, w, "<");  
 		return result;
 	}
 	
@@ -134,7 +141,7 @@ public class ProblemSet
 		return ret;
 	}
 	
-	private static double computeTax(int status, double income, int testpathID)
+	private static double FcomputeTax(int status, double income, int testpathID)
 	{
 		double ret = 0;
 		//[status==0]F

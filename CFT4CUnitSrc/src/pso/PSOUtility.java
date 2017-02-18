@@ -13,8 +13,7 @@ public class PSOUtility
 				pos = i;
 				minValue = list[i];
 			}
-		}
-		
+		}		
 		return pos;
 	}
 }

@@ -27,6 +27,7 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
+	private int arguments;
 	
 	Random generator = new Random();
 	
@@ -34,13 +35,15 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
+		arguments = 2;
+		if (PUTName.equals("triangleType"))
+			arguments = 3;
 	}
  
 	public void run()
 	{
-		//int functionID = PSOConstants.functionID;
 		initializeSwarm();
-		updateFitnessList(testpathID);
+		updateFitnessList(PUTName, testpathID);
 
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
@@ -102,23 +105,17 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation, testpathID) - 0; // minimizing the functions means it's getting closer to 0
-/*
-			System.out.println("ITERATION " + t + ": ");
-			System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
-			System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
-			System.out.println("     Best Z: " + gBestLocation.getLoc()[2]);
-			System.out.println("     Value: " + err);
-*/
+			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
 			t++;
-			updateFitnessList(testpathID);
+			updateFitnessList(PUTName, testpathID);
 		}
 		System.out.println("===============================================");
 		System.out.println("Test path ID:  " + testpathID);
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
-		//System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
+		if (arguments > 2)
+			System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
 		System.out.println("===============================================");
 	}
 	
@@ -131,16 +128,24 @@ public class PSOProcess extends Thread
 			
 			// randomize location inside a space defined in Problem Set
 			double[] loc = new double[PROBLEM_DIMENSION];
+			/*
 			loc[0] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
 			loc[1] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
 			loc[2] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
+			*/
+			for (int j = 0; j < PROBLEM_DIMENSION; j++)
+				loc[j] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
 			Location location = new Location(loc);
 			
 			// randomize velocity in the range defined in Problem Set
 			double[] vel = new double[PROBLEM_DIMENSION];
+			/*
 			vel[0] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
 			vel[1] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
 			vel[2] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
+			*/
+			for (int j = 0; j < PROBLEM_DIMENSION; j++)
+				vel[j] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
 			Velocity velocity = new Velocity(vel);
 			
 			p.setLocation(location);
@@ -149,11 +154,11 @@ public class PSOProcess extends Thread
 		}
 	}
 	
-	public void updateFitnessList(int testpathID) 
+	public void updateFitnessList(String PUTName, int testpathID) 
 	{
 		for(int i = 0; i < SWARM_SIZE; i++) 
 		{
-			fitnessValueList[i] = swarm.get(i).getFitnessValue(testpathID);
+			fitnessValueList[i] = swarm.get(i).getFitnessValue(PUTName, testpathID);
 		}
 	}
 }
