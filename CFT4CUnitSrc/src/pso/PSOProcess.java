@@ -12,7 +12,7 @@ public class PSOProcess extends Thread
 	// Constants
 	final int SWARM_SIZE = 30;
 	final int MAX_ITERATION = 1000;
-	final int PROBLEM_DIMENSION = 3;
+	//final int PROBLEM_DIMENSION = 3;
 	final double C1 = 2.0;  // acceleration coefficient
 	final double C2 = 2.0;  // acceleration coefficient
 	final double W_UPPERBOUND = 1.0;
@@ -27,7 +27,8 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
-	private int arguments;
+	//private int arguments;
+	private int PROBLEM_DIMENSION;
 	
 	Random generator = new Random();
 	
@@ -35,9 +36,9 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
-		arguments = 2;
+		PROBLEM_DIMENSION = 2;
 		if (PUTName.equals("triangleType"))
-			arguments = 3;
+			PROBLEM_DIMENSION = 3;
 	}
  
 	public void run()
@@ -112,10 +113,14 @@ public class PSOProcess extends Thread
 		System.out.println("===============================================");
 		System.out.println("Test path ID:  " + testpathID);
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
+/*		
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
 		if (arguments > 2)
 			System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
+*/
+		for (int i = 0; i < PROBLEM_DIMENSION; i++)
+			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
 	}
 	
@@ -127,23 +132,13 @@ public class PSOProcess extends Thread
 			p = new Particle();
 			
 			// randomize location inside a space defined in Problem Set
-			double[] loc = new double[PROBLEM_DIMENSION];
-			/*
-			loc[0] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
-			loc[1] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
-			loc[2] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
-			*/
+			double[] loc = new double[PROBLEM_DIMENSION];			
 			for (int j = 0; j < PROBLEM_DIMENSION; j++)
 				loc[j] = ProblemSet.LOC_LOW + generator.nextDouble() * (ProblemSet.LOC_HIGH - ProblemSet.LOC_LOW);
 			Location location = new Location(loc);
 			
 			// randomize velocity in the range defined in Problem Set
-			double[] vel = new double[PROBLEM_DIMENSION];
-			/*
-			vel[0] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
-			vel[1] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
-			vel[2] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
-			*/
+			double[] vel = new double[PROBLEM_DIMENSION];			
 			for (int j = 0; j < PROBLEM_DIMENSION; j++)
 				vel[j] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
 			Velocity velocity = new Velocity(vel);
