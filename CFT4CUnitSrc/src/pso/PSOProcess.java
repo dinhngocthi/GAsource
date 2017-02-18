@@ -7,7 +7,6 @@ package pso;
 import java.util.Random;
 import java.util.Vector;
 
-//public class PSOProcess implements PSOConstants
 public class PSOProcess extends Thread  
 {
 	// Constants
@@ -25,21 +24,21 @@ public class PSOProcess extends Thread
 	private double gBest;
 	private Location gBestLocation;
 	private double[] fitnessValueList = new double[SWARM_SIZE];
+
+	private String PUTName;
 	private int testpathID;
 	
 	Random generator = new Random();
 	
-	PSOProcess(int testpathID)
+	PSOProcess(String PUTName, int testpathID)
 	{
-		this.testpathID = testpathID;	
+		this.PUTName = PUTName;
+		this.testpathID = testpathID;
 	}
-
-	//public void execute(int functionID) 
+ 
 	public void run()
 	{
 		//int functionID = PSOConstants.functionID;
-		System.out.println("Test path ID = " + testpathID);
-
 		initializeSwarm();
 		updateFitnessList(testpathID);
 
@@ -52,7 +51,7 @@ public class PSOProcess extends Thread
 		int t = 0;
 		double w;
 		double err = 9999;
-		
+
 		while(t < MAX_ITERATION && err > ProblemSet.ERR_TOLERANCE) 
 		{
 			// step 1 - update pBest
@@ -114,11 +113,13 @@ public class PSOProcess extends Thread
 			t++;
 			updateFitnessList(testpathID);
 		}
-		
+		System.out.println("===============================================");
+		System.out.println("Test path ID:  " + testpathID);
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
 		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
-		System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
+		//System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
+		System.out.println("===============================================");
 	}
 	
 	public void initializeSwarm() 

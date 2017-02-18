@@ -9,7 +9,8 @@ package pso;
 //if your problem space is greater than 2-dimensional space
 //you need to introduce a new variable (other than x and y)
 
-public class ProblemSet {
+public class ProblemSet 
+{
 	public static final double LOC_LOW  = 1;
 	public static final double LOC_HIGH = 10000;
 	/*
@@ -66,7 +67,8 @@ public class ProblemSet {
 		//result = TargetFunctions.Tritype(x, y, z);
 */
 		//result = Math.min(GetBranchDistance(x + y, z, 6), Math.min(GetBranchDistance(x + z, y, 6), GetBranchDistance(y + z, x, 6)));
-		result = FtriangleType(x, y, z, testpathID);
+		//result = FtriangleType(x, y, z, testpathID);
+		result = computeTax((int)x, y, testpathID);
 		return result;
 	}
 	
@@ -189,12 +191,39 @@ public class ProblemSet {
 			case 2:
 				//Path 2: [status==0]F [status==1]F [status==2]F [status==3]T 
 				ret = ret1F + ret2F + ret3F + ret4T;
+				break;
 			case 3:
 				//Path 3: [status==0]F [status==1]F [status==2]T
 				ret = ret1F + ret2F + ret3T;
+				break;
 			case 4:
 				//Path 4: [status==0]F [status==1]T 
 				ret = ret1F + ret2T;
+				break;
+			case 5:
+				//Path 5: [status==0]T [income<=8350]F [income<=33950]F [income<=82250]F [income<=171550]F [income<=372950]F
+				ret = ret1T + ret5F + ret6F + ret7F + ret8F + ret9F;
+				break;
+			case 6:
+				//Path 6: [status==0]T [income<=8350]F [income<=33950]F [income<=82250]F [income<=171550]F [income<=372950]T
+				ret = ret1T + ret5F + ret6F + ret7F + ret8F + ret9T;
+				break;
+			case 7:
+				//Path 7: [status==0]T [income<=8350]F [income<=33950]F [income<=82250]F [income<=171550]T
+				ret = ret1T + ret5F + ret6F + ret7F + ret8T;
+				break;
+			case 8:
+				//Path 8: [status==0]T [income<=8350]F [income<=33950]F [income<=82250]T
+				ret = ret1T + ret5F + ret6F + ret7T;
+				break;
+			case 9:
+				//Path 9: [status==0]T [income<=8350]F [income<=33950]T
+				ret = ret1T + ret5F + ret6T;
+				break;
+			case 10:
+				//Path 10: [status==0]T [income<=8350]T
+				ret = ret1T + ret5T;
+				break;
 			default:
 				break;
 		}
