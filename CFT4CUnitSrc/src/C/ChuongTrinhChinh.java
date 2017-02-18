@@ -26,9 +26,9 @@ public class ChuongTrinhChinh
     {
         // For PPSO benchmark START
         String classPath = ChuongTrinhChinh.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
-        //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/line.c");
+        //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
+        String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
+        //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/line.c");
         // For PPSO benchmark END            
         
         ChuongTrinhChinh c = new ChuongTrinhChinh(PUTPath);

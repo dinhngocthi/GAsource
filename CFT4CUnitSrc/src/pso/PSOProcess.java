@@ -12,7 +12,7 @@ public class PSOProcess extends Thread
 {
 	// Constants
 	final int SWARM_SIZE = 30;
-	final int MAX_ITERATION = 100;
+	final int MAX_ITERATION = 1000;
 	final int PROBLEM_DIMENSION = 3;
 	final double C1 = 2.0;  // acceleration coefficient
 	final double C2 = 2.0;  // acceleration coefficient
@@ -25,23 +25,23 @@ public class PSOProcess extends Thread
 	private double gBest;
 	private Location gBestLocation;
 	private double[] fitnessValueList = new double[SWARM_SIZE];
-	private int branchID;
+	private int testpathID;
 	
 	Random generator = new Random();
 	
-	PSOProcess(int branchID)
+	PSOProcess(int testpathID)
 	{
-		this.branchID = branchID;	
+		this.testpathID = testpathID;	
 	}
 
 	//public void execute(int functionID) 
 	public void run()
 	{
 		//int functionID = PSOConstants.functionID;
-		System.out.println("branch ID = " + branchID);
+		System.out.println("Test path ID = " + testpathID);
 
 		initializeSwarm();
-		updateFitnessList(branchID);
+		updateFitnessList(testpathID);
 
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
@@ -103,7 +103,7 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation, branchID) - 0; // minimizing the functions means it's getting closer to 0
+			err = ProblemSet.evaluate(gBestLocation, testpathID) - 0; // minimizing the functions means it's getting closer to 0
 /*
 			System.out.println("ITERATION " + t + ": ");
 			System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
@@ -112,7 +112,7 @@ public class PSOProcess extends Thread
 			System.out.println("     Value: " + err);
 */
 			t++;
-			updateFitnessList(branchID);
+			updateFitnessList(testpathID);
 		}
 		
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
@@ -148,11 +148,11 @@ public class PSOProcess extends Thread
 		}
 	}
 	
-	public void updateFitnessList(int branchID) 
+	public void updateFitnessList(int testpathID) 
 	{
 		for(int i = 0; i < SWARM_SIZE; i++) 
 		{
-			fitnessValueList[i] = swarm.get(i).getFitnessValue(branchID);
+			fitnessValueList[i] = swarm.get(i).getFitnessValue(testpathID);
 		}
 	}
 }
