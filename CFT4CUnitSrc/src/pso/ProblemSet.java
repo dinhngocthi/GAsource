@@ -76,10 +76,16 @@ public class ProblemSet
 					               testpathID);
 		else if (PUTName.equals("computeTax"))
 			result = FcomputeTax((int)location.getLoc()[0], location.getLoc()[1], testpathID);
-
-		//xr1<xr2&&yr1<yr2 
-		result = GetBranchDistance(location.getLoc()[0], location.getLoc()[1], "<") + 
-		        GetBranchDistance(location.getLoc()[2], location.getLoc()[3], "<");  
+		else if (PUTName.equals("line"))
+			result = Fline((int)location.getLoc()[0], 
+						   (int)location.getLoc()[1], 
+						   (int)location.getLoc()[2],
+						   (int)location.getLoc()[3],
+						   (int)location.getLoc()[4],
+						   (int)location.getLoc()[5],
+						   (int)location.getLoc()[6],
+						   (int)location.getLoc()[7],
+						   testpathID);
 		return result;
 	}
 	
@@ -194,29 +200,57 @@ public class ProblemSet
 		//[xl1>xr2&&xl2>xr2]T 
 		double ret8T = GetBranchDistance(xl1, xr2, ">") + GetBranchDistance(xl2, xr2, ">");
 		
-		double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
+		double x1 = (yl2 - yl1) * (yr1 - yl1) + xl1;
+		if (x1 != 0)
+			x1 = (xl2 - xl1)/x1;
+//		else
+//			x1 = Integer.MAX_VALUE;
+		//double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
 		//[x1>=xr1&&x<=xr2]F -> [x1<xr1||x1>xr2]T
 		double ret9F = Math.min(GetBranchDistance(x1, xr1, "<"), GetBranchDistance(x1, xr2, ">"));
+//		double ret9F = 0;
 		//[x1>=xr1&&x1<=xr2]T
-		double ret9T = GetBranchDistance(x1, xr1, ">=") + GetBranchDistance(x1, xr2, "<=");		
+		double ret9T = GetBranchDistance(x1, xr1, ">=") + GetBranchDistance(x1, xr2, "<=");
+//		double ret9T = 0;
 
-		double x2 = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
+		double x2 = (yl2 - yl1) * (yr2 - yl1) + xl1;
+		if (x2 != 0)
+			x2 = (xl2 - xl1)/x2;
+//		else
+//			x2 = Integer.MAX_VALUE;;
+		//double x2 = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
 		//[x2>=xr1&&x2<=xr2]F -> [x2<xr1||x2>xr2]T 
 		double ret10F = Math.min(GetBranchDistance(x2, xr1, "<"), GetBranchDistance(x2, xr2, ">"));
+//		double ret10F = 0;
 		//[x2>=xr1&&x2<=xr2]T
-		double ret10T = GetBranchDistance(x2, xr1, ">=") + GetBranchDistance(x2, xr2, "<=");		
-				
-		double y1 = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
+		double ret10T = GetBranchDistance(x2, xr1, ">=") + GetBranchDistance(x2, xr2, "<=");
+//		double ret10T = 0;
+		
+		double y1 = (xl2 - xl1) * (xr1 - xl1) + yl1;
+		if (y1 != 0)
+			y1 = (yl2 - yl1) / y1;
+//		else 
+//			y1 = Integer.MAX_VALUE;
+		//double y1 = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
 		//[y1>=yr1&&y1<=yr2]F -> [y1<yr1||y1>yr2]T 
 		double ret11F = Math.min(GetBranchDistance(y1, yr1, "<"), GetBranchDistance(y1, yr2, ">"));
+//		double ret11F = 0;
 		//[y1>=yr1&&y1<=yr2]T
 		double ret11T = GetBranchDistance(y1, yr1, ">=") + GetBranchDistance(y1, yr2, "<=");
+//		double ret11T = 0;
 		
-		double y2 = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
+		double y2 = (xl2 - xl1) * (xr2 - xl1) + yl1;
+		if (y2 != 0)
+			y2 = (yl2 - yl1) / y2;
+//		else
+//			y2 = Integer.MAX_VALUE;
+		//double y2 = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
 		//[y2>=yr1&&y2<=yr2]F
 		double ret12F = Math.min(GetBranchDistance(y2, yr1, "<"), GetBranchDistance(y2, yr2, ">"));
+//		double ret12F = 0;
 		//[y2>=yr1&&y2<=yr2]T
 		double ret12T = GetBranchDistance(y2, yr1, ">=") + GetBranchDistance(y2, yr2, "<=");
+//		double ret12T = 0;
 
 		//[xl1<xr1]F
 		double ret13F = GetBranchDistance(xl1, xr1, ">=");
@@ -248,6 +282,87 @@ public class ProblemSet
 		//[xl1>xr2||xl2<xr1]T
 		double ret18T = Math.min(GetBranchDistance(xl1, xr2, ">"), GetBranchDistance(xl2, xr1, "<"));
 
+		switch (testpathID)
+		{
+			case 1:
+				//Path 1: [xr1<xr2&&yr1<yr2&&xl1<=xl2]F
+				ret = ret1F;
+				break;
+			case 2:
+				//Path 2: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]F [x>=xr1&&x<=xr2]F [x>=xr1&&x<=xr2]F [y>=yr1&&y<=yr2]F [y>=yr1&&y<=yr2]F
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8F + ret9F + ret10F + ret11F + ret12F;
+				break;
+			case 3:
+				//Path 3: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]F [x>=xr1&&x<=xr2]F [x>=xr1&&x<=xr2]F [y>=yr1&&y<=yr2]F [y>=yr1&&y<=yr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8F + ret9F + ret10F + ret11F + ret12T;
+				break;
+			case 4:
+				//Path 4: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]F [x>=xr1&&x<=xr2]F [x>=xr1&&x<=xr2]F [y>=yr1&&y<=yr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8F + ret9F + ret10F + ret11T;
+				break;
+			case 5:
+				//Path 5: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]F [x>=xr1&&x<=xr2]F [x>=xr1&&x<=xr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8F + ret9F + ret10T;
+				break;
+			case 6:
+				//Path 6: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]F [x>=xr1&&x<=xr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8F + ret9T;
+				break;
+			case 7:
+				//Path 7: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]F [xl1>xr2&&xl2>xr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7F + ret8T;
+				break;
+			case 8:
+				//Path 8: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]F [xl1<xr1&&xl2<xr1]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6F + ret7T;
+				break;
+			case 9:
+				//Path 9: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]F [yl1>yr2&&yl2>yr2]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5F + ret6T;
+				break;
+			case 10:
+				//Path 10: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]F [yl1<yr1&&yl2<yr1]T
+				ret = ret1T + ret2F + ret3F + ret4F + ret5T;
+				break;
+			case 11:
+				//Path 11: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]T [xl1<xr1]F [xl1>xr2]F [yl1>yr2||yl2<yr1]F
+				ret = ret1T + ret2F + ret3F + ret4T + ret13F + ret14F + ret15F;
+				break;
+			case 12:
+				//Path 12: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]T [xl1<xr1]F [xl1>xr2]F [yl1>yr2||yl2<yr1]T
+				ret = ret1T + ret2F + ret3F + ret4T + ret13F + ret14F + ret15T;
+				break;
+			case 13:
+				//Path 13: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]T [xl1<xr1]F [xl1>xr2]T
+				ret = ret1T + ret2F + ret3F + ret4T + ret13F + ret14T;
+				break;
+			case 14:
+				//Path 14: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]F [xl1==xl2]T [xl1<xr1]T
+				ret = ret1T + ret2F + ret3F + ret4T + ret13T;
+				break;
+			case 15:
+				//Path 15: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]T [yl1<yr1]F [yl1>yr2]F [xl1>xr2||xl2<xr1]F
+				ret = ret1T + ret2F + ret3T + ret16F + ret17F + ret18F;
+				break;
+			case 16:
+				//Path 16: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]T [yl1<yr1]F [yl1>yr2]F [xl1>xr2||xl2<xr1]T
+				ret = ret1T + ret2F + ret3T + ret16F + ret17F + ret18T;
+				break;
+			case 17:
+				//Path 17: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]T [yl1<yr1]F [yl1>yr2]T
+				ret = ret1T + ret2F + ret3T + ret16F + ret17T;
+				break;
+			case 18:
+				//Path 18: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F [yl1==yl2]T [yl1<yr1]T 
+				ret = ret1T + ret2F + ret3T + ret16T;
+				break;
+			case 19:
+				//Path 19: [xr1<xr2&&yr1<yr2&&xl1<=xl2]T [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]T
+				ret = ret1T + ret2T;
+				break;
+			default:
+				break;	
+		}
 		return ret;
 	}
 	

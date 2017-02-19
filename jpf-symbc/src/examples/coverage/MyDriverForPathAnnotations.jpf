@@ -5,7 +5,7 @@ classpath=${jpf-symbc}/build/examples
 # concrete value for 'b'
 symbolic.method= coverage.MyClassWithPathAnnotations.mySample1(sym#sym#sym)
 
-#symbolic.debug=true
+symbolic.debug=true
 symbolic.dp=coral
 listener = .symbc.SymbolicListener
 

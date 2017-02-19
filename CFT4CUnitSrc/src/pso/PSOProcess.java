@@ -34,10 +34,11 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
-		PROBLEM_DIMENSION = 4;
+		PROBLEM_DIMENSION = 2;
 		if (PUTName.equals("triangleType"))
 			PROBLEM_DIMENSION = 3;
-		PROBLEM_DIMENSION = 4;
+		else if (PUTName.equals("line"))
+			PROBLEM_DIMENSION = 8;
 	}
  
 	public void run()
@@ -112,12 +113,7 @@ public class PSOProcess extends Thread
 		System.out.println("===============================================");
 		System.out.println("Test path ID:  " + testpathID);
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
-/*		
-		System.out.println("     Best X: " + (int)gBestLocation.getLoc()[0]);
-		System.out.println("     Best Y: " + (int)gBestLocation.getLoc()[1]);
-		if (arguments > 2)
-			System.out.println("     Best Z: " + (int)gBestLocation.getLoc()[2]);
-*/
+
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
