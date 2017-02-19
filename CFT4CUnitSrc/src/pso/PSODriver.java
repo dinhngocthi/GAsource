@@ -4,7 +4,7 @@ import  java.io.*;
 
 public class PSODriver 
 {
-	public static void main(String[] args)   throws InterruptedException
+	public static void main(String[] args) throws InterruptedException
 	{
 /*
 		String PUTName = "computeTax";
@@ -14,7 +14,7 @@ public class PSODriver
 		String PUTName = "triangleType";
 		int testpathsize = 4;
 */
-		String PUTName = "line";
+		String PUTName = "line";		
 		int testpathsize = 19;
 		for (int i = 1; i <=  testpathsize; i++)
 			new PSOProcess(PUTName, i).start();

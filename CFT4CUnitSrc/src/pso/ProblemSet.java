@@ -160,7 +160,7 @@ public class ProblemSet
 		double ret1T = GetBranchDistance(xr1, xr2, "<") + GetBranchDistance(yr1, yr2, "<") + GetBranchDistance(xl1, xl2, "<=");
 		
 		//  [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F
-		//->[xl1<xr1 ||xl1>xr2 ||xl2<xr1 ||xl2>xr2 ||yl1<yr1 ||yl1>yr2 ||yl2<yr1 ||yl2>yr2]F
+		//->[xl1<xr1 ||xl1>xr2 ||xl2<xr1 ||xl2>xr2 ||yl1<yr1 ||yl1>yr2 ||yl2<yr1 ||yl2>yr2]T
 		double min1 = Math.min(GetBranchDistance(xl1, xr1, "<"), GetBranchDistance(xl1, xr2, ">"));
 		double min2 = Math.min(GetBranchDistance(xl2, xr1, "<"), GetBranchDistance(xl2, xr2, ">"));
 		double min3 = Math.min(GetBranchDistance(yl1, yr1, "<"), GetBranchDistance(yl1, yr2, ">"));
