@@ -12,7 +12,6 @@ public class PSOProcess extends Thread
 	// Constants
 	final int SWARM_SIZE = 30;
 	final int MAX_ITERATION = 1000;
-	//final int PROBLEM_DIMENSION = 3;
 	final double C1 = 2.0;  // acceleration coefficient
 	final double C2 = 2.0;  // acceleration coefficient
 	final double W_UPPERBOUND = 1.0;
@@ -27,7 +26,6 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
-	//private int arguments;
 	private int PROBLEM_DIMENSION;
 	
 	Random generator = new Random();
@@ -36,9 +34,10 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
-		PROBLEM_DIMENSION = 2;
+		PROBLEM_DIMENSION = 4;
 		if (PUTName.equals("triangleType"))
 			PROBLEM_DIMENSION = 3;
+		PROBLEM_DIMENSION = 4;
 	}
  
 	public void run()

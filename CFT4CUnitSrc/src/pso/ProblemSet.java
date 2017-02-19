@@ -78,7 +78,8 @@ public class ProblemSet
 			result = FcomputeTax((int)location.getLoc()[0], location.getLoc()[1], testpathID);
 
 		//xr1<xr2&&yr1<yr2 
-		//result = GetBranchDistance(x, y, "<") + GetBranchDistance(z, w, "<");  
+		result = GetBranchDistance(location.getLoc()[0], location.getLoc()[1], "<") + 
+		        GetBranchDistance(location.getLoc()[2], location.getLoc()[3], "<");  
 		return result;
 	}
 	
@@ -141,6 +142,112 @@ public class ProblemSet
 			default:
 				break;
 		}
+		return ret;
+	}
+	
+	private static double Fline(int xr1, int xr2, int yr1, int yr2, int xl1, int xl2, int yl1, int yl2, int testpathID)
+	{
+		double ret = 0;
+		//[xr1<xr2&&yr1<yr2&&xl1<=xl2]F -> [xr1>=xr2!!yr1>=yr2!!xl1>xl2]T
+		double ret1F = Math.min(GetBranchDistance(xr1, xr2, ">="), Math.min(GetBranchDistance(yr1, yr2, ">="), GetBranchDistance(xl1, xl2, ">")));
+		//[xr1<xr2&&yr1<yr2&&xl1<=xl2]T
+		double ret1T = GetBranchDistance(xr1, xr2, "<") + GetBranchDistance(yr1, yr2, "<") + GetBranchDistance(xl1, xl2, "<=");
+		
+		//  [xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]F
+		//->[xl1<xr1 ||xl1>xr2 ||xl2<xr1 ||xl2>xr2 ||yl1<yr1 ||yl1>yr2 ||yl2<yr1 ||yl2>yr2]F
+		double min1 = Math.min(GetBranchDistance(xl1, xr1, "<"), GetBranchDistance(xl1, xr2, ">"));
+		double min2 = Math.min(GetBranchDistance(xl2, xr1, "<"), GetBranchDistance(xl2, xr2, ">"));
+		double min3 = Math.min(GetBranchDistance(yl1, yr1, "<"), GetBranchDistance(yl1, yr2, ">"));
+		double min4 = Math.min(GetBranchDistance(yl2, yr1, "<"), GetBranchDistance(yl2, yr2, ">"));	
+		double ret2F = Math.min(Math.min(min1, min2), Math.min(min3, min4));  
+        //[xl1>=xr1&&xl1<=xr2&&xl2>=xr1&&xl2<=xr2&&yl1>=yr1&&yl1<=yr2&&yl2>=yr1&&yl2<=yr2]T
+		double ret2T = GetBranchDistance(xl1, xr1, ">=") + GetBranchDistance(xl1, xr2, "<=") + GetBranchDistance(xl2, xr1, ">=") + GetBranchDistance(xl2, xr2, "<=") +
+                       GetBranchDistance(yl1, yr1, ">=") + GetBranchDistance(yl1, yr2, "<=") + GetBranchDistance(yl2, yr1, ">=") + GetBranchDistance(yl2, yr2, "<=");
+		
+		//[yl1==yl2]F -> [yl1!=yl2]T  
+		double ret3F = GetBranchDistance(yl1, yl2, "!="); 
+		//[yl1==yl2]T  
+		double ret3T = GetBranchDistance(yl1, yl2, "==");
+				
+		//[xl1==xl2]F -> [xl1!=xl2]T
+		double ret4F = GetBranchDistance(xl1, xl2, "!=");
+		//[xl1==xl2]T
+		double ret4T = GetBranchDistance(xl1, xl2, "==");
+		
+		//[yl1<yr1&&yl2<yr1]F -> [yl1>=yr1||yl2>=yr1]T
+		double ret5F = Math.min(GetBranchDistance(yl1, yr1, ">="), GetBranchDistance(yl2, yr1, ">=")); 
+		//[yl1<yr1&&yl2<yr1]T
+		double ret5T = GetBranchDistance(yl1, yr1, "<") + GetBranchDistance(yl2, yr1, "<");
+				
+		//[yl1>yr2&&yl2>yr2]F -> [yl1<=yr2||yl2<=yr2]T
+		double ret6F = Math.min(GetBranchDistance(yl1, yr2, "<="), GetBranchDistance(yl2, yr2, "<="));
+		//[yl1>yr2&&yl2>yr2]T
+		double ret6T = GetBranchDistance(yl1, yr2, ">") + GetBranchDistance(yl2, yr2, ">");
+		
+		//[xl1<xr1&&xl2<xr1]F -> [xl1>=xr1||xl2>=xr1]T  
+		double ret7F = Math.min(GetBranchDistance(xl1, xr1, ">="), GetBranchDistance(xl2, xr1, ">="));
+		//[xl1<xr1&&xl2<xr1]T  
+		double ret7T = GetBranchDistance(xl1, xr1, "<") + GetBranchDistance(xl2, xr1, "<");
+				
+		//[xl1>xr2&&xl2>xr2]F -> [xl1<=xr2||xl2<=xr2]T 
+		double ret8F = Math.min(GetBranchDistance(xl1, xr2, "<="), GetBranchDistance(xl2, xr2, "<="));
+		//[xl1>xr2&&xl2>xr2]T 
+		double ret8T = GetBranchDistance(xl1, xr2, ">") + GetBranchDistance(xl2, xr2, ">");
+		
+		double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
+		//[x1>=xr1&&x<=xr2]F -> [x1<xr1||x1>xr2]T
+		double ret9F = Math.min(GetBranchDistance(x1, xr1, "<"), GetBranchDistance(x1, xr2, ">"));
+		//[x1>=xr1&&x1<=xr2]T
+		double ret9T = GetBranchDistance(x1, xr1, ">=") + GetBranchDistance(x1, xr2, "<=");		
+
+		double x2 = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
+		//[x2>=xr1&&x2<=xr2]F -> [x2<xr1||x2>xr2]T 
+		double ret10F = Math.min(GetBranchDistance(x2, xr1, "<"), GetBranchDistance(x2, xr2, ">"));
+		//[x2>=xr1&&x2<=xr2]T
+		double ret10T = GetBranchDistance(x2, xr1, ">=") + GetBranchDistance(x2, xr2, "<=");		
+				
+		double y1 = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
+		//[y1>=yr1&&y1<=yr2]F -> [y1<yr1||y1>yr2]T 
+		double ret11F = Math.min(GetBranchDistance(y1, yr1, "<"), GetBranchDistance(y1, yr2, ">"));
+		//[y1>=yr1&&y1<=yr2]T
+		double ret11T = GetBranchDistance(y1, yr1, ">=") + GetBranchDistance(y1, yr2, "<=");
+		
+		double y2 = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
+		//[y2>=yr1&&y2<=yr2]F
+		double ret12F = Math.min(GetBranchDistance(y2, yr1, "<"), GetBranchDistance(y2, yr2, ">"));
+		//[y2>=yr1&&y2<=yr2]T
+		double ret12T = GetBranchDistance(y2, yr1, ">=") + GetBranchDistance(y2, yr2, "<=");
+
+		//[xl1<xr1]F
+		double ret13F = GetBranchDistance(xl1, xr1, ">=");
+		//[xl1<xr1]T
+		double ret13T = GetBranchDistance(xl1, xr1, "<");
+		
+		//[xl1>xr2]F
+		double ret14F = GetBranchDistance(xl1, xr2, "<=");
+		//[xl1>xr2]T
+		double ret14T = GetBranchDistance(xl1, xr2, ">");
+		
+		//[yl1>yr2||yl2<yr1]F -> [yl1<=yr2&&yl2>=yr1]T
+		double ret15F = GetBranchDistance(yl1, yr2, "<=") + GetBranchDistance(yl2, yr1, ">=");
+		//[yl1>yr2||yl2<yr1]T
+		double ret15T = Math.min(GetBranchDistance(yl1, yr2, ">"), GetBranchDistance(yl2, yr1, "<"));
+
+		//[yl1<yr1]F 
+		double ret16F = GetBranchDistance(yl1, yr1, ">=");
+		//[yl1<yr1]T 
+		double ret16T = GetBranchDistance(yl1, yr1, "<");
+
+		//[yl1>yr2]F
+		double ret17F = GetBranchDistance(yl1, yr2, "<=");
+		//[yl1>yr2]T
+		double ret17T = GetBranchDistance(yl1, yr2, ">");
+		
+		//[xl1>xr2||xl2<xr1]F -> [xl1<=xr2&&xl2>=xr1]T
+		double ret18F = GetBranchDistance(xl1, xr2, "<=") + GetBranchDistance(xl2, xr1, ">=");
+		//[xl1>xr2||xl2<xr1]T
+		double ret18T = Math.min(GetBranchDistance(xl1, xr2, ">"), GetBranchDistance(xl2, xr1, "<"));
+
 		return ret;
 	}
 	

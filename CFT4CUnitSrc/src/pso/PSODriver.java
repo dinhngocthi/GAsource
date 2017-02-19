@@ -10,7 +10,6 @@ public class PSODriver
 		String PUTName = "computeTax";
 		int testpathsize = 10;
 */
-
 		String PUTName = "triangleType";
 		int testpathsize = 4;
 
