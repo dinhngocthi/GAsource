@@ -12,11 +12,11 @@ public class PSODriver
 //		String PUTName = "triangleType";
 //		int testpathsize = 4;
 
-//		String PUTName = "line";		
-//		int testpathsize = 19;
+		String PUTName = "line";		
+		int testpathsize = 19;
 
-		String PUTName = "getDayNum";		
-		int testpathsize = 5;
+//		String PUTName = "getDayNum";		
+//		int testpathsize = 5;
 	
 		for (int i = 1; i <=  testpathsize; i++)
 			new PSOProcess(PUTName, i).start();	

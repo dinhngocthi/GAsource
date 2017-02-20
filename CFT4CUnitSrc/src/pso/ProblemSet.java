@@ -214,21 +214,21 @@ public class ProblemSet
 		double ret8T = GetBranchDistance(xl1, xr2, ">") + GetBranchDistance(xl2, xr2, ">");
 		
 		double x1 = (yl2 - yl1) * (yr1 - yl1) + xl1;
-		if (x1 != 0)
+//		if (x1 != 0)
 			x1 = (xl2 - xl1)/x1;
-		else
-			x1 = Integer.MAX_VALUE;
-		//double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
+//		else
+//			x1 = Integer.MAX_VALUE;
+//		double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
 		//[x1>=xr1&&x<=xr2]F -> [x1<xr1||x1>xr2]T
 		double ret9F = Math.min(GetBranchDistance(x1, xr1, "<"), GetBranchDistance(x1, xr2, ">"));
 		//[x1>=xr1&&x1<=xr2]T
 		double ret9T = GetBranchDistance(x1, xr1, ">=") + GetBranchDistance(x1, xr2, "<=");
 
 		double x2 = (yl2 - yl1) * (yr2 - yl1) + xl1;
-		if (x2 != 0)
+//		if (x2 != 0)
 			x2 = (xl2 - xl1)/x2;
-		else
-			x2 = Integer.MAX_VALUE;;
+//		else
+//			x2 = Integer.MAX_VALUE;;
 		//double x2 = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
 		//[x2>=xr1&&x2<=xr2]F -> [x2<xr1||x2>xr2]T 
 		double ret10F = Math.min(GetBranchDistance(x2, xr1, "<"), GetBranchDistance(x2, xr2, ">"));
@@ -236,10 +236,10 @@ public class ProblemSet
 		double ret10T = GetBranchDistance(x2, xr1, ">=") + GetBranchDistance(x2, xr2, "<=");
 		
 		double y1 = (xl2 - xl1) * (xr1 - xl1) + yl1;
-		if (y1 != 0)
+//		if (y1 != 0)
 			y1 = (yl2 - yl1) / y1;
-		else 
-			y1 = Integer.MAX_VALUE;
+//		else 
+//			y1 = Integer.MAX_VALUE;
 		//double y1 = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
 		//[y1>=yr1&&y1<=yr2]F -> [y1<yr1||y1>yr2]T 
 		double ret11F = Math.min(GetBranchDistance(y1, yr1, "<"), GetBranchDistance(y1, yr2, ">"));
@@ -247,10 +247,10 @@ public class ProblemSet
 		double ret11T = GetBranchDistance(y1, yr1, ">=") + GetBranchDistance(y1, yr2, "<=");
 
 		double y2 = (xl2 - xl1) * (xr2 - xl1) + yl1;
-		if (y2 != 0)
+//		if (y2 != 0)
 			y2 = (yl2 - yl1) / y2;
-		else
-			y2 = Integer.MAX_VALUE;
+//		else
+//			y2 = Integer.MAX_VALUE;
 		//double y2 = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
 		//[y2>=yr1&&y2<=yr2]F
 		double ret12F = Math.min(GetBranchDistance(y2, yr1, "<"), GetBranchDistance(y2, yr2, ">"));
