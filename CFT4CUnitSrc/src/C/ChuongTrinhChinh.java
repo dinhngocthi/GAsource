@@ -320,16 +320,13 @@ public class ChuongTrinhChinh
         String testdatafile = this.fileInput.replace(".c", ".txt");
         
         fpOut = new PrintWriter(testdatafile, "UTF-8");
-
-        System.out.println("------------Create all target paths start-------------");
-        fpOut.printf("------------Create all target paths start-------------\n");
+        fpOut.printf("------------Generate all test paths start-------------\n");
 
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
         
         for (int i = 0; i < totalTargetPaths; i++ )
         {
-            System.out.print("Path " + (i + 1) + ": ");
             fpOut.print("Path " + (i + 1) + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
@@ -341,7 +338,6 @@ public class ChuongTrinhChinh
                 Vertex vertex = path.get(k);
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
-                    System.out.print("[" + vertex.getStatement() + "]");
                     fpOut.print("[" + vertex.getStatement() + "]");
                     VertexTF vertextf = new VertexTF(1, "");
                     int j = 0;
@@ -365,25 +361,20 @@ public class ChuongTrinhChinh
                     if (vertex.getFalseVertexId() == vertexTmp.getId())
                     {
                         vertextf.decision = "F";
-                        System.out.print("F ");
                         fpOut.print("F ");
                     }
                     else
                     {
                         vertextf.decision = "T";
-                        System.out.print("T ");
                         fpOut.print("T ");
                     }
                     testpathTF.add(vertextf);
                 }
             }
-            System.out.println();
             fpOut.printf("\n");
         }       
-        fpOut.printf("\n");
-        
+        fpOut.printf("------------Generate all test paths end-------------\n");
         fpOut.close();
-        System.out.println("------------Create all target paths end-------------");
     }
     
     int pathnum = 0; // number of hit feasible paths    

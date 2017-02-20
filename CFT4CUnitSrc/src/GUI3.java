@@ -29,6 +29,7 @@ import Graphics.CanvasPhuCap3;
 import LoopPath.HandleSimpleLoopPath;
 import LoopPath.HandleTwoNestedLoop;
 import LoopPath.ParseLoopTestpath;
+import pso.PSODriver;
 
 import javax.swing.SwingWorker;
 
@@ -661,7 +662,7 @@ public final class GUI3 extends javax.swing.JFrame
             String pathFile = fc.getSelectedFile().getAbsolutePath(); // select PUT from choose file dialog
             
             // For PPSO benchmark START
-            String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            //String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
             //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
             //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
             // For PPSO benchmark END            
@@ -672,6 +673,8 @@ public final class GUI3 extends javax.swing.JFrame
             new File(staticVariable.Paramater.Smt_Lib_path_file).mkdir();
             ctc = new ChuongTrinhChinh(pathFile);
             ctc.run();
+            ctc.generateTestPath();
+            PSODriver.generateTC(pathFile);
 
             SwingWorker task1 = new SwingWorker() 
             {
