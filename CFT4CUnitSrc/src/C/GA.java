@@ -218,7 +218,7 @@ public class GA
 
         ctc = new ChuongTrinhChinh(pathFile);
         ctc.run();
-        ctc.initPathListID(nvarReal);
+        ctc.generateTestPath();
         
         targetFunction = new TargetFunctions();
     }

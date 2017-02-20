@@ -34,7 +34,7 @@ public class ChuongTrinhChinh
         
         ChuongTrinhChinh c = new ChuongTrinhChinh(PUTPath);
         c.run();
-        c.initPathListID(3);
+        c.generateTestPath();
     }
 
     public ChuongTrinhChinh(String fileInput)
@@ -309,17 +309,20 @@ public class ChuongTrinhChinh
     private getAllPaths geterTest; 
     private int totalTargetPaths; 
 
-    public void initPathListID(int loop) throws Exception
+    public void generateTestPath() throws Exception
     {
-        staticVariable.Paramater.depth = loop; // interation loop
+        //staticVariable.Paramater.depth = loop; // interation loop
         geterTest = new getAllPaths(staticVariable.Statement.danhSachKe, staticVariable.AllPath.NodeElements);
         ArrayList<ArrayList<Vertex>> getOutput = geterTest.getOutput();
         
         totalTargetPaths = getOutput.size();
         PrintWriter fpOut;
-        fpOut = new PrintWriter("TargetPaths", "UTF-8");
+        String testdatafile = this.fileInput.replace(".c", ".txt");
+        
+        fpOut = new PrintWriter(testdatafile, "UTF-8");
 
         System.out.println("------------Create all target paths start-------------");
+        fpOut.printf("------------Create all target paths start-------------\n");
 
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
@@ -327,6 +330,7 @@ public class ChuongTrinhChinh
         for (int i = 0; i < totalTargetPaths; i++ )
         {
             System.out.print("Path " + (i + 1) + ": ");
+            fpOut.print("Path " + (i + 1) + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
 
@@ -338,6 +342,7 @@ public class ChuongTrinhChinh
                 if (vertex.getTrueVertexId() != vertex.getFalseVertexId())
                 {
                     System.out.print("[" + vertex.getStatement() + "]");
+                    fpOut.print("[" + vertex.getStatement() + "]");
                     VertexTF vertextf = new VertexTF(1, "");
                     int j = 0;
                     for (j = 0; j < branchlist.size(); j++)
@@ -361,16 +366,19 @@ public class ChuongTrinhChinh
                     {
                         vertextf.decision = "F";
                         System.out.print("F ");
+                        fpOut.print("F ");
                     }
                     else
                     {
                         vertextf.decision = "T";
                         System.out.print("T ");
+                        fpOut.print("T ");
                     }
                     testpathTF.add(vertextf);
                 }
             }
             System.out.println();
+            fpOut.printf("\n");
         }       
         fpOut.printf("\n");
         
