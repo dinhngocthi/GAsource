@@ -151,6 +151,17 @@ public class ProblemSet
 		return ret;
 	}
 	
+	private static double FgetdayNum(int year, int month, int testpathID)
+	{
+		double ret = 0;
+		//[month>=1&&month<=12]F -> [month<1||month>12]T 
+		//[month==2]F -> [month!=2]T  
+		//[month==4||month==6||month==9||month==11]F -> [month!=4&&month!=6&&month!=9&&month!=11]T 
+		//[year%400==0||(year%4==0&&year%100==0)]F -> [year%400!=0&&(year%4!=0||year%100!=0)]T 
+		
+		return ret;
+	}
+
 	private static double Fline(int xr1, int xr2, int yr1, int yr2, int xl1, int xl2, int yl1, int yl2, int testpathID)
 	{
 		double ret = 0;

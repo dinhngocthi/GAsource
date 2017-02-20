@@ -112,6 +112,7 @@ public class PSOProcess extends Thread
 			t++;
 			updateFitnessList(PUTName, testpathID);
 		}
+
 		System.out.println("===============================================");
 		System.out.println("Test path ID:  " + testpathID);
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
@@ -119,21 +120,23 @@ public class PSOProcess extends Thread
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
-		
+
         PrintWriter fpOut;
         String testdatafile = this.PUTName.replace(".c", "_" + testpathID + ".txt");
         try 
         {
-        	fpOut = new PrintWriter(testdatafile, "UTF-8");
-        	fpOut.println("------------Generate all test paths start-----------" + testpathID);
-        	fpOut.println("------------Generate all test paths end-------------");
+        	fpOut = new PrintWriter(testdatafile, "UTF-8");        	
+        	fpOut.println("===============================================");
+        	fpOut.println("Test path ID:  " + testpathID);
+        	fpOut.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
+
+    		for (int i = 0; i < PROBLEM_DIMENSION; i++)
+    			fpOut.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
+    		fpOut.println("===============================================");
             fpOut.close();
         }
         catch (Exception e)
-        {
-        	
-        }
-
+        {}
 	}
 	
 	public void initializeSwarm() 
