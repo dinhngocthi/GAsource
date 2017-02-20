@@ -6,18 +6,20 @@ public class PSODriver
 {
 	public static void main(String[] args) throws InterruptedException
 	{
-/*
-		String PUTName = "computeTax";
-		int testpathsize = 10;
-*/
-/*
-		String PUTName = "triangleType";
-		int testpathsize = 4;
-*/
-		String PUTName = "line";		
-		int testpathsize = 19;
+//		String PUTName = "computeTax";
+//		int testpathsize = 10;
+
+//		String PUTName = "triangleType";
+//		int testpathsize = 4;
+
+//		String PUTName = "line";		
+//		int testpathsize = 19;
+
+		String PUTName = "getDayNum";		
+		int testpathsize = 5;
+	
 		for (int i = 1; i <=  testpathsize; i++)
-			new PSOProcess(PUTName, i).start();
+			new PSOProcess(PUTName, i).start();	
 	}
 	public static void generateTC(String inPUTpath)
 	{		
@@ -34,6 +36,10 @@ public class PSODriver
 		else if (inPUTpath.contains("line"))
 		{
 			testpathsize = 19;
+		}
+		else if (inPUTpath.contains("getDayNum"))
+		{
+			testpathsize = 5;
 		}
 
 		for (int i = 1; i <=  testpathsize; i++)

@@ -39,7 +39,7 @@ public class PSOProcess extends Thread
 			PROBLEM_DIMENSION = 3;
 		else if (PUTName.contains("line"))
 			PROBLEM_DIMENSION = 8;
-		else if (PUTName.contains("computeTax"))
+		else if (PUTName.contains("computeTax") || PUTName.contains("getDayNum"))
 			PROBLEM_DIMENSION = 2;
 	}
  

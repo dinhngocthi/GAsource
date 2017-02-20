@@ -31,43 +31,6 @@ public class ProblemSet
 	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
-		//double x = location.getLoc()[0]; // the "x" part of the location
-		//double y = location.getLoc()[1]; // the "y" part of the location
-//		double z = location.getLoc()[2]; // the "z" part of the location
-		//double w = location.getLoc()[3]; // the "w" part of the location
-/*		
-		int month = (int)x;
-		int year = (int)y;
-
-		double ret1 = GetBranchDistance(month, 1, 8) + GetBranchDistance(month, 12, 6);
-		double ret2 = GetBranchDistance(month, 2, 3);
-		
-		double ret31 = GetBranchDistance(year % 4, 0, 3) + GetBranchDistance(year % 100, 0, 3);
-		double ret32 = GetBranchDistance(year % 400, 0, 3);
-		double ret3 = Math.min(ret31, ret32);
-
-		double ret4 = GetBranchDistance(year % 4, 0, 4);
-
-		switch (branchID)
-		{
-			case 0:	
-				result = ret1;  // branch 1 
-				break;
-			case 1:
-				result = ret1 + ret2; // branch 2
-				break;
-			case 2:
-				result = ret1 + ret2 + ret3; // branch 3
-				break;
-			case 3:
-				result = ret1 + ret2 + ret4; // branch 4
-				break;
-			default:
-				break;
-		}
-		//result = TargetFunctions.Tritype(x, y, z);
-*/
-		//result = Math.min(GetBranchDistance(x + y, z, 6), Math.min(GetBranchDistance(x + z, y, 6), GetBranchDistance(y + z, x, 6)));
 		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
@@ -86,6 +49,9 @@ public class ProblemSet
 						   (int)location.getLoc()[6],
 						   (int)location.getLoc()[7],
 						   testpathID);
+		else if (PUTName.contains("getDayNum"))
+			result = FgetdayNum((int)location.getLoc()[0],(int)location.getLoc()[1], testpathID);
+
 		return result;
 	}
 	
@@ -97,16 +63,14 @@ public class ProblemSet
 			opType = 3;
 		else if (strOpType.equals("!="))
 			opType = 4;
-		else if (strOpType.equals("!="))
-			opType = 5;
 		else if (strOpType.equals("<"))
-			opType = 6;
+			opType = 5;
 		else if (strOpType.equals("<="))
-			opType = 7;
+			opType = 6;
 		else if (strOpType.equals(">"))
-			opType = 8;
+			opType = 7;
 		else if (strOpType.equals(">="))
-			opType = 9;
+			opType = 8;
 		switch (opType)
 		{
 			case 3: // == condition
@@ -154,11 +118,49 @@ public class ProblemSet
 	private static double FgetdayNum(int year, int month, int testpathID)
 	{
 		double ret = 0;
-		//[month>=1&&month<=12]F -> [month<1||month>12]T 
-		//[month==2]F -> [month!=2]T  
-		//[month==4||month==6||month==9||month==11]F -> [month!=4&&month!=6&&month!=9&&month!=11]T 
-		//[year%400==0||(year%4==0&&year%100==0)]F -> [year%400!=0&&(year%4!=0||year%100!=0)]T 
+		//[month>=1&&month<=12]F -> [month<1||month>12]T
+		double ret1F = Math.min(GetBranchDistance(month, 1, "<"), GetBranchDistance(month, 12, ">")); 
+		//[month>=1&&month<=12]T
+		double ret1T = GetBranchDistance(month, 1, ">=") + GetBranchDistance(month, 12, "<=");
+
+		//[month==2]F -> [month!=2]T
+		double ret2F = GetBranchDistance(month, 2, "!=");
+		double ret2T = GetBranchDistance(month, 2, "==");
 		
+		//[month==4||month==6||month==9||month==11]F -> [month!=4&&month!=6&&month!=9&&month!=11]T
+		double ret3F = GetBranchDistance(month, 4, "!=") + GetBranchDistance(month, 6, "!=") + GetBranchDistance(month, 9, "!=") + GetBranchDistance(month, 11, "!=");
+		double ret3T = Math.min(Math.min(GetBranchDistance(month, 4, "=="), GetBranchDistance(month, 6, "==")),
+				                Math.min(GetBranchDistance(month, 9, "=="), GetBranchDistance(month, 11, "==")));
+		
+		//[year%400==0||(year%4==0&&year%100==0)]F -> [year%400!=0&&(year%4!=0||year%100!=0)]T
+		double ret4F = GetBranchDistance(year%400, 0, "!=") + Math.min(GetBranchDistance(year%4, 0, "!="), GetBranchDistance(year%100, 0, "!=")); 
+		double ret4T = Math.min(GetBranchDistance(year%400, 0, "=="), (GetBranchDistance(year%4, 0, "==") + GetBranchDistance(year%100, 0, "==")));
+		
+		switch (testpathID)
+		{
+			case 1:
+				//Path 1: [month>=1&&month<=12]F
+				ret = ret1F;
+				break;
+			case 2:
+				//Path 2: [month>=1&&month<=12]T [month==2]F [month==4||month==6||month==9||month==11]F
+				ret = ret1T + ret2F + ret3F;
+				break;
+			case 3:
+				//Path 3: [month>=1&&month<=12]T [month==2]F [month==4||month==6||month==9||month==11]T
+				ret = ret1T + ret2F + ret3T;
+				break;
+			case 4:
+				//Path 4: [month>=1&&month<=12]T [month==2]T [year%400==0||(year%4==0&&year%100==0)]F
+				ret = ret1T + ret2T + ret4F;
+				break;
+			case 5:
+				//Path 5: [month>=1&&month<=12]T [month==2]T [year%400==0||(year%4==0&&year%100==0)]T
+				ret = ret1T + ret2T + ret4T;
+				break;
+			default:
+				break;
+		}
 		return ret;
 	}
 
@@ -214,54 +216,46 @@ public class ProblemSet
 		double x1 = (yl2 - yl1) * (yr1 - yl1) + xl1;
 		if (x1 != 0)
 			x1 = (xl2 - xl1)/x1;
-//		else
-//			x1 = Integer.MAX_VALUE;
+		else
+			x1 = Integer.MAX_VALUE;
 		//double x1 = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
 		//[x1>=xr1&&x<=xr2]F -> [x1<xr1||x1>xr2]T
 		double ret9F = Math.min(GetBranchDistance(x1, xr1, "<"), GetBranchDistance(x1, xr2, ">"));
-//		double ret9F = 0;
 		//[x1>=xr1&&x1<=xr2]T
 		double ret9T = GetBranchDistance(x1, xr1, ">=") + GetBranchDistance(x1, xr2, "<=");
-//		double ret9T = 0;
 
 		double x2 = (yl2 - yl1) * (yr2 - yl1) + xl1;
 		if (x2 != 0)
 			x2 = (xl2 - xl1)/x2;
-//		else
-//			x2 = Integer.MAX_VALUE;;
+		else
+			x2 = Integer.MAX_VALUE;;
 		//double x2 = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
 		//[x2>=xr1&&x2<=xr2]F -> [x2<xr1||x2>xr2]T 
 		double ret10F = Math.min(GetBranchDistance(x2, xr1, "<"), GetBranchDistance(x2, xr2, ">"));
-//		double ret10F = 0;
 		//[x2>=xr1&&x2<=xr2]T
 		double ret10T = GetBranchDistance(x2, xr1, ">=") + GetBranchDistance(x2, xr2, "<=");
-//		double ret10T = 0;
 		
 		double y1 = (xl2 - xl1) * (xr1 - xl1) + yl1;
 		if (y1 != 0)
 			y1 = (yl2 - yl1) / y1;
-//		else 
-//			y1 = Integer.MAX_VALUE;
+		else 
+			y1 = Integer.MAX_VALUE;
 		//double y1 = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
 		//[y1>=yr1&&y1<=yr2]F -> [y1<yr1||y1>yr2]T 
 		double ret11F = Math.min(GetBranchDistance(y1, yr1, "<"), GetBranchDistance(y1, yr2, ">"));
-//		double ret11F = 0;
 		//[y1>=yr1&&y1<=yr2]T
 		double ret11T = GetBranchDistance(y1, yr1, ">=") + GetBranchDistance(y1, yr2, "<=");
-//		double ret11T = 0;
-		
+
 		double y2 = (xl2 - xl1) * (xr2 - xl1) + yl1;
 		if (y2 != 0)
 			y2 = (yl2 - yl1) / y2;
-//		else
-//			y2 = Integer.MAX_VALUE;
+		else
+			y2 = Integer.MAX_VALUE;
 		//double y2 = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
 		//[y2>=yr1&&y2<=yr2]F
 		double ret12F = Math.min(GetBranchDistance(y2, yr1, "<"), GetBranchDistance(y2, yr2, ">"));
-//		double ret12F = 0;
 		//[y2>=yr1&&y2<=yr2]T
 		double ret12T = GetBranchDistance(y2, yr1, ">=") + GetBranchDistance(y2, yr2, "<=");
-//		double ret12T = 0;
 
 		//[xl1<xr1]F
 		double ret13F = GetBranchDistance(xl1, xr1, ">=");
