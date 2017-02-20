@@ -69,14 +69,14 @@ public class ProblemSet
 */
 		//result = Math.min(GetBranchDistance(x + y, z, 6), Math.min(GetBranchDistance(x + z, y, 6), GetBranchDistance(y + z, x, 6)));
 		
-		if (PUTName.equals("triangleType"))
+		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
 								   location.getLoc()[1], 
 					               location.getLoc()[2], 
 					               testpathID);
-		else if (PUTName.equals("computeTax"))
+		else if (PUTName.contains("computeTax"))
 			result = FcomputeTax((int)location.getLoc()[0], location.getLoc()[1], testpathID);
-		else if (PUTName.equals("line"))
+		else if (PUTName.contains("line"))
 			result = Fline((int)location.getLoc()[0], 
 						   (int)location.getLoc()[1], 
 						   (int)location.getLoc()[2],

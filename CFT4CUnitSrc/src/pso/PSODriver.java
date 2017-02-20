@@ -19,28 +19,24 @@ public class PSODriver
 		for (int i = 1; i <=  testpathsize; i++)
 			new PSOProcess(PUTName, i).start();
 	}
-	public static void generateTC(String inPUTname)
-	{
-		String PUTName = "";		
+	public static void generateTC(String inPUTpath)
+	{		
 		int testpathsize = 0;
 		
-		if (inPUTname.contains("computeTax"))
+		if (inPUTpath.contains("computeTax"))
 		{
-			PUTName = "computeTax";
 			testpathsize = 10;
 		}
-		else if (inPUTname.contains("triangleType"))
+		else if (inPUTpath.contains("triangleType"))
 		{
-			PUTName = "triangleType";
 			testpathsize = 4;
 		}
-		else if (inPUTname.contains("line"))
+		else if (inPUTpath.contains("line"))
 		{
-			PUTName = "line";
 			testpathsize = 19;
 		}
 
 		for (int i = 1; i <=  testpathsize; i++)
-			new PSOProcess(PUTName, i).start();
+			new PSOProcess(inPUTpath, i).start();
 	}
 }

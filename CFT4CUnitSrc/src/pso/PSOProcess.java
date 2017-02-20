@@ -4,6 +4,7 @@ package pso;
 //the code is for 2-dimensional space problem
 //but you can easily modify it to solve higher dimensional space problem
 
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Vector;
 
@@ -26,7 +27,7 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
-	private int PROBLEM_DIMENSION;
+	private int PROBLEM_DIMENSION = 0;
 	
 	Random generator = new Random();
 	
@@ -34,11 +35,12 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
-		PROBLEM_DIMENSION = 2;
-		if (PUTName.equals("triangleType"))
+		if (PUTName.contains("triangleType"))
 			PROBLEM_DIMENSION = 3;
-		else if (PUTName.equals("line"))
+		else if (PUTName.contains("line"))
 			PROBLEM_DIMENSION = 8;
+		else if (PUTName.contains("computeTax"))
+			PROBLEM_DIMENSION = 2;
 	}
  
 	public void run()
@@ -117,6 +119,21 @@ public class PSOProcess extends Thread
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
+		
+        PrintWriter fpOut;
+        String testdatafile = this.PUTName.replace(".c", "_" + testpathID + ".txt");
+        try 
+        {
+        	fpOut = new PrintWriter(testdatafile, "UTF-8");
+        	fpOut.println("------------Generate all test paths start-----------" + testpathID);
+        	fpOut.println("------------Generate all test paths end-------------");
+            fpOut.close();
+        }
+        catch (Exception e)
+        {
+        	
+        }
+
 	}
 	
 	public void initializeSwarm() 
