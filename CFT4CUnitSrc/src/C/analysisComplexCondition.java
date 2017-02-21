@@ -267,23 +267,26 @@ public class analysisComplexCondition {
 		System.out.println(p.getResult());
 	}
 
-	class Node {
-
+	class Node 
+	{
 		String content;
 		Node trueBranch;
 		Node falseBranch;
 		int ID = 0;
 		boolean visited = false;
 
-		Node(String c) {
+		Node(String c) 
+		{
 			this.content = c;
 		}
 
-		void setAll(Node n) {
+		void setAll(Node n) 
+		{
 			trueBranch = falseBranch = n;
 		}
 
-		void setID(int n) {
+		void setID(int n) 
+		{
 			ID = n;
 		}
 	}

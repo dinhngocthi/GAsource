@@ -659,11 +659,11 @@ public final class GUI3 extends javax.swing.JFrame
         try
         {
             staticVariable.reset();
-            String pathFile = fc.getSelectedFile().getAbsolutePath(); // select PUT from choose file dialog
+            //String pathFile = fc.getSelectedFile().getAbsolutePath(); // select PUT from choose file dialog
             
             // For PPSO benchmark START
-            //String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
+            String classPath = GUI3.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
             //String pathFile = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
             // For PPSO benchmark END            
 

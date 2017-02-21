@@ -73,7 +73,6 @@ public class GA201612
     
     public static void inputAppParameters()
     {
-    	
     };
 
     public static void inputParameters() throws Exception
