@@ -20,7 +20,6 @@ import SMTSolver.RunZ3OnCMD;
 public class ChuongTrinhChinh
 {
     private String fileInput;
-    private int objectcall;
 
     public static void main(String[] args) throws Exception
     {
@@ -41,7 +40,6 @@ public class ChuongTrinhChinh
     public ChuongTrinhChinh(String fileInput)
     {
         this.fileInput = fileInput;
-        objectcall = 0;
     }
 
     public void run() throws Exception

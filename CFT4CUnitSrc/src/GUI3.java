@@ -35,7 +35,6 @@ import javax.swing.SwingWorker;
 
 public final class GUI3 extends javax.swing.JFrame
 {
-
     private static final long serialVersionUID = 1L;
 
     // test1
@@ -65,7 +64,6 @@ public final class GUI3 extends javax.swing.JFrame
             }
         });
         setEventWhenClickJTable();
-
     }
 
     /**
@@ -84,7 +82,6 @@ public final class GUI3 extends javax.swing.JFrame
     // Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
-
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
