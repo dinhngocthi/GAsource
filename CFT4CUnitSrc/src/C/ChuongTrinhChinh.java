@@ -28,8 +28,8 @@ public class ChuongTrinhChinh
         //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/triangleType.c");
         //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/computeTax.c");
         //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/line.c");
-        String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/getDayNum.c");
-        //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/calday.c");
+        //String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/getDayNum.c");
+        String PUTPath = classPath.replace("bin/", "src/sample/PPSObenchmark/calday.c");
         // For PPSO benchmark END            
         
         ChuongTrinhChinh c = new ChuongTrinhChinh(PUTPath);
