@@ -1,5 +1,7 @@
 package pso;
 
+import pso.fitnessfunction.NewMain;
+
 //this is the problem to be solved
 //to find an x and a y that minimize the function below:
 //f(x, y) = (2.8125 - x + x * y^4)^2 + (2.25 - x + x * y^2)^2 + (1.5 - x + x*y)^2
@@ -31,7 +33,7 @@ public class ProblemSet
 	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
-		
+/*		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
 								   location.getLoc()[1], 
@@ -51,7 +53,8 @@ public class ProblemSet
 						   testpathID);
 		else if (PUTName.contains("getDayNum"))
 			result = FgetdayNum((int)location.getLoc()[0],(int)location.getLoc()[1], testpathID);
-
+*/
+		result = NewMain.fx(location.getLoc()); 
 		return result;
 	}
 	

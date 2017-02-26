@@ -18,8 +18,9 @@ public class PSODriver
 //		String PUTName = "getDayNum";		
 //		int testpathsize = 5;
 	
-		for (int i = 1; i <=  testpathsize; i++)
-			new PSOProcess(PUTName, i).start();	
+//		for (int i = 1; i <=  testpathsize; i++)
+//			new PSOProcess(PUTName, i).start();
+		new PSOProcess(PUTName, 0).start();
 	}
 	public static void generateTC(String inPUTpath)
 	{		
@@ -42,7 +43,7 @@ public class PSODriver
 			testpathsize = 5;
 		}
 
-		for (int i = 1; i <=  testpathsize; i++)
+		for (int i = 1; i <= testpathsize; i++)
 			new PSOProcess(inPUTpath, i).start();
 	}
 }

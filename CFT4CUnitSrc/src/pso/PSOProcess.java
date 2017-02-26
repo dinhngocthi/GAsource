@@ -5,6 +5,7 @@ package pso;
 //but you can easily modify it to solve higher dimensional space problem
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
@@ -27,11 +28,11 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
-	private int PROBLEM_DIMENSION = 0;
+	private int PROBLEM_DIMENSION = 3;
 	
 	Random generator = new Random();
 	
-	PSOProcess(String PUTName, int testpathID)
+	public PSOProcess(String PUTName, int testpathID)
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;

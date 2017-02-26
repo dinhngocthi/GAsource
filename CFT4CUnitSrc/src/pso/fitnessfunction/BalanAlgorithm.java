@@ -22,8 +22,8 @@ public class BalanAlgorithm {
     private List<String> parameterNames = new ArrayList<String>();
     private List<Double> parameterValues = new ArrayList<Double>();
 
-    class BalanException extends Exception {
-
+    class BalanException extends Exception 
+    {
         public BalanException(String message) {
             super(message);
         }
