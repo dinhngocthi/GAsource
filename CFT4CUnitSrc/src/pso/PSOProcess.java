@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
+import pso.fitnessfunction.Fitness;
+
 public class PSOProcess extends Thread  
 {
 	// Constants
@@ -32,7 +34,7 @@ public class PSOProcess extends Thread
 	
 	Random generator = new Random();
 	
-	public PSOProcess(String PUTName, int testpathID)
+	public PSOProcess(List<Fitness> functions, String PUTName, int testpathID)
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;

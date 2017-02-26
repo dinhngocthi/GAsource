@@ -5,8 +5,8 @@ import java.util.List;
 
 import pso.PSOProcess;
 
-public class NewMain {
-
+public class NewMain 
+{
     public static void main(String[] args) throws BalanAlgorithm.BalanException 
     {
         //String content = FileUtil.readData("exprs2.txt");
@@ -29,7 +29,9 @@ public class NewMain {
             System.out.println("RESULT: " + ba.calculateBranchExpression());
         }
      // Assign fitness function for PSO
-        List<Fitness> commands = new ArrayList<Fitness>();
+        List<Fitness> functions = new ArrayList<Fitness>();
+        Fitness fit = new Fitness();
+        functions.add(fit);
         PSOProcess pso = new PSOProcess("", 0);
         pso.start();
     }
