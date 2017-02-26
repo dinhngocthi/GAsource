@@ -34,7 +34,7 @@ public class PSOProcess extends Thread
 	
 	Random generator = new Random();
 	
-	public PSOProcess(List<Fitness> functions, String PUTName, int testpathID)
+	public PSOProcess(String PUTName, int testpathID)
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;

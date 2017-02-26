@@ -29,9 +29,10 @@ public class NewMain
             System.out.println("RESULT: " + ba.calculateBranchExpression());
         }
      // Assign fitness function for PSO
+        
         List<Fitness> functions = new ArrayList<Fitness>();
-        Fitness fit = new Fitness();
-        functions.add(fit);
+//        Fitness fit = new Fitness();
+//	       functions.add(fit);
         PSOProcess pso = new PSOProcess("", 0);
         pso.start();
     }

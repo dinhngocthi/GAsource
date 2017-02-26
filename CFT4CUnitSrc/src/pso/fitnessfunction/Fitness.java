@@ -1,7 +1,13 @@
 package pso.fitnessfunction;
 
 public class Fitness {
-	public double fx(double[] x)
+	private double[] x;
+	public Fitness(double[] x)
+	{
+		this.x = x;
+	}
+
+	public double fx()
 	{
 		double x0 = x[0]; 
     	double x1 = x[1];
