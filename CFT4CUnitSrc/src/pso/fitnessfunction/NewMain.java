@@ -10,9 +10,10 @@ public class NewMain
     public static void main(String[] args) throws BalanAlgorithm.BalanException 
     {
         //String content = FileUtil.readData("exprs2.txt");
-        //String content = FileUtil.readData("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt");
-        String content = FileUtil.readData("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt");
+        String content = FileUtil.readData("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt");
+        //String content = FileUtil.readData("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt");
         List<String> exps = BalanAlgorithm.parseAllExpressions(content);
+        int i = 0;
         for (String exp : exps) 
         {
             BalanAlgorithm ba = new BalanAlgorithm(exp);
@@ -27,6 +28,7 @@ public class NewMain
             ba.dumpAllParameters();
 //            ba.dumpPrefixStack();
             System.out.println("RESULT: " + ba.calculateBranchExpression());
+            i++;
         }
      // Assign fitness function for PSO
         

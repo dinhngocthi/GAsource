@@ -1,6 +1,7 @@
 package pso;
 
 import pso.fitnessfunction.NewMain;
+import java.lang.reflect.Method;
 
 //this is the problem to be solved
 //to find an x and a y that minimize the function below:
@@ -33,6 +34,21 @@ public class ProblemSet
 	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
+		try
+		{
+			Class cls = Class.forName("pso.fitnessfunction.NewMain");
+			Method method = cls.getMethod("fx", double[].class);
+//			Method method = cls.getMethod(10, double[].class);
+
+			//Object o = method.invoke(null, location.getLoc());
+			result = (double)method.invoke(null, location.getLoc());
+		} 
+		catch (Throwable e) 
+		{
+			System.err.println(e);
+		}
+
+
 /*		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
@@ -54,7 +70,7 @@ public class ProblemSet
 		else if (PUTName.contains("getDayNum"))
 			result = FgetdayNum((int)location.getLoc()[0],(int)location.getLoc()[1], testpathID);
 */
-		result = NewMain.fx(location.getLoc()); 
+		//result = NewMain.fx(location.getLoc()); 
 		return result;
 	}
 	
