@@ -36,16 +36,15 @@ public class ProblemSet
 		double result = 0;
 		try
 		{
-			Class cls = Class.forName("pso.fitnessfunction.NewMain");
-			Method method = cls.getMethod("fx", double[].class);
-//			Method method = cls.getMethod(10, double[].class);
+			Class cls = Class.forName("pso.fitnessfunction.TestExpressionBulk");
+			Method method = cls.getMethod("fx", double[].class, int.class);
 
 			//Object o = method.invoke(null, location.getLoc());
-			result = (double)method.invoke(null, location.getLoc());
+			result = (double)method.invoke(null, location.getLoc(), 3);
 		} 
 		catch (Throwable e) 
 		{
-			System.err.println(e);
+			e.printStackTrace();
 		}
 
 
