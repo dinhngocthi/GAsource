@@ -2,7 +2,6 @@ package pso.fitnessfunction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -10,35 +9,26 @@ import java.util.Stack;
 public class BalanAlgorithm {
 
     private String expression = null;
-
-    private static final String[] APPEND_MARKS = new String[]{"EXP_CONVERTED:", "MARK_AS_CONVERTED:"};
     private static final String[] BRACKET_MARKS = new String[]{"BRACKET_MARK", "()", "[]"};
-    private static final boolean REMOVE_ROOT_BRACKET = true;
+    private static final String DOUBLE_REGEX = "[-+]{0,1}[0-9]+[.]{0,1}[0-9]+";
 
-    private String appendMark = "";
     private String bracketMark = "";
     private boolean isNegative = false;
-//    private HashMap<String, Double> parameters = new HashMap<String, Double>();
     private List<String> parameterNames = new ArrayList<String>();
     private List<Double> parameterValues = new ArrayList<Double>();
-
-    class BalanException extends Exception 
-    {
-        public BalanException(String message) {
-            super(message);
-        }
-    }
 
     public BalanAlgorithm(String expression) {
         this.expression = expression;
         removeNoneExpressionChars();
         selectMarks();
+        parseAllParameterNames();
     }
 
     public void setExpression(String expression) {
         this.expression = expression;
         removeNoneExpressionChars();
         selectMarks();
+        parseAllParameterNames();
     }
 
     public String getExpression() {
@@ -58,24 +48,20 @@ public class BalanAlgorithm {
         return -1;
     }
 
-    public void setParameter(String parameterName, double value) {
+    public void setParameter(String parameterName, double value) throws IllegalArgumentException {
         int index = getParameterIndex(parameterName);
         if (index == -1) {
-            parameterNames.add(parameterName);
-            parameterValues.add(value);
+            throw new IllegalArgumentException("Parameter not found");
         } else {
             parameterNames.set(index, parameterName);
             parameterValues.set(index, value);
         }
     }
 
-    public void setParameters(HashMap<String, Double> parameters) {
-        parameterNames.clear();
-        parameterValues.clear();
+    public void setParameters(HashMap<String, Double> parameters) throws IllegalArgumentException {
         Set<String> keys = parameters.keySet();
         for (String key : keys) {
-            parameterNames.add(key);
-            parameterValues.add(parameters.get(key));
+            setParameter(key, parameters.get(key));
         }
     }
 
@@ -85,30 +71,7 @@ public class BalanAlgorithm {
 
     public void setParameters(double[] parameters, boolean allowSizeLarger) throws IllegalArgumentException {
         if (parameters == null) {
-            throw new IllegalArgumentException("parameters null");
-        }
-        parameterNames.clear();
-        parameterValues.clear();
-        List<String> parameterList = new ArrayList<String>();
-        Stack<String> prefixStack = convertExpressionToPrefix();
-        for (String prefixItem : prefixStack) {
-            if (prefixItem.equals(bracketMark)) {
-
-            } else if (isOperator(prefixItem) == 0) {
-                if (!prefixItem.matches("[0-9]+")) {
-                    parameterList.add(prefixItem);
-                }
-            }
-        }
-        for (int i = 0; i < parameterList.size(); i++) {
-            int index = getParameterIndex(parameterList.get(i));
-            if (index == -1) {
-                parameterNames.add(parameterList.get(i));
-                parameterValues.add(0.0);
-            } else {
-                parameterNames.set(index, parameterList.get(i));
-                parameterValues.set(index, 0.0);
-            }
+            throw new IllegalArgumentException("Parameters null");
         }
         if (allowSizeLarger && parameters.length >= parameterNames.size()) {
 
@@ -120,37 +83,71 @@ public class BalanAlgorithm {
         }
     }
 
-    public void dumpPrefixStack() {
-        Stack<String> prefixStack = convertExpressionToPrefix();
-        System.out.println("========== DUMP PREFIX ========== START");
-        for (String prefixItem : prefixStack) {
-            System.out.print(prefixItem + ",");
-        }
-        System.out.println("\n========== DUMP PREFIX ========== END");
+    public List<String> getParameterNames() {
+        return parameterNames;
     }
 
-    public void convertToDeMorganExpression() throws BalanException {
-        if (!isNegative) {
-            throw new BalanException("The expression is not negative");
+    private void parseAllParameterNames() {
+        parameterNames.clear();
+        parameterValues.clear();
+        List<String> parameterList = new ArrayList<String>();
+        Stack<String> postfixStack = convertExpressionToPostfix();
+        for (String postfixItem : postfixStack) {
+            if (postfixItem.equals(bracketMark)) {
+
+            } else if (isOperator(postfixItem) == 0) {
+                try {
+                    int lastCharIndex = postfixItem.length() - 1;
+                    char lastChar = postfixItem.charAt(lastCharIndex);
+                    String itemWithoutLastChar = postfixItem.substring(0, lastCharIndex);
+                    if ((lastChar == 'L' || lastChar == 'l') && itemWithoutLastChar.matches(DOUBLE_REGEX)) {
+                        postfixItem = itemWithoutLastChar;
+                    }
+                    Double.valueOf(postfixItem);
+                } catch (Exception e) {
+                    parameterList.add(postfixItem);
+                }
+            }
         }
-        Stack<String> prefixStack = convertExpressionToPrefix();
+        for (String parameter : parameterList) {
+            int index = getParameterIndex(parameter);
+            if (index == -1) {
+                parameterNames.add(parameter);
+                parameterValues.add(Double.NaN);
+            }
+        }
+    }
+
+    public void dumpPostfixStack() {
+        Stack<String> postfixStack = convertExpressionToPostfix();
+        System.out.println("========== DUMP POSTFIX ========== START");
+        String dumpString = "";
+        for (String postfixItem : postfixStack) {
+            dumpString += postfixItem + ",";
+        }
+        System.out.println(dumpString.isEmpty() ? "" : dumpString.substring(0, dumpString.length() - 1));
+        System.out.println("========== DUMP POSTFIX ========== END");
+    }
+
+    public void convertToDeMorganExpression() {
+        Stack<String> postfixStack = convertExpressionToPostfix();
         Stack<String> resultStack = new Stack<String>();
-        for (String prefixItem : prefixStack) {
-            if (prefixItem.equals(bracketMark)) {
-                resultStack.push(appendMark + "(" + resultStack.pop() + ")");
-            } else if (isOperator(prefixItem) == 0) {
-                resultStack.push(prefixItem);
+        for (String postfixItem : postfixStack) {
+            if (postfixItem.equals(bracketMark)) {
+                resultStack.push("(" + resultStack.pop() + ")");
+            } else if (isOperator(postfixItem) == 0) {
+                resultStack.push(postfixItem);
             } else {
                 String lastItem = resultStack.pop();
                 String firstItem = resultStack.pop();
                 String negativeOperator = "";
-                switch (prefixItem) {
+                switch (postfixItem) {
                     case "*":
                     case "/":
                     case "%":
                     case "+":
                     case "-":
-                        negativeOperator = prefixItem;
+                        negativeOperator = postfixItem;
                         break;
                     case ">=":
                         negativeOperator = "<";
@@ -181,6 +178,7 @@ public class BalanAlgorithm {
             }
         }
         expression = resultStack.pop();
+        isNegative = !isNegative;
     }
 
     public static List<String> parseAllExpressions(String allExpression) {
@@ -220,11 +218,12 @@ public class BalanAlgorithm {
     }
 
     public void dumpAllParameters() {
-        System.out.println("========== DUMP PARAMETERS ========== START");
+        String fullExpression = "[" + expression + (isNegative ? "]F" : "]T");
+        System.out.println("========== DUMP PARAMETERS: " + fullExpression + " ========== START");
         for (int i = 0; i < parameterNames.size(); i++) {
             System.out.println(parameterNames.get(i) + " = " + parameterValues.get(i));
         }
-        System.out.println("========== DUMP PARAMETERS ========== END");
+        System.out.println("========== DUMP PARAMETERS: " + fullExpression + " ========== END");
     }
 
     public static double GetBranchDistance(double x, double y, String strOpType) {
@@ -310,12 +309,6 @@ public class BalanAlgorithm {
     }
 
     private void selectMarks() {
-        for (String appendMarkItem : APPEND_MARKS) {
-            if (!expression.contains(appendMarkItem)) {
-                appendMark = appendMarkItem;
-                break;
-            }
-        }
         for (String bracketMarkItem : BRACKET_MARKS) {
             if (!expression.contains(bracketMarkItem)) {
                 bracketMark = bracketMarkItem;
@@ -391,7 +384,7 @@ public class BalanAlgorithm {
         System.out.println("]");
     }
 
-    public Stack<String> convertExpressionToPrefix() {
+    public Stack<String> convertExpressionToPostfix() {
         Stack<String> stack = new Stack<String>();
         Stack<String> output = new Stack<String>();
         String compareExpression = "";
@@ -436,23 +429,6 @@ public class BalanAlgorithm {
         return output;
     }
 
-    private String convertCompareExpression(String compareExpression) throws BalanException {
-        if (compareExpression.startsWith(appendMark)) {
-            return compareExpression.substring(appendMark.length());
-        }
-        String[] operator = new String[]{">=", "<=", "!=", ">", "<", "=="};
-        for (int i = 0; i < operator.length; i++) {
-            if (compareExpression.contains(operator[i])) {
-                String[] parts = compareExpression.split(operator[i]);
-                if (parts.length != 2) {
-                    throw new BalanException("Wrong expression!");
-                }
-                return "fBchDist(" + parts[0].trim() + ", " + operator[i] + ", " + parts[1].trim() + ")";
-            }
-        }
-        return compareExpression;
-    }
-
     private double getValue(String item) throws BalanException {
         item = item.trim();
         int index = getParameterIndex(item);
@@ -460,6 +436,12 @@ public class BalanAlgorithm {
             return parameterValues.get(index);
         }
         try {
+            int lastCharIndex = item.length() - 1;
+            char lastChar = item.charAt(lastCharIndex);
+            String itemWithoutLastChar = item.substring(0, lastCharIndex);
+            if ((lastChar == 'L' || lastChar == 'l') && itemWithoutLastChar.matches(DOUBLE_REGEX)) {
+                item = itemWithoutLastChar;
+            }
             return Double.valueOf(item);
         } catch (Exception e) {
             throw new BalanException(e.getMessage());
@@ -471,17 +453,22 @@ public class BalanAlgorithm {
     }
 
     public double calculateBranchExpression() throws BalanException {
-        Stack<String> prefixStack = convertExpressionToPrefix();
+        for (Double parameterValue : parameterValues) {
+            if (parameterValue.equals(Double.NaN)) {
+                throw new BalanException("Some parameters are not initialized");
+            }
+        }
+        Stack<String> postfixStack = convertExpressionToPostfix();
         Stack<String> resultStack = new Stack<String>();
-        for (String prefixItem : prefixStack) {
-            if (prefixItem.equals(bracketMark)) {
+        for (String postfixItem : postfixStack) {
+            if (postfixItem.equals(bracketMark)) {
 
-            } else if (isOperator(prefixItem) == 0) {
-                resultStack.push(prefixItem);
+            } else if (isOperator(postfixItem) == 0) {
+                resultStack.push(postfixItem);
             } else {
                 double lastItem = getValue(resultStack.pop());
                 double firstItem = getValue(resultStack.pop());
-                switch (prefixItem) {
+                switch (postfixItem) {
                     case "*":
                         resultStack.push((firstItem * lastItem) + "");
                         break;
@@ -503,7 +490,7 @@ public class BalanAlgorithm {
                     case "<":
                     case "!=":
                     case "==":
-                        resultStack.push(GetBranchDistance(firstItem, lastItem, prefixItem) + "");
+                        resultStack.push(GetBranchDistance(firstItem, lastItem, postfixItem) + "");
                         break;
                     case "&&":
                         resultStack.push((firstItem + lastItem) + "");
@@ -516,39 +503,6 @@ public class BalanAlgorithm {
         }
         double returnVal = Double.valueOf(resultStack.pop());
         return returnVal;
-    }
-
-    public String convertToBranchExpression() throws BalanException {
-        Stack<String> prefixStack = convertExpressionToPrefix();
-        Stack<String> resultStack = new Stack<String>();
-        for (String prefixItem : prefixStack) {
-            if (prefixItem.equals(bracketMark)) {
-                String lastItem = convertCompareExpression(resultStack.pop());
-                resultStack.push(appendMark + "(" + lastItem + ")");
-            } else if (isOperator(prefixItem) == 0) {
-                resultStack.push(prefixItem);
-            } else {
-                String lastItem = convertCompareExpression(resultStack.pop());
-                String firstItem = convertCompareExpression(resultStack.pop());
-                switch (prefixItem) {
-                    case "&&":
-                        resultStack.push(appendMark + firstItem + " + " + lastItem);
-                        break;
-                    default: // ||
-                        resultStack.push(appendMark + "min(" + firstItem + ", " + lastItem + ")");
-                }
-            }
-        }
-        String resultExpression = resultStack.pop();
-        if (resultExpression.startsWith(appendMark)) {
-            resultExpression = resultExpression.substring(appendMark.length());
-        }
-        if (REMOVE_ROOT_BRACKET) {
-            if (resultExpression.charAt(0) == '(' && resultExpression.charAt(resultExpression.length() - 1) == ')') {
-                resultExpression = resultExpression.substring(1, resultExpression.length() - 1);
-            }
-        }
-        return resultExpression;
     }
 
 }

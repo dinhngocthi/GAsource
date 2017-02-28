@@ -1,7 +1,12 @@
 package pso.fitnessfunction;
 
 public class Fitness {
-	public double fx(double[] x)
+	
+	public static void main(String[] args) throws BalanException 
+	{
+		
+	}
+	public double fx(int id, double[] x)
 	{
 		double x0 = x[0]; 
     	double x1 = x[1];
