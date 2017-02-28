@@ -111,7 +111,10 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
+			//err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
+			ProblemSet problem = new ProblemSet(gBestLocation.getLoc());
+			err = problem.evaluate(PUTName, testpathID);
+
 			t++;
 			updateFitnessList(PUTName, testpathID);
 		}

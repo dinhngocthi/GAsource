@@ -33,7 +33,13 @@ public class ProblemSet
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
-	public static double evaluate(Location location, String PUTName, int testpathID) 
+	private double X[];
+	public ProblemSet(double X[])
+	{
+		this.X = X;
+	}
+	//public static double evaluate(Location location, String PUTName, int testpathID) 
+	public double evaluate(String PUTName, int testpathID)
 	{
 		double result = 0;
 /*
@@ -50,7 +56,8 @@ public class ProblemSet
 			e.printStackTrace();
 		}
 */
-		result = TestExpressionBulk.fx(location.getLoc(), testpathID);
+		//result = TestExpressionBulk.fx(location.getLoc(), testpathID);
+		result = TestExpressionBulk.fx(this.X, testpathID);
 /*		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 

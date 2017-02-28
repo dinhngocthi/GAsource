@@ -37,23 +37,33 @@ public class TestExpressionBulk {
 */
     }
     
-    private static BalanExpressionBulk beb = null;
+    private BalanExpressionBulk beb = null;
+    
+    public TestExpressionBulk(String testpathfile)
+    {
+    	try
+    	{
+    		this.beb = new BalanExpressionBulk(new File(testpathfile));
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    }
     
     public static double fx(double[] x, int lineidx)
+    //public double fx(double[] x, int lineidx)
 	{
-    	/*
-		double x0 = x[0]; 
-    	double x1 = x[1];
-    	double x2 = x[2];
-		double ret = Math.sqrt(x0 - 1) + Math.sqrt(x1 - 2) + Math.sqrt(x2 - 10);
-		*/
     	double ret = 0;
     	try
     	{
-    		//BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));
-    		BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));
+    		//BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
+    		BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
+    		
+    		//this.beb.setParameters(x, true);
     		beb.setParameters(x, true);
     		ret = beb.calculateAllExpressions(lineidx);
+    		//ret = this.beb.calculateAllExpressions(lineidx);
     	}
 		catch (Exception e){}
 		return ret;
