@@ -13,14 +13,14 @@ public class PSODriver
 //		int testpathsize = 4;
 
 		String PUTName = "line";		
-		int testpathsize = 19;
+//		int testpathsize = 19;
 
 //		String PUTName = "getDayNum";		
-//		int testpathsize = 5;
+		int testpathsize = 5;
 	
-//		for (int i = 1; i <=  testpathsize; i++)
-//			new PSOProcess(PUTName, i).start();
-		new PSOProcess(PUTName, 0).start();
+		for (int i = 0; i <  testpathsize; i++)
+			new PSOProcess(PUTName, i).start();
+//		new PSOProcess(PUTName, 3).start();
 	}
 	public static void generateTC(String inPUTpath)
 	{		

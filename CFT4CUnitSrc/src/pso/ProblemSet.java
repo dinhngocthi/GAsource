@@ -1,6 +1,8 @@
 package pso;
 
 import pso.fitnessfunction.NewMain;
+import pso.fitnessfunction.TestExpressionBulk;
+
 import java.lang.reflect.Method;
 
 //this is the problem to be solved
@@ -34,20 +36,21 @@ public class ProblemSet
 	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
+/*
 		try
 		{
 			Class cls = Class.forName("pso.fitnessfunction.TestExpressionBulk");
 			Method method = cls.getMethod("fx", double[].class, int.class);
 
 			//Object o = method.invoke(null, location.getLoc());
-			result = (double)method.invoke(null, location.getLoc(), 3);
+			result = (double)method.invoke(null, location.getLoc(), testpathID);
 		} 
 		catch (Throwable e) 
 		{
 			e.printStackTrace();
 		}
-
-
+*/
+		result = TestExpressionBulk.fx(location.getLoc(), testpathID);
 /*		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
