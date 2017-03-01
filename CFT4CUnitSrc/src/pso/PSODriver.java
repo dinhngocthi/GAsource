@@ -7,10 +7,10 @@ public class PSODriver
 	public static void main(String[] args) throws InterruptedException
 	{
 //		String PUTName = "computeTax";
-//		int testpathsize = 10;
+		int testpathsize = 10;
 
 //		String PUTName = "triangleType";
-		int testpathsize = 4;
+//		int testpathsize = 4;
 
 		String PUTName = "line";		
 //		int testpathsize = 19;
@@ -22,6 +22,7 @@ public class PSODriver
 			new PSOProcess(PUTName, i).start();
 //		new PSOProcess(PUTName, 3).start();
 	}
+
 	public static void generateTC(String inPUTpath)
 	{		
 		int testpathsize = 0;
