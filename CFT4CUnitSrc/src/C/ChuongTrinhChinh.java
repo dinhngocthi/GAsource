@@ -319,14 +319,14 @@ public class ChuongTrinhChinh
         String testdatafile = this.fileInput.replace(".c", ".txt");
         
         fpOut = new PrintWriter(testdatafile, "UTF-8");
-        fpOut.printf("------------Generate all test paths start-------------\n");
+        //fpOut.printf("------------Generate all test paths start-------------\n");
 
         int branchID = 1;
         ArrayList<String> branchlist = new ArrayList<String>();
         
         for (int i = 0; i < totalTargetPaths; i++ )
         {
-            fpOut.print("Path " + (i + 1) + ": ");
+            //fpOut.print("Path " + (i + 1) + ": ");
             ArrayList<Vertex> path = getOutput.get(i);
             int pathSize = path.size(); 
 
@@ -370,9 +370,10 @@ public class ChuongTrinhChinh
                     testpathTF.add(vertextf);
                 }
             }
-            fpOut.printf("\n");
+            //fpOut.printf("\n");
+            fpOut.println();
         }       
-        fpOut.printf("------------Generate all test paths end-------------\n");
+        //fpOut.printf("------------Generate all test paths end-------------\n");
         fpOut.close();
     }
     

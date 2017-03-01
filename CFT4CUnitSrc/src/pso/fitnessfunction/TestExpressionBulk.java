@@ -57,8 +57,8 @@ public class TestExpressionBulk {
     	double ret = 0;
     	try
     	{
-    		//BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
-    		BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
+    		BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
+    		//BalanExpressionBulk beb = new BalanExpressionBulk(new File("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt"));    		
     		
     		//this.beb.setParameters(x, true);
     		beb.setParameters(x, true);

@@ -2,6 +2,7 @@ package pso;
 
 import pso.fitnessfunction.NewMain;
 import pso.fitnessfunction.TestExpressionBulk;
+import pso.fitnessfunction.TestExpressionBulk2;
 
 import java.lang.reflect.Method;
 
@@ -57,7 +58,8 @@ public class ProblemSet
 		}
 */
 		//result = TestExpressionBulk.fx(location.getLoc(), testpathID);
-		result = TestExpressionBulk.fx(this.X, testpathID);
+		//result = TestExpressionBulk.fx(this.X, testpathID);
+		result = TestExpressionBulk2.fx(this.X, testpathID);
 /*		
 		if (PUTName.contains("triangleType"))
 			result = FtriangleType(location.getLoc()[0], 
