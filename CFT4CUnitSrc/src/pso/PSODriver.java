@@ -28,7 +28,7 @@ public class PSODriver
 		String testpathfile = inPUTpath.replace(".c", ".txt");
 		int testpathsize = gettestpathsize(testpathfile);
 				
-		for (int i = 1; i <= testpathsize; i++)
+		for (int i = 0; i < testpathsize; i++)
 			new PSOProcess(testpathfile, i).start();
 	}
 	private static int gettestpathsize(String testpathfile)

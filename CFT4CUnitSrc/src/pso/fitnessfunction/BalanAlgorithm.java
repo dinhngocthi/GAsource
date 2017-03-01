@@ -226,9 +226,10 @@ public class BalanAlgorithm {
         System.out.println("========== DUMP PARAMETERS: " + fullExpression + " ========== END");
     }
 
-    public static double GetBranchDistance(double x, double y, String strOpType) {
+    public static double GetBranchDistance(double x, double y, String strOpType) 
+    {
         double ret = 0;
-        double k = 0.01;
+        final double k = 0.1;
         int opType = 0;
         if (strOpType.equals("==")) {
             opType = 3;

@@ -118,7 +118,7 @@ public class PSOProcess extends Thread
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
-
+/*
         PrintWriter fpOut;
         String testdatafile = this.PUTName.replace(".c", "_" + testpathID + ".txt");
         try 
@@ -135,6 +135,7 @@ public class PSOProcess extends Thread
         }
         catch (Exception e)
         {}
+*/        
 	}
 	
 	public void initializeSwarm() 

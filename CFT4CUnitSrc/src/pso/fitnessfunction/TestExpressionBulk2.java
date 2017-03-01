@@ -12,15 +12,7 @@ public class TestExpressionBulk2
     {
         double ret = 0;
         try 
-        {    		
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/triangleType.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/calDay.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/computeTax.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/PhD/GA/GAsource/CFT4CUnitSrc/src/sample/PPSObenchmark/computeTax.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/getDayNum.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/line.txt");
-            //BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk("D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/sample/PPSObenchmark/remainder.txt");
-            
+        {    		            
             BalanExpressionBulk beb = BalanExpressionFactory.getBalanExpressionBulk(putName);
     		//System.out.println("c = " + BalanExpressionFactory.count());
             //this.beb.setParameters(x, true);
@@ -33,7 +25,10 @@ public class TestExpressionBulk2
             }
 //                Thread.currentThread().sleep(2);
             //ret = this.beb.calculateAllExpressions(lineidx);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
+        	e.printStackTrace();
         }
         return ret;
     }
