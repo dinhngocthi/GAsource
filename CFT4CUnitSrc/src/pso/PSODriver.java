@@ -25,26 +25,31 @@ public class PSODriver
 
 	public static void generateTC(String inPUTpath)
 	{		
-		int testpathsize = 0;
-		
-		if (inPUTpath.contains("computeTax"))
+		String testpathfile = inPUTpath.replace(".c", ".txt");
+		int testpathsize = gettestpathsize(testpathfile);
+				
+		for (int i = 1; i <= testpathsize; i++)
+			new PSOProcess(testpathfile, i).start();
+	}
+	private static int gettestpathsize(String testpathfile)
+	{
+		int ret = 0;
+		try
 		{
-			testpathsize = 10;
+			FileReader fileReader = new FileReader(new File(testpathfile));
+			BufferedReader br = new BufferedReader(fileReader);
+			String line = null;
+			// if no more lines the readLine() returns null
+			while ((line = br.readLine()) != null) 
+			{
+		      // reading lines until the end of the file
+				ret++;
+			}
 		}
-		else if (inPUTpath.contains("triangleType"))
+		catch (Exception e)
 		{
-			testpathsize = 4;
+			e.printStackTrace();
 		}
-		else if (inPUTpath.contains("line"))
-		{
-			testpathsize = 19;
-		}
-		else if (inPUTpath.contains("getDayNum"))
-		{
-			testpathsize = 5;
-		}
-
-//		for (int i = 1; i <= testpathsize; i++)
-//			new PSOProcess(inPUTpath, i).start();
+		return ret;
 	}
 }

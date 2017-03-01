@@ -30,7 +30,7 @@ public class PSOProcess extends Thread
 
 	private String PUTName;
 	private int testpathID;
-	private int PROBLEM_DIMENSION = 3;
+	private int PROBLEM_DIMENSION = 10;
 	
 	Random generator = new Random();
 	
@@ -38,12 +38,6 @@ public class PSOProcess extends Thread
 	{
 		this.PUTName = PUTName;
 		this.testpathID = testpathID;
-		if (PUTName.contains("triangleType"))
-			PROBLEM_DIMENSION = 3;
-		else if (PUTName.contains("line"))
-			PROBLEM_DIMENSION = 8;
-		else if (PUTName.contains("computeTax") || PUTName.contains("getDayNum"))
-			PROBLEM_DIMENSION = 2;
 	}
  
 	public void run()
@@ -111,9 +105,7 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			//err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
-			ProblemSet problem = new ProblemSet(gBestLocation.getLoc());
-			err = problem.evaluate(PUTName, testpathID);
+			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
 
 			t++;
 			updateFitnessList(PUTName, testpathID);

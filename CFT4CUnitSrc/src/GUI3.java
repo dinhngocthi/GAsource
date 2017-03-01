@@ -671,7 +671,7 @@ public final class GUI3 extends javax.swing.JFrame
             ctc = new ChuongTrinhChinh(pathFile);
             ctc.run();
             ctc.generateTestPath();
-            //PSODriver.generateTC(pathFile);
+            PSODriver.generateTC(pathFile);
 
             SwingWorker task1 = new SwingWorker() 
             {

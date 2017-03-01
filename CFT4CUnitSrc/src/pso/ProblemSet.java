@@ -34,54 +34,10 @@ public class ProblemSet
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
-	private double X[];
-	public ProblemSet(double X[])
-	{
-		this.X = X;
-	}
-	//public static double evaluate(Location location, String PUTName, int testpathID) 
-	public double evaluate(String PUTName, int testpathID)
+	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
-/*
-		try
-		{
-			Class cls = Class.forName("pso.fitnessfunction.TestExpressionBulk");
-			Method method = cls.getMethod("fx", double[].class, int.class);
-
-			//Object o = method.invoke(null, location.getLoc());
-			result = (double)method.invoke(null, location.getLoc(), testpathID);
-		} 
-		catch (Throwable e) 
-		{
-			e.printStackTrace();
-		}
-*/
-		//result = TestExpressionBulk.fx(location.getLoc(), testpathID);
-		//result = TestExpressionBulk.fx(this.X, testpathID);
-		result = TestExpressionBulk2.fx(this.X, testpathID);
-/*		
-		if (PUTName.contains("triangleType"))
-			result = FtriangleType(location.getLoc()[0], 
-								   location.getLoc()[1], 
-					               location.getLoc()[2], 
-					               testpathID);
-		else if (PUTName.contains("computeTax"))
-			result = FcomputeTax((int)location.getLoc()[0], location.getLoc()[1], testpathID);
-		else if (PUTName.contains("line"))
-			result = Fline((int)location.getLoc()[0], 
-						   (int)location.getLoc()[1], 
-						   (int)location.getLoc()[2],
-						   (int)location.getLoc()[3],
-						   (int)location.getLoc()[4],
-						   (int)location.getLoc()[5],
-						   (int)location.getLoc()[6],
-						   (int)location.getLoc()[7],
-						   testpathID);
-		else if (PUTName.contains("getDayNum"))
-			result = FgetdayNum((int)location.getLoc()[0],(int)location.getLoc()[1], testpathID);
-*/
-		//result = NewMain.fx(location.getLoc()); 
+		result = TestExpressionBulk2.fx(location.getLoc(), PUTName, testpathID); 
 		return result;
 	}
 	
