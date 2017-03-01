@@ -1,6 +1,5 @@
 package pso;
 
-import pso.fitnessfunction.NewMain;
 import pso.fitnessfunction.TestExpressionBulk;
 import pso.fitnessfunction.TestExpressionBulk2;
 

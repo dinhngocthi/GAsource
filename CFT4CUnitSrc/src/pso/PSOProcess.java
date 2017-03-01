@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
-import pso.fitnessfunction.Fitness;
-
 public class PSOProcess extends Thread  
 {
 	// Constants
