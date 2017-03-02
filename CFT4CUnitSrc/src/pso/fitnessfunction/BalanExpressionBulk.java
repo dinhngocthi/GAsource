@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BalanExpressionBulk {
-
+public class BalanExpressionBulk 
+{
     private List<BalanAlgorithm[]> balanParsers = new ArrayList<BalanAlgorithm[]>();
     private List<String> parameterNames = new ArrayList<String>();
 
@@ -56,6 +56,10 @@ public class BalanExpressionBulk {
         balanParsers.add(balanAlgorithms);
     }
 
+    public int getTotalParameterCount() {
+        return this.parameterNames.size();
+    }
+    
     public void setParameters(double[] parameters) throws IllegalArgumentException {
         setParameters(parameters, false);
     }

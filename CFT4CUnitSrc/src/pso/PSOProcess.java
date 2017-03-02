@@ -5,9 +5,12 @@ package pso;
 //but you can easily modify it to solve higher dimensional space problem
 
 import java.io.PrintWriter;
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
+import pso.fitnessfunction.BalanExpressionBulk;
 
 public class PSOProcess extends Thread  
 {
@@ -35,7 +38,17 @@ public class PSOProcess extends Thread
 	public PSOProcess(String PUTName, int testpathID)
 	{
 		this.PUTName = PUTName;
-		this.testpathID = testpathID;
+		this.testpathID = testpathID;		
+		try
+		{
+			File file = new File(PUTName);
+			BalanExpressionBulk balanExpressionBulk = new BalanExpressionBulk(file);
+			PROBLEM_DIMENSION = balanExpressionBulk.getTotalParameterCount();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
  
 	public void run()

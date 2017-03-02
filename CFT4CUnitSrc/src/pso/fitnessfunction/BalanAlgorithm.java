@@ -230,65 +230,71 @@ public class BalanAlgorithm {
     {
         double ret = 0;
         final double k = 0.1;
-        int opType = 0;
-        if (strOpType.equals("==")) {
-            opType = 3;
-        } else if (strOpType.equals("!=")) {
-            opType = 4;
-        } else if (strOpType.equals("<")) {
-            opType = 5;
-        } else if (strOpType.equals("<=")) {
-            opType = 6;
-        } else if (strOpType.equals(">")) {
-            opType = 7;
-        } else if (strOpType.equals(">=")) {
-            opType = 8;
-        }
-        switch (opType) {
-            case 3: // == condition
-                if (Math.abs(x - y) == 0) {
-                    ret = 0;
-                } else {
-                    ret = Math.abs(x - y) + k;
-                }
-                break;
-            case 4: // != condition
-                if (Math.abs(x - y) != 0) {
-                    ret = 0;
-                } else {
-                    ret = k;
-                }
-                break;
-            case 5: // < condition
-                if (x - y < 0) {
-                    ret = 0;
-                } else {
-                    ret = Math.abs(x - y) + k;
-                }
-                break;
-            case 6: // <= condition
-                if (x - y <= 0) {
-                    ret = 0;
-                } else {
-                    ret = Math.abs(x - y) + k;
-                }
-                break;
-            case 7: // > condition
-                if (y - x < 0) {
-                    ret = 0;
-                } else {
-                    ret = Math.abs(y - x) + k;
-                }
-                break;
-            case 8: // >= condition
-                if (y - x <= 0) {
-                    ret = 0;
-                } else {
-                    ret = Math.abs(y - x) + k;
-                }
-                break;
-            default:
-                break;
+        if (strOpType.equals("==")) 
+        {
+            if (Math.abs(x - y) == 0) 
+            {
+                ret = 0;
+            } 
+            else 
+            {
+                ret = Math.abs(x - y) + k;
+            }
+        } 
+        else if (strOpType.equals("!=")) 
+        {
+        	if (Math.abs(x - y) != 0) 
+        	{
+                ret = 0;
+            } 
+        	else 
+        	{
+                ret = k;
+            }            
+        } 
+        else if (strOpType.equals("<")) 
+        {
+            if (x - y < 0) 
+            {
+                ret = 0;
+            } 
+            else 
+            {
+                ret = Math.abs(x - y) + k;
+            }
+        } 
+        else if (strOpType.equals("<=")) 
+        {
+            if (x - y <= 0) 
+            {
+                ret = 0;
+            } 
+            else 
+            {
+                ret = Math.abs(x - y) + k;
+            }
+        } 
+        else if (strOpType.equals(">")) 
+        {
+            if (y - x < 0) 
+            {
+                ret = 0;
+            } 
+            else 
+            {
+                ret = Math.abs(y - x) + k;
+            }
+        } 
+        else if (strOpType.equals(">=")) 
+        {
+            if (y - x <= 0) 
+            {
+                ret = 0;
+            } 
+            else 
+            {
+                ret = Math.abs(y - x) + k;
+            }
         }
         return ret;
     }
