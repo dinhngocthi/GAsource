@@ -1,16 +1,16 @@
-double Tritype(double a, double b, double c)
+double Tritype(double aaa, double bbb, double ccc)
 {
 	int type = -1;
 
-	if (a + b > c && a + c > b && b + c > a)
+	if (aaa + bbb > ccc && aaa + ccc > bbb && bbb + ccc > aaa)
 	{
-		if (a == b && b == c)
+		if (aaa == bbb && bbb == ccc)
 		{
 			type = 3;  // Equilateral
 		}
 		else
 		{
-			if (a == b || b == c || c == a)
+			if (aaa == bbb || bbb == ccc || ccc == aaa)
 			{
 				type = 2;  // Isosceles
 			}
