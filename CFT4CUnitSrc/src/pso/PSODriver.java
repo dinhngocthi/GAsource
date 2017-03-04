@@ -3,24 +3,9 @@ package pso;
 import  java.io.*;
 
 public class PSODriver 
-{
+{	
 	public static void main(String[] args) throws InterruptedException
 	{
-//		String PUTName = "computeTax";
-		int testpathsize = 10;
-
-//		String PUTName = "triangleType";
-//		int testpathsize = 4;
-
-		String PUTName = "line";		
-//		int testpathsize = 19;
-
-//		String PUTName = "getDayNum";		
-//		int testpathsize = 5;
-	
-		for (int i = 0; i <  testpathsize; i++)
-			new PSOProcess(PUTName, i).start();
-//		new PSOProcess(PUTName, 3).start();
 	}
 
 	public static void generateTC(String inPUTpath)
@@ -31,6 +16,7 @@ public class PSODriver
 		for (int i = 0; i < testpathsize; i++)
 			new PSOProcess(testpathfile, i).start();
 	}
+
 	private static int gettestpathsize(String testpathfile)
 	{
 		int ret = 0;

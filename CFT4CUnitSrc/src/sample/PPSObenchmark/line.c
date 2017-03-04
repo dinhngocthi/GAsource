@@ -55,26 +55,30 @@ void line(int xr1, int xr2, int yr1, int yr2, int xl1, int xl2, int yl1, int yl2
                 else
                 {
                     // pto de corte con la parte superior del rectangulo
-                    x = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
-                    if(x >= xr1 && x <= xr2)
+                    //x = (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1;
+                    //if(x >= xr1 && x <= xr2)
+					if((xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1 >= xr1 && (xl2 - xl1) / (yl2 - yl1) * (yr1 - yl1) + xl1 <= xr2)
                         salida = 3; // la linea entra en el rectangulo
                     else
                     {
                         // pto de corte con la parte inferior del rectangulo
-                        x = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
-                        if(x >= xr1 && x <= xr2)
+                        //x = (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1;
+                        //if(x >= xr1 && x <= xr2)
+						if((xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1 >= xr1 && (xl2 - xl1) / (yl2 - yl1) * (yr2 - yl1) + xl1 <= xr2)							
                             salida = 3; // la linea corta el rectangulo
                         else
                         {
                             // pto de corte con la parte izquieda del rectangulo
-                            y = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
-                            if(y >= yr1 && y <= yr2)
+                            //y = (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1;
+                            //if(y >= yr1 && y <= yr2)
+							if((yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1 >= yr1 && (yl2 - yl1) / (xl2 - xl1) * (xr1 - xl1) + yl1 <= yr2)
                                 salida = 3; // la linea corta el rectangulo
                             else
                             {
                                 // pto de corte con la parte derecha del rectangulo
-                                y = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
-                                if( y >= yr1 && y <= yr2)
+                                //y = (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1;
+                                //if( y >= yr1 && y <= yr2)
+								if((yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1 >= yr1 && (yl2 - yl1) / (xl2 - xl1) * (xr2 - xl1) + yl1 <= yr2)
                                     salida = 3; // la linea corta el rectangulo
                                 else
                                     salida = 2; // la linea no corta al rectangulo
