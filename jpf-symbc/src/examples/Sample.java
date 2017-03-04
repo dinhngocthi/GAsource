@@ -4,10 +4,29 @@ public class Sample {
 	{
 		// TODO Auto-generated method stub
 		//example(1, 1, 1);
-		fisher(1, 1, 1);
-		line(1,2,3,5,6,7,8,9);
+		//fisher(1, 1, 1);
+		//line(1,2,3,5,6,7,8,9);
+		weak(1, 2);		
 	}
 
+	static double weak(double aaa, double bbb)
+	{
+		int type = -1;
+
+		double sum = aaa + bbb;
+		//if (aaa + bbb > 20)
+		if (sum > 25)
+		{
+			type = 1;
+		}
+		else
+		{
+			type = -1;
+		}
+		System.out.println("25");
+		return type;
+	}
+	
 	static int line(int xr1, int xr2, int yr1, int yr2, int xl1, int xl2, int yl1, int yl2)
 	{    
 		int salida = -1;
