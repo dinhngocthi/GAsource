@@ -1,18 +1,20 @@
 int calDay (int id, int mm, int iyyy) 
 {	
-	int jul = 0;
+	int jul = -1;
     long jul1, IGREG= (15+31L*(10+12L*1582));
 	
-	int ja,jy=iyyy,jm;
+	//int ja,iyyy=iyyy,jm;
+	int ja,jm;
 
-	if (jy==0)
+	if (iyyy==0)
     { 
 	    printf("Error: there is no year zero\n");
+		return jul;
 	}
 
-	if (jy<0)
+	if (iyyy<0)
     {
-		++jy;
+		++iyyy;
 	}
 	if (mm>2) 
     {
@@ -20,15 +22,15 @@ int calDay (int id, int mm, int iyyy)
 	}
 	else 
     {
-		--jy;
+		--iyyy;
 		jm=mm+13;
 	}
 
-    jul1 =(long)((int)(365.25 * jy) + (int)(30.6001*jm) + id + 1720995);
+    jul1 =(long)((int)(365.25 * iyyy) + (int)(30.6001*jm) + id + 1720995);
 
-	if (id+31L*(mm+12L*iyyy)>=(IGREG))
+	if (id+31L*(mm+12L*iyyy)>=(15+31L*(10+12L*1582)))
     {
-		ja=(int)(0.01*jy);
+		ja=(int)(0.01*iyyy);
 		jul1 += 2-ja+(int) (0.25*ja);
 	}
 	
