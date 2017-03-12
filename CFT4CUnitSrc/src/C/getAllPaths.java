@@ -126,7 +126,7 @@ public class getAllPaths
             output.add((ArrayList<Vertex>) myPath.clone());
         }
         else
-            if (check(myPath, v.id))
+            if (check(myPath, v.id)) // check if this vertex id exist in the path
             {
                 myPath.add(v);
                 Vertex u;
@@ -233,7 +233,7 @@ public class getAllPaths
         for (Vertex v : myPath)
             if (v.getId() == id) count++;
         
-        return (count <= DEFAULT_DEPTH);
+        return (count <= DEFAULT_DEPTH); // check loop count
     }
     
     /**
