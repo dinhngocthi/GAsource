@@ -4,12 +4,14 @@ package pso;
 //the code is for 2-dimensional space problem
 //but you can easily modify it to solve higher dimensional space problem
 
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
+
 import pso.fitnessfunction.BalanExpressionBulk;
 
 public class PSOProcess extends Thread  
@@ -129,24 +131,19 @@ public class PSOProcess extends Thread
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
-/*
-        PrintWriter fpOut;
-        String testdatafile = this.PUTName.replace(".c", "_" + testpathID + ".txt");
+
         try 
         {
-        	fpOut = new PrintWriter(testdatafile, "UTF-8");        	
-        	fpOut.println("===============================================");
-        	fpOut.println("Test path ID:  " + testpathID);
-        	fpOut.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
-
-    		for (int i = 0; i < PROBLEM_DIMENSION; i++)
-    			fpOut.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
-    		fpOut.println("===============================================");
-            fpOut.close();
+        	FileWriter fw = new FileWriter(this.PUTName, true); //the true will append the new data
+        	fw.write("===============================================\n");//appends the string to the file        	
+        	fw.write("Test path ID:  " + testpathID + "\n");
+        	fw.write("Solution found at iteration " + (t - 1) + ", the solutions is:\n");
+     		for (int i = 0; i < PROBLEM_DIMENSION; i++)
+     			fw.write("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i] + "\n");
+     		fw.write("===============================================\n");//appends the string to the file
+     		fw.close();
         }
-        catch (Exception e)
-        {}
-*/        
+        catch (Exception e) {}
 	}
 	
 	public void initializeSwarm() 
