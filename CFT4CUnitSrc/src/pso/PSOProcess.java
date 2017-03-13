@@ -119,24 +119,39 @@ public class PSOProcess extends Thread
 			}
 			
 			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
-
+			
+			String testpathfile = this.PUTName.replace(".txt", (testpathID + 1) + ".txt");
+			
+			try
+			{
+				FileWriter fw = new FileWriter(testpathfile, true); //the true will append the new data
+				fw.write("ITERATION " + t + ": \n");
+				//System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
+				//System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
+				for (int i = 0; i < PROBLEM_DIMENSION; i++)
+					fw.write("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i] + "\n");
+				fw.write("     Value: " + err + "\n");
+				fw.close();
+			}
+			catch (Exception e) {}
+			
 			t++;
 			updateFitnessList(PUTName, testpathID);
 		}
 
 		System.out.println("===============================================");
-		System.out.println("Test path ID:  " + testpathID);
+		System.out.println("Test path ID:  " + (testpathID + 1));
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.println("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
 
-        try 
+        try
         {
         	FileWriter fw = new FileWriter(this.PUTName, true); //the true will append the new data
         	fw.write("===============================================\n");//appends the string to the file        	
-        	fw.write("Test path ID:  " + testpathID + "\n");
+        	fw.write("Test path ID:  " + (testpathID + 1) + "\n");
         	fw.write("Solution found at iteration " + (t - 1) + ", the solutions is:\n");
      		for (int i = 0; i < PROBLEM_DIMENSION; i++)
      			fw.write("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i] + "\n");
