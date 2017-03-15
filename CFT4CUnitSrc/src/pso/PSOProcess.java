@@ -119,9 +119,8 @@ public class PSOProcess extends Thread
 			}
 			
 			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
-			
-			String testpathfile = this.PUTName.replace(".txt", (testpathID + 1) + ".txt");
-			
+
+			String testpathfile = this.PUTName.replace(".txt", (testpathID + 1) + ".txt");			
 			try
 			{
 				FileWriter fw = new FileWriter(testpathfile, true); //the true will append the new data
@@ -134,7 +133,7 @@ public class PSOProcess extends Thread
 				fw.close();
 			}
 			catch (Exception e) {}
-			
+
 			t++;
 			updateFitnessList(PUTName, testpathID);
 		}
