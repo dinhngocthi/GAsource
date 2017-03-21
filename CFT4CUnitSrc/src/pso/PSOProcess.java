@@ -119,7 +119,7 @@ public class PSOProcess extends Thread
 			}
 			
 			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
-/*
+
 			String testpathfile = this.PUTName.replace(".txt", (testpathID + 1) + ".txt");			
 			try
 			{
@@ -133,7 +133,7 @@ public class PSOProcess extends Thread
 				fw.close();
 			}
 			catch (Exception e) {}
-*/
+
 			t++;
 			updateFitnessList(PUTName, testpathID);
 		}

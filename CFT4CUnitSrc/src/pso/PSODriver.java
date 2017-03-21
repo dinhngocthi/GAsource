@@ -14,6 +14,15 @@ public class PSODriver
 		int testpathsize = gettestpathsize(testpathfile);
 				
 		for (int i = 0; i < testpathsize; i++)
+		{
+			String fileToDeletePath  = testpathfile.replace(".txt", i + ".txt");
+			File deletefile = new File(fileToDeletePath);
+		    if (deletefile.exists()) {
+		    	deletefile.delete();     
+		    }
+		}
+
+		for (int i = 0; i < testpathsize; i++)
 			new PSOProcess(testpathfile, i).start();
 	}
 
