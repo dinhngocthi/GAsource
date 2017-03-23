@@ -29,7 +29,8 @@ public class ProblemSet
 	public static final double VEL_LOW = -1;
 	public static final double VEL_HIGH = 1;
 	
-	public static final double ERR_TOLERANCE = 0.1;//1E-5; // the smaller the tolerance, the more accurate the result, 
+	//public static final double ERR_TOLERANCE = 0.1;//1E-5; // the smaller the tolerance, the more accurate the result, 
+	public static final double ERR_TOLERANCE = 1E-5; // the smaller the tolerance, the more accurate the result,
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 

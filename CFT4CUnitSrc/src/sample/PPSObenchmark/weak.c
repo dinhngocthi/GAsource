@@ -1,16 +1,10 @@
-double weak(double aaa, double bbb)
+double weak(double a, double b)
 {
 	int type = -1;
 
-	double sum = aaa + bbb;
-	if (aaa + bbb > 10)
-	//if (sum > 10)
-	{
-		type = 1;
-	}
-	else
-	{
-		type = -1;
-	}
+	if (a == 10)
+//		if (b < 20)
+			type = 1;
+
 	return type;
 }
