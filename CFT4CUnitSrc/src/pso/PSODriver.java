@@ -18,14 +18,26 @@ public class PSODriver
 			String fileToDeletePath  = testpathfile.replace(".txt", i + ".txt");
 			File deletefile = new File(fileToDeletePath);
 		    if (deletefile.exists()) {
-		    	deletefile.delete();     
+		    	deletefile.delete();    
 		    }
 		}
 
-		for (int i = 0; i < testpathsize; i++)
-			new PSOProcess(testpathfile, i).start();
-		
+		for (int i = 0; i < testpathsize; i++){
+			new PSOProcess(testpathfile, i).start();		
+		}
+
+/*
+		PSOProcess[] pro = new PSOProcess[testpathsize];
+		for (int i = 0; i < testpathsize; i++){
+			pro[i] = new PSOProcess(testpathfile, i);
+			pro[i].start();
+		}
+		for (int i = 0; i < testpathsize; i++){
+			while (true)
+				if (!pro[i].isAlive()) break;
+		}
 		System.out.println("Completed");
+*/
 	}
 
 	private static int gettestpathsize(String testpathfile)
