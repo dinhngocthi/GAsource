@@ -24,6 +24,8 @@ public class PSODriver
 
 		for (int i = 0; i < testpathsize; i++)
 			new PSOProcess(testpathfile, i).start();
+		
+		System.out.println("Completed");
 	}
 
 	private static int gettestpathsize(String testpathfile)
