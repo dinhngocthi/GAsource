@@ -37,6 +37,11 @@ public class PSOProcess extends Thread
 	
 	Random generator = new Random();
 	
+	public PSOProcess(int dimension) 
+	{
+		PROBLEM_DIMENSION = dimension;
+	}
+	
 	public PSOProcess(String PUTName, int testpathID)
 	{
 		this.PUTName = PUTName;

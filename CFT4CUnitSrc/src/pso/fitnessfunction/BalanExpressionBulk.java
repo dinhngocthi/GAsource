@@ -42,7 +42,8 @@ public class BalanExpressionBulk
         List<String> expressions = BalanAlgorithm.parseAllExpressions(line);
         BalanAlgorithm[] balanAlgorithms = new BalanAlgorithm[expressions.size()];
         int i = 0;
-        for (String expression : expressions) {
+        for (String expression : expressions) 
+        {        	
             BalanAlgorithm balanAlgorithm = new BalanAlgorithm(expression);
             List<String> parameterNames = balanAlgorithm.getParameterNames();
             for (String parameterName : parameterNames) {

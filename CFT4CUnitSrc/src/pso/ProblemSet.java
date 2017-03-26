@@ -37,12 +37,15 @@ public class ProblemSet
 	public static double evaluate(Location location, String PUTName, int testpathID) 
 	{
 		double result = 0;
-		result = TestExpressionBulk2.fx(location.getLoc(), PUTName, testpathID); 
+		result = TestExpressionBulk2.fx(location.getLoc(), PUTName, testpathID);
+
+		//Debugging
+		//result = GetBranchDistance(location.getLoc()[0] + location.getLoc()[1], 10, "==");
 		return result;
 	}
 	
 	private static double GetBranchDistance(double x, double y, String strOpType)
-	{
+	{		
 		double ret = 0;
 		int opType = 0;
 		if (strOpType.equals("=="))
