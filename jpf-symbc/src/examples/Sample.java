@@ -6,9 +6,25 @@ public class Sample {
 		//example(1, 1, 1);
 		//fisher(1, 1, 1);
 		//line(1,2,3,5,6,7,8,9);
-		weak(1, 2);		
+		//weak(1, 2);		
+		test(1);
 	}
 
+	static double  test(double  a)
+	{
+	          int  type  =  -1;
+	          if  (f(a)  >  1000)
+	                    type  =  1;
+	          else  
+	                    type  =  0;
+	          return  type;
+	}
+
+	static double  f(double  a)
+	{
+	          return  (a + 100);
+	}
+	
 	static double weak(double aaa, double bbb)
 	{
 		int type = -1;
