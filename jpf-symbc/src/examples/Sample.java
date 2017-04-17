@@ -6,8 +6,8 @@ public class Sample {
 		//example(1, 1, 1);
 		//fisher(1, 1, 1);
 		//line(1,2,3,5,6,7,8,9);
-		//weak(1, 2);		
-		test(1);
+		weak(1, 2);		
+		//test(1);
 	}
 
 	static double  test(double  a)
@@ -25,21 +25,16 @@ public class Sample {
 	          return  (a + 100);
 	}
 	
-	static double weak(double aaa, double bbb)
+	static double weak(double a, double b)
 	{
 		int type = -1;
 
-		double sum = aaa + bbb;
-		//if (aaa + bbb > 20)
-		if (sum > 25)
+		double c = a + b;
+		if (c > 25)
 		{
 			type = 1;
 		}
-		else
-		{
-			type = -1;
-		}
-		System.out.println("25");
+
 		return type;
 	}
 	

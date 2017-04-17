@@ -43,7 +43,7 @@ public class Utils {
 
 
 	/**
-	 * Reduce node list by deleting unneccessary edges. In addition, one new
+	 * Reduce node list by deleting unnecessary edges. In addition, one new
 	 * node is created by merging above nodes.
 	 * 
 	 * @param nodeList
