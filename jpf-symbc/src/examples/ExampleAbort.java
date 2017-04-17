@@ -1,7 +1,3 @@
-
-
-
-
 import gov.nasa.jpf.vm.Verify;
 
 import java.util.EnumSet;
@@ -43,6 +39,4 @@ public class ExampleAbort {
     	nextStateSelected = true;
     	System.out.println("next state is:" + nextState);
     }
-    
-    
 }

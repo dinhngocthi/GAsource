@@ -18,6 +18,6 @@ symbolic.debug=true
 
 #vm.storage.class=nil
 #listener = .symbc.SymbolicListener,gov.nasa.jpf.listener.CoverageAnalyzer
-listener = .symbc.SymbolicListener,.symbc.sequences.SymbolicSequenceListener
+listener = .symbc.SymbolicListener
 #listener = .listener.ChoiceTracker
 #listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener

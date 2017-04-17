@@ -1,6 +1,4 @@
-
 import gov.nasa.jpf.symbc.Debug;
-
 
 public class FlapController {
 	private static int goal;

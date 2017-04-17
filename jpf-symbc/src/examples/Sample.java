@@ -12,12 +12,12 @@ public class Sample {
 
 	static double  test(double  a)
 	{
-	          int  type  =  -1;
-	          if  (f(a)  >  1000)
-	                    type  =  1;
-	          else  
-	                    type  =  0;
-	          return  type;
+          int  type  =  -1;
+          if  (f(a)  >  1000)
+                    type  =  1;
+          else  
+                    type  =  0;
+          return  type;
 	}
 
 	static double  f(double  a)
