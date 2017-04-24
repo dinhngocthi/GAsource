@@ -17,7 +17,7 @@ public class testJeval
         
         Evaluator mEvaluator = new Evaluator();
         //String r1 = mEvaluator.evaluate(" (6<0) and (-1<0)");
-        String r1 = mEvaluator.evaluate("(2+4>3)&&(4+3>2)&&(3+2>4)");
+        String r1 = mEvaluator.evaluate("(2+4>3)&&(4+3<2)&&(3+2>4)");
         //String r1 = mEvaluator.evaluate("1/10000"); 
         System.out.println(r1);
     }
