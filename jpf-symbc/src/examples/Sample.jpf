@@ -2,6 +2,9 @@ target=Sample
 classpath=${jpf-symbc}/build/examples
 sourcepath=${jpf-symbc}/src/examples
 
+classpath=D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/bin/newpso
+sourcepath=D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/newpso
+
 #symbolic.method=Sample.fisher(sym#sym#sym)
 #symbolic.method=Sample.line(sym#sym#sym#sym#sym#sym#sym#sym)
 symbolic.method=Sample.weak(sym#sym)
