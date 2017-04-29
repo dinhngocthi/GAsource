@@ -1,14 +1,16 @@
-target=Sample
-classpath=${jpf-symbc}/build/examples
-sourcepath=${jpf-symbc}/src/examples
+#target=Sample
+#classpath=${jpf-symbc}/build/examples
+#sourcepath=${jpf-symbc}/src/examples
 
-classpath=D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/bin/newpso
-sourcepath=D:/Thi.DN/PhD/GA/GASource/CFT4CUnitSrc/src/newpso
+target=PUT
+classpath=D:/PhD/GA/GAsource/CFT4CUnitSrc/bin/newpso
+sourcepath=D:/PhD/GA/GAsource/CFT4CUnitSrc/src/newpso
 
 #symbolic.method=Sample.fisher(sym#sym#sym)
 #symbolic.method=Sample.line(sym#sym#sym#sym#sym#sym#sym#sym)
-symbolic.method=Sample.weak(sym#sym)
+#symbolic.method=Sample.weak(sym#sym)
 #symbolic.method=Sample.test(sym)
+symbolic.method=PUT.foo(sym#sym)
 
 symbolic.min_int=-10000
 symbolic.max_int=10000
