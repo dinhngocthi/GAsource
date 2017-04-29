@@ -1,7 +1,7 @@
 package newpso;
 
-public class PUT {
-	
+public class PUT 
+{	
 	public static void main(String[] args)
 	{
 		foo(1, 3);
