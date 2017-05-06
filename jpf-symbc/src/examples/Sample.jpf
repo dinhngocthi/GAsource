@@ -14,8 +14,8 @@ sourcepath=${jpf-symbc}/src/examples
 #symbolic.method=Sample.fisher(sym#sym#sym)
 #symbolic.method=Sample.line(sym#sym#sym#sym#sym#sym#sym#sym)
 #symbolic.method=Sample.weak(sym#sym)
-#symbolic.method=Sample.test(sym)
-symbolic.method=Sample.foo(sym#sym)
+symbolic.method=Sample.sin(sym)
+#symbolic.method=Sample.foo(sym#sym)
 
 symbolic.min_int=-10000
 symbolic.max_int=10000

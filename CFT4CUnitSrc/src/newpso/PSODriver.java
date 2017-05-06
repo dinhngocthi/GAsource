@@ -6,7 +6,8 @@ public class PSODriver
 {	
 	public static void main(String[] args) throws InterruptedException
 	{
-		new PSOProcess(3).start();
+		new PSOProcess(1).start();
+		System.out.println(Math.sin(-63687363.729240));
 	}
 
 	public static void generateTC(String inPUTpath)

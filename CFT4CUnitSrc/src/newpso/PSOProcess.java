@@ -148,7 +148,7 @@ public class PSOProcess extends Thread
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.format("Optimation value = %f\n", err);
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
-			System.out.format("     Best X %d: %f\n", (i + 1), gBestLocation.getLoc()[i]);
+			System.out.format("     Best X%d: %f\n", (i + 1), gBestLocation.getLoc()[i]);
 		System.out.println("===============================================");
 /*
         try

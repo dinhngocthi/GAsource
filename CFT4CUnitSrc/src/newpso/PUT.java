@@ -8,6 +8,21 @@ public class PUT
 		System.out.println("Completed");
 	}
 	
+	public static double sin(double X)
+	{
+		double ret = 0;
+		int type = 0;
+
+		//instrument code start
+		if (Math.sin(X) == 1) ret = 0;
+		else ret = Math.abs(Math.sin(X) - 1) + 0.1;
+		//instrument code end
+
+		if (Math.sin(X) == 1)
+			type = 1;
+		return ret;
+	}	
+	
 	public static double test (double a, double b, double c)
 	{
 		double ret = 0;

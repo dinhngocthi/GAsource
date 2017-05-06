@@ -9,9 +9,25 @@ public class Sample {
 		//weak(1, 2);
 		//test(1);
 		//System.out.print(foo(9, 2));
-		foo(9, 2);
+		//foo(9, 2);
+		sin(1);
 	}
 
+	public static double sin(double X)
+	{
+		double ret = 0;
+		int type = 0;
+
+		//instrument code start
+		//if (Math.sin(X) == 1) ret = 0;
+		//else ret = Math.abs(Math.sin(X) - 1) + 0.1;
+		//instrument code end
+
+		if (Math.sin(X) == 1)
+			type = 1;
+		return ret;
+	}
+	
 	// motivation sample
 	public static double foo(int X, int Y)
 	{
@@ -27,6 +43,7 @@ public class Sample {
 		{
 			Z=2; //Target 2
 			System.out.println("Target 2");
+			
 		}
 		else
 		{

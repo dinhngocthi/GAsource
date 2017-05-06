@@ -41,13 +41,13 @@ public class ProblemSet
 		//Debugging
 		//result = GetBranchDistance(location.getLoc()[0] + location.getLoc()[1], 10, "==");
 		double x1 = location.getLoc()[0];
-		double x2 = location.getLoc()[1];
-		double x3 = location.getLoc()[2];
+		//double x2 = location.getLoc()[1];
+		//double x3 = location.getLoc()[2];
 		//double x4 = location.getLoc()[3];
 		
 		//result = Math.pow((x1-1), 2) + Math.pow((x2-2), 2) + Math.pow((x3-3), 2);
 		//result = Math.abs(x1+x4-1) + Math.abs(x2-2) + Math.abs(x3-3);
-		result = PUT.test(x1,  x2,  x3);
+		result = PUT.sin(x1);
 		return result;
 	}
 	
