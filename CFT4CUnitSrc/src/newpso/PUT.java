@@ -5,7 +5,15 @@ public class PUT
 	public static void main(String[] args)
 	{
 		foo(1, 3);
+		double d[] = new double[10];
+		Velocity v = new Velocity(d);
+		test1(v);
 		System.out.println("Completed");
+	}
+	
+	public static void test1 (Velocity v)
+	{
+		v.aa = 10;
 	}
 	
 	public static double sin(double X)
