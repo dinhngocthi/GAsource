@@ -9,8 +9,8 @@ public class Sample {
 		//weak(1, 2);
 		//test(1);
 		//System.out.print(foo(9, 2));
-		//foo(9, 2);
-		sin(1);
+		foo(9, 2);
+		//sin(1);
 	}
 
 	public static double sin(double X)
@@ -43,7 +43,6 @@ public class Sample {
 		{
 			Z=2; //Target 2
 			System.out.println("Target 2");
-			
 		}
 		else
 		{
@@ -52,7 +51,7 @@ public class Sample {
 				if (Z==Y)
 				{
 					Z=3;//Target 3
-					System.out.println("Target 2");
+					System.out.println("Target 3");
 				}
 		}
 
