@@ -4,15 +4,8 @@ package newpso;
 //the code is for 2-dimensional space problem
 //but you can easily modify it to solve higher dimensional space problem
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.File;
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
-
-import pso.fitnessfunction.BalanExpressionBulk;
 
 public class PSOProcess extends Thread  
 {
@@ -31,8 +24,6 @@ public class PSOProcess extends Thread
 	private Location gBestLocation;
 	private double[] fitnessValueList = new double[SWARM_SIZE];
 
-	private String PUTName;
-	private int testpathID;
 	private int PROBLEM_DIMENSION = 10;
 	
 	Random generator = new Random();
@@ -41,27 +32,11 @@ public class PSOProcess extends Thread
 	{
 		PROBLEM_DIMENSION = dimension;
 	}
-	
-	public PSOProcess(String PUTName, int testpathID)
-	{
-		this.PUTName = PUTName;
-		this.testpathID = testpathID;		
-		try
-		{
-			File file = new File(PUTName);
-			BalanExpressionBulk balanExpressionBulk = new BalanExpressionBulk(file);
-			PROBLEM_DIMENSION = balanExpressionBulk.getTotalParameterCount();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
- 
+
 	public void run()
 	{
 		initializeSwarm();
-		updateFitnessList(PUTName, testpathID);
+		updateFitnessList();
 
 		for(int i=0; i<SWARM_SIZE; i++) 
 		{
@@ -123,47 +98,17 @@ public class PSOProcess extends Thread
 				p.setLocation(loc);
 			}
 			
-			err = ProblemSet.evaluate(gBestLocation, PUTName, testpathID); // minimizing the functions means it's getting closer to 0
-/*
-			String testpathfile = this.PUTName.replace(".txt", (testpathID + 1) + ".txt");			
-			try
-			{
-				FileWriter fw = new FileWriter(testpathfile, true); //the true will append the new data
-				fw.write("ITERATION " + t + ": \n");
-				//System.out.println("     Best X: " + gBestLocation.getLoc()[0]);
-				//System.out.println("     Best Y: " + gBestLocation.getLoc()[1]);
-				for (int i = 0; i < PROBLEM_DIMENSION; i++)
-					fw.write("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i] + "\n");
-				fw.write("     Value: " + err + "\n");
-				fw.close();
-			}
-			catch (Exception e) {}
-*/
+			err = ProblemSet.evaluate(gBestLocation); // minimizing the functions means it's getting closer to 0
 			t++;
-			updateFitnessList(PUTName, testpathID);
+			updateFitnessList();
 		}
 
 		System.out.println("===============================================");
-		//System.out.println("Test path ID:  " + (testpathID + 1));
 		System.out.println("Solution found at iteration " + (t - 1) + ", the solutions is:");
 		System.out.format("Optimation value = %f\n", err);
 		for (int i = 0; i < PROBLEM_DIMENSION; i++)
 			System.out.format("     Best X%d: %f\n", (i + 1), gBestLocation.getLoc()[i]);
-		System.out.println("===============================================");
-/*
-        try
-        {
-        	FileWriter fw = new FileWriter(this.PUTName, true); //the true will append the new data
-        	fw.write("===============================================\n");//appends the string to the file        	
-        	fw.write("Test path ID:  " + (testpathID + 1) + "\n");
-        	fw.write("Solution found at iteration " + (t - 1) + ", the solutions is:\n");
-     		for (int i = 0; i < PROBLEM_DIMENSION; i++)
-     			fw.write("     Best X" + (i + 1) + ": " + (int)gBestLocation.getLoc()[i] + "\n");
-     		fw.write("===============================================\n");//appends the string to the file
-     		fw.close();
-        }
-        catch (Exception e) {}
-*/        
+		System.out.println("===============================================");        
 	}
 	
 	public void initializeSwarm() 
@@ -191,11 +136,11 @@ public class PSOProcess extends Thread
 		}
 	}
 	
-	public void updateFitnessList(String PUTName, int testpathID) 
+	public void updateFitnessList() 
 	{
 		for(int i = 0; i < SWARM_SIZE; i++) 
 		{
-			fitnessValueList[i] = swarm.get(i).getFitnessValue(PUTName, testpathID);
+			fitnessValueList[i] = swarm.get(i).getFitnessValue();
 		}
 	}
 }

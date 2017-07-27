@@ -11,4 +11,3 @@ public class PSOConstants
 	double W_UPPERBOUND = 1.0;
 	double W_LOWERBOUND = 0.0;
 }
-
