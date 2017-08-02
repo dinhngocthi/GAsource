@@ -16,5 +16,4 @@ public class Location {
 	public void setLoc(double[] loc) {
 		this.loc = loc;
 	}
-	
 }

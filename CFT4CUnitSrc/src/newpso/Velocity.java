@@ -1,10 +1,8 @@
 package newpso;
 
 public class Velocity {
-	// store the Velocity in an array to accommodate multi-dimensional problem space
+		// store the Velocity in an array to accommodate multi-dimensional problem space
 		private double[] vel;
-		
-		public int aa = 0;
 
 		public Velocity(double[] vel) {
 			super();

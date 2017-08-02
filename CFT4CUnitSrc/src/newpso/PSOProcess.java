@@ -129,7 +129,7 @@ public class PSOProcess extends Thread
 			for (int j = 0; j < PROBLEM_DIMENSION; j++)
 				vel[j] = ProblemSet.VEL_LOW + generator.nextDouble() * (ProblemSet.VEL_HIGH - ProblemSet.VEL_LOW);
 			Velocity velocity = new Velocity(vel);
-			
+
 			p.setLocation(location);
 			p.setVelocity(velocity);
 			swarm.add(p);

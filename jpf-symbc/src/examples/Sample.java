@@ -183,8 +183,8 @@ public class Sample {
 	    }
 	    System.out.print(salida);
 	    return salida;
-		
 	}
+
     static double fisher(int m, int n, double x) {
         int a, b, j;
         double w, y, z, zk, d, p;

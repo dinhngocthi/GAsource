@@ -25,14 +25,14 @@ public class ProblemSet
 	{
 		double result = 0;
 		double x1 = location.getLoc()[0];
-/*		
 		double x2 = location.getLoc()[1];
+/*
 		double x3 = location.getLoc()[2];
 		double x4 = location.getLoc()[3];
 */		
 		//result = Math.pow((x1-1), 2) + Math.pow((x2-2), 2) + Math.pow((x3-3), 2);
 		//result = Math.abs(x1+x4-1) + Math.abs(x2-2) + Math.abs(x3-3);
-		result = PUT.sin(x1);
+		result = PUT.foo1((int)x1, (int)x2);
 		return result;
 	}	
 }
