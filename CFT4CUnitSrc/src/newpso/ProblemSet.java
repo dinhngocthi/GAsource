@@ -9,8 +9,7 @@ package newpso;
 //if your problem space is greater than 2-dimensional space
 //you need to introduce a new variable (other than x and y)
 
-public class ProblemSet 
-{
+public class ProblemSet {
 	public static final double LOC_LOW  = 1;
 	public static final double LOC_HIGH = 10000;
 	public static final double VEL_LOW = -1;
@@ -21,8 +20,7 @@ public class ProblemSet
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
 
-	public static double evaluate(Location location) 
-	{
+	public static double evaluate(Location location) {
 		double result = 0;
 		double x1 = location.getLoc()[0];
 		double x2 = location.getLoc()[1];

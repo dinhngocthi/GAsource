@@ -68,14 +68,14 @@ public class PUT
 		return ret;
 	}
 	
-	public static double fun1(int x, int y){
+	public static double fun1(int x, int y) {
 		double ret = 0;
 		if (y != 0)
 			ret = x + y + Math.sin(x);
 		return ret;
 	}
 		
-	public static double foo1(int x, int y){
+	public static double foo1(int x, int y) {
 		// instrument code start
 		double ret = Math.abs(fun1(x, y) - 1001);
 		// instrument code end

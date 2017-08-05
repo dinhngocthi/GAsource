@@ -7,8 +7,7 @@ package newpso;
 import java.util.Random;
 import java.util.Vector;
 
-public class PSOProcess extends Thread  
-{
+public class PSOProcess extends Thread {
 	// Constants
 	final int SWARM_SIZE = 30;
 	final int MAX_ITERATION = 1000;

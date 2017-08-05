@@ -1,6 +1,7 @@
 package newpso;
 
 //public interface PSOConstants
+/*
 public class PSOConstants
 {
 	int SWARM_SIZE = 30;
@@ -11,3 +12,4 @@ public class PSOConstants
 	double W_UPPERBOUND = 1.0;
 	double W_LOWERBOUND = 0.0;
 }
+*/

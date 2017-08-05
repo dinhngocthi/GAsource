@@ -2,8 +2,7 @@ package newpso;
 
 public class PSOUtility 
 {
-	public static int getMinPos(double[] list) 
-	{
+	public static int getMinPos(double[] list) {
 		int pos = 0;
 		double minValue = list[0];
 		

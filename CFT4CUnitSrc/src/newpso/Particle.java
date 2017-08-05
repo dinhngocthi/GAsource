@@ -1,7 +1,6 @@
 package newpso;
 
-public class Particle 
-{
+public class Particle {
 	private double fitnessValue;
 	private Velocity velocity;
 	private Location location;
