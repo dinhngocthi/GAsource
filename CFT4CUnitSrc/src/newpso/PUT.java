@@ -18,7 +18,7 @@ public class PUT {
 		if (Math.sin(X) == 1)
 			type = 1;
 		return ret;
-	}	
+	}
 
 	public static double test (double a, double b, double c) {
 		double ret = 0;
