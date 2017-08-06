@@ -27,8 +27,7 @@ public class PSOProcess extends Thread {
 	
 	Random generator = new Random();
 	
-	public PSOProcess(int dimension) 
-	{
+	public PSOProcess(int dimension) {
 		PROBLEM_DIMENSION = dimension;
 	}
 

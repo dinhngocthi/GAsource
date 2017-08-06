@@ -1,15 +1,12 @@
 package newpso;
 
-public class PUT 
-{	
-	public static void main(String[] args)
-	{
+public class PUT {	
+	public static void main(String[] args) {
 		foo(1, 3);
 		System.out.println("OK");
 	}
 
-	public static double sin(double X)
-	{
+	public static double sin(double X) {
 		double ret = 0;
 		int type = 0;
 
@@ -22,9 +19,8 @@ public class PUT
 			type = 1;
 		return ret;
 	}	
-	
-	public static double test (double a, double b, double c)
-	{
+
+	public static double test (double a, double b, double c) {
 		double ret = 0;
 		int type = 1;
 		double d = a + b + c;
@@ -33,17 +29,15 @@ public class PUT
 		if (d == 2) ret = 0;
 		else ret = Math.abs(d - 2) + 0.1;
 		// instrument code end				
-		if (d == 2)
-		{
+		if (d == 2) {
 			System.out.println("OK");
-			type = -1;			
+			type = -1;
 		}
 		return ret;
 	}
-	
+
 	// motivation sample
-	public static double foo(int X, int Y)
-	{
+	public static double foo(int X, int Y) {
 		if (X <= 0 || Y <= 0)
 			return 0;
 		double Z;
@@ -51,8 +45,7 @@ public class PUT
 			Z = 1; //Target 1
 		else if (Y > 3 * X)
 			Z = 2; //Target 2
-		else
-		{
+		else {
 			Z = fun(X,Y);
 			if ((Z > 8) && (Y == 10))
 				if (Z == Y)
