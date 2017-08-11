@@ -67,7 +67,7 @@ public class PUT {
 			ret = x + y + Math.sin(x);
 		return ret;
 	}
-		
+
 	public static double foo1(int x, int y) {
 		// instrument code start
 		double ret = Math.abs(fun1(x, y) - 1001);
