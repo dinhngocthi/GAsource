@@ -31,13 +31,11 @@ public class PSOProcess extends Thread {
 		PROBLEM_DIMENSION = dimension;
 	}
 
-	public void run()
-	{
+	public void run() {
 		initializeSwarm();
 		updateFitnessList();
 
-		for(int i=0; i<SWARM_SIZE; i++) 
-		{
+		for (int i=0; i<SWARM_SIZE; i++) {
 			pBest[i] = fitnessValueList[i];
 			pBestLocation.add(swarm.get(i).getLocation());
 		}
@@ -46,13 +44,10 @@ public class PSOProcess extends Thread {
 		double w;
 		double err = 9999;
 
-		while(t < MAX_ITERATION && err > ProblemSet.ERR_TOLERANCE) 
-		{
+		while (t < MAX_ITERATION && err > ProblemSet.ERR_TOLERANCE) {
 			// step 1 - update pBest
-			for (int i=0; i<SWARM_SIZE; i++) 
-			{
-				if (fitnessValueList[i] < pBest[i]) 
-				{
+			for (int i=0; i<SWARM_SIZE; i++) {
+				if (fitnessValueList[i] < pBest[i]) {
 					pBest[i] = fitnessValueList[i];
 					pBestLocation.set(i, swarm.get(i).getLocation());
 				}
@@ -60,16 +55,14 @@ public class PSOProcess extends Thread {
 
 			// step 2 - update gBest
 			int bestParticleIndex = PSOUtility.getMinPos(fitnessValueList);
-			if(t == 0 || fitnessValueList[bestParticleIndex] < gBest) 
-			{
+			if(t == 0 || fitnessValueList[bestParticleIndex] < gBest) {
 				gBest = fitnessValueList[bestParticleIndex];
 				gBestLocation = swarm.get(bestParticleIndex).getLocation();
 			}
 			
 			w = W_UPPERBOUND - (((double) t) / MAX_ITERATION) * (W_UPPERBOUND - W_LOWERBOUND);
 			
-			for(int i=0; i<SWARM_SIZE; i++) 
-			{
+			for(int i=0; i<SWARM_SIZE; i++) {
 				double r1 = generator.nextDouble(); // random number between 0 and 1
 				double r2 = generator.nextDouble(); // random number between 0 and 1
 
@@ -77,8 +70,7 @@ public class PSOProcess extends Thread {
 
 				// step 3 - update velocity
 				double[] newVel = new double[PROBLEM_DIMENSION];
-				for (int j = 0; j < PROBLEM_DIMENSION; j++)
-				{
+				for (int j = 0; j < PROBLEM_DIMENSION; j++) {
 					newVel[j] = (w * p.getVelocity().getPos()[j]) + 
 							(r1 * C1) * (pBestLocation.get(i).getLoc()[j] - p.getLocation().getLoc()[j]) +
 							(r2 * C2) * (gBestLocation.getLoc()[j] - p.getLocation().getLoc()[j]);
@@ -88,8 +80,7 @@ public class PSOProcess extends Thread {
 
 				// step 4 - update location
 				double[] newLoc = new double[PROBLEM_DIMENSION];
-				for (int j = 0; j < PROBLEM_DIMENSION; j++)
-				{
+				for (int j = 0; j < PROBLEM_DIMENSION; j++) {
 					newLoc[j] = p.getLocation().getLoc()[j] + newVel[j];
 				}
 				Location loc = new Location(newLoc);
@@ -109,11 +100,9 @@ public class PSOProcess extends Thread {
 		System.out.println("===============================================");        
 	}
 	
-	public void initializeSwarm() 
-	{
+	public void initializeSwarm() {
 		Particle p;
-		for(int i=0; i<SWARM_SIZE; i++) 
-		{
+		for(int i=0; i<SWARM_SIZE; i++) {
 			p = new Particle();
 			
 			// randomize location inside a space defined in Problem Set
