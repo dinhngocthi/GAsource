@@ -9,10 +9,24 @@ public class Sample {
 		//weak(1, 2);
 		//test(1);
 		//System.out.print(foo(9, 2));
-		foo(9, 2);
+		//foo(9, 2);
+//		sample(1, 2, 3);
 		//sin(1);
+		
+		sample(10,11,11);
+//		sample(-77,93,93);
+//		sample(-2147483648,0,0);
+//		sample(-2147483648,-77,86);
+
 	}
 
+	public static void sample(int x,int y,int z) { 
+		if(y==z)
+			if(y>0)
+				if(x==10)
+					System.out.println("OK");
+	}
+	
 	public static double sin(double X)
 	{
 		double ret = 0;
