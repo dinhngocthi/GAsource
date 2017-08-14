@@ -62,7 +62,7 @@ public class PSOProcess extends Thread {
 			
 			w = W_UPPERBOUND - (((double) t) / MAX_ITERATION) * (W_UPPERBOUND - W_LOWERBOUND);
 			
-			for(int i=0; i<SWARM_SIZE; i++) {
+			for (int i=0; i<SWARM_SIZE; i++) {
 				double r1 = generator.nextDouble(); // random number between 0 and 1
 				double r2 = generator.nextDouble(); // random number between 0 and 1
 
@@ -123,10 +123,8 @@ public class PSOProcess extends Thread {
 		}
 	}
 	
-	public void updateFitnessList() 
-	{
-		for(int i = 0; i < SWARM_SIZE; i++) 
-		{
+	public void updateFitnessList() {
+		for(int i = 0; i < SWARM_SIZE; i++) {
 			fitnessValueList[i] = swarm.get(i).getFitnessValue();
 		}
 	}
