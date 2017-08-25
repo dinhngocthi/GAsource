@@ -13,11 +13,30 @@ public class Sample {
 //		sample(1, 2, 3);
 		//sin(1);
 		
-		sample(10,11,11);
+//		sample(10,11,11);
 //		sample(-77,93,93);
 //		sample(-2147483648,0,0);
 //		sample(-2147483648,-77,86);
+		foo1(0, 1503);
+	}
 
+	public static int foo1(int x, int y) {
+		y =  y - 500;
+		if (fun1(x, y) == 1002) {
+			System.out.println("target");
+			return 0;
+		}
+
+		return 1;
+	}
+
+	public static double fun1(int x, int y) {
+		double ret = 0;
+		x = x - 1;
+		if (y != 0)
+			ret = x + y + Math.sin(x + 1);
+		System.out.println("fun11");
+		return ret;
 	}
 
 	public static void sample(int x,int y,int z) { 
@@ -27,8 +46,7 @@ public class Sample {
 					System.out.println("OK");
 	}
 	
-	public static double sin(double X)
-	{
+	public static double sin(double X) {
 		double ret = 0;
 		int type = 0;
 
@@ -41,7 +59,7 @@ public class Sample {
 			type = 1;
 		return ret;
 	}
-	
+
 	// motivation sample
 	public static double foo(int X, int Y)
 	{

@@ -60,7 +60,7 @@ public class MyClassWithPathAnnotations {
     			y = 1;
     		z = 2;
     	}
-    	System.out.println("D.N.Thi");
+    	System.out.println("D.N.Thi Thi");
     }
 
     public void sample2(int n)

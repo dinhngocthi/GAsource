@@ -2,8 +2,8 @@ package newpso;
 
 public class PUT {	
 	public static void main(String[] args) {
-		foo(1, 3);
-		System.out.println("OK");
+		//foo(1, 3);
+		foo1(0, 1001);
 	}
 
 	public static double sin(double X) {
