@@ -16,7 +16,7 @@ sourcepath=${jpf-symbc}/src/examples
 # in this particular configuration all the input
 # parameters to methods test2 and test are symbolic
 
-symbolic.dp=choco
+#symbolic.dp=choco
 
 #symbolic.dp=cvc3
 #symbolic.dp=cvc3bitvec
@@ -27,7 +27,7 @@ symbolic.dp=choco
 # "none" (default), "cvc" (recommended), "automata" or
 # "sat". At the moment symbolic.dp must be equal to
 # "choco" for it to work.
-symbolic.string_dp=automata
+#symbolic.string_dp=automata
 
 #Set the symbolic string executioner timeout (in ms)
 #zero for no timeout.
@@ -41,6 +41,7 @@ symbolic.string_dp_timeout_ms=0
 #symbolic.method = strings.MSExample.IsEasyChairQuery(sym)
 symbolic.method = strings.MSExample.IsPasswordQuery(sym#sym)
 
-listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
+listener = .symbc.SymbolicListener
+#listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
 
 vm.storage.class=nil

@@ -1,6 +1,5 @@
 import gov.nasa.jpf.symbc.Debug;
 
-
 public class TestZ3 {
 	public static void test(int x, int y) {
 		if(x-y<=y)

@@ -18,8 +18,22 @@ public class Sample {
 //		sample(-2147483648,0,0);
 //		sample(-2147483648,-77,86);
 		foo1(0, 1503);
+//		checkpw("thi", "thi1");
 	}
 
+	public static int checkpw(String pw1, String pw2) {
+		int ret = 0;
+		if (pw1.equals(pw2)) {
+			ret = 1;
+			System.out.println("Mathched");
+		}
+		else
+			System.out.println("UnMathched");
+
+		return ret;
+	}
+	
+	
 	public static int foo1(int x, int y) {
 		y =  y - 500;
 		if (fun1(x, y) == 1002) {
@@ -61,8 +75,7 @@ public class Sample {
 	}
 
 	// motivation sample
-	public static double foo(int X, int Y)
-	{
+	public static double foo(int X, int Y) {
 		if(X<=0 || Y<=0)
 			return 0;
 		double Z;

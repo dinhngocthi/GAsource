@@ -53,7 +53,6 @@ public class StringTest {
 		s5 = s5.concat("hello");
 		//String s6=s5.replace('a','b');
 		if(s5.equals("hello"))
-
 			System.out.println("!!!!!!!!!!!!!! HERE1");
 		else
 			System.out.println("!!!!!!!!!!!!!! HERE2");
