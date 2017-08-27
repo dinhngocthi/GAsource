@@ -183,7 +183,7 @@ public class SESimpleDot extends ListenerAdapter {
   {
     int id = search.getStateId();
     long edgeId = ((long)lastId << 32) | id;
-    //↓D.N.Thi
+    //D.N.Thi start
     ChoiceGenerator<?> cg = search.getVM().getChoiceGenerator();
     sourceLocation = cg.getSourceLocation();
     int ix = sourceLocation.indexOf("(");
@@ -200,7 +200,7 @@ public class SESimpleDot extends ListenerAdapter {
         pc = prevPcGen.getCurrentPC();
     else
         pc = new PathCondition();
-    //↑D.N.Thi
+    //D.N.Thi end
 
     if (id <0 || seenEdges.contains(edgeId))
     {

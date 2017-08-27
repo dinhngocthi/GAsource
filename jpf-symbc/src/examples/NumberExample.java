@@ -7,7 +7,7 @@ public class NumberExample {
 		Number n = new Integer(val);
 		if(n.doubleValue() == 10.0) {
 			System.out.println("foo");
-		} else{
+		} else {
 			System.out.println("boo");
 		}
 		if(n.intValue() == 10) {
