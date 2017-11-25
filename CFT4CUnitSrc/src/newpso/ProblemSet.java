@@ -15,7 +15,7 @@ public class ProblemSet {
 	public static final double VEL_LOW = -1;
 	public static final double VEL_HIGH = 1;
 	
-	public static final double ERR_TOLERANCE = 1E-10; // the smaller the tolerance, the more accurate the result, 
+	public static final double ERR_TOLERANCE = 1E-13; // the smaller the tolerance, the more accurate the result, 
 	//public static final double ERR_TOLERANCE = 1E-15; // the smaller the tolerance, the more accurate the result,
 	                                                  // but the number of iteration is increased
 	private static final double k = 0.1;
@@ -30,7 +30,9 @@ public class ProblemSet {
 */		
 		//result = Math.pow((x1-1), 2) + Math.pow((x2-2), 2) + Math.pow((x3-3), 2);
 		//result = Math.abs(x1+x4-1) + Math.abs(x2-2) + Math.abs(x3-3);
-		result = PUT.foo1((int)x1, (int)x2);
+		//result = PUT.foo1((int)x1, (int)x2);
+		
+		result = Math.abs((x1 + x2 + Math.sin(x1 + x2)) - 10);
 		//result = PUT.foo1(0, 1000);
 		return result;
 	}	

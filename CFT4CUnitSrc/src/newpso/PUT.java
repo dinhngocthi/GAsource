@@ -6,6 +6,17 @@ public class PUT {
 		foo1(0, 1001);
 	}
 
+	public static int foo(double x, double y) {
+		int ret = 0;
+		//  Best X1: 265.292584
+	     // Best X2: -254.292594
+		if ((x + y + Math.sin(x + y)) == 10) {             
+			ret = 1; // branch 1
+		}
+
+		return ret;
+	}
+	
 	public static double sin(double X) {
 		double ret = 0;
 		int type = 0;
