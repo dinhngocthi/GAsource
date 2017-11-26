@@ -8,8 +8,6 @@ public class PUT {
 
 	public static int foo(double x, double y) {
 		int ret = 0;
-		//  Best X1: 265.292584
-	     // Best X2: -254.292594
 		if ((x + y + Math.sin(x + y)) == 10) {             
 			ret = 1; // branch 1
 		}
