@@ -1,0 +1,10 @@
+INITIALIZING NEURAL CITATION NETWORK WITH AUTHORS = True
+Running on: cuda
+Number of model parameters: 7,919,716
+Encoders: # Filters = 64, Context filter length = [4, 4, 5],  Context filter length = [1, 2]
+Embeddings: Dimension = 64, Pad index = 1, Context vocab = 20002, Author vocab = 20002, Title vocab = 20004
+Decoder: # GRU cells = 2, Hidden size = 64
+Parameters: Dropout = 0.2, Show attention = False
+-------------------------------------------------
+TRAINING SETTINGS
+Seed = 34, # Epochs = 30, Batch size = 64, Initial lr = 0.001, Valid loss = 1956.071703946059
