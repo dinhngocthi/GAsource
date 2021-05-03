@@ -1,3 +1,5 @@
+import java.io.File;
+
 //
 // Copyright (C) 2010 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
@@ -23,8 +25,18 @@
 public class HelloWorld {
   public static void main(String[] args)
   {
-      classify(3, 3, 3);
-    System.out.println("I won't say it!");
+    //classify(3, 3, 3);
+    //File folder = new File("Z:/10_Projects/50_タウ案件/99_BK/ToVA/仕様変更第二/trunk/02.外部設計/01.新販売ウェブサイト構築/５．画面一覧／画面設計/画面設計書/管理");
+    File folder = new File("Z:/10_Projects/50_タウ案件/99_BK/ToVA/仕様変更第二/trunk/02.外部設計/01.新販売ウェブサイト構築/５．画面一覧／画面設計/画面設計書/フロント");
+    File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+          if (listOfFiles[i].isFile()) {
+            System.out.println(listOfFiles[i].getName());
+          } else if (listOfFiles[i].isDirectory()) {
+            System.out.println("Directory " + listOfFiles[i].getName());
+          }
+        }
   }
   
   static int classify (int a, int b, int c) 
