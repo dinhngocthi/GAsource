@@ -140,8 +140,10 @@ class NCNEncoder(nn.Module):
     - **authors** *(bool)*: Use author information in the encoder.   
     """
     def __init__(self, context_filters: Filters,
+                       title_filters: Filters,  #Thi added
                        author_filters: Filters,
                        context_vocab_size: int,
+                       title_vocab_size: int,
                        author_vocab_size: int,
                        num_filters: int,
                        embed_size: int,
@@ -158,13 +160,20 @@ class NCNEncoder(nn.Module):
         self.context_embedding = nn.Embedding(context_vocab_size, embed_size, padding_idx=pad_idx)
         self.context_encoder = TDNNEncoder(context_filters, num_filters, embed_size)
 
+        # Thi added start
+        # title encoder
+        self.title_embedding = nn.Embedding(title_vocab_size, embed_size, padding_idx=pad_idx)
+        self.title_encoder = TDNNEncoder(title_filters, num_filters, embed_size)
+        # Thi added end
+
         # author encoder
         if self.use_authors:
             self.author_embedding = nn.Embedding(author_vocab_size, embed_size, padding_idx=pad_idx)
             self.citing_author_encoder = TDNNEncoder(author_filters, num_filters, embed_size)
             self.cited_author_encoder = TDNNEncoder(author_filters, num_filters, embed_size)
 
-    def forward(self, context: Tensor, 
+    #def forward(self, context: Tensor, 
+    def forward(self, context: Tensor, title: Tensor,    # Thi added
                 authors_citing: Tensor = None, authors_cited: Tensor = None) -> Tensor:
         """
         ## Input:  
@@ -200,8 +209,15 @@ class NCNEncoder(nn.Module):
             logger.debug(f"Citing author encoding shape: {authors_citing.shape}")
             logger.debug(f"Cited author encoding shape: {authors_cited.shape}")
 
+            # Thi added start
+            title = self.dropout(self.title_embedding(title))
+            title = self.title_encoder(title)
+            logger.debug(f"Title encoding shape: {title.shape}")
+            # Thi added end
+
             # [N: batch_size, F: total # of filters (authors, cntxt), D: embedding size]
-            return torch.cat([context, authors_citing, authors_cited], dim=0)
+            #return torch.cat([context, authors_citing, authors_cited], dim=0)
+            return torch.cat([context, title, authors_citing, authors_cited], dim=1) # Thi added
         
         return context
 
@@ -380,6 +396,7 @@ class NeuralCitationNetwork(nn.Module):
     - **show_attention** *(bool=false)*: Returns attention tensors if true.  
     """
     def __init__(self, context_filters: Filters,
+                       title_filters: Filters,  #Thi added
                        author_filters: Filters,
                        context_vocab_size: int,
                        title_vocab_size: int,
@@ -396,6 +413,7 @@ class NeuralCitationNetwork(nn.Module):
 
         self.use_authors = authors
         self.context_filter_list = context_filters
+        self.title_filters_list = title_filters  # Thi added
         self.author_filter_list = author_filters
         self.num_filters = num_filters # num filters for context == num filters for authors
 
@@ -416,8 +434,10 @@ class NeuralCitationNetwork(nn.Module):
         
         # Encoder
         self.encoder = NCNEncoder(context_filters = self.context_filter_list,
+                                  title_filters = self.title_filters_list,
                                   author_filters = self.author_filter_list,
                                   context_vocab_size = self.context_vocab_size,
+                                  title_vocab_size = self.title_vocab_size, # Thi added
                                   author_vocab_size = self.author_vocab_size,
                                   num_filters = self.num_filters,
                                   embed_size = self.embed_size,
@@ -483,7 +503,8 @@ class NeuralCitationNetwork(nn.Module):
             Tensor containing the decoder attention states.
         """
         
-        encoder_outputs = self.encoder(context, authors_citing, authors_cited)
+        #encoder_outputs = self.encoder(context, authors_citing, authors_cited)
+        encoder_outputs = self.encoder(context, title, authors_citing, authors_cited) # Thi added
         
         batch_size = title.shape[1]
         max_len = title.shape[0]

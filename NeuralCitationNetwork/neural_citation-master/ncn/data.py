@@ -421,5 +421,5 @@ if __name__ == '__main__':
     # clean_incomplete_data(path_to_data)
     # prepare_data(path_to_data)
     #data = get_bucketized_iterators("/home/timo/DataSets/KD_arxiv_CS/arxiv_data.csv")
-    data = get_bucketized_iterators("D:/Thi.DN/PhD/ThayBay/GCN/ebookML_src-master/src/neural_citation-master/ncn/arxiv_data_4.csv")
+    data = get_bucketized_iterators("ncn/arxiv_data_2.csv")
     print(data)
