@@ -193,6 +193,7 @@ class NCNEncoder(nn.Module):
         """
         # Embed and encode context
         context = self.dropout(self.context_embedding(context))
+
         context = self.context_encoder(context)
         logger.debug(f"Context encoding shape: {context.shape}")
 
