@@ -217,7 +217,7 @@ class NCNEncoder(nn.Module):
 
             # [N: batch_size, F: total # of filters (authors, cntxt), D: embedding size]
             #return torch.cat([context, authors_citing, authors_cited], dim=0)
-            return torch.cat([context, title, authors_citing, authors_cited], dim=1) # Thi added
+            return torch.cat([context, title, authors_citing, authors_cited], dim=0) # Thi added
         
         return context
 
@@ -434,7 +434,7 @@ class NeuralCitationNetwork(nn.Module):
         
         # Encoder
         self.encoder = NCNEncoder(context_filters = self.context_filter_list,
-                                  title_filters = self.title_filters_list,
+                                  title_filters = self.title_filters_list,  # Thi added
                                   author_filters = self.author_filter_list,
                                   context_vocab_size = self.context_vocab_size,
                                   title_vocab_size = self.title_vocab_size, # Thi added
@@ -462,7 +462,7 @@ class NeuralCitationNetwork(nn.Module):
             f"\nRunning on: {DEVICE}"
             f"\nNumber of model parameters: {self.count_parameters():,}"
             f"\nEncoders: # Filters = {self.num_filters}, "
-            f"Context filter length = {self.context_filter_list},  Context filter length = {self.author_filter_list}"
+            f"Context filter length = {self.context_filter_list},  Author filter length = {self.author_filter_list}"
             f"\nEmbeddings: Dimension = {self.embed_size}, Pad index = {self.pad_idx}, Context vocab = {self.context_vocab_size}, "
             f"Author vocab = {self.author_vocab_size}, Title vocab = {self.title_vocab_size}"
             f"\nDecoder: # GRU cells = {self.num_layers}, Hidden size = {self.hidden_size}"

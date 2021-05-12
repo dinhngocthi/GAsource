@@ -95,6 +95,9 @@ def train(model: nn.Module, iterator: BucketIterator,
     
     epoch_loss = 0
     
+    tqdmnotebook = tqdm_notebook(iterator, desc="Training batches") #Thi added
+    enume = enumerate(tqdmnotebook)                                 #Thi added
+
     for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
         
         # unpack and move to GPU if available
