@@ -94,14 +94,12 @@ def train(model: nn.Module, iterator: BucketIterator,
     model.train()
     
     epoch_loss = 0
-    
-    tqdmnotebook = tqdm_notebook(iterator, desc="Training batches") #Thi added
-    enume = enumerate(tqdmnotebook)                                 #Thi added
 
     for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
         
         # unpack and move to GPU if available
         cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
+        #ttl = torch.transpose(ttl, 0, 1) #Thi added
         cntxt = cntxt.to(DEVICE)
         citing = citing.to(DEVICE)
         ttl = ttl.to(DEVICE)
@@ -223,8 +221,6 @@ def train_model(model: nn.Module, train_iterator: BucketIterator, valid_iterator
     logger.info(settings)
 
     for epoch in tnrange(n_epochs, desc= "Epochs"):
-        print("Thi epoch = ", epoch) #Thi added
-
         start_time = time.time()
         
         train_loss = train(model, train_iterator, optimizer, criterion, clip)
