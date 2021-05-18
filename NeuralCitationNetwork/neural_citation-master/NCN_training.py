@@ -49,3 +49,5 @@ train_losses, valid_losses = train_model(model = net,
                                          lr = 0.001,
                                          pad = PAD_IDX,
                                          model_name = "embed_128_hid_128_1_GRU")
+         
+print("Training completed")
