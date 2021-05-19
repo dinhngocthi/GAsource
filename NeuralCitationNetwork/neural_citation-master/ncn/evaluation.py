@@ -41,7 +41,8 @@ class Evaluator:
         If False, the corpus is built from the complete dataset (inference mode).   
     - **show_attention** *(bool=false)*: Returns attention tensors if true.      
     """
-    def __init__(self, context_filters: Filters, author_filters: Filters,
+    #def __init__(self, context_filters: Filters, author_filters: Filters,
+    def __init__(self, context_filters: Filters, title_filters: Filters, author_filters: Filters,    #Thi added
                  num_filters: int, embed_size:int, num_layers: int,
                  path_to_weights: PathOrStr, data: BaseData, 
                  evaluate: bool = True, show_attention: bool = False):
@@ -52,6 +53,7 @@ class Evaluator:
         self.criterion = nn.CrossEntropyLoss(ignore_index = self.pad, reduction="none")
 
         self.model = NeuralCitationNetwork(context_filters=context_filters,
+                                            title_filters=title_filters,   #Thi added
                                             author_filters=author_filters,
                                             context_vocab_size=len(self.context.vocab),
                                             title_vocab_size=len(self.title.vocab),
@@ -65,7 +67,8 @@ class Evaluator:
                                             dropout_p=0.2,
                                             show_attention=show_attention)
         self.model.to(DEVICE)
-        self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE))
+        #self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE))
+        self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE), strict=False) #Thi added        
         self.model.eval()
         logger.info(self.model.settings)
 
@@ -87,10 +90,10 @@ class Evaluator:
             self.bm25 = BM25(self.corpus)
             
             # load mapping to give proper recommendations
-            with open("../assets/title_tokenized_to_full.pkl", "rb") as fp:
+            with open("assets/title_tokenized_to_full.pkl", "rb") as fp:
                 self.title_to_full = pickle.load(fp)
 
-        with open("../assets/title_to_aut_cited.pkl", "rb") as fp:
+        with open("assets/title_to_aut_cited.pkl", "rb") as fp:
             self.title_aut_cited = pickle.load(fp)
 
     @staticmethod

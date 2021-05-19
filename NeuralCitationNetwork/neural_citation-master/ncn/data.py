@@ -324,11 +324,8 @@ def get_fields() -> Tuple[Field, Field, Field]:
     ttl_tokenizer = partial(title_context_preprocessing, tokenizer=tokenizer, identifier="title_cited")
 
     # instantiate fields preprocessing the relevant data
-    TTL = Field(tokenize=ttl_tokenizer, 
-                stop_words=STOPWORDS,
-                init_token = '<sos>', 
-                eos_token = '<eos>',
-                lower=True)
+    TTL = Field(tokenize=ttl_tokenizer, stop_words=STOPWORDS, init_token = '<sos>', eos_token = '<eos>', lower=True)
+    #TTL = Field(tokenize=ttl_tokenizer, stop_words=STOPWORDS, lower=True, batch_first=True) #Thi added
 
     AUT = Field(tokenize=author_preprocessing, batch_first=True, lower=True)
 
