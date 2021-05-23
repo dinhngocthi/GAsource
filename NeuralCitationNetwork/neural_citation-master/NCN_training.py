@@ -6,14 +6,12 @@ torch.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
 # set up training
-data = get_bucketized_iterators("ncn/arxiv_data_2.csv",
+data = get_bucketized_iterators("ncn/arxiv_data_XXX.csv",
                                 batch_size = 64,
                                 len_context_vocab = 20000,
                                 len_title_vocab = 20000,
                                 len_aut_vocab = 20000)
-                                #len_context_vocab = 20,
-                                #len_title_vocab = 20,
-                                #len_aut_vocab = 20)
+
 PAD_IDX = data.ttl.vocab.stoi['<pad>']
 cntxt_vocab_len = len(data.cntxt.vocab)
 aut_vocab_len = len(data.aut.vocab)
