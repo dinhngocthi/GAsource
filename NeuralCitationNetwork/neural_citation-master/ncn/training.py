@@ -4,7 +4,9 @@ import random
 import logging
 from pathlib import Path
 from datetime import datetime
-from tqdm import tqdm_notebook, tnrange
+#from tqdm import tqdm_notebook, tnrange
+from tqdm import tnrange # Thi added
+from tqdm.notebook import tqdm  # Thi added
 from typing import List, Tuple
 
 import torch
@@ -95,24 +97,28 @@ def train(model: nn.Module, iterator: BucketIterator,
     
     epoch_loss = 0
 
-    for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
+    #for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
+    for i, batch in enumerate(tqdm(iterator, desc="Training batches")):          #Thi added        
         
         # unpack and move to GPU if available
-        cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
+        #cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
+        cntxt, citing, ttl, cited, ttl2 = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited, batch.title_cited_2 # Thi added
         #ttl = torch.transpose(ttl, 0, 1) #Thi added
         cntxt = cntxt.to(DEVICE)
         citing = citing.to(DEVICE)
         ttl = ttl.to(DEVICE)
+        ttl2 = ttl2.to(DEVICE)   # Thi added
         cited = cited.to(DEVICE)
         
         optimizer.zero_grad()
         
-        output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
+        #output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
+        output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited, title2 = ttl2) # Thi added
         
         #ttl = [trg sent len, batch size]
         #output = [trg sent len, batch size, output dim]
          
-        output = output[1:].view(-1, output.shape[-1])
+        output = output[1:].view(-1, output.shape[-1])        
         ttl = ttl[1:].view(-1)
         
         #ttl = [(trg sent len - 1) * batch size]
@@ -154,20 +160,22 @@ def evaluate(model: nn.Module, iterator: BucketIterator, criterion: nn.Module):
     
     with torch.no_grad():
     
-        for i, batch in enumerate(tqdm_notebook(iterator, desc="Evaluating batches")):
-
+        #for i, batch in enumerate(tqdm_notebook(iterator, desc="Evaluating batches")):
+        for i, batch in enumerate(tqdm(iterator, desc="Evaluating batches")):    # Thi added
             # unpack and move to GPU if available
-            cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
+            #cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
+            cntxt, citing, ttl, cited, ttl2 = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited, batch.title_cited_2 # Thi added 
             cntxt = cntxt.to(DEVICE)
             citing = citing.to(DEVICE)
-            ttl = ttl.to(DEVICE)
+            ttl = ttl.to(DEVICE)            
             cited = cited.to(DEVICE)
+            ttl2 = ttl2.to(DEVICE)  # Thi added
             
-            output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
+            #output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
+            output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited, title2 = ttl2) # Thi added
 
             output = output[1:].view(-1, output.shape[-1])
             ttl = ttl[1:].view(-1)
-
 
             loss = criterion(output, ttl)
 

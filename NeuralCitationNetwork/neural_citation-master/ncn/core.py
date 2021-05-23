@@ -27,6 +27,8 @@ class IteratorData(NamedTuple):
     """**cntxt** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for context data."""
     ttl: Field
     """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
+    ttl2: Field # Thi added
+    """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""    
     aut: Field
     """**aut** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for author data."""
     train_iter: BucketIterator
@@ -55,6 +57,8 @@ class BaseData(NamedTuple):
     cntxt: Field
     """**cntxt** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for context data"""
     ttl: Field
+    """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
+    ttl2: Field  # Thi added
     """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
     aut: Field
     """**aut** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for author data."""

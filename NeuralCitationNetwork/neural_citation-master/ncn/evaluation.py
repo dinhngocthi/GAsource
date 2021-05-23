@@ -10,7 +10,8 @@ from torch import nn
 import torch.nn.functional as F
 from gensim.summarization.bm25 import BM25
 from torchtext.data import TabularDataset
-from tqdm import tqdm_notebook
+#from tqdm import tqdm_notebook
+from tqdm.notebook import tqdm  # Thi added
 
 import ncn.core
 from ncn.core import BaseData, Stringlike, PathOrStr, DEVICE, Filters
@@ -168,7 +169,8 @@ class Evaluator:
         recall_list = []
         with torch.no_grad():
             # set to the first 20k due to high computation time
-            for example in tqdm_notebook(self.data.test[:20000]):
+            #for example in tqdm_notebook(self.data.test[:20000]):
+            for example in tqdm(self.data.test[:20000]):        # Thi added      
                 # numericalize query
                 context = self.context.numericalize([example.context])
                 citing = self.context.numericalize([example.authors_citing])

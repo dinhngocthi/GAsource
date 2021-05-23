@@ -210,7 +210,7 @@ class NCNEncoder(nn.Module):
             logger.debug(f"Cited author encoding shape: {authors_cited.shape}")
 
             # Thi added start
-            title = torch.transpose(title, 0, 1) #Thi added
+            #title = torch.transpose(title, 0, 1) #Thi added
             title = self.dropout(self.title_embedding(title))
             title = self.title_encoder(title)            
             logger.debug(f"Title encoding shape: {title.shape}")
@@ -477,7 +477,8 @@ class NeuralCitationNetwork(nn.Module):
         return sum(p.numel() for p in self.parameters() if p.requires_grad)
 
     def forward(self, context: Tensor, title: Tensor, 
-                authors_citing: Tensor = None, authors_cited: Tensor = None,
+                #authors_citing: Tensor = None, authors_cited: Tensor = None,
+                authors_citing: Tensor = None, authors_cited: Tensor = None, title2: Tensor = None,  # Thi added
                 teacher_forcing_ratio: float = 1):
         """
         ## Parameters:  
@@ -506,11 +507,11 @@ class NeuralCitationNetwork(nn.Module):
         """
         
         #encoder_outputs = self.encoder(context, authors_citing, authors_cited)
-        encoder_outputs = self.encoder(context, title, authors_citing, authors_cited) # Thi added
+        encoder_outputs = self.encoder(context, title2, authors_citing, authors_cited) # Thi added
         
-        batch_size = title.shape[1]
-        max_len = title.shape[0]
-        
+        batch_size = title.shape[1]        
+        max_len = title.shape[0]        
+                
         #tensor to store decoder outputs
         outputs = torch.zeros(max_len, batch_size, self.title_vocab_size).to(DEVICE)   
         #first input to the decoder is the <sos> tokens

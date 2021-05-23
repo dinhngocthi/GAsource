@@ -15,13 +15,15 @@ from spacy.tokenizer import Tokenizer
 from spacy.lang.en import English
 from torchtext.data import Field, BucketIterator, Dataset, TabularDataset
 
-import ncn.core
-#import core
-from ncn.core import PathOrStr, IteratorData, BaseData, get_stopwords
-#from core import PathOrStr, IteratorData, BaseData, get_stopwords
-from ncn.core import CITATION_PATTERNS, MAX_TITLE_LENGTH, MAX_CONTEXT_LENGTH, MAX_AUTHORS, SEED
-#from core import CITATION_PATTERNS, MAX_TITLE_LENGTH, MAX_CONTEXT_LENGTH, MAX_AUTHORS, SEED
+from tqdm.notebook import tqdm
 
+import ncn.core
+from ncn.core import PathOrStr, IteratorData, BaseData, get_stopwords
+from ncn.core import CITATION_PATTERNS, MAX_TITLE_LENGTH, MAX_CONTEXT_LENGTH, MAX_AUTHORS, SEED
+
+#import core
+#from core import PathOrStr, IteratorData, BaseData, get_stopwords
+#from core import CITATION_PATTERNS, MAX_TITLE_LENGTH, MAX_CONTEXT_LENGTH, MAX_AUTHORS, SEED
 
 logger = logging.getLogger(__name__)
 
@@ -228,7 +230,6 @@ def prepare_data(path: PathOrStr) -> None:
     dataset.to_csv(save_path, compression=None, index=False, index_label=False)
     logger.info(f"Dataset with {len(dataset)} samples has been saved to: {save_path}.")
 
-
 def title_context_preprocessing(text: str, tokenizer: Tokenizer, identifier:str) -> List[str]:
     """
     Applies the following preprocessing steps on a string:  
@@ -257,6 +258,7 @@ def title_context_preprocessing(text: str, tokenizer: Tokenizer, identifier:str)
     text = [token.lemma_ for token in tokenizer(text) if not token.like_num]
     text = [token for token in text if token.strip()]
 
+    global globaltitle_cited # Thi added
     # return the sequence up to max length or totally if shorter
     # max length depends on the type of processed text
     if identifier == "context":
@@ -266,9 +268,19 @@ def title_context_preprocessing(text: str, tokenizer: Tokenizer, identifier:str)
             return text
     elif identifier == "title_cited":
         try:
-            return text[:MAX_TITLE_LENGTH]
+            globaltitle_cited = text[:MAX_TITLE_LENGTH]   # Thi added
+            return globaltitle_cited                      # Thi added
+            #return text[:MAX_TITLE_LENGTH]
         except IndexError:
             return text
+    # Thi added start
+    elif identifier == "title_cited_2":
+        try:            
+            #return text[:MAX_TITLE_LENGTH]
+            return globaltitle_cited
+        except IndexError:
+            return text
+    # Thi added end
     else:
         raise NameError("Identifier name could not be found.")
 
@@ -301,8 +313,8 @@ def author_preprocessing(text: str) -> List[str]:
     except IndexError:
         return text
 
-
-def get_fields() -> Tuple[Field, Field, Field]:
+#def get_fields() -> Tuple[Field, Field, Field]:
+def get_fields() -> Tuple[Field, Field, Field, Field]:  # Thi added
     """
     Initializer for the torchtext Field objects used to numericalize textual data.  
     
@@ -322,17 +334,16 @@ def get_fields() -> Tuple[Field, Field, Field]:
     STOPWORDS = get_stopwords()
     cntxt_tokenizer = partial(title_context_preprocessing, tokenizer=tokenizer, identifier="context")
     ttl_tokenizer = partial(title_context_preprocessing, tokenizer=tokenizer, identifier="title_cited")
+    ttl_tokenizer2 = partial(title_context_preprocessing, tokenizer=tokenizer, identifier="title_cited_2") # Thi added
 
     # instantiate fields preprocessing the relevant data
-    TTL = Field(tokenize=ttl_tokenizer, stop_words=STOPWORDS, init_token = '<sos>', eos_token = '<eos>', lower=True)
-    #TTL = Field(tokenize=ttl_tokenizer, stop_words=STOPWORDS, lower=True, batch_first=True) #Thi added
-
-    AUT = Field(tokenize=author_preprocessing, batch_first=True, lower=True)
-
+    TTL   = Field(tokenize=ttl_tokenizer, stop_words=STOPWORDS, init_token = '<sos>', eos_token = '<eos>', lower=True)
+    TTL2  = Field(tokenize=ttl_tokenizer2, stop_words=STOPWORDS, init_token = '<sos>', eos_token = '<eos>', lower=True, batch_first=True)   #Thi added    
+    AUT   = Field(tokenize=author_preprocessing, batch_first=True, lower=True)
     CNTXT = Field(tokenize=cntxt_tokenizer, stop_words=STOPWORDS, lower=True, batch_first=True)
 
-    return CNTXT, TTL, AUT
-
+    #return CNTXT, TTL, AUT
+    return CNTXT, TTL, TTL2, AUT  # Thi added
 
 def get_datasets(path_to_data: PathOrStr, 
                  len_context_vocab: int,
@@ -360,24 +371,28 @@ def get_datasets(path_to_data: PathOrStr,
     state = random.getstate()
 
     logger.info("Getting fields...")
-    CNTXT, TTL, AUT = get_fields()
+    #CNTXT, TTL, AUT = get_fields()
+    CNTXT, TTL, TTL2, AUT = get_fields() # Thi added
     # generate torchtext dataset from a .csv given the fields for each datatype
-    # has to be single dataset in order to build proper vocabularies
+    # has to be single dataset in order to build proper vocabularies    
     logger.info("Loading dataset...")
     dataset = TabularDataset(str(path_to_data), "CSV",
-                       [("context", CNTXT), ("authors_citing", AUT), ("title_cited", TTL), ("authors_cited", AUT)],
+                       #[("context", CNTXT), ("authors_citing", AUT), ("title_cited", TTL), ("authors_cited", AUT)],
+                       [("context", CNTXT), ("authors_citing", AUT), ("title_cited", TTL), ("authors_cited", AUT), ("title_cited_2", TTL2)], # Thi added
                        skip_header=True)
 
     # build field vocab before splitting data
     logger.info("Building vocab...")
-    TTL.build_vocab(dataset, max_size=len_title_vocab)
-    AUT.build_vocab(dataset, max_size=len_aut_vocab)
     CNTXT.build_vocab(dataset, max_size=len_context_vocab)
-
+    TTL.build_vocab(dataset, max_size=len_title_vocab)        
+    AUT.build_vocab(dataset, max_size=len_aut_vocab)
+    TTL2.build_vocab(dataset, max_size=len_title_vocab) # Thi added
+    
     # split dataset
     train, valid, test = dataset.split([0.8,0.1,0.1], random_state = state)
     
-    return BaseData(cntxt=CNTXT, ttl=TTL, aut=AUT, train=train, valid=valid, test=test)
+    #return BaseData(cntxt=CNTXT, ttl=TTL, aut=AUT, train=train, valid=valid, test=test)
+    return BaseData(cntxt=CNTXT, ttl=TTL, ttl2=TTL2, aut=AUT, train=train, valid=valid, test=test) # Thi added
 
 
 def get_bucketized_iterators(path_to_data: PathOrStr, batch_size: int = 16,
@@ -410,13 +425,22 @@ def get_bucketized_iterators(path_to_data: PathOrStr, batch_size: int = 16,
                                                                           sort_within_batch = True,
                                                                           sort_key = lambda x : len(x.title_cited))
     
-    return IteratorData(data.cntxt, data.ttl, data.aut, train_iterator, valid_iterator, test_iterator)
+    #return IteratorData(data.cntxt, data.ttl, data.aut, train_iterator, valid_iterator, test_iterator)
+    return IteratorData(data.cntxt, data.ttl, data.ttl2, data.aut, train_iterator, valid_iterator, test_iterator) # Thi added
 
 
 if __name__ == '__main__':
     # path_to_data = "/home/timo/DataSets/KD_arxiv_CS/arxiv-cs"
     # clean_incomplete_data(path_to_data)
     # prepare_data(path_to_data)
-    #data = get_bucketized_iterators("/home/timo/DataSets/KD_arxiv_CS/arxiv_data.csv")
-    data = get_bucketized_iterators("ncn/arxiv_data_2.csv")
-    print(data)
+    #data = get_bucketized_iterators("/home/timo/DataSets/KD_arxiv_CS/arxiv_data.csv")    
+    data = get_bucketized_iterators("ncn/arxiv_data_XXX.csv",
+                                batch_size = 64,
+                                len_context_vocab = 20000,
+                                len_title_vocab = 20000,
+                                len_aut_vocab = 20000)
+    #for i, batch in enumerate(tqdm_notebook(data.train_iter, desc="Training batches")):    
+    for i, batch in enumerate(tqdm(data.train_iter, desc="Training batches")):            
+        print(batch)
+    
+    #print(data)
