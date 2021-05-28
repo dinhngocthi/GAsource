@@ -5,6 +5,8 @@ random.seed(SEED)
 torch.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
+MODEL_NAME = "NCN_AddTitle2_embedsize=164"
+
 # set up training
 data = get_bucketized_iterators("ncn/arxiv_data_XXX.csv",
                                 batch_size = 64,
@@ -33,7 +35,8 @@ net = NeuralCitationNetwork(context_filters=[4,4,5,6,7],
                             #num_filters=256,
                             num_filters=128,
                             authors=True,
-                            embed_size=128,
+                            #embed_size=128,
+                            embed_size=196,  # Thi added
                             num_layers=1,
                             #hidden_size=256,
                             hidden_size=128,
@@ -46,6 +49,7 @@ train_losses, valid_losses = train_model(model = net,
                                          valid_iterator = data.valid_iter,
                                          lr = 0.001,
                                          pad = PAD_IDX,
-                                         model_name = "embed_128_hid_128_1_GRU")
+                                         #model_name = "NCN_AddTitle2_embedsize=164")
+                                         model_name = MODEL_NAME)
          
 print("Training completed")
