@@ -186,7 +186,8 @@ def evaluate(model: nn.Module, iterator: BucketIterator, criterion: nn.Module):
 
 def train_model(model: nn.Module, train_iterator: BucketIterator, valid_iterator: BucketIterator, pad: int, 
                 model_name: str,
-                n_epochs: int = 20, clip: float = 5., lr: float = 0.001, 
+                #n_epochs: int = 20, clip: float = 5., lr: float = 0.001, 
+                n_epochs: int = 30, clip: float = 5., lr: float = 0.001,  # Thi added
                 save_dir: PathOrStr = "./models") -> Tuple[List[float]]:
     """
     Main training function for the NCN model.  
