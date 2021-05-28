@@ -5,7 +5,7 @@ random.seed(SEED)
 torch.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
-MODEL_NAME = "NCN_AddTitle2_embedsize=164"
+MODEL_NAME = "NCN_AddTitle2_embedsize=196"
 
 # set up training
 data = get_bucketized_iterators("ncn/arxiv_data_XXX.csv",
