@@ -48,7 +48,8 @@ class Evaluator:
                  path_to_weights: PathOrStr, data: BaseData, 
                  evaluate: bool = True, show_attention: bool = False):
         self.data = data        
-        self.context, self.title, self.authors = self.data.cntxt, self.data.ttl, self.data.aut        
+        #self.context, self.title, self.authors = self.data.cntxt, self.data.ttl, self.data.aut
+        self.context, self.title, self.authors, self.title2 = self.data.cntxt, self.data.ttl, self.data.aut, self.data.ttl2  #Thi added
 
         self.pad = self.title.vocab.stoi['<pad>']
         self.criterion = nn.CrossEntropyLoss(ignore_index = self.pad, reduction="none")
@@ -203,6 +204,7 @@ class Evaluator:
                 # prepare batches
                 citeds = self.authors.numericalize(self.authors.pad(top_authors))
                 titles = self.title.numericalize(self.title.pad(top_titles))
+                titles2 = self.title2.numericalize(self.title2.pad(top_titles)) # Thi added
                 citeds = citeds.to(DEVICE)
                 titles = titles.to(DEVICE)
 
@@ -210,10 +212,12 @@ class Evaluator:
                 context = context.repeat(len(top_titles), 1)
                 citing = citing.repeat(len(top_titles), 1)
                 msg = "Evaluation batch sizes don't match!"
-                assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1], msg
+                #assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1], msg
+                assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1] == titles2.shape[0], msg  # Thi added
 
                 # calculate scores
-                output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds)
+                #output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds)
+                output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds, title2 = titles2)    # Thi added
                 output = output[1:].permute(1,2,0)
                 titles = titles[1:].permute(1,0)
 

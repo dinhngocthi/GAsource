@@ -246,7 +246,8 @@ def train_model(model: nn.Module, train_iterator: BucketIterator, valid_iterator
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
             if not save_dir.exists(): save_dir.mkdir()
-            torch.save(model.state_dict(), save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}.pt")
+            #torch.save(model.state_dict(), save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}.pt")
+            torch.save(model.state_dict(), save_dir/f"{model_name}.pt")  #Thi added
             with open(save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}_settings.txt", "w") as file:
                 file.write(settings + f", Valid loss = {valid_loss}")
         

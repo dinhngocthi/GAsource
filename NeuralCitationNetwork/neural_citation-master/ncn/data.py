@@ -258,7 +258,7 @@ def title_context_preprocessing(text: str, tokenizer: Tokenizer, identifier:str)
     text = [token.lemma_ for token in tokenizer(text) if not token.like_num]
     text = [token for token in text if token.strip()]
 
-    global globaltitle_cited # Thi added
+    global globaltitle_cited # Thi added    
     # return the sequence up to max length or totally if shorter
     # max length depends on the type of processed text
     if identifier == "context":
@@ -276,7 +276,6 @@ def title_context_preprocessing(text: str, tokenizer: Tokenizer, identifier:str)
     # Thi added start
     elif identifier == "title_cited_2":
         try:            
-            #return text[:MAX_TITLE_LENGTH]
             return globaltitle_cited
         except IndexError:
             return text
@@ -367,7 +366,8 @@ def get_datasets(path_to_data: PathOrStr,
         train (*TabularDataset*), valid (*TabularDataset*), test (*TabularDataset*) objects.
     """
     # set the seed for the data split
-    random.seed(SEED)
+    #random.seed(SEED)
+    random.seed(SEED)  #Thi added
     state = random.getstate()
 
     logger.info("Getting fields...")
@@ -434,7 +434,7 @@ if __name__ == '__main__':
     # clean_incomplete_data(path_to_data)
     # prepare_data(path_to_data)
     #data = get_bucketized_iterators("/home/timo/DataSets/KD_arxiv_CS/arxiv_data.csv")    
-    data = get_bucketized_iterators("ncn/arxiv_data_XXX.csv",
+    data = get_bucketized_iterators("ncn/arxiv_data_2xx.csv",
                                 batch_size = 64,
                                 len_context_vocab = 20000,
                                 len_title_vocab = 20000,
