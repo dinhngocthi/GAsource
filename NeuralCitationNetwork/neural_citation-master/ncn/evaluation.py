@@ -10,11 +10,10 @@ from torch import nn
 import torch.nn.functional as F
 from gensim.summarization.bm25 import BM25
 from torchtext.data import TabularDataset
-#from tqdm import tqdm_notebook
-from tqdm.notebook import tqdm  # Thi added
+from tqdm import tqdm_notebook
 
 import ncn.core
-from ncn.core import BaseData, Stringlike, PathOrStr, DEVICE, Filters
+from ncn.core import BaseData, Stringlike, PathOrStr, DEVICE, Filters, IteratorData
 from ncn.model import NeuralCitationNetwork
 #import core
 #from core import BaseData, Stringlike, PathOrStr, DEVICE, Filters
@@ -42,20 +41,18 @@ class Evaluator:
         If False, the corpus is built from the complete dataset (inference mode).   
     - **show_attention** *(bool=false)*: Returns attention tensors if true.      
     """
-    #def __init__(self, context_filters: Filters, author_filters: Filters,
-    def __init__(self, context_filters: Filters, title_filters: Filters, author_filters: Filters,    #Thi added
+    def __init__(self, context_filters: Filters, author_filters: Filters,
                  num_filters: int, embed_size:int, num_layers: int,
-                 path_to_weights: PathOrStr, data: BaseData, 
+                 path_to_weights: PathOrStr, data: BaseData, NCNdata: IteratorData,
                  evaluate: bool = True, show_attention: bool = False):
         self.data = data        
-        #self.context, self.title, self.authors = self.data.cntxt, self.data.ttl, self.data.aut
-        self.context, self.title, self.authors, self.title2 = self.data.cntxt, self.data.ttl, self.data.aut, self.data.ttl2  #Thi added
+        self.context, self.title, self.authors = self.data.cntxt, self.data.ttl, self.data.aut        
 
         self.pad = self.title.vocab.stoi['<pad>']
         self.criterion = nn.CrossEntropyLoss(ignore_index = self.pad, reduction="none")
 
-        self.model = NeuralCitationNetwork(context_filters=context_filters,
-                                            title_filters=title_filters,   #Thi added
+        self.model = NeuralCitationNetwork(NCNdata,
+                                            context_filters=context_filters,
                                             author_filters=author_filters,
                                             context_vocab_size=len(self.context.vocab),
                                             title_vocab_size=len(self.title.vocab),
@@ -69,8 +66,7 @@ class Evaluator:
                                             dropout_p=0.2,
                                             show_attention=show_attention)
         self.model.to(DEVICE)
-        #self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE))
-        self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE), strict=False) #Thi added        
+        self.model.load_state_dict(torch.load(path_to_weights, map_location=DEVICE))
         self.model.eval()
         logger.info(self.model.settings)
 
@@ -170,8 +166,7 @@ class Evaluator:
         recall_list = []
         with torch.no_grad():
             # set to the first 20k due to high computation time
-            #for example in tqdm_notebook(self.data.test[:20000]):
-            for example in tqdm(self.data.test[:20000]):        # Thi added      
+            for example in tqdm_notebook(self.data.test[:20000]):
                 # numericalize query
                 context = self.context.numericalize([example.context])
                 citing = self.context.numericalize([example.authors_citing])
@@ -204,7 +199,6 @@ class Evaluator:
                 # prepare batches
                 citeds = self.authors.numericalize(self.authors.pad(top_authors))
                 titles = self.title.numericalize(self.title.pad(top_titles))
-                titles2 = self.title2.numericalize(self.title2.pad(top_titles)) # Thi added
                 citeds = citeds.to(DEVICE)
                 titles = titles.to(DEVICE)
 
@@ -212,12 +206,10 @@ class Evaluator:
                 context = context.repeat(len(top_titles), 1)
                 citing = citing.repeat(len(top_titles), 1)
                 msg = "Evaluation batch sizes don't match!"
-                #assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1], msg
-                assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1] == titles2.shape[0], msg  # Thi added
+                assert context.shape[0] == citing.shape[0] == citeds.shape[0] == titles.shape[1], msg
 
                 # calculate scores
-                #output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds)
-                output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds, title2 = titles2)    # Thi added
+                output = self.model(context = context, title = titles, authors_citing = citing, authors_cited = citeds)
                 output = output[1:].permute(1,2,0)
                 titles = titles[1:].permute(1,0)
 

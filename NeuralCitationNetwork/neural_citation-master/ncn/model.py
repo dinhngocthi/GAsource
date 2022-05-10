@@ -6,11 +6,16 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from torch import Tensor
+import torchtext
 
 import ncn.core
-from ncn.core import Filters, DEVICE
+from ncn.core import Filters, DEVICE, get_BERT_embdding_from_context
+from ncn.core import IteratorData
 #import core
 #from core import Filters, DEVICE
+#from core import IteratorData
+
+from transformers import BertTokenizer, BertModel
 
 
 logger = logging.getLogger(__name__)
@@ -116,7 +121,7 @@ class TDNNEncoder(nn.Module):
         # output shape: batch_size, list_length*num_filters
         #x = x.view(batch_size, -1)
         x = x.reshape(batch_size, -1) #Thi add
-
+    
         # apply nonlinear mapping
         x = torch.tanh(self.fc(x))
 
@@ -139,19 +144,29 @@ class NCNEncoder(nn.Module):
     - **dropout_p** *(float)*: Dropout probability for the dropout regularization layers.  
     - **authors** *(bool)*: Use author information in the encoder.   
     """
-    def __init__(self, context_filters: Filters,
-                       title_filters: Filters,  #Thi added
-                       author_filters: Filters,
-                       context_vocab_size: int,
-                       title_vocab_size: int,
-                       author_vocab_size: int,
-                       num_filters: int,
-                       embed_size: int,
-                       pad_idx: int,
-                       dropout_p: float,
-                       authors: bool):
+    def __init__(self, 
+                bertTokenizer: BertTokenizer,  # Phu
+                bertModel: BertModel,          # Phu
+                context_vocab: torchtext.vocab.Vocab,  # Phu
+                title_vocab: torchtext.vocab.Vocab,    # Phu
+                context_filters: Filters,
+                author_filters: Filters,
+                context_vocab_size: int,
+                author_vocab_size: int,
+                num_filters: int,
+                embed_size: int,
+                pad_idx: int,
+                dropout_p: float,
+                authors: bool):
         super().__init__()
+        # Phu start
+        self.bertTokenizer = bertTokenizer
+        self.bertModel = bertModel
 
+        self.context_vocab = context_vocab
+        self.title_vocab = title_vocab
+        # Phu end
+       
         self.use_authors = authors
 
         self.dropout = nn.Dropout(dropout_p)
@@ -160,20 +175,16 @@ class NCNEncoder(nn.Module):
         self.context_embedding = nn.Embedding(context_vocab_size, embed_size, padding_idx=pad_idx)
         self.context_encoder = TDNNEncoder(context_filters, num_filters, embed_size)
 
-        # Thi added start
-        # title encoder
-        self.title_embedding = nn.Embedding(title_vocab_size, embed_size, padding_idx=pad_idx)
-        self.title_encoder = TDNNEncoder(title_filters, num_filters, embed_size)
-        # Thi added end
-
         # author encoder
         if self.use_authors:
             self.author_embedding = nn.Embedding(author_vocab_size, embed_size, padding_idx=pad_idx)
             self.citing_author_encoder = TDNNEncoder(author_filters, num_filters, embed_size)
             self.cited_author_encoder = TDNNEncoder(author_filters, num_filters, embed_size)
 
-    #def forward(self, context: Tensor, 
-    def forward(self, context: Tensor, title: Tensor,    # Thi added
+        # Applying the linear transformation for BERT embedding from default 768 -> embed_size
+        self.BERT_transform_linear = nn.Linear(768, embed_size)  # Phu
+
+    def forward(self, context: Tensor, 
                 authors_citing: Tensor = None, authors_cited: Tensor = None) -> Tensor:
         """
         ## Input:  
@@ -192,9 +203,27 @@ class NCNEncoder(nn.Module):
             Else the encoded context is returned.
         """
         # Embed and encode context
+
+        # Achieving the BERT textual representations for the input context 
+        # Phu added start
+        BERT_context_embs = get_BERT_embdding_from_context(
+            self.bertTokenizer, self.bertModel, self.context_vocab, context)
+
+        # Applying linear embedding transformation from the dimensionality of 768 to embedding
+        transformed_BERT_context_embs = self.BERT_transform_linear(BERT_context_embs)
+        # Phu added end
+
         context = self.dropout(self.context_embedding(context))
         context = self.context_encoder(context)
         logger.debug(f"Context encoding shape: {context.shape}")
+
+        # Phu added start
+        # Applying the embedding combination between BERT and TDNN
+        combined_context = context.clone()
+        for idx, context in enumerate(context):
+            combined_context[idx] = context[idx] * transformed_BERT_context_embs[idx]        
+        logger.debug(f"Context encoding shape: {combined_context.shape}")
+        # Phu added end
 
         if self.use_authors and authors_citing is not None and authors_cited is not None:
             logger.debug("Forward pass uses author information.")
@@ -209,19 +238,12 @@ class NCNEncoder(nn.Module):
             logger.debug(f"Citing author encoding shape: {authors_citing.shape}")
             logger.debug(f"Cited author encoding shape: {authors_cited.shape}")
 
-            # Thi added start
-            #title = torch.transpose(title, 0, 1) #Thi added
-            title = self.dropout(self.title_embedding(title))
-            title = self.title_encoder(title)            
-            logger.debug(f"Title encoding shape: {title.shape}")
-            # Thi added end
-
             # [N: batch_size, F: total # of filters (authors, cntxt), D: embedding size]
-            #return torch.cat([context, authors_citing, authors_cited], dim=0)            
-            return torch.cat([context, title, authors_citing, authors_cited], dim=0) # Thi added
+            #return torch.cat([context, authors_citing, authors_cited], dim=0)  # Phu
+            return torch.cat([combined_context, authors_citing, authors_cited], dim=0) # Phu
         
-        return context
-
+        #return context  # Phu
+        return combined_context  # Phu
 
 class Attention(nn.Module):
     """
@@ -396,25 +418,45 @@ class NeuralCitationNetwork(nn.Module):
     - **dropout_p** *(float=0.2)*: Dropout probability for the dropout regularization layers.  
     - **show_attention** *(bool=false)*: Returns attention tensors if true.  
     """
-    def __init__(self, context_filters: Filters,
-                       title_filters: Filters,  #Thi added
-                       author_filters: Filters,
-                       context_vocab_size: int,
-                       title_vocab_size: int,
-                       author_vocab_size: int,
-                       pad_idx: int,
-                       num_filters: int,
-                       authors: bool, 
-                       embed_size: int,
-                       num_layers: int, 
-                       hidden_size: int,
-                       dropout_p: float = 0.2,
-                       show_attention: bool = False):
+    def __init__(self, 
+                    data: IteratorData,  # Phu
+                    context_filters: Filters,
+                    author_filters: Filters,
+                    context_vocab_size: int,
+                    title_vocab_size: int,
+                    author_vocab_size: int,
+                    pad_idx: int,
+                    num_filters: int,
+                    authors: bool, 
+                    embed_size: int,
+                    num_layers: int, 
+                    hidden_size: int,
+                    dropout_p: float = 0.2,
+                    show_attention: bool = False):
         super().__init__()
+
+        # Phu start
+        self.data = data
+
+        self.context_vocab = self.data.cntxt.vocab
+        self.title_vocab = self.data.ttl.vocab
+
+        # Init BERT model
+        # Load pre-trained model tokenizer (vocabulary)
+        self.bertTokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
+        # Load pre-trained model (weights)
+        self.bertModel = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True)
+
+        # Put the model in "evaluation" mode, meaning feed-forward operation.
+        self.bertModel.eval()
+
+        print('Context vocab size: {}'.format(len(self.context_vocab.itos)))
+        print('Title vocab size: {}'.format(len(self.title_vocab.itos)))
+        # Phu end
 
         self.use_authors = authors
         self.context_filter_list = context_filters
-        self.title_filters_list = title_filters  # Thi added
         self.author_filter_list = author_filters
         self.num_filters = num_filters # num filters for context == num filters for authors
 
@@ -434,11 +476,13 @@ class NeuralCitationNetwork(nn.Module):
         # NCN MODEL
         
         # Encoder
-        self.encoder = NCNEncoder(context_filters = self.context_filter_list,
-                                  title_filters = self.title_filters_list,  # Thi added
+        self.encoder = NCNEncoder(bertTokenizer=self.bertTokenizer,  # Phu
+                                  bertModel=self.bertModel,          # Phu 
+                                  context_vocab=self.context_vocab,  # Phu 
+                                  title_vocab=self.title_vocab,      # Phu
+                                  context_filters = self.context_filter_list,
                                   author_filters = self.author_filter_list,
                                   context_vocab_size = self.context_vocab_size,
-                                  title_vocab_size = self.title_vocab_size, # Thi added
                                   author_vocab_size = self.author_vocab_size,
                                   num_filters = self.num_filters,
                                   embed_size = self.embed_size,
@@ -463,8 +507,7 @@ class NeuralCitationNetwork(nn.Module):
             f"\nRunning on: {DEVICE}"
             f"\nNumber of model parameters: {self.count_parameters():,}"
             f"\nEncoders: # Filters = {self.num_filters}, "
-            f"Context filter length = {self.context_filter_list},  Author filter length = {self.author_filter_list}, "
-            f"Title filter length = {self.title_filters_list}"
+            f"Context filter length = {self.context_filter_list},  Context filter length = {self.author_filter_list}"
             f"\nEmbeddings: Dimension = {self.embed_size}, Pad index = {self.pad_idx}, Context vocab = {self.context_vocab_size}, "
             f"Author vocab = {self.author_vocab_size}, Title vocab = {self.title_vocab_size}"
             f"\nDecoder: # GRU cells = {self.num_layers}, Hidden size = {self.hidden_size}"
@@ -477,8 +520,7 @@ class NeuralCitationNetwork(nn.Module):
         return sum(p.numel() for p in self.parameters() if p.requires_grad)
 
     def forward(self, context: Tensor, title: Tensor, 
-                #authors_citing: Tensor = None, authors_cited: Tensor = None,
-                authors_citing: Tensor = None, authors_cited: Tensor = None, title2: Tensor = None,  # Thi added
+                authors_citing: Tensor = None, authors_cited: Tensor = None,
                 teacher_forcing_ratio: float = 1):
         """
         ## Parameters:  
@@ -506,16 +548,15 @@ class NeuralCitationNetwork(nn.Module):
             Tensor containing the decoder attention states.
         """
         
-        #encoder_outputs = self.encoder(context, authors_citing, authors_cited)
-        encoder_outputs = self.encoder(context, title2, authors_citing, authors_cited) # Thi added
+        encoder_outputs = self.encoder(context, authors_citing, authors_cited)
         
-        batch_size = title.shape[1]        
-        max_len = title.shape[0]        
-                
+        batch_size = title.shape[1]
+        max_len = title.shape[0]
+        
         #tensor to store decoder outputs
-        outputs = torch.zeros(max_len, batch_size, self.title_vocab_size).to(DEVICE)   
+        outputs = torch.zeros(max_len, batch_size, self.title_vocab_size).to(DEVICE)        
         #first input to the decoder is the <sos> tokens
-        output = title[0,:]
+        output = title[0,:]        
 
         if self.show_attention:
             attentions = torch.zeros((max_len, batch_size, encoder_outputs.shape[0])).to(DEVICE)

@@ -1,4 +1,5 @@
 import torch
+import torchtext
 import spacy
 import nltk
 #nltk.download('stopwords')
@@ -8,7 +9,8 @@ from typing import Union, List
 from pathlib import Path
 from typing import NamedTuple, Set
 from torchtext.data import Field, BucketIterator, TabularDataset
-
+from transformers import BertTokenizer, BertModel
+from torch import Tensor
 
 # Custom data types and structures
 PathOrStr = Union[Path, str]
@@ -27,8 +29,6 @@ class IteratorData(NamedTuple):
     """**cntxt** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for context data."""
     ttl: Field
     """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
-    ttl2: Field # Thi added
-    """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""    
     aut: Field
     """**aut** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for author data."""
     train_iter: BucketIterator
@@ -57,8 +57,6 @@ class BaseData(NamedTuple):
     cntxt: Field
     """**cntxt** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for context data"""
     ttl: Field
-    """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
-    ttl2: Field  # Thi added
     """**ttl** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for title data."""
     aut: Field
     """**aut** *(torch.text.data.Field)*: Field containing preprocessing steps and vocabulary for author data."""
@@ -121,3 +119,43 @@ def get_stopwords() -> Set:
     nltk_stopwords = set(nltk.corpus.stopwords.words('english'))
     STOPWORDS.update(nltk_stopwords)
     return STOPWORDS
+
+def learn_BERT_sent_representation(bertTokenizer: BertTokenizer,
+                                   bertModel: BertModel,
+                                   sentence) -> Tensor:
+    # Split the sentence into tokens
+    indexed_tokens = bertTokenizer.encode(sentence, add_special_tokens=False, truncation=True)
+
+    # Mark each of token as belonging to sentence "1".
+    segments_ids = [1] * len(indexed_tokens)
+
+    # Convert inputs to PyTorch tensors
+    tokens_tensor = torch.tensor([indexed_tokens])
+    segments_tensors = torch.tensor([segments_ids])
+
+    with torch.no_grad():
+        outputs = bertModel(tokens_tensor, segments_tensors)
+        # `hidden_states` has shape [13 x 1 x number_token_in_sentence x 768]
+        hidden_states = outputs[2]
+
+    # `token_vecs` is a tensor with shape [number_token_in_sentence x 768]
+    token_vecs = hidden_states[-2][0]
+
+    # Calculate the average of all token vectors.
+    sentence_embedding = torch.mean(token_vecs, dim=0)
+
+    return sentence_embedding
+
+def get_BERT_embdding_from_context(
+        bertTokenizer: BertTokenizer,
+        bertModel: BertModel,
+        context_vocab: torchtext.vocab.Vocab,
+        context: Tensor) -> Tensor:
+    context_embeddings = []
+    for sentence_token_idxes in context:
+        sentence_tokens = [context_vocab.itos[token_idx.item()] for token_idx in sentence_token_idxes]
+        sentence = ' '.join(sentence_tokens)
+        sentence_embs = learn_BERT_sent_representation(bertTokenizer, bertModel, sentence)
+        context_embeddings.append(sentence_embs.cpu().numpy())
+    context_embeddings = torch.FloatTensor(context_embeddings)
+    return context_embeddings

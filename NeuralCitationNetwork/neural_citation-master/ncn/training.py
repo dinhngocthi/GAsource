@@ -4,9 +4,7 @@ import random
 import logging
 from pathlib import Path
 from datetime import datetime
-#from tqdm import tqdm_notebook, tnrange
-from tqdm import tnrange # Thi added
-from tqdm.notebook import tqdm  # Thi added
+from tqdm import tqdm_notebook, tnrange
 from typing import List, Tuple
 
 import torch
@@ -95,30 +93,25 @@ def train(model: nn.Module, iterator: BucketIterator,
     
     model.train()
     
-    epoch_loss = 0
+    epoch_loss = 0    
 
-    #for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
-    for i, batch in enumerate(tqdm(iterator, desc="Training batches")):          #Thi added        
+    for i, batch in enumerate(tqdm_notebook(iterator, desc="Training batches")):
         
         # unpack and move to GPU if available
-        #cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
-        cntxt, citing, ttl, cited, ttl2 = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited, batch.title_cited_2 # Thi added
-        #ttl = torch.transpose(ttl, 0, 1) #Thi added
+        cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
         cntxt = cntxt.to(DEVICE)
         citing = citing.to(DEVICE)
         ttl = ttl.to(DEVICE)
-        ttl2 = ttl2.to(DEVICE)   # Thi added
         cited = cited.to(DEVICE)
         
         optimizer.zero_grad()
         
-        #output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
-        output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited, title2 = ttl2) # Thi added
+        output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
         
         #ttl = [trg sent len, batch size]
         #output = [trg sent len, batch size, output dim]
          
-        output = output[1:].view(-1, output.shape[-1])        
+        output = output[1:].view(-1, output.shape[-1])
         ttl = ttl[1:].view(-1)
         
         #ttl = [(trg sent len - 1) * batch size]
@@ -160,19 +153,16 @@ def evaluate(model: nn.Module, iterator: BucketIterator, criterion: nn.Module):
     
     with torch.no_grad():
     
-        #for i, batch in enumerate(tqdm_notebook(iterator, desc="Evaluating batches")):
-        for i, batch in enumerate(tqdm(iterator, desc="Evaluating batches")):    # Thi added
+        for i, batch in enumerate(tqdm_notebook(iterator, desc="Evaluating batches")):
+
             # unpack and move to GPU if available
-            #cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
-            cntxt, citing, ttl, cited, ttl2 = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited, batch.title_cited_2 # Thi added 
+            cntxt, citing, ttl, cited = batch.context, batch.authors_citing, batch.title_cited, batch.authors_cited
             cntxt = cntxt.to(DEVICE)
             citing = citing.to(DEVICE)
-            ttl = ttl.to(DEVICE)            
+            ttl = ttl.to(DEVICE)
             cited = cited.to(DEVICE)
-            ttl2 = ttl2.to(DEVICE)  # Thi added
             
-            #output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
-            output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited, title2 = ttl2) # Thi added
+            output = model(context = cntxt, title = ttl, authors_citing = citing, authors_cited = cited)
 
             output = output[1:].view(-1, output.shape[-1])
             ttl = ttl[1:].view(-1)
@@ -186,8 +176,7 @@ def evaluate(model: nn.Module, iterator: BucketIterator, criterion: nn.Module):
 
 def train_model(model: nn.Module, train_iterator: BucketIterator, valid_iterator: BucketIterator, pad: int, 
                 model_name: str,
-                #n_epochs: int = 20, clip: float = 5., lr: float = 0.001, 
-                n_epochs: int = 30, clip: float = 5., lr: float = 0.001,  # Thi added
+                n_epochs: int = 20, clip: float = 5., lr: float = 0.001,
                 save_dir: PathOrStr = "./models") -> Tuple[List[float]]:
     """
     Main training function for the NCN model.  
@@ -247,9 +236,10 @@ def train_model(model: nn.Module, train_iterator: BucketIterator, valid_iterator
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
             if not save_dir.exists(): save_dir.mkdir()
-            #torch.save(model.state_dict(), save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}.pt")
-            torch.save(model.state_dict(), save_dir/f"{model_name}.pt")  #Thi added
+            torch.save(model.state_dict(), save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}.pt")
+            #torch.save(model.state_dict(), save_dir/model_name) # Thi added
             with open(save_dir/f"NCN_{date.month}_{date.day}_{date.hour}_{model_name}_settings.txt", "w") as file:
+            #with open(save_dir/f"{model_name}_settings.txt", "w") as file:  # Thi added
                 file.write(settings + f", Valid loss = {valid_loss}")
         
         logger.info(f"Epoch: {epoch+1:02} | Time: {epoch_mins}m {epoch_secs}s")
